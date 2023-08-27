@@ -66,6 +66,7 @@
   }
 } */
 
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -89,7 +90,7 @@
     --ring: 346.8 77.2% 49.8%;
     --radius: 0.3rem;
   }
-
+ 
   .dark {
     --background: 20 14.3% 4.1%;
     --foreground: 0 0% 95%;
