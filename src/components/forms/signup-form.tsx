@@ -1,14 +1,8 @@
-"use client"
+'use client';
 
-import * as React from "react"
-import { useRouter } from "next/navigation"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { toast } from "sonner"
-import type { z } from "zod"
+import * as React from 'react';
 
-import { authSchema } from "@/lib/validations/auth"
-import { Button } from "@/components/ui/button"
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -16,95 +10,87 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { PasswordInput } from "../ui/password-input"
-import { Icons } from "../ui/icons"
-
-
-type Inputs = z.infer<typeof authSchema>
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { PasswordInput } from '../ui/password-input';
+import { Icons } from '../ui/icons';
+import { useAuth } from '@/hooks/api/auth/useAuth';
 
 export function SignUpForm() {
-  const router = useRouter()
-  const [isPending, startTransition] = React.useTransition()
-
-  // react-hook-form
-  const form = useForm<Inputs>({
-    resolver: zodResolver(authSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-  })
-
-  function onSubmit(data: Inputs) {
-    // if (!isLoaded) return
-
-    startTransition(async () => {
-      // try {
-      //   await signUp.create({
-      //     emailAddress: data.email,
-      //     password: data.password,
-      //   })
-
-      //   // Send email verification code
-      //   await signUp.prepareEmailAddressVerification({
-      //     strategy: "email_code",
-      //   })
-
-      //   router.push("/signup/verify-email")
-      //   toast.message("Check your email", {
-      //     description: "We sent you a 6-digit verification code.",
-      //   })
-      // } catch (err) {
-      //   catchClerkError(err)
-      // }
-    })
-  }
+  const { registerForm, SignupLoading, IsSignupError, attemptToRegister } =
+    useAuth();
 
   return (
-    <Form {...form}>
+    <Form {...registerForm}>
       <form
-        className="grid gap-4"
-        onSubmit={(...args) => void form.handleSubmit(onSubmit)(...args)}
+        className='grid gap-4'
+        onSubmit={(...args) =>
+          void registerForm.handleSubmit(attemptToRegister)(...args)
+        }
       >
         <FormField
-          control={form.control}
-          name="email"
+          control={registerForm.control}
+          name='name'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Name</FormLabel>
+              <FormControl>
+                <Input placeholder='Jone Due' {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={registerForm.control}
+          name='email'
           render={({ field }) => (
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="rodneymullen180@gmail.com" {...field} />
+                <Input placeholder='example@gmail.com' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
         <FormField
-          control={form.control}
-          name="password"
+          control={registerForm.control}
+          name='password'
           render={({ field }) => (
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <PasswordInput placeholder="**********" {...field} />
+                <PasswordInput placeholder='**********' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button disabled={isPending}>
-          {isPending && (
+        <FormField
+          control={registerForm.control}
+          name='passwordConfirm'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>PasswordConfirm</FormLabel>
+              <FormControl>
+                <PasswordInput placeholder='**********' {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button disabled={SignupLoading}>
+          {SignupLoading && (
             <Icons.spinner
-              className="mr-2 h-4 w-4 animate-spin"
-              aria-hidden="true"
+              className='mr-2 h-4 w-4 animate-spin'
+              aria-hidden='true'
             />
           )}
           Continue
-          <span className="sr-only">Continue to email verification page</span>
+          <span className='sr-only'>Continue to email verification page</span>
         </Button>
       </form>
     </Form>
-  )
+  );
 }

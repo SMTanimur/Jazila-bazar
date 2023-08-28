@@ -1,3 +1,5 @@
+
+"use client"
 import Link from "next/link"
 
 
@@ -5,20 +7,21 @@ import Link from "next/link"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { MainNav } from "./main-nav"
 import { MobileNav } from "./mobile-nav"
+import { IUser } from "@/types"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from "../ui/dropdown-menu"
+import { Icons } from "../ui/icons"
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
+import { useMe } from "@/hooks/api/user/useMe"
+import { Combobox } from "../common/shared/combobox"
 
 
 interface SiteHeaderProps {
-  user: any | null
+  user: IUser | null
 }
 
-export function SiteHeader({ user }: SiteHeaderProps) {
-  const initials = `${user?.firstName?.charAt(0) ?? ""} ${
-    user?.lastName?.charAt(0) ?? ""
-  }`
-  const email =
-    user?.emailAddresses?.find((e:any) => e.id === user.primaryEmailAddressId)
-      ?.emailAddress ?? ""
-
+export function SiteHeader() {
+  
+const {data:user}= useMe()
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
       <div className="container flex h-16 items-center">
@@ -29,9 +32,9 @@ export function SiteHeader({ user }: SiteHeaderProps) {
         />
         <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center space-x-2">
-            {/* <Combobox />
-            <CartSheet /> */}
-            {/* {user ? (
+            <Combobox />
+            {/* <CartSheet /> */}
+            {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button
@@ -40,10 +43,10 @@ export function SiteHeader({ user }: SiteHeaderProps) {
                   >
                     <Avatar className="h-8 w-8">
                       <AvatarImage
-                        src={user.imageUrl}
-                        alt={user.username ?? ""}
+                        src={user.profile?.avatar?.img_url ?? ""}
+                        alt={user.name}
                       />
-                      <AvatarFallback>{initials}</AvatarFallback>
+                      <AvatarFallback>{user.name}</AvatarFallback>
                     </Avatar>
                   </Button>
                 </DropdownMenuTrigger>
@@ -51,10 +54,10 @@ export function SiteHeader({ user }: SiteHeaderProps) {
                   <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col space-y-1">
                       <p className="text-sm font-medium leading-none">
-                        {user.firstName} {user.lastName}
+                        {user.name}
                       </p>
                       <p className="text-xs leading-none text-muted-foreground">
-                        {email}
+                        {user.email}
                       </p>
                     </div>
                   </DropdownMenuLabel>
@@ -104,7 +107,7 @@ export function SiteHeader({ user }: SiteHeaderProps) {
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-            ) : ( */}
+            ) : (
               <Link
                 href="/signin"
                 className={buttonVariants({
@@ -114,7 +117,7 @@ export function SiteHeader({ user }: SiteHeaderProps) {
                 Sign In
                 <span className="sr-only">Sign In</span>
               </Link>
-            {/* )} */}
+            )}
           </nav>
         </div>
       </div>
