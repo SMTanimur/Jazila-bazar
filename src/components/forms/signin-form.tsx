@@ -41,7 +41,7 @@ export function SignInForm() {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder='rodneymullen180@gmail.com' {...field} />
+                <Input placeholder='example@gmail.com' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

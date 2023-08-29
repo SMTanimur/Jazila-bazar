@@ -49,10 +49,7 @@ export function useAuth() {
     },
   });
   const verifyForm = useForm<TVerify>({
-    resolver: zodResolver(verfifyEmailSchema),
-    defaultValues: {
-      token: '',
-    },
+    resolver: zodResolver(verfifyEmailSchema)
   });
   const registerForm = useForm<TSignup>({
     resolver: zodResolver(signupSchema),
@@ -90,25 +87,28 @@ export function useAuth() {
           response: { data },
         }: any = error ?? {};
 
-        return <b> {data}</b>;
+        return <b> {data.message}</b>;
       },
     });
   };
   const attemptToVerifyEmail = async (data: TVerify) => {
     toast.promise(VerifyMutation(data), {
-      loading: 'registering...',
+      loading: 'verify...',
       success: data => {
-        if (data.role === 'user') {
-          router.push('/');
-        }
+        
+        router.push('/signin')
+        // if (data.role === 'customer') {
+        //   router.push('/');
+        // }
         return <b>{data.message}</b>;
+        
       },
       error: error => {
         const {
           response: { data },
         }: any = error ?? {};
 
-        return <b> {data}</b>;
+        return <b> {data.message}</b>;
       },
     });
   };

@@ -11,13 +11,24 @@ import {
 import { Shell } from "@/components/shells/shell"
 import { VerifyEmailForm } from "@/components/forms/verify-email-form"
 
+
+
+type Params = {
+  params: {
+    token: string;
+  };
+};
+
 export const metadata: Metadata = {
 
-  title: "Verify Email",
+  title: "Account Verification",
   description: "Verify your email address to continue with your sign up",
 }
 
-export default function VerifyEmailPage() {
+export default function VerifyEmailPage({ params: { token } }: Params) {
+
+ 
+  
   return (
     <Shell className="max-w-lg">
       <Card>
@@ -28,7 +39,7 @@ export default function VerifyEmailPage() {
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
-          <VerifyEmailForm />
+          <VerifyEmailForm token={token} />
         </CardContent>
       </Card>
     </Shell>

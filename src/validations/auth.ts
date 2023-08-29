@@ -66,6 +66,8 @@ export const activateSchema = z.object({
   token: z.string(),
 });
 
+export type TVerify = z.infer<typeof activateSchema>;
+
 export type TLogin = z.infer<typeof loginSchema>;
 
 export const profileSchema = authSchema.omit({
@@ -92,4 +94,4 @@ export const verfifyEmailSchema = z.object({
     .max(6),
 });
 
-export type TVerify = z.infer<typeof verfifyEmailSchema>;
+

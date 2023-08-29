@@ -1,7 +1,7 @@
 
 import { API_ENDPOINTS } from '@/utils/api/api-endpoints';
 import { HttpClient } from '@/utils/api/http';
-import { TLogin, TSignup, loginResponseSchema,mutationActivationResponse, mutationResponseSchema } from '@/validations/auth';
+import { TLogin, TSignup, TVerify, loginResponseSchema,mutationActivationResponse, mutationResponseSchema } from '@/validations/auth';
 import { IUser } from '@/types';
 
 export const userClient = {
@@ -14,9 +14,9 @@ export const userClient = {
       variables
     );
   },
-  emailVerify: (variables: any) => {
+  emailVerify: (variables: TVerify) => {
     return HttpClient.post<mutationActivationResponse>(
-      API_ENDPOINTS.ACTIVATE,
+      `/auth/${API_ENDPOINTS.ACTIVATE}`,
       variables
     );
   },
