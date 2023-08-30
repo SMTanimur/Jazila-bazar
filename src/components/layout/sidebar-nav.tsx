@@ -39,7 +39,7 @@ export function SidebarNav({ items, className, ...props }: SidebarNavProps) {
                 item.disabled && "pointer-events-none opacity-60"
               )}
             >
-              <Icon className="mr-2 h-4 w-4" aria-hidden="true" />
+              <Icon className="mr-2 h-4 w-4 transition-transform duration-300 ease-linear group-hover:rotate-12" aria-hidden="true" />
               <span>{item.title}</span>
             </span>
           </Link>

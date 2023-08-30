@@ -17,6 +17,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Icons } from "../ui/icons"
 import { siteConfig } from "@/configs/site"
 import Image from "next/image"
+import GradientLogo from "../common/shared/gradient-logo"
 
 
 interface MobileNavProps {
@@ -35,7 +36,7 @@ export function MobileNav({ mainNavItems, sidebarNavItems }: MobileNavProps) {
           variant="ghost"
           className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 lg:hidden"
         >
-           <Icons.logo className="h-10 w-10"/>
+           <Icons.menu className="h-8 w-8"/>
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="pl-1 pr-0">
@@ -46,8 +47,8 @@ export function MobileNav({ mainNavItems, sidebarNavItems }: MobileNavProps) {
             className="flex items-center"
             onClick={() => setIsOpen(false)}
           >
-            <Icons.logo className="mr-2 h-4 w-4" aria-hidden="true" />
-            <span className="font-bold">{siteConfig.name}</span>
+           <Icons.logo className="mr-2 h-8 w-8" aria-hidden="true" />
+            <GradientLogo/>
           </Link>
         </div>
         <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
