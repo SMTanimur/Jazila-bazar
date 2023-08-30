@@ -30,12 +30,25 @@ export function SignUpForm() {
       >
         <FormField
           control={registerForm.control}
-          name='name'
+          name='firstName'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Name</FormLabel>
+              <FormLabel>FirstName</FormLabel>
               <FormControl>
-                <Input placeholder='Jone Due' {...field} />
+                <Input placeholder='Jone' {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={registerForm.control}
+          name='lastName'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>LastName</FormLabel>
+              <FormControl>
+                <Input placeholder='Due' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

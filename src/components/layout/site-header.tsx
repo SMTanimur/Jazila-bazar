@@ -20,7 +20,6 @@ interface SiteHeaderProps {
 }
 
 export function SiteHeader() {
-  
 const {data:user}= useMe()
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
@@ -43,10 +42,10 @@ const {data:user}= useMe()
                   >
                     <Avatar className="h-8 w-8">
                       <AvatarImage
-                        src={user.profile?.avatar?.img_url ?? ""}
-                        alt={user.name}
+                        src={user?.avatar }
+                        alt={user.lastName}
                       />
-                      <AvatarFallback>{user.name}</AvatarFallback>
+                      <AvatarFallback>{user.lastName}</AvatarFallback>
                     </Avatar>
                   </Button>
                 </DropdownMenuTrigger>
@@ -54,7 +53,7 @@ const {data:user}= useMe()
                   <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col space-y-1">
                       <p className="text-sm font-medium leading-none">
-                        {user.name}
+                        {user.firstName} {user.lastName}
                       </p>
                       <p className="text-xs leading-none text-muted-foreground">
                         {user.email}

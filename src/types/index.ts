@@ -32,8 +32,10 @@ export type MainNavItem = NavItemWithOptionalChildren;
 export type SidebarNavItem = NavItemWithChildren;
 
 export interface IUser {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
+  avatar?: string
   is_active?: boolean;
   role: string;
   _id: string;
@@ -45,7 +47,6 @@ export interface IUser {
 }
 
 export interface IProfile {
-  avatar?: ImageInfo;
   bio?: string;
   socials?: Record<string, any>[];
   contact?: string;

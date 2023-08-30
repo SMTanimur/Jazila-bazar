@@ -2,7 +2,14 @@ import { IUser } from '@/types';
 import * as z from 'zod';
 
 const authSchema = z.object({
-  name: z
+  firstName: z
+    .string({
+      required_error: 'Last name is required',
+      invalid_type_error: 'Last name must be a string',
+    })
+    .trim()
+    .min(2, { message: 'Last name must be 2 or more characters long' }),
+  lastName: z
     .string({
       required_error: 'Last name is required',
       invalid_type_error: 'Last name must be a string',
@@ -21,12 +28,11 @@ const authSchema = z.object({
     .min(8, {
       message: 'Password must be at least 8 characters long',
     })
-    .max(100)
-    // .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/, {
-    //   message:
-    //     'Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character',
-    // }),
-    ,
+    .max(100),
+  // .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/, {
+  //   message:
+  //     'Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character',
+  // }),
   passwordConfirm: z
     .string({
       required_error: 'Password confirmation value is required',
@@ -36,16 +42,16 @@ const authSchema = z.object({
 });
 
 export interface mutationResponseSchema {
-  message: string
+  message: string;
 }
 export interface loginResponseSchema {
   message: string;
-  user:IUser
+  user: IUser;
 }
 
-export interface mutationActivationResponse{
-  message: string
-  role: string
+export interface mutationActivationResponse {
+  message: string;
+  role: string;
 }
 
 export const signupSchema = authSchema.refine(
@@ -58,7 +64,8 @@ export const signupSchema = authSchema.refine(
 export type TSignup = z.infer<typeof signupSchema>;
 
 export const loginSchema = authSchema.omit({
-  name: true,
+  firstName: true,
+  lastName:true,
   passwordConfirm: true,
 });
 
@@ -93,5 +100,3 @@ export const verfifyEmailSchema = z.object({
     })
     .max(6),
 });
-
-

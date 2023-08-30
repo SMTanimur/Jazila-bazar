@@ -56,7 +56,8 @@ export function useAuth() {
     defaultValues: {
       email: '',
       password: '',
-      name: '',
+      firstName: '',
+      lastName: '',
       passwordConfirm: '',
     },
   });
