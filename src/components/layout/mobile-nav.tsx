@@ -35,7 +35,7 @@ export function MobileNav({ mainNavItems, sidebarNavItems }: MobileNavProps) {
           variant="ghost"
           className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 lg:hidden"
         >
-           <Image src={'./zazila.svg'} alt="zazila-bazar" width={150} height={50}/>
+           <Icons.logo className="h-10 w-10"/>
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="pl-1 pr-0">

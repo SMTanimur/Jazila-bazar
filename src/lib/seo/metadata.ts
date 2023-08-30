@@ -5,11 +5,12 @@ import { siteConfig } from './site';
 export const defaultMetadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: 'Zazila-bazaar  - Zazila-Bazaar: Your Ultimate Multi-Vendor Marketplace',
+    default:
+      'Zazila-bazaar  - Zazila-Bazaar: Your Ultimate Multi-Vendor Marketplace',
     template: 'Zazila-bazaar  | %s',
   },
   description:
-    'Zazila-bazaar is a social media platform for Muslims to connect with other Muslims, share Islamic knowledge, and find Islamic resources.',
+    'Welcome to Zazila-Bazaar, your ultimate online shopping destination! We are your one-stop marketplace for a diverse range of products, all conveniently curated from a multitude of trusted sellers. ',
   keywords: metaKeywords.join(', '),
   creator: 'SM Tanimur Rahman',
   publisher: 'SM Tanimur Rahman',
@@ -47,9 +48,10 @@ export const defaultMetadata = {
     locale: 'en_US',
     url: siteConfig.url,
     siteName: 'Zazila-bazaar',
-    title: 'Zazila-bazaar - Zazila-Bazaar: Your Ultimate Multi-Vendor Marketplace',
+    title:
+      'Zazila-bazaar - Zazila-Bazaar: Your Ultimate Multi-Vendor Marketplace',
     description:
-      'Zazila-bazaar is a social media platform for Muslims to connect with other Muslims, share Islamic knowledge, and find Islamic resources.',
+      'Welcome to Zazila-Bazaar, your ultimate online shopping destination! We are your one-stop marketplace for a diverse range of products, all conveniently curated from a multitude of trusted sellers. ',
     images: [
       {
         url: `${siteConfig.url}/images/seo_image.png`,
@@ -70,9 +72,10 @@ export const defaultMetadata = {
     creator: '@smtanimur',
     site: '@Zazila-bazaar',
     card: 'summary_large_image',
-    title: 'Zazila-bazaar - Zazila-Bazaar: Your Ultimate Multi-Vendor Marketplace',
+    title:
+      'Zazila-bazaar - Zazila-Bazaar: Your Ultimate Multi-Vendor Marketplace',
     description:
-      'Zazila-bazaar is a social media platform for Muslims to connect with other Muslims, share Islamic knowledge, and find Islamic resources.',
+      'Welcome to Zazila-Bazaar, your ultimate online shopping destination! We are your one-stop marketplace for a diverse range of products, all conveniently curated from a multitude of trusted sellers. ',
     images: [
       {
         url: `${siteConfig.url}/images/seo_image.png`,

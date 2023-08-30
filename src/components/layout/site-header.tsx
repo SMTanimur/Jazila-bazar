@@ -74,7 +74,7 @@ const {data:user}= useMe()
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
-                      <Link href="/dashboard/stores">
+                      <Link href="/dashboard/account">
                         <Icons.terminal
                           className="mr-2 h-4 w-4"
                           aria-hidden="true"
