@@ -28,7 +28,6 @@ export function MainNav() {
         href="/"
         className="hidden items-center space-x-2 lg:flex"
       >
-       <Icons.logo className="mr-2 h-8 w-8" aria-hidden="true" />
             <GradientLogo/>
       </Link>
       {/* <NavigationMenu>

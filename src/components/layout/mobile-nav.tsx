@@ -47,7 +47,6 @@ export function MobileNav({ mainNavItems, sidebarNavItems }: MobileNavProps) {
             className="flex items-center"
             onClick={() => setIsOpen(false)}
           >
-           <Icons.logo className="mr-2 h-8 w-8" aria-hidden="true" />
             <GradientLogo/>
           </Link>
         </div>
