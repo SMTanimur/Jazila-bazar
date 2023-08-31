@@ -37,6 +37,8 @@ export interface IUser {
   email: string;
   avatar?: string
   is_active?: boolean;
+  provider:string
+  provider_id?:string
   role: string;
   _id: string;
   contact?: string;

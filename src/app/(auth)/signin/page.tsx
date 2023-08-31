@@ -15,6 +15,7 @@ import { Shell } from '@/components/shells/shell';
 import { BaseClientUrl } from '@/configs/settings';
 import { SignInForm } from '@/components/forms/signin-form';
 import AnimatedCharacters from '@/components/ui/animated-characters';
+import { OAuthSignIn } from '@/components/common/shared/oauth-signin';
 
 export const metadata: Metadata = {
   title: 'Sign In',
@@ -34,6 +35,7 @@ export default async function SignInPage() {
           </CardDescription>
         </CardHeader>
         <CardContent className='grid gap-4'>
+        <OAuthSignIn/>
           <div className='relative'>
             <div className='absolute inset-0 flex items-center'>
               <span className='w-full border-t' />

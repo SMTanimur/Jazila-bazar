@@ -1,3 +1,4 @@
-export const BaseClientUrl  = process.env.NEXT_PUBLIC_APP_URL
-export const BaseApiUrl  = process.env.NEXT_PUBLIC_API_URL
-export const NODE_ENV  = process.env.NODE_ENV
+export const BaseClientUrl = process.env.NEXT_PUBLIC_APP_URL;
+export const BaseApiUrl = process.env.NEXT_PUBLIC_API_URL;
+export const NODE_ENV = process.env.NODE_ENV;
+export const GoogleApiRedirect = BaseApiUrl + '/v1/auth/google/login';

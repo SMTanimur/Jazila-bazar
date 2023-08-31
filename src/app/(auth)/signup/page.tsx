@@ -1,6 +1,5 @@
 import { type Metadata } from 'next';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
 
 import {
   Card,
@@ -14,6 +13,7 @@ import {
 import { Shell } from '@/components/shells/shell';
 import { SignUpForm } from '@/components/forms/signup-form';
 import AnimatedCharacters from '@/components/ui/animated-characters';
+import { OAuthSignIn } from '@/components/common/shared/oauth-signin';
 
 export const metadata: Metadata = {
   title: 'Sign Up',
@@ -34,6 +34,7 @@ export default async function SignUpPage() {
           </CardDescription>
         </CardHeader>
         <CardContent className='grid gap-4'>
+          <OAuthSignIn />
           <div className='relative'>
             <div className='absolute inset-0 flex items-center'>
               <span className='w-full border-t' />
