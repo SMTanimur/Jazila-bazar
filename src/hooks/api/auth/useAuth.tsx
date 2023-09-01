@@ -118,13 +118,13 @@ export function useAuth() {
     try {
       toast.promise(logoutMutation(), {
         loading: 'Logging out...',
-        success: () => {
+        success: (data) => {
           // setIsAuthenticated(false)
           router.push(`${window.location.origin}/?redirect=false`);
           queryClient.resetQueries(['me']);
           queryClient.resetQueries();
           queryClient.removeQueries();
-          return <b>logout success</b>;
+          return <b>{data.message}</b>;
         },
         error: 'Failed to Logout!',
       });

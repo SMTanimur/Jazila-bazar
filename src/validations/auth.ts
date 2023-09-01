@@ -4,11 +4,11 @@ import * as z from 'zod';
 const authSchema = z.object({
   firstName: z
     .string({
-      required_error: 'Last name is required',
-      invalid_type_error: 'Last name must be a string',
+      required_error: 'First name is required',
+      invalid_type_error: 'First name must be a string',
     })
     .trim()
-    .min(2, { message: 'Last name must be 2 or more characters long' }),
+    .min(2, { message: 'First name must be 2 or more characters long' }),
   lastName: z
     .string({
       required_error: 'Last name is required',
