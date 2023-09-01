@@ -6,7 +6,6 @@ export function middleware(req: NextRequest) {
   const userToken = req.cookies.get(ClientSession as string)?.value;
   // const sessionToken = req.cookies.has(ClientSession as string);
 
-  console.log(userToken);
   console.log('USER TOKEN', userToken);
 
   // console.log('ISSESSION', userToken);
