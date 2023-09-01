@@ -3,12 +3,11 @@ import { NextRequest } from 'next/server';
 import { ClientSession } from './configs/settings';
 
 export function middleware(req: NextRequest) {
-  // const userToken = req.cookies.get('bazzar_sid')?.value;
-  // const sessionToken = req.cookies.has(ClientSession as string);
-  const sessionToken = req.cookies.has("zajila_sid");
+  const userToken = req.cookies.get('bazzar_sid')?.value;
+  const sessionToken = req.cookies.has(ClientSession as string);
 
-  console.log(sessionToken)
-  // console.log("USER TOKEN", userToken)
+  console.log(sessionToken);
+  console.log('USER TOKEN', userToken);
 
   // console.log('ISSESSION', sessionToken);
 
@@ -25,7 +24,6 @@ export function middleware(req: NextRequest) {
   }
 
   // Add a closing bracket here
- 
 }
 
 export const config = {
