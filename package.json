@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "proxy": "https://jazila-bazaar.cyclic.app",
   "dependencies": {
     "@hookform/resolvers": "^3.3.0",
     "@loglib/tracker": "^0.6.2",
