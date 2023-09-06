@@ -15,7 +15,7 @@ export const userClient = {
     );
   },
   emailVerify: (variables: TVerify) => {
-    return HttpClient.post<mutationActivationResponse>(
+    return HttpClient.post<loginResponseSchema>(
       `/auth/${API_ENDPOINTS.ACTIVATE}`,
       variables
     );

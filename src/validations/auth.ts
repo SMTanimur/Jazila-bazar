@@ -46,6 +46,7 @@ export interface mutationResponseSchema {
 }
 export interface loginResponseSchema {
   message: string;
+  token: string;
   user: IUser;
 }
 

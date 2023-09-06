@@ -1,12 +1,14 @@
 import { NextResponse } from 'next/server';
 import { NextRequest } from 'next/server';
 import { ClientSession } from './configs/settings';
+import { useToken } from './hooks/use-token';
+import { AUTH_TOKEN_KEY } from './constants';
 
 export function middleware(req: NextRequest) {
-  const userToken = req.cookies.get(ClientSession as string)?.value;
+  const userToken = req.cookies.get(AUTH_TOKEN_KEY as string)?.value;
   // const sessionToken = req.cookies.has(ClientSession as string);
 
-  console.log('USER TOKEN', userToken);
+  // console.log('USER TOKEN', userToken);
 
   // console.log('ISSESSION', userToken);
 

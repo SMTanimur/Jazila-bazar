@@ -1,4 +1,5 @@
-import { userClient } from '@/services/user';
+import { useToken } from '@/hooks/use-token';
+import { userClient } from '@/services/user.service';
 import { getFormErrors } from '@/utils/api/http';
 import {
   TLogin,
@@ -17,6 +18,7 @@ import { toast } from 'sonner';
 
 export function useAuth() {
   const router = useRouter();
+  const { setToken } = useToken();
 
   const queryClient = useQueryClient();
   const {
@@ -49,7 +51,7 @@ export function useAuth() {
     },
   });
   const verifyForm = useForm<TVerify>({
-    resolver: zodResolver(verfifyEmailSchema)
+    resolver: zodResolver(verfifyEmailSchema),
   });
   const registerForm = useForm<TSignup>({
     resolver: zodResolver(signupSchema),
@@ -65,6 +67,7 @@ export function useAuth() {
     toast.promise(loginMutation(data), {
       loading: 'login...',
       success: data => {
+        setToken(data.token);
         router.push(`${window.location.origin}/`);
         return <b>{data.message}</b>;
       },
@@ -92,17 +95,17 @@ export function useAuth() {
       },
     });
   };
+
   const attemptToVerifyEmail = async (data: TVerify) => {
     toast.promise(VerifyMutation(data), {
       loading: 'verify...',
       success: data => {
-        
-        router.push('/signin')
-        // if (data.role === 'customer') {
+        setToken(data.token);
+        // if (data.user.r === 'customer') {
         //   router.push('/');
         // }
-        return <b>{data.message}</b>;
-        
+        router.push('/');
+        return <b> {data.message}</b>;
       },
       error: error => {
         const {
@@ -118,7 +121,7 @@ export function useAuth() {
     try {
       toast.promise(logoutMutation(), {
         loading: 'Logging out...',
-        success: (data) => {
+        success: data => {
           // setIsAuthenticated(false)
           router.push(`${window.location.origin}/?redirect=false`);
           queryClient.resetQueries(['me']);

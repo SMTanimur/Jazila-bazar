@@ -1,10 +1,7 @@
+import { userClient } from '@/services/user.service';
+import { QueryKeys } from '@/utils/queryKey/query';
+import { useQuery } from '@tanstack/react-query';
 
-
-import { userClient } from "@/services/user"
-import { QueryKeys } from "@/utils/queryKey/query"
-import { useQuery } from "@tanstack/react-query"
-
-
-export const useMe = ()=>{
-  return useQuery(['me'],userClient.me)
-}
+export const useMe =  () => {
+  return useQuery(['me'],  userClient.me);
+};

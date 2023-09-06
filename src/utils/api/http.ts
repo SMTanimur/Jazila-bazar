@@ -1,43 +1,47 @@
+import { ClientSession } from '@/configs/settings';
+import { AUTH_TOKEN_KEY } from '@/constants';
+import axios, { AxiosResponse } from 'axios';
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
-import axios, { AxiosResponse } from "axios";
-;
-import { capitalize, isArray } from "lodash";
-import { toast } from "sonner";
-
-const baseURL = process.env.NEXT_PUBLIC_API_URL
-
+const baseURL = process.env.NEXT_PUBLIC_API_URL;
+const isServer = typeof window === 'undefined';
 const http = axios.create({
   baseURL: `${baseURL}/v1`,
-  withCredentials: true,
+  timeout: 500000,
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
-http.interceptors.request.use(
-  (config) => config,
-  (error) => Promise.reject(error)
-);
+// Change request data/error here
+http.interceptors.request.use(config => {
+  const token = Cookies.get(AUTH_TOKEN_KEY);
+  //@ts-ignore
+  config.headers = {
+    ...config.headers,
+    Authorization: `Bearer ${token ? token : ''}`,
+  };
+  return config;
+});
 
+// Change response data/error here
 http.interceptors.response.use(
-  (response: AxiosResponse) => {
-    // if (response.data.message) toast.success(response.data.message)
-    return response
-  },
-  async (error) => {
-    if (error.response?.data?.message) {
-      if (isArray(error.response?.data?.message)) {
-        error.response?.data?.message.forEach((message: string) =>
-          toast.error(capitalize(message))
-        );
-      }
+  response => response,
+  error => {
+    if (
+      (error.response && error.response.status === 401) ||
+      (error.response && error.response.status === 403) ||
+      (error.response &&
+        error.response.data.message === 'PICKBAZAR_ERROR.NOT_AUTHORIZED')
+    ) {
+      Cookies.remove(AUTH_TOKEN_KEY);
+      // Router.reload();
     }
-    if (error.response?.status === 401 || error.response?.status === 403) {
-      // await logout();
-      // window.location.reload()
-    }
-
     return Promise.reject(error);
   }
 );
-
 function formatBooleanSearchParam(key: string, value: boolean) {
   return value ? `${key}:1` : `${key}:`;
 }
