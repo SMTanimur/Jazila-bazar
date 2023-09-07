@@ -18,7 +18,7 @@ import { toast } from 'sonner';
 
 export function useAuth() {
   const router = useRouter();
-  const { setToken } = useToken();
+  const { setToken, removeToken } = useToken();
 
   const queryClient = useQueryClient();
   const {
@@ -122,6 +122,7 @@ export function useAuth() {
       toast.promise(logoutMutation(), {
         loading: 'Logging out...',
         success: data => {
+          removeToken();
           // setIsAuthenticated(false)
           router.push(`${window.location.origin}/?redirect=false`);
           queryClient.resetQueries(['me']);
