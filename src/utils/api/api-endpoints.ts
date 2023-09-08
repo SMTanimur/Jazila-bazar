@@ -13,6 +13,7 @@ export const API_ENDPOINTS = {
   CATEGORIES: 'categories',
   LOGOUT: 'logout',
   LOGIN: 'login',
+  GOOGLE:'google',
   ME: 'me',
   TOKEN: 'token',
   BLOCK_USER: 'users/block-user',

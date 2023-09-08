@@ -41,12 +41,17 @@ const authSchema = z.object({
     .trim(),
 });
 
+export type LoginWithGoogleParams = {
+  credential: string;
+};
+
 export interface mutationResponseSchema {
   message: string;
 }
 export interface loginResponseSchema {
   message: string;
   token: string;
+  expires_in:string
   user: IUser;
 }
 

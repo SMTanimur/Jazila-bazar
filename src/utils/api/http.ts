@@ -105,3 +105,10 @@ export function getFieldErrors(error: unknown) {
   }
   return null;
 }
+
+export type ServerError = {
+  path: string;
+  message: string;
+  timestamp: string;
+  statusCode: number;
+};

@@ -11,6 +11,7 @@ import {
 import { IUser } from '@/types';
 
 export const userClient = {
+  
   me: () => {
     return HttpClient.get<IUser>(`/users/${API_ENDPOINTS.ME}`);
   },
@@ -29,6 +30,15 @@ export const userClient = {
   logout: () => {
     return HttpClient.post<any>(`/auth/${API_ENDPOINTS.LOGOUT}`, {});
   },
+
+  loginWithGoogle: (variables: { credential: string }) => {
+    return HttpClient.post<loginResponseSchema>(
+      `/auth/${API_ENDPOINTS.GOOGLE}`,
+      variables
+    );
+  },
+
+
   register: (variables: TSignup) => {
     return HttpClient.post<mutationResponseSchema>(
       `/auth/${API_ENDPOINTS.REGISTER}`,

@@ -1,4 +1,3 @@
-
 import './globals.css';
 import type { Metadata } from 'next';
 import { fontMono, fontSans } from '@/lib/fonts';
@@ -9,8 +8,7 @@ import { ThemeProvider } from '@/components/providers/theme-provider';
 import { Analytics } from '@/components/common/shared/analytics';
 import { QueryProvider } from '@/components/providers/query.provider';
 import { defaultMetadata } from '../lib/seo';
-
-
+import GoogleProvider from '@/components/providers/google.provider';
 
 export const metadata: Metadata = defaultMetadata;
 
@@ -30,11 +28,13 @@ export default function RootLayout({
         )}
       >
         <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
-           <QueryProvider>
-          {children}
-          <TailwindIndicator />
-          <Analytics />
-          </QueryProvider>
+          <GoogleProvider>
+            <QueryProvider>
+              {children}
+              <TailwindIndicator />
+              <Analytics />
+            </QueryProvider>
+          </GoogleProvider>
         </ThemeProvider>
         <Toaster />
       </body>
