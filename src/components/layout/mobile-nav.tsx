@@ -15,8 +15,6 @@ import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Icons } from "../ui/icons"
-import { siteConfig } from "@/configs/site"
-import Image from "next/image"
 import GradientLogo from "../common/shared/gradient-logo"
 
 

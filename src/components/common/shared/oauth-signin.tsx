@@ -12,10 +12,12 @@ import { userClient } from '@/services/user.service';
 import { isEmpty } from 'lodash';
 import { LoginWithGoogleParams, loginResponseSchema } from '@/validations/auth';
 import { ServerError } from '@/utils/api/http';
+import { useAtom } from 'jotai';
+import { authorizationAtom } from '@/utils/authorization-atom';
 
 export function OAuthSignIn() {
   const { setToken, removeToken } = useToken();
-
+  const [_, setAuthorized] = useAtom(authorizationAtom);
   const router = useRouter();
 
   const { mutateAsync: loginWithGoogleMutation } = useMutation<
@@ -32,6 +34,7 @@ export function OAuthSignIn() {
           onSuccess: data => {
             removeToken();
             setToken(data.token);
+            setAuthorized(true)
             router.push(`${window.location.origin}/`);
           
           },
@@ -43,14 +46,14 @@ export function OAuthSignIn() {
     }
   };
 
-  // const handleGoogleLoginError = () => {
-  //   toast.error(
-  //     "Google doesn't seem to be responding, please try logging in using email/password instead."
-  //   );
-  // };
+  const handleGoogleLoginError = () => {
+    toast.error(
+      "Google doesn't seem to be responding, please try logging in using email/password instead."
+    );
+  };
   return (
-    <div className=''>
-      <GoogleLogin onSuccess={handleLoginWithGoogle} />
+    <div className='w-full flex  justify-center'>
+      <GoogleLogin onSuccess={handleLoginWithGoogle} onError={handleGoogleLoginError} size='large'/>
     </div>
   );
 }

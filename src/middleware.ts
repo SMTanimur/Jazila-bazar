@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import { NextRequest } from 'next/server';
-import { ClientSession } from './configs/settings';
-import { useToken } from './hooks/use-token';
+
 import { AUTH_TOKEN_KEY } from './constants';
 
 export function middleware(req: NextRequest) {
@@ -19,6 +18,9 @@ export function middleware(req: NextRequest) {
   if (userToken && req.nextUrl.pathname === '/signin') {
     return NextResponse.redirect(new URL(`${host}/`));
   }
+  if (userToken && req.nextUrl.pathname === '/signup') {
+    return NextResponse.redirect(new URL(`${host}/`));
+  }
   // Add a closing bracket here
   if (!userToken && req.nextUrl.pathname.includes('/dashboard')) {
     return NextResponse.redirect(new URL(`${host}/signin`));
@@ -28,5 +30,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/signin/:path*'], // Add "/profile" path here
+  matcher: ['/dashboard/:path*', '/signin/:path*', '/signup/:path*'], // Add "/profile" path here
 };

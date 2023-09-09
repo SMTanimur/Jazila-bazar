@@ -1,6 +1,7 @@
 import { useToken } from '@/hooks/use-token';
 import { userClient } from '@/services/user.service';
 import { getFormErrors } from '@/utils/api/http';
+import { authorizationAtom } from '@/utils/authorization-atom';
 import {
   TLogin,
   TSignup,
@@ -12,6 +13,7 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -19,6 +21,7 @@ import { toast } from 'sonner';
 export function useAuth() {
   const router = useRouter();
   const { setToken, removeToken } = useToken();
+  const [_, setAuthorized] = useAtom(authorizationAtom);
 
   const queryClient = useQueryClient();
   const {
@@ -128,6 +131,8 @@ export function useAuth() {
           queryClient.resetQueries(['me']);
           queryClient.resetQueries();
           queryClient.removeQueries();
+          setToken('');
+        setAuthorized(false)
           return <b>{data.message}</b>;
         },
         error: 'Failed to Logout!',
