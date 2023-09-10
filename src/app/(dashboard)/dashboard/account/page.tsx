@@ -6,9 +6,11 @@ import {
   PageHeaderDescription,
   PageHeaderHeading,
 } from '@/components/common/shared/page-header';
-import { useMe } from '@/hooks/api/user/useMe';
-import AccountInformation from './components/AccountInformation';
-
+// import AccountInformation from './components/AccountInformation';
+import dynamic from 'next/dynamic'
+ 
+const AccountInformation = dynamic(() => import('./components/AccountInformation'), { ssr: false })
+ 
 export const metadata: Metadata = {
   title: 'Account',
   description: 'Manage your account settings',
@@ -25,8 +27,7 @@ export default function AccountPage() {
         </PageHeaderDescription>
       </PageHeader>
       <section
-        id='user-account-info'
-        aria-labelledby='user-account-info-heading'
+
         className='w-full overflow-hidden'
       >
         <AccountInformation/>

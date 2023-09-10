@@ -36,7 +36,7 @@ http.interceptors.response.use(
       (error.response &&
         error.response.data.message === 'PICKBAZAR_ERROR.NOT_AUTHORIZED')
     ) {
-      Cookies.remove(AUTH_TOKEN_KEY);
+      // Cookies.remove(AUTH_TOKEN_KEY);
       // Router.reload();
     }
     return Promise.reject(error);
@@ -70,6 +70,10 @@ export class HttpClient {
 
   static async put<T>(url: string, data: unknown) {
     const response = await http.put<T>(url, data);
+    return response.data;
+  }
+  static async patch<T>(url: string, data: unknown) {
+    const response = await http.patch<T>(url, data);
     return response.data;
   }
 

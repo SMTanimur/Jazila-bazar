@@ -29,6 +29,13 @@ const authSchema = z.object({
       message: 'Password must be at least 8 characters long',
     })
     .max(100),
+  contact: z
+    .string()
+    .min(8, {
+      message: 'Contact must be at least 11 characters long',
+    })
+    .optional(),
+  avatar: z.string().optional(),
   // .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/, {
   //   message:
   //     'Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character',
@@ -51,7 +58,7 @@ export interface mutationResponseSchema {
 export interface loginResponseSchema {
   message: string;
   token: string;
-  expires_in:string
+  expires_in: string;
   user: IUser;
 }
 
@@ -71,7 +78,7 @@ export type TSignup = z.infer<typeof signupSchema>;
 
 export const loginSchema = authSchema.omit({
   firstName: true,
-  lastName:true,
+  lastName: true,
   passwordConfirm: true,
 });
 
@@ -88,15 +95,6 @@ export const profileSchema = authSchema.omit({
   passwordConfirm: true,
 });
 export type TProfile = z.infer<typeof profileSchema>;
-
-export const profileAPISchema = z.object({
-  msg: z.string(),
-  user: z.object({
-    firstName: z.string(),
-    lastName: z.string(),
-    email: z.string(),
-  }),
-});
 
 export const verfifyEmailSchema = z.object({
   token: z

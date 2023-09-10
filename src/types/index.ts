@@ -35,25 +35,17 @@ export interface IUser {
   firstName: string;
   lastName: string;
   email: string;
-  avatar?: string
+  avatar?: string;
   is_active?: boolean;
-  provider:string
-  provider_id?:string
+  provider: string;
+  provider_id?: string;
   role: string;
   _id: string;
   contact?: string;
   email_verified?: boolean;
   shop?: IShop;
-  profile: IProfile;
-  address?: IAddress[];
+  addresses?: IAddress[];
 }
-
-export interface IProfile {
-  bio?: string;
-  socials?: Record<string, any>[];
-  contact?: string;
-}
-
 export type ImageInfo = {
   img_url: string;
   img_id: string;
@@ -104,12 +96,20 @@ export interface IShopSettings {
   website: string;
 }
 
-export interface IAddress {
-  title: string;
-  default: boolean;
-  address: IAddressInfo;
-  type: string;
+export interface IAddressData {
+  name: string;
+  country: string;
+  street: string;
   customer: IUser;
+  city: string;
+  state: string;
+  postcode: string;
+  phone: string;
+  email: string;
+  default: boolean;
+}
+
+export interface IAddress extends IAddressData {
   _id: string;
 }
 
@@ -119,11 +119,6 @@ export interface IAddressInfo {
   country: string;
   zip: string;
   state: string;
-}
-
-export enum AddressType {
-  BILLING = 'billing',
-  SHIPPING = 'shipping',
 }
 
 export interface IProduct {
@@ -137,7 +132,6 @@ export interface IProduct {
   shop: IShop;
   images: ImageInfo[];
   categories: ICategory[];
-
 }
 
 export interface ICategory {

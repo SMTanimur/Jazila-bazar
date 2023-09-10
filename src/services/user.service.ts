@@ -2,6 +2,7 @@ import { API_ENDPOINTS } from '@/utils/api/api-endpoints';
 import { HttpClient } from '@/utils/api/http';
 import {
   TLogin,
+  TProfile,
   TSignup,
   TVerify,
   loginResponseSchema,
@@ -11,7 +12,6 @@ import {
 import { IUser } from '@/types';
 
 export const userClient = {
-  
   me: () => {
     return HttpClient.get<IUser>(`/users/${API_ENDPOINTS.ME}`);
   },
@@ -27,6 +27,10 @@ export const userClient = {
       variables
     );
   },
+
+  updateUser: (variables: TProfile) => {
+    return HttpClient.patch<{ message: string }>(`/users`, variables);
+  },
   logout: () => {
     return HttpClient.post<any>(`/auth/${API_ENDPOINTS.LOGOUT}`, {});
   },
@@ -37,7 +41,6 @@ export const userClient = {
       variables
     );
   },
-
 
   register: (variables: TSignup) => {
     return HttpClient.post<mutationResponseSchema>(
