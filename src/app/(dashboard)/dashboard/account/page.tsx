@@ -12,7 +12,7 @@ import dynamic from 'next/dynamic'
 const AccountInformation = dynamic(() => import('./components/AccountInformation'), { ssr: false })
  
 export const metadata: Metadata = {
-  title: 'Account',
+  title: 'Account Information',
   description: 'Manage your account settings',
 };
 

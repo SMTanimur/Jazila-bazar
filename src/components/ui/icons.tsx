@@ -63,6 +63,7 @@ import {
   LockIcon,
   ListOrderedIcon,
   Heart,
+  BadgePlus,
 } from 'lucide-react';
 
 export type Icon = LucideIcon | any;
@@ -93,6 +94,7 @@ export const Icons = {
   horizontalSliders: SlidersHorizontal,
   circle: Circle,
   check: Check,
+  plus:BadgePlus,
   add: Plus,
   addCircle: PlusCircle,
   remove: Minus,

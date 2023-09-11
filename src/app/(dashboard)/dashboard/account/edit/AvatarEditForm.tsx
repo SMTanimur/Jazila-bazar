@@ -18,7 +18,6 @@ const AvatarEditForm = () => {
 
   const { attemptEditProfile, editProfileLoading, profileEditForm } = useUser();
   const profilePicture = useFileHandler<IImage>('single', initImageState);
-  console.log(profilePicture.imageFile.file);
   const onCropSuccessCallback = async () => {
     if (profilePicture.imageFile.file) {
       const formData = new FormData();
@@ -45,7 +44,7 @@ const AvatarEditForm = () => {
   console.log(me?.avatar);
   return (
     <div className=' w-full flex flex-col gap-4 justify-center items-center'>
-      <div className='relative -mt-24 h-32 w-32 sm:-mt-32 sm:h-52 sm:w-52'>
+      <div className='relative '>
         <Image
           src={profilePicture.imageFile.url || (me?.avatar as string)}
           className='h-32 w-32 cursor-pointer rounded-xl bg-gray-200 ring-8 ring-gray-50 dark:bg-gray-700 dark:ring-black sm:h-52 sm:w-52'
