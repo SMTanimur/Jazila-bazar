@@ -156,3 +156,4 @@ export interface IFileHandler<T> {
   removeImage: (id: string) => void;
   clearFiles: () => void;
 }
+

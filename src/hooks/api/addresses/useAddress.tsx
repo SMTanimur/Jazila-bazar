@@ -13,6 +13,11 @@ export function useAddress() {
     isLoading: addressLoading,
     isError: IsAddressError,
   } = useMutation(addressClient.addressCreate);
+  const {
+    mutateAsync: addressDeleteMutation,
+    isLoading: addressDeleteLoading,
+    isError: IsAddressDeleteError,
+  } = useMutation(addressClient.addressDelete);
 
   const addressForm = useForm<TUserAddress>({
     resolver: zodResolver(UserAddressSchema),
@@ -34,7 +39,25 @@ export function useAddress() {
       loading: 'address...',
       success: data => {
         queryClient.invalidateQueries([API_ENDPOINTS.ADDRESSES]);
+        queryClient.invalidateQueries([API_ENDPOINTS.ME]);
         addressForm.reset();
+        return <b>{data.message}</b>;
+      },
+      error: error => {
+        const {
+          response: { data },
+        }: any = error ?? {};
+
+        return <b> {data?.message}</b>;
+      },
+    });
+  };
+  const attemptToDeleteAddress = async (data: string) => {
+    toast.promise(addressDeleteMutation(data), {
+      loading: 'Deleting...',
+      success: data => {
+        queryClient.invalidateQueries([API_ENDPOINTS.ADDRESSES]);
+        queryClient.invalidateQueries([API_ENDPOINTS.ME]);
         return <b>{data.message}</b>;
       },
       error: error => {
@@ -52,5 +75,9 @@ export function useAddress() {
     addressForm,
     addressLoading,
     IsAddressError,
+    attemptToDeleteAddress,
+    addressDeleteLoading,
+    IsAddressDeleteError,
+    
   };
 }
