@@ -41,7 +41,6 @@ const AvatarEditForm = () => {
     }
   };
 
-  console.log(me?.avatar);
   return (
     <div className=' w-full flex flex-col gap-4 justify-center items-center'>
       <div className='relative '>

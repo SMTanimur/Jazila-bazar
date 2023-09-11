@@ -64,6 +64,7 @@ import {
   ListOrderedIcon,
   Heart,
   BadgePlus,
+  LocateIcon,
 } from 'lucide-react';
 
 export type Icon = LucideIcon | any;
@@ -103,6 +104,7 @@ export const Icons = {
   trash: Trash,
   edit: Edit,
   crop: Crop,
+  address:LocateIcon,
   message: MessageSquare,
   reset: RefreshCw,
   send: Send,

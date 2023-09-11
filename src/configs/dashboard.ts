@@ -37,6 +37,12 @@ export const dashboardConfig: DashboardConfig = {
       items: [],
     },
     {
+      title: 'Addresses',
+      href: '/dashboard/addresses',
+      icon: 'address',
+      items: [],
+    },
+    {
       title: 'My Cards',
       href: '/dashboard/cards',
       icon: 'card',

@@ -70,21 +70,26 @@ const AccountInformation = () => {
               <div className='flex flex-col gap-4 '>
                 <h2 className='text-gray-800 font-bold'>{address.name}</h2>
                 <div>
-                  <p>{address.street}</p>
-                  <p>{address.city}</p>
-                  <p>{address.state}</p>
-                  <p>{address.postcode}</p>
-                  <p>{address.country}</p>
+                  {address.country}
+                  <br />
+                  {`${address.postcode}, ${address.city}, ${address.state}`}
+                  <br />
+                  {address.street}
                 </div>
 
                 <div>
                   <span>Phone Number</span>
-                  <p className="text-gray-800 font-bold">{address.phone}</p>
+                  <p className='text-gray-800 font-bold'>{address.phone}</p>
                 </div>
                 <div>
                   <span>Email Address</span>
-                  <p className="text-gray-800 font-bold">{address.email}</p>
+                  <p className='text-gray-800 font-bold'>{address.email}</p>
                 </div>
+                <Button variant={'link'} className='self-start p-0 text-xl'>
+                  <Link href={`/dashboard/addresses/${address._id}`}>
+                    <span>Edit Address</span>
+                  </Link>
+                </Button>
               </div>
             </div>
           )}

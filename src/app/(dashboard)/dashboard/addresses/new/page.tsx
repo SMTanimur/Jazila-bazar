@@ -5,8 +5,14 @@ import {
 } from '@/components/common/shared/page-header';
 import AddressFrom from '@/components/forms/AddressFrom';
 import { Shell } from '@/components/shells/shell';
+import { Metadata } from 'next';
 import React from 'react';
 
+
+export const metadata: Metadata = {
+  title: 'New Address',
+  description: 'Add a new address to your account',
+};
 const NewAddress = () => {
   return (
     <Shell variant={'sidebar'}>
