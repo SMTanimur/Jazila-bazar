@@ -1,3 +1,4 @@
+'use client';
 import { userClient } from '@/services/user.service';
 import { IUser } from '@/types';
 import { TProfile, profileSchema } from '@/validations/auth';
@@ -8,12 +9,10 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
+import { useMe } from './useMe';
 
-type TProfileEdit = {
-  user?: IUser;
-};
-export function useUser(props: TProfileEdit) {
-  const {user}=props;
+export function useUser() {
+  const { me: user } = useMe();
   const router = useRouter();
 
   const queryClient = useQueryClient();

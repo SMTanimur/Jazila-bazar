@@ -35,7 +35,7 @@ export interface IUser {
   firstName: string;
   lastName: string;
   email: string;
-  avatar?: string;
+  avatar: string;
   is_active?: boolean;
   provider: string;
   provider_id?: string;
@@ -139,4 +139,20 @@ export interface ICategory {
   description: string;
   slug: string;
   is_active: boolean;
+}
+
+
+export interface IImage {
+  id: string;
+  url: string;
+  file: File | null;
+}
+
+export interface IFileHandler<T> {
+  imageFile: T,
+  setImageFile: React.Dispatch<React.SetStateAction<T>>;
+  isFileLoading: boolean;
+  onFileChange: (event: React.ChangeEvent<HTMLInputElement>, callback?: (file?: IImage) => void) => void;
+  removeImage: (id: string) => void;
+  clearFiles: () => void;
 }

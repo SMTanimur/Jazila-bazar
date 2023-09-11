@@ -1,22 +1,28 @@
-"use client"
+'use client';
 import React from 'react';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '../ui/form';
 import { useUser } from '@/hooks/api/user/useUser';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import { Icons } from '../ui/icons';
-import { useMe } from '@/hooks/api/user/useMe';
 
 const ProfileForm = () => {
-  const {me}=useMe()
+
   const {
     IsEditProfileError,
     attemptEditProfile,
     editProfileLoading,
     profileEditForm,
-  } = useUser( {user:me} );
+  } = useUser();
   return (
-    <Form {...profileEditForm} >
+    <Form {...profileEditForm}>
       <form
         className='grid gap-4 w-full'
         onSubmit={(...args) =>
@@ -30,7 +36,11 @@ const ProfileForm = () => {
             <FormItem>
               <FormLabel>FirstName</FormLabel>
               <FormControl>
-                <Input placeholder='Jone' {...field} />
+                <Input
+                  placeholder='Jone'
+                  {...field}
+                
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -43,7 +53,11 @@ const ProfileForm = () => {
             <FormItem>
               <FormLabel>LastName</FormLabel>
               <FormControl>
-                <Input placeholder='Due' {...field} />
+                <Input
+                  placeholder='Due'
+                  {...field}
+               
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -56,7 +70,11 @@ const ProfileForm = () => {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder='example@gmail.com' {...field} />
+                <Input
+                  placeholder='example@gmail.com'
+                  {...field}
+                
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -69,13 +87,13 @@ const ProfileForm = () => {
             <FormItem>
               <FormLabel>Contact</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field}  />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-      
+
         <Button disabled={editProfileLoading}>
           {editProfileLoading && (
             <Icons.spinner
@@ -84,7 +102,6 @@ const ProfileForm = () => {
             />
           )}
           Update
-      
         </Button>
       </form>
     </Form>

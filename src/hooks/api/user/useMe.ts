@@ -17,7 +17,6 @@ export function useMe() {
     {
       enabled: isAuthorized,
       retry: false,
-    
     }
   );
   //TODO: do some improvement here
