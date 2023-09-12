@@ -3,7 +3,7 @@ import {
   PageHeaderDescription,
   PageHeaderHeading,
 } from '@/components/common/shared/page-header';
-import AddressFrom from '@/components/forms/AddressFrom';
+import AddressFrom from '@/components/forms/AddressForm';
 import { Shell } from '@/components/shells/shell';
 import { Metadata } from 'next';
 import React from 'react';
