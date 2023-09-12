@@ -33,9 +33,12 @@ const AddressesInformation = () => {
             address={address}
             label={
               address.default ? (
-                'Default'
+                <span>
+                  Default
+                </span>
+          
               ) : (
-                ''
+                <span></span>
               )
             }
             loading={isLoading}

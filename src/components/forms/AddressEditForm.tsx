@@ -1,36 +1,86 @@
-'use client';
+
 import React from 'react';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
   UncontrolledFormMessage,
 } from '../ui/form';
-import { useAddress } from '@/hooks/api/addresses/useAddress';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Button } from '../ui/button';
 import { Icons } from '../ui/icons';
 import { Checkbox } from '../ui/checkbox';
+import { IAddress } from '@/types';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { addressClient } from '@/services/address.service';
+import { useForm } from 'react-hook-form';
+import { TUserAddress, UserAddressSchema } from '@/validations/user';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'sonner';
+import { API_ENDPOINTS } from '@/utils/api/api-endpoints';
 
-const AddressFrom = () => {
+type addressFormProps = {
+  initialValues?: IAddress;
+};
+const AddressEditForm = ({ initialValues }: addressFormProps) => {
+  console.log(initialValues);
+  const queryClient = useQueryClient();
   const {
-    addressForm,
-    IsAddressError,
-    addressLoading,
-    attemptToCreateAddress,
-  } = useAddress();
+    mutateAsync: addressUpdateMutation,
+    isLoading: addressUpdateLoading,
+    isError: IsAddressUpdateError,
+  } = useMutation(addressClient.addressUpdate);
+
+  const addressForm = useForm<TUserAddress>({
+    resolver: zodResolver(UserAddressSchema),
+    defaultValues: {
+      email: initialValues ? initialValues?.email : '',
+      city: initialValues ? initialValues?.city : '',
+
+      country: initialValues ? initialValues?.country : '',
+      default: initialValues ? initialValues?.default : false,
+      name: initialValues ? initialValues?.name : '',
+      phone: initialValues ? initialValues?.phone : '',
+      postcode: initialValues ? initialValues?.postcode : '',
+      state: initialValues ? initialValues?.state : '',
+      street: initialValues ? initialValues?.street : '',
+    },
+  });
+
+  const attemptToUpdateAddress = async (data: TUserAddress) => {
+    toast.promise(
+      addressUpdateMutation({
+        variables: { id: initialValues?._id as string, input: data },
+      }),
+      {
+        loading: 'updating...',
+        success: data => {
+          queryClient.invalidateQueries([API_ENDPOINTS.ADDRESSES]);
+          queryClient.invalidateQueries([API_ENDPOINTS.ME]);
+
+          return <b>{data.message}</b>;
+        },
+        error: error => {
+          const {
+            response: { data },
+          }: any = error ?? {};
+
+          return <b> {data?.message}</b>;
+        },
+      }
+    );
+  };
 
   return (
     <Form {...addressForm}>
       <form
         className='grid gap-6'
         onSubmit={(...args) =>
-          void addressForm.handleSubmit(attemptToCreateAddress)(...args)
+          void addressForm.handleSubmit(attemptToUpdateAddress)(...args)
         }
       >
         <FormField
@@ -164,8 +214,8 @@ const AddressFrom = () => {
           )}
         />
 
-        <Button disabled={addressLoading} className=' ' size={'sm'} >
-          {addressLoading && (
+        <Button disabled={addressUpdateLoading} className=' ' size={'sm'}>
+          {addressUpdateLoading && (
             <Icons.spinner
               className='mr-2 h-4 w-4 animate-spin'
               aria-hidden='true'
@@ -178,4 +228,4 @@ const AddressFrom = () => {
   );
 };
 
-export default AddressFrom;
+export default AddressEditForm;

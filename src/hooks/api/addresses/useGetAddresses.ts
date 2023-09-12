@@ -11,3 +11,12 @@ export function useGetAddresses() {
   //TODO: do some improvement here
   return { data, isLoading, error };
 }
+
+export function useGetAddress (id: string) {
+  const { data, isLoading, error } = useQuery(
+    [API_ENDPOINTS.ADDRESSES, id],
+    () => addressClient.getAddress(id)
+  );
+
+  return { data, isLoading, error };
+}
