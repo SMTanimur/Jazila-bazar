@@ -9,7 +9,7 @@ import React from 'react';
 import AddressEdit from './AddressEdit';
 import dynamic from 'next/dynamic';
 
-// const AddressEdit = dynamic(() => import('./AddressEdit'), { ssr: false })
+
 type Params = {
   params: {
     id: string;

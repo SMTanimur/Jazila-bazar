@@ -4,8 +4,10 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import React from 'react';
+// import ProfileEditComponent from './components/ProfileEditComponent';
+import { PageHeader, PageHeaderDescription, PageHeaderHeading } from '@/components/common/shared/page-header';
 
-const AvatarEditForm = dynamic(() => import('./AvatarEditForm'), {
+const ProfileEditComponent = dynamic(() => import('./components/ProfileEditComponent'), {
   ssr: false,
 });
 export const metadata: Metadata = {
@@ -15,16 +17,18 @@ export const metadata: Metadata = {
 
 const ProfileEdit = () => {
   return (
-    <Shell variant={'sidebar'} title='Profile Edit'>
-      <Card>
-        <CardHeader>
-          <CardTitle>Profile Edit</CardTitle>
-        </CardHeader>
-        <CardContent className='flex flex-col md:flex-row items-center gap-4  w-full'>
-          <ProfileForm />
-          <AvatarEditForm />
-        </CardContent>
-      </Card>
+    <Shell variant={'sidebar'} >
+      <PageHeader id='profileEdit-header' aria-labelledby='profileEdit-header-heading'>
+        <PageHeaderHeading size='sm'>Profile Edit</PageHeaderHeading>
+        <PageHeaderDescription size='sm'>
+          Manage your profile Edit settings
+        </PageHeaderDescription>
+      </PageHeader>
+      <section>
+      
+          <ProfileEditComponent/>
+    
+      </section>
     </Shell>
   );
 };

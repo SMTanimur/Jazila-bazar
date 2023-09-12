@@ -1,9 +1,12 @@
+
 import { Skeleton } from "@/components/ui/skeleton"
 
 import { Shell } from "@/components/shells/shell"
 import { PageHeader, PageHeaderDescription, PageHeaderHeading } from "@/components/common/shared/page-header"
+import { useMe } from "@/hooks/api/user/useMe";
 
 export default function AccountLoading() {
+ 
   return (
     <Shell variant="sidebar">
       <PageHeader id="account-header" aria-labelledby="account-header-heading">

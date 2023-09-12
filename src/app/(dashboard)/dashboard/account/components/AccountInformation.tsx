@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 'use client';
 import { Shell } from '@/components/shells/shell';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
@@ -11,9 +12,10 @@ import { BadgePlus, BadgePlusIcon } from 'lucide-react';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
+
 const AccountInformation = () => {
   const [address, setAddress] = useState<IAddress | null | undefined>(null);
-  const { me } = useMe();
+  const { me, isLoading } = useMe();
 
   useEffect(() => {
     if (me) {
@@ -24,6 +26,7 @@ const AccountInformation = () => {
       setAddress(null);
     }
   }, [me]);
+
   return (
     <div className='flex md:flex-row flex-col items-center gap-6 '>
       <Card className=' p-6 w-full min-h-[355px]'>

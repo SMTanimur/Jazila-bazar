@@ -1,8 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
-'use client';
-import { useMe } from '@/hooks/api/user/useMe';
+"use client"
 import React from 'react';
-
 import Image from 'next/image';
 import { toast } from 'sonner';
 import { uploadImage } from '@/services/upload.service';
@@ -10,13 +7,16 @@ import { useUser } from '@/hooks/api/user/useUser';
 import { TProfile } from '@/validations/auth';
 import { CameraIcon } from 'lucide-react';
 import { useFileHandler } from '@/hooks/useFileHandler';
-import { IImage } from '@/types';
+import { IImage, IUser } from '@/types';
 import { Button } from '@/components/ui/button';
-const initImageState = { id: '', file: null, url: '' };
-const AvatarEditForm = () => {
-  const { me } = useMe();
+import { useMe } from '@/hooks/api/user/useMe';
 
-  const { attemptEditProfile, editProfileLoading, profileEditForm } = useUser();
+const initImageState = { id: '', file: null, url: '' };
+
+const AvatarEditForm = () => {
+  const {me}=useMe()
+
+  const { attemptEditProfile, editProfileLoading } = useUser();
   const profilePicture = useFileHandler<IImage>('single', initImageState);
   const onCropSuccessCallback = async () => {
     if (profilePicture.imageFile.file) {

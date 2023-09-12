@@ -7,11 +7,15 @@ import Link from 'next/link';
 import React from 'react';
 import AddressCard from './AddressCard';
 import { useAddress } from '@/hooks/api/addresses/useAddress';
+import AddressesLoading from '../loading';
 
 
 const AddressesInformation = () => {
   const { data, isLoading, error } = useGetAddresses();
   const {addressDeleteLoading,attemptToDeleteAddress,IsAddressDeleteError}=useAddress()
+  if(isLoading){
+    return AddressesLoading()
+  }
   return (
     <section className='grid grid-cols-3  gap-3'>
       <Card className=' min-h-[350px]'>

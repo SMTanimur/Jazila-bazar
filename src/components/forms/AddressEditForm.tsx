@@ -39,6 +39,14 @@ const AddressEditForm = ({ initialValues }: addressFormProps) => {
     resolver: zodResolver(UserAddressSchema),
     defaultValues: {
       default: initialValues?.default,
+      name: initialValues?.name,
+      country: initialValues?.country,
+      street: initialValues?.street,
+      city: initialValues?.city,
+      state: initialValues?.state,
+      postcode: initialValues?.postcode,
+      email: initialValues?.email,
+      phone: initialValues?.phone,
     },
   });
 
@@ -81,11 +89,7 @@ const AddressEditForm = ({ initialValues }: addressFormProps) => {
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input
-                  placeholder='Jone'
-                  {...field}
-                  defaultValue={initialValues?.name}
-                />
+                <Input placeholder='Jone' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -99,11 +103,7 @@ const AddressEditForm = ({ initialValues }: addressFormProps) => {
             <FormItem>
               <FormLabel>Country</FormLabel>
               <FormControl>
-                <Input
-                  placeholder='Bangladesh'
-                  {...field}
-                  defaultValue={initialValues?.country}
-                />
+                <Input placeholder='Bangladesh' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -119,7 +119,6 @@ const AddressEditForm = ({ initialValues }: addressFormProps) => {
                 <Textarea
                   placeholder='House number and street name'
                   {...field}
-                  defaultValue={initialValues?.street}
                 />
               </FormControl>
               <FormMessage />
@@ -134,11 +133,7 @@ const AddressEditForm = ({ initialValues }: addressFormProps) => {
             <FormItem>
               <FormLabel>City</FormLabel>
               <FormControl>
-                <Input
-                  placeholder='City'
-                  {...field}
-                  defaultValue={initialValues?.city}
-                />
+                <Input placeholder='City' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -151,11 +146,7 @@ const AddressEditForm = ({ initialValues }: addressFormProps) => {
             <FormItem>
               <FormLabel>State</FormLabel>
               <FormControl>
-                <Input
-                  placeholder='State'
-                  {...field}
-                  defaultValue={initialValues?.state}
-                />
+                <Input placeholder='State' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -168,11 +159,7 @@ const AddressEditForm = ({ initialValues }: addressFormProps) => {
             <FormItem>
               <FormLabel>PostCode</FormLabel>
               <FormControl>
-                <Input
-                  placeholder='PostCode'
-                  {...field}
-                  defaultValue={initialValues?.postcode}
-                />
+                <Input placeholder='PostCode' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -187,7 +174,6 @@ const AddressEditForm = ({ initialValues }: addressFormProps) => {
                 aria-invalid={!!addressForm.formState.errors.state}
                 placeholder='example@gmail.com'
                 {...addressForm.register('email')}
-                defaultValue={initialValues?.email}
               />
             </FormControl>
             <UncontrolledFormMessage
@@ -201,7 +187,6 @@ const AddressEditForm = ({ initialValues }: addressFormProps) => {
                 aria-invalid={!!addressForm.formState.errors.state}
                 placeholder='+88016******'
                 {...addressForm.register('phone')}
-                defaultValue={initialValues?.phone}
               />
             </FormControl>
             <UncontrolledFormMessage
