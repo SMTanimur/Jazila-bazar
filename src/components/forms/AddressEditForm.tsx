@@ -1,4 +1,4 @@
-
+'use client';
 import React from 'react';
 import {
   Form,
@@ -38,16 +38,7 @@ const AddressEditForm = ({ initialValues }: addressFormProps) => {
   const addressForm = useForm<TUserAddress>({
     resolver: zodResolver(UserAddressSchema),
     defaultValues: {
-      email: initialValues ? initialValues?.email : '',
-      city: initialValues ? initialValues?.city : '',
-
-      country: initialValues ? initialValues?.country : '',
-      default: initialValues ? initialValues?.default : false,
-      name: initialValues ? initialValues?.name : '',
-      phone: initialValues ? initialValues?.phone : '',
-      postcode: initialValues ? initialValues?.postcode : '',
-      state: initialValues ? initialValues?.state : '',
-      street: initialValues ? initialValues?.street : '',
+      default: initialValues?.default,
     },
   });
 
@@ -90,7 +81,11 @@ const AddressEditForm = ({ initialValues }: addressFormProps) => {
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder='Jone' {...field} />
+                <Input
+                  placeholder='Jone'
+                  {...field}
+                  defaultValue={initialValues?.name}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -104,7 +99,11 @@ const AddressEditForm = ({ initialValues }: addressFormProps) => {
             <FormItem>
               <FormLabel>Country</FormLabel>
               <FormControl>
-                <Input placeholder='Bangladesh' {...field} />
+                <Input
+                  placeholder='Bangladesh'
+                  {...field}
+                  defaultValue={initialValues?.country}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -120,6 +119,7 @@ const AddressEditForm = ({ initialValues }: addressFormProps) => {
                 <Textarea
                   placeholder='House number and street name'
                   {...field}
+                  defaultValue={initialValues?.street}
                 />
               </FormControl>
               <FormMessage />
@@ -134,7 +134,11 @@ const AddressEditForm = ({ initialValues }: addressFormProps) => {
             <FormItem>
               <FormLabel>City</FormLabel>
               <FormControl>
-                <Input placeholder='City' {...field} />
+                <Input
+                  placeholder='City'
+                  {...field}
+                  defaultValue={initialValues?.city}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -147,7 +151,11 @@ const AddressEditForm = ({ initialValues }: addressFormProps) => {
             <FormItem>
               <FormLabel>State</FormLabel>
               <FormControl>
-                <Input placeholder='State' {...field} />
+                <Input
+                  placeholder='State'
+                  {...field}
+                  defaultValue={initialValues?.state}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -160,7 +168,11 @@ const AddressEditForm = ({ initialValues }: addressFormProps) => {
             <FormItem>
               <FormLabel>PostCode</FormLabel>
               <FormControl>
-                <Input placeholder='PostCode' {...field} />
+                <Input
+                  placeholder='PostCode'
+                  {...field}
+                  defaultValue={initialValues?.postcode}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -175,6 +187,7 @@ const AddressEditForm = ({ initialValues }: addressFormProps) => {
                 aria-invalid={!!addressForm.formState.errors.state}
                 placeholder='example@gmail.com'
                 {...addressForm.register('email')}
+                defaultValue={initialValues?.email}
               />
             </FormControl>
             <UncontrolledFormMessage
@@ -188,6 +201,7 @@ const AddressEditForm = ({ initialValues }: addressFormProps) => {
                 aria-invalid={!!addressForm.formState.errors.state}
                 placeholder='+88016******'
                 {...addressForm.register('phone')}
+                defaultValue={initialValues?.phone}
               />
             </FormControl>
             <UncontrolledFormMessage
