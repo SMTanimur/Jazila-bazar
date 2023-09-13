@@ -1,6 +1,7 @@
 import { API_ENDPOINTS } from '@/utils/api/api-endpoints';
 import { HttpClient } from '@/utils/api/http';
 import {
+  TChangePassword,
   TLogin,
   TProfile,
   TSignup,
@@ -24,6 +25,13 @@ export const userClient = {
   emailVerify: (variables: TVerify) => {
     return HttpClient.post<loginResponseSchema>(
       `/auth/${API_ENDPOINTS.ACTIVATE}`,
+      variables
+    );
+  },
+
+  changePassword: (variables: TChangePassword) => {
+    return HttpClient.post<{ message: string }>(
+      `/auth/${API_ENDPOINTS.CHANGE_PASSWORD}`,
       variables
     );
   },

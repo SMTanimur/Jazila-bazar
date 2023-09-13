@@ -3,9 +3,11 @@ import { userClient } from '@/services/user.service';
 import { getFormErrors } from '@/utils/api/http';
 import { authorizationAtom } from '@/utils/authorization-atom';
 import {
+  TChangePassword,
   TLogin,
   TSignup,
   TVerify,
+  changePasswordSchema,
   loginSchema,
   signupSchema,
   verfifyEmailSchema,
@@ -30,6 +32,11 @@ export function useAuth() {
     isError: IsSignupError,
   } = useMutation(userClient.register);
   const {
+    mutateAsync: changePasswordMutation,
+    isLoading: changePasswordLoading,
+    isError: IsChangePasswordError,
+  } = useMutation(userClient.changePassword);
+  const {
     mutateAsync: loginMutation,
     isLoading: LoginLoading,
     isError: IsLoginError,
@@ -53,6 +60,14 @@ export function useAuth() {
       password: '',
     },
   });
+  const changePasswordForm = useForm<TChangePassword>({
+    resolver: zodResolver(changePasswordSchema),
+    defaultValues: {
+     newPassword: '',
+     newPasswordConfirm: '',
+     oldPassword: '',
+    },
+  });
   const verifyForm = useForm<TVerify>({
     resolver: zodResolver(verfifyEmailSchema),
   });
@@ -70,6 +85,7 @@ export function useAuth() {
     toast.promise(loginMutation(data), {
       loading: 'login...',
       success: data => {
+        setAuthorized(true)
         setToken(data.token);
         router.push(`${window.location.origin}/`);
         return <b>{data.message}</b>;
@@ -98,12 +114,29 @@ export function useAuth() {
       },
     });
   };
+  const attemptToChangePassword = async (data: TChangePassword) => {
+    toast.promise(changePasswordMutation(data), {
+      loading: 'changing...',
+      success: data => {
+
+        return <b> {data.message}</b>;
+      },
+      error: error => {
+        const {
+          response: { data },
+        }: any = error ?? {};
+
+        return <b> {data.message}</b>;
+      },
+    });
+  };
 
   const attemptToVerifyEmail = async (data: TVerify) => {
     toast.promise(VerifyMutation(data), {
       loading: 'verify...',
       success: data => {
         setToken(data.token);
+        setAuthorized(true)
         // if (data.user.r === 'customer') {
         //   router.push('/');
         // }
@@ -159,5 +192,9 @@ export function useAuth() {
     logout,
     LogoutLoading,
     IsLogoutError,
+    changePasswordForm,
+    attemptToChangePassword,
+    changePasswordLoading,
+    IsChangePasswordError,
   };
 }

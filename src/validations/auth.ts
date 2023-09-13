@@ -104,3 +104,22 @@ export const verfifyEmailSchema = z.object({
     })
     .max(6),
 });
+
+export const changePassSchema = z.object({
+  oldPassword: z.string().min(8, {
+    message: 'Password must be at least 8 characters long',
+  }),
+  newPassword: z.string().min(8),
+  newPasswordConfirm: z.string().min(8),
+});
+
+export const changePasswordSchema = changePassSchema.refine(
+  data => data.newPassword === data.newPasswordConfirm,
+  {
+    message: 'Passwords do not match',
+    path: ['passwordConfirm'],
+  }
+)
+
+export type TChangePassword = z.infer<typeof changePasswordSchema>;
+
