@@ -64,7 +64,7 @@ const ChangePasswordForm = () => {
             />
           )}
           Sign in
-          <span className='sr-only'>Sign in</span>
+          <span className='sr-only'>Change password</span>
         </Button>
       </form>
     </Form>
