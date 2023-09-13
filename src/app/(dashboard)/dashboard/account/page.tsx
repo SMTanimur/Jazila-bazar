@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+"use client"
 
 import { Shell } from '@/components/shells/shell';
 import {
@@ -11,10 +11,6 @@ import dynamic from 'next/dynamic'
  
 const AccountInformation = dynamic(() => import('./components/AccountInformation'), { ssr: false })
  
-export const metadata: Metadata = {
-  title: 'Account Information',
-  description: 'Manage your account settings',
-};
 
 export default function AccountPage() {
   

@@ -1,3 +1,5 @@
+"use client"
+
 import { PageHeader, PageHeaderDescription, PageHeaderHeading } from '@/components/common/shared/page-header';
 import { Shell } from '@/components/shells/shell';
 import { Metadata } from 'next';
@@ -6,10 +8,6 @@ import AddressesInformation from './components/AddressesInformation';
 
 
 
-export const metadata: Metadata = {
-  title: 'Addresses Information',
-  description: 'Manage your Addresses settings',
-};
 const AddressPage = () => {
 
   return (

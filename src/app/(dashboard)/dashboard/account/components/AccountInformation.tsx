@@ -1,6 +1,5 @@
-/* eslint-disable react-hooks/rules-of-hooks */
+
 'use client';
-import { Shell } from '@/components/shells/shell';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
@@ -8,7 +7,6 @@ import { Icons } from '@/components/ui/icons';
 import { useMe } from '@/hooks/api/user/useMe';
 import { IAddress } from '@/types';
 import { AvatarImage } from '@radix-ui/react-avatar';
-import { BadgePlus, BadgePlusIcon } from 'lucide-react';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
