@@ -1,10 +1,19 @@
+"use client"
+
 import { PageHeader, PageHeaderDescription, PageHeaderHeading } from '@/components/common/shared/page-header'
 
 import { Shell } from '@/components/shells/shell'
 import React from 'react'
 import ChangePasswordComponent from './ChangePasswrodComponent'
+import { useMe } from '@/hooks/api/user/useMe'
+import { IUser } from '@/types'
+import loading from './loading'
 
 const ChangePassword = () => {
+  const {me,isLoading}=useMe()
+  if(isLoading){
+    return loading()
+  }
   return (
     <Shell variant={'sidebar'}>
       <PageHeader id='change-password-header' aria-labelledby='change-password-header-heading'>
@@ -14,7 +23,7 @@ const ChangePassword = () => {
         </PageHeaderDescription>
       </PageHeader>
        <section>
-        <ChangePasswordComponent/>
+        <ChangePasswordComponent user={me as IUser}/>
        </section>
     </Shell>
   )
