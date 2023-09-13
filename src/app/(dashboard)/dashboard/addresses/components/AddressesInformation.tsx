@@ -13,7 +13,9 @@ import AddressesLoading from '../loading';
 const AddressesInformation = () => {
   const { data, isLoading, error } = useGetAddresses();
   const {addressDeleteLoading,attemptToDeleteAddress,IsAddressDeleteError}=useAddress()
-
+  if(isLoading){
+    return AddressesLoading()
+  }
   return (
     <section className='grid  md:grid-cols-2 lg:grid-cols-3  gap-3'>
       <Card className=' min-h-[350px]'>

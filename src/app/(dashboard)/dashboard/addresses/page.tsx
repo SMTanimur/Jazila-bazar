@@ -2,11 +2,9 @@
 
 import { PageHeader, PageHeaderDescription, PageHeaderHeading } from '@/components/common/shared/page-header';
 import { Shell } from '@/components/shells/shell';
-import { Metadata } from 'next';
+
 import React from 'react'
 import AddressesInformation from './components/AddressesInformation';
-
-
 
 const AddressPage = () => {
 
