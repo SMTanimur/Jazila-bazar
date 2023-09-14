@@ -16,7 +16,6 @@ const ChangePasswordForm = () => {
           void changePasswordForm.handleSubmit(attemptToChangePassword)(...args)
         }
       >
-    
         <FormField
           control={changePasswordForm.control}
           name='oldPassword'

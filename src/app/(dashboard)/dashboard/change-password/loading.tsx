@@ -10,9 +10,9 @@ export default function loading() {
   return (
     <Shell variant="sidebar">
       <PageHeader id="account-header" aria-labelledby="account-header-heading">
-        <PageHeaderHeading size="sm">Account</PageHeaderHeading>
+        <PageHeaderHeading size="sm">Change Password</PageHeaderHeading>
         <PageHeaderDescription size="sm">
-          Manage your account settings
+        Change your Password
         </PageHeaderDescription>
       </PageHeader>
       <section
