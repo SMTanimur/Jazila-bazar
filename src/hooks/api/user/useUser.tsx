@@ -13,8 +13,7 @@ import { useMe } from './useMe';
 
 export function useUser() {
   const { me: user } = useMe();
-  const router = useRouter();
-
+ 
   const queryClient = useQueryClient();
   const {
     mutateAsync: editProfileMutation,

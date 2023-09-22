@@ -26,7 +26,7 @@ const AvatarEditForm = () => {
         toast('Uploading...', { icon: '📤' });
         const { image } = await uploadImage(formData);
         const userData = {
-          avatar: image.img_src,
+          avatar: image.img_url,
           firstName: me?.firstName,
           lastName: me?.lastName,
           email: me?.email,

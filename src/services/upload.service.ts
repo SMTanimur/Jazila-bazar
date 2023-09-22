@@ -2,7 +2,7 @@ import { HttpClient } from "@/utils/api/http";
 
 export interface IUploadedImage {
   img_id: string;
-  img_src: string;
+  img_url: string;
 }
 
 
