@@ -157,3 +157,11 @@ export interface IFileHandler<T> {
   clearFiles: () => void;
 }
 
+
+export enum SortOrder {
+  /** Sort records in ascending order. */
+  Asc = 'asc',
+  /** Sort records in descending order. */
+  Desc = 'desc',
+}
+
