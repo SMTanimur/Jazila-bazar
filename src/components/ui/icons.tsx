@@ -65,6 +65,8 @@ import {
   Heart,
   BadgePlus,
   LocateIcon,
+  BoxesIcon,
+  Boxes,
 } from 'lucide-react';
 
 export type Icon = LucideIcon | any;
@@ -108,6 +110,7 @@ export const Icons = {
   message: MessageSquare,
   reset: RefreshCw,
   send: Send,
+  group:Boxes,
   copy: Copy,
   downlaod: Download,
   warning: AlertTriangle,
