@@ -32,6 +32,7 @@ const Header = ({ layout }: { layout?: string }) => {
 
   const [displayMobileHeaderSearch] = useAtom(displayMobileHeaderSearchAtom);
   const { isAuthorized, me } = useMe();
+
   const isHomePage = useIsHomePage();
   const isMultilangEnable =
     process.env.NEXT_PUBLIC_ENABLE_MULTI_LANG === "true" &&

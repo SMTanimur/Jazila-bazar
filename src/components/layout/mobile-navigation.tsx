@@ -1,4 +1,3 @@
-"use client";
 import { useMe } from "@/hooks/api/user/useMe";
 import { motion } from "framer-motion";
 import { HomeIcon } from "lucide-react";
@@ -28,10 +27,10 @@ export default function MobileNavigation({
       <nav className="h-12 md:h-14 w-full py-1.5 px-2 flex justify-between fixed ltr:left-0 rtl:right-0 bottom-0 z-10 bg-light shadow-400">
         <motion.button
           whileTap={{ scale: 0.88 }}
-          className="flex items-center justify-center h-full p-2 focus:outline-none focus:text-accent"
+          className="flex items-center justify-center h-full p-2 focus:outline-none focus:text-primary"
         >
           <span className="sr-only">burger menu</span>
-          {/* <NavbarIcon className={`${'transform rotate-180'}`} /> */}
+          <Icons.menu className={`${"transform rotate-180"} text-primary`} />
         </motion.button>
 
         {children}
@@ -39,19 +38,20 @@ export default function MobileNavigation({
         <motion.button
           whileTap={{ scale: 0.88 }}
           onClick={() => router.push("/")}
-          className="flex items-center justify-center h-full p-2 focus:outline-none focus:text-accent"
+          className="flex items-center justify-center h-full p-2 focus:outline-none focus:text-primary"
         >
           <span className="sr-only">home</span>
-          <HomeIcon />
+          <HomeIcon className=" w-5" />
         </motion.button>
 
         <motion.button
           whileTap={{ scale: 0.88 }}
           // onClick={() => handleSidebar("cart")}
-          className="relative flex items-center justify-center h-full p-2 product-cart focus:outline-none focus:text-accent"
+          className="relative flex items-center justify-center h-full p-2 focus:outline-none focus:text-primary"
         >
           <span className="sr-only">cart</span>
-          {/* <ShoppingBagIcon /> */}
+          <Icons.cart className=" w-5" />
+
           {/* {totalUniqueItems > 0 && (
             <span className="bg-accent py-1 px-1.5 text-10px leading-none font-semibold text-light rounded-full absolute top-0 ltr:right-0 rtl:left-0 mt-0.5 ltr:-mr-0.5 rtl:-ml-0.5">
               {totalUniqueItems}
@@ -63,19 +63,19 @@ export default function MobileNavigation({
           <motion.button
             whileTap={{ scale: 0.88 }}
             // onClick={() => handleSidebar("AUTH_MENU_VIEW")}
-            className="flex items-center justify-center h-full p-2 focus:outline-none focus:text-accent"
+            className="flex items-center justify-center h-full p-2 focus:outline-none focus:text-primary"
           >
             <span className="sr-only">user</span>
-            <Icons.user />
+            <Icons.user className="w-5 h-5" />
           </motion.button>
         ) : (
           <motion.button
             whileTap={{ scale: 0.88 }}
-            className="flex items-center justify-center h-full p-2 focus:outline-none focus:text-accent"
+            className="flex items-center justify-center h-full p-2 focus:outline-none focus:text-primary"
           >
             <span className="sr-only">user</span>
             <Link href={"/login"}>
-              <Icons.user />
+              <Icons.user className="w-5" />
             </Link>
           </motion.button>
         )}
