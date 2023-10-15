@@ -1,11 +1,3 @@
-
 export default async function IndexPage() {
- 
- 
-
-  return (
-   <div>
-     lorem
-   </div>
-  )
+  return <div>lorem2000</div>;
 }
