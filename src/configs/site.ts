@@ -1,15 +1,14 @@
-import type { FooterItem, MainNavItem } from "@/types"
+import type { FooterItem, MainNavItem } from "@/types";
 
+import { ROUTES } from "./routes";
 
-import { slugify } from "@/lib/utils"
-
-export type SiteConfig = typeof siteConfig
+export type SiteConfig = typeof siteConfig;
 
 const links = {
   twitter: "https://twitter.com/SMTanimur",
   github: "https://github.com/SMTanimur/Zazila-bazar",
   githubAccount: "https://github.com/SMTanimur",
-}
+};
 
 export const siteConfig = {
   name: "Zazila-bazar",
@@ -69,7 +68,7 @@ export const siteConfig = {
           href: "https://acme-corp.jumr.dev",
           external: true,
         },
-       
+
         {
           title: "Taxonomy",
           href: "https://tx.shadcn.com/",
@@ -120,8 +119,22 @@ export const siteConfig = {
           href: links.githubAccount,
           external: true,
         },
-        
       ],
     },
   ] satisfies FooterItem[],
-}
+
+  authorizedLinks: [
+    { href: "/dashboard/account", label: "Account" },
+    { href: ROUTES.ORDERS, label: "My-Oreders" },
+    { href: "/my-wishlist", label: "My-Wishlist" },
+    { href: ROUTES.CHECKOUT, label: "Chekout" },
+  ],
+  authorizedLinksMobile: [
+    { href: "/dashboard/account", label: "Account" },
+    { href: ROUTES.ORDERS, label: "My-Orders" },
+    { href: "/my-cards", label: "My-Cards" },
+    { href: "/my-wishlist", label: "My-Wishlist" },
+    { href: ROUTES.CHECKOUT, label: "Checkout" },
+    { href: ROUTES.CHANGE_PASSWORD, label: "Change Password" },
+  ],
+};

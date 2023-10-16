@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { HomeIcon } from "lucide-react";
 import Link from "next/link";
 
+import { useGlobalModalStateStore } from "@/store/modal";
 import { useRouter } from "next/navigation";
 import { Icons } from "../ui/icons";
 export default function MobileNavigation({
@@ -10,6 +11,7 @@ export default function MobileNavigation({
 }: React.PropsWithChildren<{}>) {
   const router = useRouter();
   const { isAuthorized } = useMe();
+  const globalModal = useGlobalModalStateStore();
   // const [_, setDrawerView] = useAtom(drawerAtom);
 
   // const hasFilter = `[manufacturer], ${ROUTES?.SEARCH}`.includes(
@@ -62,7 +64,7 @@ export default function MobileNavigation({
         {isAuthorized ? (
           <motion.button
             whileTap={{ scale: 0.88 }}
-            // onClick={() => handleSidebar("AUTH_MENU_VIEW")}
+            onClick={() => globalModal.onUserMenu()}
             className="flex items-center justify-center h-full p-2 focus:outline-none focus:text-primary"
           >
             <span className="sr-only">user</span>
