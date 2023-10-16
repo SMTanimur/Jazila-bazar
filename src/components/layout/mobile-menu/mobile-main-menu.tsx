@@ -1,12 +1,11 @@
-import { useRouter } from "next/router";
-
 import DrawerWrapper from "@/components/ui/drawer-wrapper";
 import { ROUTES } from "@/configs/routes";
 import { useGlobalModalStateStore } from "@/store/modal";
+import { useRouter } from "next/navigation";
 
 const headerLinks = [
   { href: ROUTES.SHOPS, label: "Shops" },
-  { href: ROUTES.MANUFACTURERS, label: "text-manufacturers" },
+  { href: ROUTES.MANUFACTURERS, label: "Manufactures" },
   { href: ROUTES.AUTHORS, label: "User" },
   { href: ROUTES.OFFERS, label: "Offer" },
   { href: ROUTES.HELP, label: "Faq" },
