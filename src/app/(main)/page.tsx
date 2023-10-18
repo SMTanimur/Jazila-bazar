@@ -1,3 +1,10 @@
+import Banner from "@/components/banners/banner";
+
 export default async function IndexPage() {
-  return <div>lorem2000</div>;
+  return (
+    <div className="">
+      <Banner layout="classic"  variables={null}/>
+      
+    </div>
+  )
 }

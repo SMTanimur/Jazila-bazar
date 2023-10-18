@@ -260,17 +260,33 @@ export interface IShop {
   settings?: IShopSettings;
 }
 
-export interface IPaginatorInfo {
+
+
+
+export interface PaginatorInfo<T> {
+  docs: T[];
+
   totalDocs: number;
+
   limit: number;
-  totalPages: number;
+
+  // * Page info
+
   page: number;
-  pagingCounter: number;
-  hasPrevPage: boolean;
+
+  totalPages: number;
+
   hasNextPage: boolean;
-  prevPage?: any;
-  nextPage?: any;
+
+  hasPrevPage: boolean;
+
+  nextPage: number;
+
+  prevPage: number;
+
+  pagingCounter: number;
 }
+
 
 export interface IBalance {
   _id?: string;
@@ -386,4 +402,74 @@ export interface IFileHandler<T> {
   ) => void;
   removeImage: (id: string) => void;
   clearFiles: () => void;
+}
+
+export interface QueryOptions {
+  page: number;
+  limit: number;
+}
+
+export interface ProductQueryOptions extends QueryOptions {
+  shop_id: string;
+  sortedBy: string;
+  orderBy: string;
+  name: string;
+  categories: string;
+  category: string;
+  tags: string;
+  type: string;
+  manufacturer: string;
+  author: string;
+  price: string;
+  min_price: string;
+  max_price: string;
+  text: string;
+  searchType: string;
+  searchQuery: string;
+}
+
+export interface PopularProductQueryOptions extends QueryOptions {
+  type_slug: string;
+  with: string;
+  range: number;
+}
+
+export interface CategoryQueryOptions extends QueryOptions {
+  parent: string | null;
+  type: string;
+}
+
+export interface TagQueryOptions extends QueryOptions {
+  parent: string | null;
+  type: string;
+}
+
+export interface TypeQueryOptions extends QueryOptions {
+  name: string;
+  orderBy: string;
+}
+
+export interface ShopQueryOptions extends QueryOptions {
+  name: string;
+  is_active: number;
+}
+
+export interface AuthorQueryOptions extends QueryOptions {
+  name: string;
+  orderBy: string;
+}
+
+export interface ManufacturerQueryOptions extends QueryOptions {
+  name: string;
+  orderBy: string;
+}
+
+export interface CouponQueryOptions extends QueryOptions {
+  name: string;
+  orderBy: string;
+}
+
+export interface OrderQueryOptions extends QueryOptions {
+  name: string;
+  orderBy: string;
 }

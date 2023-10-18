@@ -1,13 +1,10 @@
 "use client";
 import { useMe } from "@/hooks/api/user/useMe";
 import { useIsHomePage } from "@/hooks/use-is-homepage";
-import { displayMobileHeaderSearchAtom } from "@/store/display-mobile-header-search-atom";
 import { useAtom } from "jotai";
 import Link from "next/link";
 import { useEffect } from "react";
-import { displayHeaderSearchAtom } from "../../store/display-header-search-atom";
 import GradientLogo from "../common/shared/gradient-logo";
-import Search from "../common/shared/search";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button, buttonVariants } from "../ui/button";
 import {
@@ -22,15 +19,16 @@ import {
 } from "../ui/dropdown-menu";
 import { Icons } from "../ui/icons";
 import StaticMenu from "./manu/static-menu";
+import dynamic from "next/dynamic";
+import { useHeaderSearch } from "@/hooks/useSearchHook";
+
+const Search = dynamic(() => import('@/components/ui/search/search'));
 
 // const JoinButton = dynamic(() => import('./menu/join-button'), { ssr: false });
 
 const Header = ({ layout }: { layout?: string }) => {
-  const [displayHeaderSearch, setDisplayHeaderSearch] = useAtom(
-    displayHeaderSearchAtom
-  );
-
-  const [displayMobileHeaderSearch] = useAtom(displayMobileHeaderSearchAtom);
+ 
+  const headerSearch = useHeaderSearch((state)=>state)
   const { isAuthorized, me } = useMe();
 
   const isHomePage = useIsHomePage();
@@ -40,11 +38,11 @@ const Header = ({ layout }: { layout?: string }) => {
 
   useEffect(() => {
     if (!isHomePage) {
-      setDisplayHeaderSearch(false);
+      headerSearch.closeShowHeaderSearch()
     }
-  }, [isHomePage, setDisplayHeaderSearch]);
+  }, [isHomePage, headerSearch]);
   const isFlattenHeader =
-    !displayHeaderSearch && isHomePage && layout !== "modern";
+    !headerSearch.showHeaderSearch&& isHomePage && layout !== "modern";
   return (
     <header className="flex justify-between w-full">
       <div className="flex items-center w-full ">
@@ -58,15 +56,15 @@ const Header = ({ layout }: { layout?: string }) => {
       </div>
       {isHomePage ? (
         <>
-          {(displayHeaderSearch || layout === "modern") && (
+          {(headerSearch.showHeaderSearch || layout === "modern") && (
             <div className="hidden w-full px-10 mx-auto overflow-hidden lg:block ">
-              <Search onSearch={() => null} />
+              <Search label="Search" variant="minimal" />
             </div>
           )}
 
-          {displayMobileHeaderSearch && (
-            <div className="block lg:hidden w-full absolute top-0 ltr:left-0 rtl:right-0  bg-light pt-1.5 md:pt-2 px-5">
-              <Search onSearch={() => null} />
+          {headerSearch.showMobileHeaderSearch && (
+            <div className="block lg:hidden w-full absolute top-0 left-0 right-0  bg-white pt-1.5 md:pt-2 px-5">
+              <Search label="Search" variant="minimal" />
             </div>
           )}
         </>

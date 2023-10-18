@@ -14,6 +14,11 @@ interface GlobalModalState {
   menubar: boolean;
   onMenubar: () => void;
   closeMenubar: () => void;
+
+  showHeaderSearch: boolean;
+  onShowHeaderSearch: () => void;
+  closeShowHeaderSearch: () => void;
+  
 }
 export const useGlobalModalStateStore = create<GlobalModalState>((set) => ({
   userMenu: false,
@@ -27,4 +32,8 @@ export const useGlobalModalStateStore = create<GlobalModalState>((set) => ({
   menubar: false,
   onMenubar: () => set(() => ({ menubar: true })),
   closeMenubar: () => set(() => ({ menubar: false })),
+
+  showHeaderSearch: false,
+  onShowHeaderSearch: () => set(() => ({ showHeaderSearch: true })),
+  closeShowHeaderSearch: () => set(() => ({ showHeaderSearch: false })),
 }));

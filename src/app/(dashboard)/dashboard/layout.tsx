@@ -18,7 +18,7 @@ import {
 import { Icons } from "@/components/ui/icons";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { dashboardConfig } from "@/configs/dashboard";
-import { displayMobileHeaderSearchAtom } from "@/store/display-mobile-header-search-atom";
+import { useHeaderSearch } from "@/hooks/useSearchHook";
 import { motion } from "framer-motion";
 import { useAtom } from "jotai";
 import Link from "next/link";
@@ -31,10 +31,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   // if (!user) {
   //   redirect('/signin');
   // }
-  const [, setDisplayMobileHeaderSearch] = useAtom(
-    displayMobileHeaderSearchAtom
-  );
 
+  const mobileHeaderSearch = useHeaderSearch((state)=>state)
+  const showMobileHeaderSearch = mobileHeaderSearch.showMobileHeaderSearch
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
@@ -77,7 +76,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         <MobileNavigation>
           <motion.button
             whileTap={{ scale: 0.88 }}
-            onClick={() => setDisplayMobileHeaderSearch((prev) => !prev)}
+            onClick={() =>  mobileHeaderSearch.setMobileHeaderSearch(!showMobileHeaderSearch)}
             className="flex items-center justify-center h-full p-2 focus:outline-none focus:text-primary"
           >
             <span className="sr-only">Search</span>
