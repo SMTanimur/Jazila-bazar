@@ -51,7 +51,7 @@ const SearchBox: React.FC<Props> = ({
           value={value}
           autoComplete="off"
           className={cn(
-            'search item-center flex h-full w-full appearance-none overflow-hidden truncate rounded-lg text-sm text-heading placeholder-gray-500 transition duration-300 ease-in-out focus:outline-0 focus:ring-0',
+            'focus:ring-primary item-center flex h-full w-full appearance-none overflow-hidden truncate rounded-lg text-sm text-stone-200 placeholder-gray-500 transition duration-300 ease-in-out focus:outline-0 focus:ring-1',
             {
               'placeholder:text-slate-400': variant === 'flat',
             },
@@ -64,7 +64,7 @@ const SearchBox: React.FC<Props> = ({
             type="button"
             onClick={onClearSearch}
             className={cn(
-              'absolute flex h-full w-10 cursor-pointer items-center justify-center text-body transition-colors duration-200 hover:text-accent-hover focus:text-accent-hover focus:outline-0 md:w-14',
+              'absolute flex h-full w-10 cursor-pointer items-center justify-center text-gray-400 transition-colors duration-200 hover:text-primary/80 focus:text-primary/80 focus:outline-0 md:w-14',
               {
                 'right-36 rtl:left-36': variant === 'normal',
                 'right-0 rtl:left-0': variant !== 'normal',
@@ -77,12 +77,12 @@ const SearchBox: React.FC<Props> = ({
         )}
 
         {variant === 'normal' ? (
-          <button className="flex h-full min-w-[143px] items-center justify-center rounded-lg bg-accent px-8 font-semibold text-light transition-colors duration-200 hover:bg-accent-hover focus:bg-accent-hover focus:outline-0 rounded-tl-none rounded-bl-none rtl:rounded-tr-none rtl:rounded-br-none">
+          <button className="flex h-full min-w-[143px] items-center justify-center rounded-r-xl bg-primary px-8 font-semibold text-white transition-colors duration-200 hover:bg-primary/80 focus:bg-primary/80 focus:outline-0  ">
             <Icons.search className="h-4 w-4 mr-2.5 rtl:ml-2.5" />
             search
           </button>
         ) : (
-          <button className="absolute flex h-full w-10 items-center justify-center text-body transition-colors duration-200 hover:text-accent-hover focus:text-accent-hover focus:outline-0 left-0 rtl:right-0 md:w-14">
+          <button className="absolute flex h-full w-10 items-center justify-center  transition-colors duration-200 hover:text-primary/60 focus:text-primary/80 focus:outline-0 left-0 right-0 md:w-14">
             <span className="sr-only">search</span>
             <Icons.search className="h-4 w-4" />
           </button>
