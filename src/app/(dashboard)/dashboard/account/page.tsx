@@ -6,7 +6,7 @@ import {
   PageHeaderDescription,
   PageHeaderHeading,
 } from '@/components/common/shared/page-header';
-// import AccountInformation from './components/AccountInformation';
+
 import dynamic from 'next/dynamic'
  
 const AccountInformation = dynamic(() => import('./components/AccountInformation'), { ssr: false })

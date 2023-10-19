@@ -1,7 +1,6 @@
 "use client";
 import { useMe } from "@/hooks/api/user/useMe";
 import { useIsHomePage } from "@/hooks/use-is-homepage";
-import { useAtom } from "jotai";
 import Link from "next/link";
 import { useEffect } from "react";
 import GradientLogo from "../common/shared/gradient-logo";
@@ -24,25 +23,21 @@ import { useHeaderSearch } from "@/hooks/useSearchHook";
 
 const Search = dynamic(() => import('@/components/ui/search/search'));
 
-// const JoinButton = dynamic(() => import('./menu/join-button'), { ssr: false });
 
 const Header = ({ layout }: { layout?: string }) => {
  
   const headerSearch = useHeaderSearch((state)=>state)
-  const { isAuthorized, me } = useMe();
+  const { me } = useMe();
 
   const isHomePage = useIsHomePage();
-  const isMultilangEnable =
-    process.env.NEXT_PUBLIC_ENABLE_MULTI_LANG === "true" &&
-    !!process.env.NEXT_PUBLIC_AVAILABLE_LANGUAGES;
+ 
 
   useEffect(() => {
     if (!isHomePage) {
       headerSearch.closeShowHeaderSearch()
     }
-  }, [isHomePage, headerSearch]);
-  const isFlattenHeader =
-    !headerSearch.showHeaderSearch&& isHomePage && layout !== "modern";
+  }, [isHomePage, headerSearch.closeShowHeaderSearch]);
+ 
   return (
     <header className="flex justify-between w-full">
       <div className="flex items-center w-full ">

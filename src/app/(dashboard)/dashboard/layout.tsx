@@ -20,7 +20,6 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { dashboardConfig } from "@/configs/dashboard";
 import { useHeaderSearch } from "@/hooks/useSearchHook";
 import { motion } from "framer-motion";
-import { useAtom } from "jotai";
 import Link from "next/link";
 
 interface DashboardLayoutProps {
@@ -28,9 +27,6 @@ interface DashboardLayoutProps {
 }
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
-  // if (!user) {
-  //   redirect('/signin');
-  // }
 
   const mobileHeaderSearch = useHeaderSearch((state)=>state)
   const showMobileHeaderSearch = mobileHeaderSearch.showMobileHeaderSearch
@@ -76,7 +72,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         <MobileNavigation>
           <motion.button
             whileTap={{ scale: 0.88 }}
-            onClick={() =>  mobileHeaderSearch.setMobileHeaderSearch(!showMobileHeaderSearch)}
+            onClick={()=> mobileHeaderSearch.setMobileHeaderSearch(!showMobileHeaderSearch)}
             className="flex items-center justify-center h-full p-2 focus:outline-none focus:text-primary"
           >
             <span className="sr-only">Search</span>
