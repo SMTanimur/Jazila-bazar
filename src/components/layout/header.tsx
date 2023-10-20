@@ -21,6 +21,7 @@ import StaticMenu from "./manu/static-menu";
 import dynamic from "next/dynamic";
 import { useHeaderSearch } from "@/hooks/useSearchHook";
 
+
 const Search = dynamic(() => import('@/components/ui/search/search'));
 
 
@@ -45,7 +46,7 @@ const Header = ({ layout }: { layout?: string }) => {
           <GradientLogo />
         </Link>
 
-        {/* <div className="hidden ltr:ml-10 rtl:mr-10 ltr:mr-auto rtl:ml-auto xl:block">
+        {/* <div className="hidden ml-10  mr-auto  xl:block">
             <GroupsDropdownMenu />
           </div> */}
       </div>

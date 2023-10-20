@@ -24,6 +24,8 @@ const BannerWithSearch: React.FC<BannerProps> = ({ banners, layout }) => {
     threshold: 1,
   });
 
+  console.log('banners', banners)
+
   useEffect(() => {
     if (intersection && intersection.isIntersecting) {
      headerSearch.closeShowHeaderSearch()
@@ -60,7 +62,7 @@ const BannerWithSearch: React.FC<BannerProps> = ({ banners, layout }) => {
                 >
                  <Image
                     className="w-full h-full min-h-140"
-                    src={banner.image?.img_url?? productPlaceholder}
+                    src={ productPlaceholder}
                     alt={banner.title ?? ''}
                     layout="fill"
                     objectFit="cover"

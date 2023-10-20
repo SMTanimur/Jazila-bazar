@@ -12,7 +12,7 @@ const Banner: React.FC<{ layout: string; variables: any }> = ({
   layout,
   variables,
 }) => {
-  const { type, error } = useType('books');
+  const { type, error } = useType('');
   if (error) return <ErrorMessage message={error.message} />;
   
   return (
