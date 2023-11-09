@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import GradientLogo from "../common/shared/gradient-logo";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { Button, buttonVariants } from "../ui/button";
+import {  buttonVariants } from "../ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,7 +17,6 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Icons } from "../ui/icons";
-import StaticMenu from "./manu/static-menu";
 import dynamic from "next/dynamic";
 import { useHeaderSearch } from "@/hooks/useSearchHook";
 import { HeartIcon } from "lucide-react";
@@ -41,7 +40,7 @@ const Header = ({ layout }: { layout?: string }) => {
   }, [isHomePage, headerSearch.closeShowHeaderSearch]);
  
   return (
-    <header className="flex justify-between w-full">
+    <header className=" lg:justify-between lg:w-full hidden lg:flex">
       <div className="flex items-center w-full ">
         <Link href={"/"}>
           <GradientLogo />
@@ -59,11 +58,7 @@ const Header = ({ layout }: { layout?: string }) => {
             </div>
           {/* )} */}
 
-          {headerSearch.showMobileHeaderSearch && (
-            <div className="block lg:hidden w-full absolute top-0 left-0 right-0  bg-white pt-1.5 md:pt-2 px-5">
-              <Search label="Search" variant="minimal" />
-            </div>
-          )}
+
         </>
       ) : null}
           </div>

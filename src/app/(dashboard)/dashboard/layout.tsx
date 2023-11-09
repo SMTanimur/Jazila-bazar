@@ -21,20 +21,21 @@ import { dashboardConfig } from "@/configs/dashboard";
 import { useHeaderSearch } from "@/hooks/useSearchHook";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
 }
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
-
+  const {push}=useRouter()
   const mobileHeaderSearch = useHeaderSearch((state)=>state)
   const showMobileHeaderSearch = mobileHeaderSearch.showMobileHeaderSearch
   return (
     <div className="flex min-h-screen flex-col">
      
       <SiteHeader />
-
+    
       
       <div className="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
         <DropdownMenu>
@@ -75,8 +76,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         <MobileNavigation>
           <motion.button
             whileTap={{ scale: 0.88 }}
-            onClick={()=> mobileHeaderSearch.setMobileHeaderSearch(!showMobileHeaderSearch)}
-            className="flex items-center justify-center h-full p-2 focus:outline-none focus:text-primary"
+          
+            onClick={()=>push('/search')}
+            className="flex items-center justify-center h-full p-2 focus:outline-none focus:text-green-700"
           >
             <span className="sr-only">Search</span>
             <Icons.search width="17.05" height="18" />

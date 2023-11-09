@@ -1,12 +1,10 @@
 "use client";
 
 import { useMe } from "@/hooks/api/user/useMe";
-import { IUser } from "@/types";
 import Header from "./header";
+import MobileHeader from "./MobileHeader";
 
-interface SiteHeaderProps {
-  user: IUser | null;
-}
+
 
 export function SiteHeader() {
   const { me } = useMe();
@@ -21,6 +19,10 @@ export function SiteHeader() {
         /> */}
         <div className="flex flex-1 items-center justify-end space-x-4">
           <Header />
+          <div className="flex flex-1 items-center justify-end space-x-4 lg:hidden">
+          <MobileHeader/>
+          </div>
+          
         </div>
       </div>
     </header>
