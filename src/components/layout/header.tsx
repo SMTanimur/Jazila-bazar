@@ -85,7 +85,16 @@ const Header = ({ layout }: { layout?: string }) => {
           <div className="border-r h-6 border-border"/>
           <HeartIcon className="w-5"/>
           <div className="border-r h-6 border-border"/>
+          <div className="relative">
           <Icons.cart className="w-5"/>
+          <div className="absolute -top-3 -right-3 bg-red-600 text-white w-5 h-5 flex justify-center items-center">
+            
+           <span>
+            3
+           </span>
+            </div>
+          </div>
+          
           <div className="border-r h-6 border-border"/>
           {me ? (
             <DropdownMenu>
