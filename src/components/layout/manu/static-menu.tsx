@@ -12,12 +12,12 @@ const StaticMenu = () => {
   return (
     <>
       {headerLinks.map(({ href, label, icon }) => (
-        <li key={`${href}${label}`}>
+        <li key={`${href}${label}`} className="list-none">
           <Link
             href={href}
-            className="font-normal text-stone-700 flex items-center transition duration-200 no-underline hover:text-primary focus:text-accent"
+            className="font-normal text-white  flex items-center transition duration-200 no-underline hover:text-gray-300 focus:text-accent"
           >
-            {icon && <span className="ltr:mr-2 rtl:ml-2">{icon}</span>}
+            {icon && <span className="mr-2 ">{icon}</span>}
             {label}
           </Link>
         </li>

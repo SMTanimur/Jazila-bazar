@@ -1,5 +1,6 @@
 "use client";
 import ClientOnly from "@/components/common/shared/ClientOnly";
+import TopBar from "@/components/layout/TopBar";
 import MobileNavigation from "@/components/layout/mobile-navigation";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
@@ -18,6 +19,7 @@ export default function LobbyLayout({ children }: LobbyLayoutProps) {
   const showMobileHeaderSearch = mobileHeaderSearch.showMobileHeaderSearch
   return (
     <div className="relative flex min-h-screen flex-col">
+      <TopBar/>
       <SiteHeader />
 
       <main className="flex-1">{children}</main>

@@ -13,12 +13,12 @@ export interface Props extends InputHTMLAttributes<HTMLInputElement> {
 
 const classes = {
   normal:
-    'bg-light pl-6 pr-6 pr-14 rtl:pl-14 rounded-tr-none rtl:rounded-tl-none rounded-br-none rtl:rounded-bl-none  border border-r-0 rtl:border-l-0 border-transparent focus:border-accent',
+    'bg-white pl-6 pr-6 pr-14 pl-14 rounded-tr-none rounded-tl-none rounded-br-none rounded-bl-none  border border-r-0 border-l-0 border-transparent focus:border-accent',
   minimal:
-    'search-minimal bg-gray-100 pl-10 rtl:pr-10 pr-4 rtl:pl-4 md:pl-14 rtl:md:pr-14 border border-transparent focus:border-accent focus:bg-light',
-  flat: 'bg-white pl-10 rtl:pr-10 pr-4 rtl:pl-4 md:pl-14 rtl:md:pr-14 border-0',
+    'search-minimal bg-gray-100 pl-10 pr-10 pr-4 pl-4 md:pl-14 md:pr-14 border border-transparent focus:border-accent focus:bg-w',
+  flat: 'bg-white pl-10 pr-10 pr-4 pl-4 md:pl-14 md:pr-14 border-0',
   'with-shadow':
-    'search-with-shadow bg-light pl-10 rtl:pr-10 pr-12 rtl:pl-12 md:pl-14 rtl:md:pr-14 focus:bg-light border-0',
+    'search-with-shadow bg-white pl-10 pr-10 pr-12 pl-12 md:pl-14 md:pr-14 focus:bg-white border-0',
 };
 
 const SearchBox: React.FC<Props> = ({
@@ -51,7 +51,7 @@ const SearchBox: React.FC<Props> = ({
           value={value}
           autoComplete="off"
           className={cn(
-            'focus:ring-primary item-center flex h-full w-full appearance-none overflow-hidden truncate rounded-lg text-sm text-stone-200 placeholder-gray-500 transition duration-300 ease-in-out focus:outline-0 focus:ring-1',
+            'focus:ring-primary item-center flex h-full w-full appearance-none overflow-hidden truncate rounded-lg text-sm text-stone-800 placeholder-gray-500 transition duration-300 ease-in-out focus:outline-0 ',
             {
               'placeholder:text-slate-400': variant === 'flat',
             },
@@ -66,8 +66,8 @@ const SearchBox: React.FC<Props> = ({
             className={cn(
               'absolute flex h-full w-10 cursor-pointer items-center justify-center text-gray-400 transition-colors duration-200 hover:text-primary/80 focus:text-primary/80 focus:outline-0 md:w-14',
               {
-                'right-36 rtl:left-36': variant === 'normal',
-                'right-0 rtl:left-0': variant !== 'normal',
+                'right-36 ': variant === 'normal',
+                'right-0 ': variant !== 'normal',
               }
             )}
           >

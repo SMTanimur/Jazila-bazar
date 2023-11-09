@@ -11,7 +11,7 @@ interface SiteHeaderProps {
 export function SiteHeader() {
   const { me } = useMe();
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background">
+    <header className="sticky top-0 z-40 w-full border-b">
       <div className="container flex h-16 items-center">
         <nav className="flex items-center space-x-2"></nav>
 
