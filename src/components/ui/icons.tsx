@@ -67,6 +67,7 @@ import {
   LocateIcon,
   BoxesIcon,
   Boxes,
+  LayoutGrid,
 } from 'lucide-react';
 
 export type Icon = LucideIcon | any;
@@ -90,6 +91,7 @@ export const Icons = {
   lock: LockIcon,
   success: BadgeCheck,
   arrowDown: ArrowDown,
+  category:LayoutGrid,
   menu: Menu,
   verticalThreeDots: MoreVertical,
   horizontalThreeDots: MoreHorizontal,

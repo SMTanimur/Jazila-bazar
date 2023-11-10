@@ -1,5 +1,6 @@
 "use client";
 import ClientOnly from "@/components/common/shared/ClientOnly";
+import BottomFixedSection from "@/components/layout/bottomFixedSection";
 import MobileNavigation from "@/components/layout/mobile-navigation";
 import { SidebarMobile } from "@/components/layout/sidebar-mobile";
 import { SidebarNav } from "@/components/layout/sidebar-nav";
@@ -32,7 +33,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const mobileHeaderSearch = useHeaderSearch((state)=>state)
   const showMobileHeaderSearch = mobileHeaderSearch.showMobileHeaderSearch
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="relative flex min-h-screen flex-col">
      
       <SiteHeader />
     
@@ -85,6 +86,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           </motion.button>
         </MobileNavigation>
       </ClientOnly>
+      <BottomFixedSection/>
     </div>
   );
 }

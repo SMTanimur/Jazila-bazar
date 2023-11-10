@@ -22,12 +22,13 @@ import { TUserAddress, UserAddressSchema } from '@/validations/user';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
 import { API_ENDPOINTS } from '@/utils/api/api-endpoints';
+import { useRouter } from 'next/navigation';
 
 type addressFormProps = {
   initialValues?: IAddress;
 };
 const AddressEditForm = ({ initialValues }: addressFormProps) => {
-  console.log(initialValues);
+  const {push}=useRouter()
   const queryClient = useQueryClient();
   const {
     mutateAsync: addressUpdateMutation,
@@ -60,7 +61,7 @@ const AddressEditForm = ({ initialValues }: addressFormProps) => {
         success: data => {
           queryClient.invalidateQueries([API_ENDPOINTS.ADDRESSES]);
           queryClient.invalidateQueries([API_ENDPOINTS.ME]);
-
+           push('/dashboard/addresses')
           return <b>{data.message}</b>;
         },
         error: error => {
