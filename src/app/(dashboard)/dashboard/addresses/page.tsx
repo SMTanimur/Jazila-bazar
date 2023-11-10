@@ -1,4 +1,3 @@
-"use client"
 
 import { PageHeader, PageHeaderDescription, PageHeaderHeading } from '@/components/common/shared/page-header';
 import { Shell } from '@/components/shells/shell';
@@ -6,7 +5,7 @@ import { Shell } from '@/components/shells/shell';
 import React from 'react'
 import AddressesInformation from './components/AddressesInformation';
 
-const AddressPage = () => {
+const AddressPage = async() => {
 
   return (
     <Shell variant={'sidebar'}>

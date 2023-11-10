@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description: 'Manage your account Information',
 };
 
-const ProfileEdit = () => {
+const ProfileEdit = async() => {
   return (
     <Shell variant={'sidebar'} >
       <PageHeader id='profileEdit-header' aria-labelledby='profileEdit-header-heading'>

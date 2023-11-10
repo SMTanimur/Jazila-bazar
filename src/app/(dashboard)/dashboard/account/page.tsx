@@ -1,4 +1,3 @@
-"use client"
 
 import { Shell } from '@/components/shells/shell';
 import {
@@ -12,7 +11,7 @@ import dynamic from 'next/dynamic'
 const AccountInformation = dynamic(() => import('./components/AccountInformation'), { ssr: false })
  
 
-export default function AccountPage() {
+export default async function AccountPage() {
   
   return (
     <Shell variant='sidebar'>
