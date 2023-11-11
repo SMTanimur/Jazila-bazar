@@ -9,7 +9,7 @@ import MobileHeader from "./MobileHeader";
 export function SiteHeader() {
   const { me } = useMe();
   return (
-    <header className="sticky top-0 z-50 w-full border-b overflow-hidden bg-white dark:bg-black">
+    <header className="sticky top-0 z-50 w-full  overflow-hidden bg-white dark:bg-black">
       <div className="container flex h-16 items-center">
         <nav className="flex items-center space-x-2"></nav>
 

@@ -1,5 +1,6 @@
 "use client";
 import ClientOnly from "@/components/common/shared/ClientOnly";
+import HeaderBottom from "@/components/layout/HeaderBottom";
 import TopBar from "@/components/layout/TopBar";
 import BottomFixedSection from "@/components/layout/bottomFixedSection";
 import MobileNavigation from "@/components/layout/mobile-navigation";
@@ -19,7 +20,7 @@ const {push}=useRouter()
     <div className="relative flex min-h-screen flex-col">
       <TopBar/>
       <SiteHeader />
-
+      <HeaderBottom/>
       <main className="flex-1">{children}</main>
       <SiteFooter />
       <ClientOnly>

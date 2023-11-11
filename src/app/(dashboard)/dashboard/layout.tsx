@@ -1,5 +1,6 @@
 "use client";
 import ClientOnly from "@/components/common/shared/ClientOnly";
+import HeaderBottom from "@/components/layout/HeaderBottom";
 import BottomFixedSection from "@/components/layout/bottomFixedSection";
 import MobileNavigation from "@/components/layout/mobile-navigation";
 import { SidebarMobile } from "@/components/layout/sidebar-mobile";
@@ -36,7 +37,6 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     <div className="relative flex min-h-screen flex-col">
      
       <SiteHeader />
-    
       
       <div className="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
         <DropdownMenu>

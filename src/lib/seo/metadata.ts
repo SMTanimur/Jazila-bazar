@@ -6,18 +6,18 @@ export const defaultMetadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
     default:
-      'Zazila-bazaar  - Zazila-Bazaar: Your Ultimate Multi-Vendor Marketplace',
-    template: 'Zazila-bazaar  | %s',
+      'Jazila-bazar  - Jazila-bazar: Your Ultimate Multi-Vendor Marketplace',
+    template: 'Jazila-bazar  | %s',
   },
   description:
-    'Welcome to Zazila-Bazaar, your ultimate online shopping destination! We are your one-stop marketplace for a diverse range of products, all conveniently curated from a multitude of trusted sellers. ',
+    'Welcome to Jazila-bazar, your ultimate online shopping destination! We are your one-stop marketplace for a diverse range of products, all conveniently curated from a multitude of trusted sellers. ',
   keywords: metaKeywords.join(', '),
   creator: 'SM Tanimur Rahman',
   publisher: 'SM Tanimur Rahman',
-  applicationName: 'Zazila-bazaar ',
+  applicationName: 'Jazila-bazar ',
   viewport: 'width=device-width, initial-scale=1.0',
   colorScheme: 'light',
-  category: 'Zazila-Bazaar: Your Ultimate Multi-Vendor Marketplace',
+  category: 'Jazila-bazar: Your Ultimate Multi-Vendor Marketplace',
   robots: {
     index: false,
     follow: true,
@@ -47,17 +47,17 @@ export const defaultMetadata = {
     type: 'website',
     locale: 'en_US',
     url: siteConfig.url,
-    siteName: 'Zazila-bazaar',
+    siteName: 'Jazila-bazar',
     title:
-      'Zazila-bazaar - Zazila-Bazaar: Your Ultimate Multi-Vendor Marketplace',
+      'Jazila-bazar - Jazila-bazar: Your Ultimate Multi-Vendor Marketplace',
     description:
-      'Welcome to Zazila-Bazaar, your ultimate online shopping destination! We are your one-stop marketplace for a diverse range of products, all conveniently curated from a multitude of trusted sellers. ',
+      'Welcome to Jazila-bazar, your ultimate online shopping destination! We are your one-stop marketplace for a diverse range of products, all conveniently curated from a multitude of trusted sellers. ',
     images: [
       {
         url: `${siteConfig.url}/images/seo_image.png`,
         width: 800,
         height: 600,
-        alt: 'Zazila-bazaar - Zazila-Bazaar: Your Ultimate Multi-Vendor Marketplace',
+        alt: 'Jazila-bazar - Jazila-bazar: Your Ultimate Multi-Vendor Marketplace',
       },
     ],
     emails: ['mushfiqurtanim@gmail.com'],
@@ -70,18 +70,18 @@ export const defaultMetadata = {
   // },
   twitter: {
     creator: '@smtanimur',
-    site: '@Zazila-bazaar',
+    site: '@Jazila-bazar',
     card: 'summary_large_image',
     title:
-      'Zazila-bazaar - Zazila-Bazaar: Your Ultimate Multi-Vendor Marketplace',
+      'Jazila-bazar - Jazila-bazar: Your Ultimate Multi-Vendor Marketplace',
     description:
-      'Welcome to Zazila-Bazaar, your ultimate online shopping destination! We are your one-stop marketplace for a diverse range of products, all conveniently curated from a multitude of trusted sellers. ',
+      'Welcome to Jazila-bazar, your ultimate online shopping destination! We are your one-stop marketplace for a diverse range of products, all conveniently curated from a multitude of trusted sellers. ',
     images: [
       {
         url: `${siteConfig.url}/images/seo_image.png`,
         width: 800,
         height: 600,
-        alt: 'Zazila-bazaar - Zazila-Bazaar: Your Ultimate Multi-Vendor Marketplace',
+        alt: 'Jazila-bazar - Jazila-bazar: Your Ultimate Multi-Vendor Marketplace',
       },
     ],
   },

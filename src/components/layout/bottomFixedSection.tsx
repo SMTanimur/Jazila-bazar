@@ -8,7 +8,7 @@ const BottomFixedSection = () => {
   return (
     <div className='fixed bottom-10 right-16 flex gap-4 '>
        <Button className='uppercase rounded-lg' >
-        Compare
+        Compare (3)
        </Button>
 
        <div className=' relative flex-col  '>
