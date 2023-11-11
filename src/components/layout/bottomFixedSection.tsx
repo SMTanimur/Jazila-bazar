@@ -9,7 +9,7 @@ const BottomFixedSection = () => {
   const [showTopBtn, setShowTopBtn] = useState(false);
   useEffect(() => {
     const checkShowButtonScrollToTop = () => {
-      if (window.scrollY > 10) {
+      if (window.scrollY > 200) {
         setShowTopBtn(true);
       } else {
         setShowTopBtn(false);
