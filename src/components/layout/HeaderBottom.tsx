@@ -10,7 +10,7 @@ const HeaderBottom = () => {
         <Icons.category className='w-5'/>
         All Categories
        </Button>
-       <div className='flex items-center gap-4'>
+       <div className='flex items-center gap-8'>
        <StaticMenu/>
        </div>
        

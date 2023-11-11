@@ -19,6 +19,7 @@ export function SiteHeader() {
         /> */}
         <div className="flex flex-1 items-center justify-end space-x-4">
           <Header />
+    
           <div className="flex flex-1 items-center justify-end space-x-4 lg:hidden">
           <MobileHeader/>
           </div>

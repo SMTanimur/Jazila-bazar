@@ -40,7 +40,7 @@ const Header = ({ layout }: { layout?: string }) => {
   }, [isHomePage, headerSearch.closeShowHeaderSearch]);
  
   return (
-    <header className=" lg:justify-between lg:w-full hidden lg:flex">
+    <header className=" lg:justify-between lg:w-full hidden lg:flex ">
       <div className="flex items-center w-full ">
         <Link href={"/"}>
           <GradientLogo />
@@ -172,6 +172,9 @@ const Header = ({ layout }: { layout?: string }) => {
           )}
         </div>
       </ul>
+      
+
+    
     </header>
   );
 };
