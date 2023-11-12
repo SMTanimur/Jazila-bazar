@@ -8,6 +8,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { fontMono, fontSans } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
+
 import { defaultMetadata } from "../lib/seo";
 import "./globals.css";
 

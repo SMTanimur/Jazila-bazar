@@ -4,7 +4,7 @@ import { API_ENDPOINTS } from "@/utils/api/api-endpoints";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 
-export function useGetCategories(options?: Partial<CategoryQueryOptions>) {
+export function useCategoriesQuery(options?: Partial<CategoryQueryOptions>) {
   const {
     data,
     isLoading,
@@ -16,7 +16,7 @@ export function useGetCategories(options?: Partial<CategoryQueryOptions>) {
   } = useInfiniteQuery<PaginatorInfo<ICategory>, Error>(
     [API_ENDPOINTS.CATEGORIES, options],
     ({ queryKey, pageParam }) =>
-      categoryClient.getAllCategories(Object.assign({}, queryKey[1], pageParam)),
+      categoryClient.getCategories(Object.assign({}, queryKey[1], pageParam)),
     {
       getNextPageParam: ({ page }) => ({ page: page + 1 }),
     }

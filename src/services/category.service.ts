@@ -21,7 +21,7 @@ export const categoryClient = {
       sortedBy = "desc",
     } = params as CategoriesQueryOptionsType;
 
-    const url = `${API_ENDPOINTS.CATEGORIES}?${text ? `&search=${text}` : ""}${
+    const url = `/categories?${text ? `&search=${text}` : ""}${
       type ? `type=${type}&` : ""
     }&searchJoin=and&limit=${limit}&page=${page}&orderBy=${orderBy}&sortedBy=${sortedBy}`;
     return HttpClient.get<PaginatorInfo<ICategory>>(url);

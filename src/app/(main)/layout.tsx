@@ -3,6 +3,7 @@ import ClientOnly from "@/components/common/shared/ClientOnly";
 import HeaderBottom from "@/components/layout/HeaderBottom";
 import TopBar from "@/components/layout/TopBar";
 import BottomFixedSection from "@/components/layout/bottomFixedSection";
+import { Footer } from "@/components/layout/footer";
 import MobileNavigation from "@/components/layout/mobile-navigation";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
@@ -22,7 +23,7 @@ const {push}=useRouter()
       <SiteHeader />
       <HeaderBottom/>
       <main className="flex-1">{children}</main>
-      <SiteFooter />
+      <Footer />
       <ClientOnly>
         <MobileNavigation>
           <motion.button
