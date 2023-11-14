@@ -6,15 +6,11 @@ import BottomFixedSection from "@/components/layout/bottomFixedSection";
 import { Footer } from "@/components/layout/footer";
 import MobileNavigation from "@/components/layout/mobile-navigation";
 import { SiteHeader } from "@/components/layout/site-header";
-import { Icons } from "@/components/ui/icons";
-import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
 interface LobbyLayoutProps {
   children: React.ReactNode;
 }
-
 export default function LobbyLayout({ children }: LobbyLayoutProps) {
-// const {push}=useRouter()
+
   return (
     <div className="relative flex min-h-screen flex-col">
       <TopBar/>
