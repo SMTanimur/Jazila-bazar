@@ -1,6 +1,5 @@
 import { PhoneIcon } from 'lucide-react'
 import React from 'react'
-import StaticMenu from './manu/static-menu'
 
 const TopBar = () => {
   return (

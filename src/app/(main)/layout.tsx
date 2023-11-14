@@ -5,10 +5,8 @@ import TopBar from "@/components/layout/TopBar";
 import BottomFixedSection from "@/components/layout/bottomFixedSection";
 import { Footer } from "@/components/layout/footer";
 import MobileNavigation from "@/components/layout/mobile-navigation";
-import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { Icons } from "@/components/ui/icons";
-import { useHeaderSearch } from "@/hooks/useSearchHook";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 interface LobbyLayoutProps {

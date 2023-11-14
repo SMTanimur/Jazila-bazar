@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 import { Swiper, SwiperSlide, Navigation } from '@/components/ui/slider';
 import { productPlaceholder } from '@/lib/placeholders';

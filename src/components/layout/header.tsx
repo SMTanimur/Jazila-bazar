@@ -37,7 +37,7 @@ const Header = ({ layout }: { layout?: string }) => {
     if (!isHomePage) {
       headerSearch.closeShowHeaderSearch()
     }
-  }, [isHomePage, headerSearch.closeShowHeaderSearch]);
+  }, [isHomePage, headerSearch.closeShowHeaderSearch, headerSearch]);
  
   return (
     <header className=" lg:justify-between lg:w-full hidden lg:flex ">
@@ -65,9 +65,9 @@ const Header = ({ layout }: { layout?: string }) => {
          
       </div>
       
-      <ul className="items-center shrink-0 hidden lg:flex space-x-10 rtl:space-x-reverse">
+      <ul className="items-center shrink-0 hidden lg:flex space-x-10 space-x-reverse">
   
-        <div className="flex items-center space-x-4 rtl:space-x-reverse">
+        <div className="flex items-center space-x-4 space-x-reverse">
           <Link
             href={`${process.env.NEXT_PUBLIC_ADMIN_URL}/register`}
             target="_blank"

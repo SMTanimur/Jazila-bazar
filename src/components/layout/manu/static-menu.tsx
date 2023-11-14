@@ -15,7 +15,7 @@ const StaticMenu = () => {
         <li key={`${href}${label}`} className="list-none">
           <Link
             href={href}
-            className="font-normal text-gray-900  flex items-center transition duration-200 no-underline hover:text-primary focus:text-primary"
+            className="font-normal text-gray-900 dark:text-white  flex items-center transition duration-200 no-underline hover:text-primary dark:hover:text-gray-200 focus:text-primary"
           >
             {icon && <span className="mr-2 ">{icon}</span>}
             {label}

@@ -1,11 +1,10 @@
 "use client";
 import ClientOnly from "@/components/common/shared/ClientOnly";
-import HeaderBottom from "@/components/layout/HeaderBottom";
 import BottomFixedSection from "@/components/layout/bottomFixedSection";
+import { Footer } from "@/components/layout/footer";
 import MobileNavigation from "@/components/layout/mobile-navigation";
 import { SidebarMobile } from "@/components/layout/sidebar-mobile";
 import { SidebarNav } from "@/components/layout/sidebar-nav";
-import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { Button } from "@/components/ui/button";
 import {
@@ -72,7 +71,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         </aside>
         <main className="flex w-full flex-col overflow-hidden">{children}</main>
       </div>
-      <SiteFooter />
+      <Footer />
       <ClientOnly>
         <MobileNavigation>
           <motion.button

@@ -27,8 +27,7 @@ export default function MobileNavigation({
   return (
     <div className="visible h-12 sm:hidden md:h-14 ">
       <nav className="h-12 md:h-14 w-full py-1.5 px-2 flex justify-between fixed left-0 right-0 bottom-0 z-10 bg-primary shadow-400 text-white">
-
-      <motion.button
+        <motion.button
           whileTap={{ scale: 0.88 }}
           onClick={() => router.push("/")}
           className="flex items-center justify-center h-full p-2 focus:outline-none focus:text-green-500"
@@ -36,7 +35,7 @@ export default function MobileNavigation({
           <span className="sr-only">home</span>
           <HomeIcon className=" w-5 " />
         </motion.button>
-        
+
         <motion.button
           whileTap={{ scale: 0.88 }}
           onClick={() => globalModal.onMenubar()}
@@ -48,8 +47,6 @@ export default function MobileNavigation({
 
         {children}
 
-        
-
         <motion.button
           whileTap={{ scale: 0.88 }}
           onClick={() => router.push("/cart")}
@@ -59,7 +56,7 @@ export default function MobileNavigation({
           <Icons.cart className=" w-5" />
 
           {/* {totalUniqueItems > 0 && (
-            <span className="bg-accent py-1 px-1.5 text-10px leading-none font-semibold text-light rounded-full absolute top-0 ltr:right-0 rtl:left-0 mt-0.5 ltr:-mr-0.5 rtl:-ml-0.5">
+            <span className="bg-accent py-1 px-1.5 text-10px leading-none font-semibold text-light rounded-full absolute top-0 ltr:right-0 left-0 mt-0.5 ltr:-mr-0.5 -ml-0.5">
               {totalUniqueItems}
             </span>
           )} */}

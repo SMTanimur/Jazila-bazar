@@ -30,7 +30,7 @@ function AddressCard(props: Props) {
         {label}
       </div>
       <CardContent className='flex flex-col gap-3 p-6 '>
-        <div className='text-gray-800 font-bold'>{address?.name}</div>
+        <div className='text-gray-800 dark:text-white font-bold'>{address?.name}</div>
         <div className='flex text-gray-500 text-lg'>
           {address.country}
 

@@ -1,43 +1,43 @@
-/* eslint-disable @next/next/no-img-element */
-import { Icons } from '@/components/ui/icons';
-import Link from 'next/link';
 
+import { Icons } from "@/components/ui/icons";
+import Image from "next/image";
+import Link from "next/link";
 
 const informationNav = [
-  { label: 'About Us', path: '/about-us' },
-  { label: 'Delivery Information', path: '/delivery-information' },
-  { label: 'Privacy Policy', path: '/privacy-policy' },
-  { label: 'Brands', path: '/brands' },
-  { label: 'Contact Us', path: '/contact-us' },
-  { label: 'Returns', path: '/returns' },
-  { label: 'Site Map', path: '/site-map' },
+  { label: "About Us", path: "/about-us" },
+  { label: "Delivery Information", path: "/delivery-information" },
+  { label: "Privacy Policy", path: "/privacy-policy" },
+  { label: "Brands", path: "/brands" },
+  { label: "Contact Us", path: "/contact-us" },
+  { label: "Returns", path: "/returns" },
+  { label: "Site Map", path: "/site-map" },
 ];
 
 const accountNav = [
-  { label: 'Ofice', path: '/store-location' },
-  { label: 'Order History', path: '/order-history' },
-  { label: 'Wish List', path: '/wishlist' },
-  { label: 'Newsletter', path: '/newsletter' },
-  { label: 'Special Offers', path: '/special-offers' },
+  { label: "Ofice", path: "/store-location" },
+  { label: "Order History", path: "/order-history" },
+  { label: "Wish List", path: "/wishlist" },
+  { label: "Newsletter", path: "/newsletter" },
+  { label: "Special Offers", path: "/special-offers" },
 ];
 
 const SOCIAL_NETWORKS = [
   {
-    label: 'Facebook',
+    label: "Facebook",
     url: `https://facebook.com/SMTanimur`,
-    icon: <Icons.facebook  className='w-3' />,
+    icon: <Icons.facebook className="w-3" />,
   },
- 
+
   {
-    label: 'Twitter',
+    label: "Twitter",
     url: `https://twitter.com/SMTanimur`,
-    icon: <Icons.twitter  className='w-5' />,
+    icon: <Icons.twitter className="w-5" />,
   },
   {
-    label: 'GitHub',
+    label: "GitHub",
     url: `https://github.com/SMTanimur`,
-    icon: <Icons.gitHub  className='w-5' />,
-  }
+    icon: <Icons.gitHub className="w-5" />,
+  },
 ];
 
 export const Footer = () => {
@@ -158,8 +158,10 @@ export const Footer = () => {
             </Link>
           </p>
 
-          <img
-            className="h-14 bg-white p-2"
+          <Image
+          height={56}
+          width={350}
+            className=" p-2"
             src="https://www.leafrootfruit.com.au/wp-content/uploads/2018/08/secure-stripe-payment-logo-amex-master-visa.png"
             alt="Stripe Secure Payment"
           />

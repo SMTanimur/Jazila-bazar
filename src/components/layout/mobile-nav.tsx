@@ -51,37 +51,6 @@ export function MobileNav({ mainNavItems, sidebarNavItems }: MobileNavProps) {
         <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
           <div className="pl-1 pr-7">
             <Accordion type="single" collapsible className="w-full">
-              {/* {mainNavItems?.map((item, index) => (
-                <AccordionItem value={item.title} key={index}>
-                  <AccordionTrigger className="text-sm capitalize">
-                    {item.title}
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <div className="flex flex-col space-y-2">
-                      {item.items?.map((subItem, index) =>
-                        subItem.href ? (
-                          <MobileLink
-                            key={index}
-                            href={String(subItem.href)}
-                            pathname={pathname}
-                            setIsOpen={setIsOpen}
-                            disabled={subItem.disabled}
-                          >
-                            {subItem.title}
-                          </MobileLink>
-                        ) : (
-                          <div
-                            key={index}
-                            className="text-foreground/70 transition-colors"
-                          >
-                            {item.title}
-                          </div>
-                        )
-                      )}
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              ))} */}
               <AccordionItem value="sidebar">
                 <AccordionTrigger className="text-sm">
                   Sidebar Menu
