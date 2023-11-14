@@ -25,7 +25,7 @@ const AccountInformation = () => {
 
   return (
     <div className="flex md:flex-row flex-col items-center gap-6 ">
-      <Card className=" p-6 w-full min-h-[355px]">
+      <Card className=" w-full min-h-[360px]">
         <CardContent className="flex flex-col gap-2">
           <div className="flex flex-col justify-center items-center gap-3">
             <Avatar className="w-[100px] h-[100px]">
@@ -80,11 +80,15 @@ const AccountInformation = () => {
 
                 <div>
                   <span>Phone Number</span>
-                  <p className="text-gray-800 dark:text-gray-200 font-bold">{address.phone}</p>
+                  <p className="text-gray-800 dark:text-gray-200 font-bold">
+                    {address.phone}
+                  </p>
                 </div>
                 <div>
                   <span>Email Address</span>
-                  <p className="text-gray-800 dark:text-gray-300 font-bold">{address.email}</p>
+                  <p className="text-gray-800 dark:text-gray-300 font-bold">
+                    {address.email}
+                  </p>
                 </div>
                 <Button variant={"link"} className="self-start p-0 text-xl">
                   <Link href={`/dashboard/addresses/${address._id}`}>

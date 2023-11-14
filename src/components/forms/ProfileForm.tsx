@@ -1,5 +1,6 @@
-'use client';
-import React from 'react';
+
+import { useUser } from "@/hooks/api/user/useUser";
+import { Button } from "../ui/button";
 import {
   Form,
   FormControl,
@@ -7,40 +8,28 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '../ui/form';
-import { useUser } from '@/hooks/api/user/useUser';
-import { Input } from '../ui/input';
-import { Button } from '../ui/button';
-import { Icons } from '../ui/icons';
+} from "../ui/form";
+import { Icons } from "../ui/icons";
+import { Input } from "../ui/input";
 
 const ProfileForm = () => {
-
-  const {
-    IsEditProfileError,
-    attemptEditProfile,
-    editProfileLoading,
-    profileEditForm,
-  } = useUser();
+  const { attemptEditProfile, editProfileLoading, profileEditForm } = useUser();
   return (
     <Form {...profileEditForm}>
       <form
-        className='grid gap-4 w-full'
+        className="grid gap-4 w-full"
         onSubmit={(...args) =>
           void profileEditForm.handleSubmit(attemptEditProfile)(...args)
         }
       >
         <FormField
           control={profileEditForm.control}
-          name='firstName'
+          name="firstName"
           render={({ field }) => (
             <FormItem>
               <FormLabel>FirstName</FormLabel>
               <FormControl>
-                <Input
-                  placeholder='Jone'
-                  {...field}
-                
-                />
+                <Input placeholder="Jone" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -48,16 +37,12 @@ const ProfileForm = () => {
         />
         <FormField
           control={profileEditForm.control}
-          name='lastName'
+          name="lastName"
           render={({ field }) => (
             <FormItem>
               <FormLabel>LastName</FormLabel>
               <FormControl>
-                <Input
-                  placeholder='Due'
-                  {...field}
-               
-                />
+                <Input placeholder="Due" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -65,16 +50,12 @@ const ProfileForm = () => {
         />
         <FormField
           control={profileEditForm.control}
-          name='email'
+          name="email"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input
-                  placeholder='example@gmail.com'
-                  {...field}
-                
-                />
+                <Input placeholder="example@gmail.com" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -82,12 +63,12 @@ const ProfileForm = () => {
         />
         <FormField
           control={profileEditForm.control}
-          name='contact'
+          name="contact"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Contact</FormLabel>
               <FormControl>
-                <Input {...field}  />
+                <Input {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -97,8 +78,8 @@ const ProfileForm = () => {
         <Button disabled={editProfileLoading}>
           {editProfileLoading && (
             <Icons.spinner
-              className='mr-2 h-4 w-4 animate-spin'
-              aria-hidden='true'
+              className="mr-2 h-4 w-4 animate-spin"
+              aria-hidden="true"
             />
           )}
           Update

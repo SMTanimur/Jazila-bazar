@@ -5,12 +5,10 @@ import {
   PageHeaderDescription,
   PageHeaderHeading,
 } from '@/components/common/shared/page-header';
+import AccountInformation from './components/AccountInformation';
+import ClientOnly from '@/components/common/shared/ClientOnly';
 
-import dynamic from 'next/dynamic'
  
-const AccountInformation = dynamic(() => import('./components/AccountInformation'), { ssr: false })
- 
-
 export default async function AccountPage() {
   
   return (
@@ -21,12 +19,15 @@ export default async function AccountPage() {
           Manage your account settings
         </PageHeaderDescription>
       </PageHeader>
+      <ClientOnly>
       <section
 
         className='w-full overflow-hidden'
       >
+
         <AccountInformation/>
       </section>
+      </ClientOnly>
     </Shell>
   );
 }

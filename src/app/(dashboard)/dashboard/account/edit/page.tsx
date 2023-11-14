@@ -1,14 +1,10 @@
-import ProfileForm from '@/components/forms/ProfileForm';
+
 import { Shell } from '@/components/shells/shell';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Metadata } from 'next';
-import dynamic from 'next/dynamic';
 import React from 'react';
 import { PageHeader, PageHeaderDescription, PageHeaderHeading } from '@/components/common/shared/page-header';
+import ProfileEditComponent from './components/ProfileEditComponent';
 
-const ProfileEditComponent = dynamic(() => import('./components/ProfileEditComponent'), {
-  ssr: false,
-});
 export const metadata: Metadata = {
   title: 'Profile Edit',
   description: 'Manage your account Information',
