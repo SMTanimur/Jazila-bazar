@@ -1,4 +1,4 @@
-"usec client"
+"use client"
 import React, { useState } from 'react'
 import { Button } from '../ui/button'
 import { Icons } from '../ui/icons'

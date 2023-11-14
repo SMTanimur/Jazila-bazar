@@ -1,4 +1,4 @@
-"use client";
+
 import ClientOnly from "@/components/common/shared/ClientOnly";
 import HeaderBottom from "@/components/layout/HeaderBottom";
 import TopBar from "@/components/layout/TopBar";
@@ -14,7 +14,7 @@ interface LobbyLayoutProps {
 }
 
 export default function LobbyLayout({ children }: LobbyLayoutProps) {
-const {push}=useRouter()
+// const {push}=useRouter()
   return (
     <div className="relative flex min-h-screen flex-col">
       <TopBar/>
@@ -24,14 +24,14 @@ const {push}=useRouter()
       <Footer />
       <ClientOnly>
         <MobileNavigation>
-          <motion.button
+          {/* <motion.button
             whileTap={{ scale: 0.88 }}
             onClick={()=>push('/search')}
             className="flex items-center justify-center h-full p-2 focus:outline-none focus:text-primary"
           >
             <span className="sr-only">Search</span>
             <Icons.search width="17.05" height="18" />
-          </motion.button>
+          </motion.button> */}
         </MobileNavigation>
       </ClientOnly>
       <BottomFixedSection/>

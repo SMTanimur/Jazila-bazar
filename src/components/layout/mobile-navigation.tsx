@@ -1,3 +1,4 @@
+"use client";
 import { useMe } from "@/hooks/api/user/useMe";
 import { motion } from "framer-motion";
 import { HomeIcon } from "lucide-react";
@@ -44,6 +45,15 @@ export default function MobileNavigation({
           <span className="sr-only">burger menu</span>
           <Icons.menu className={`${"transform rotate-180"} text-white`} />
         </motion.button>
+        <motion.button
+            whileTap={{ scale: 0.88 }}
+          
+            onClick={()=>router.push('/search')}
+            className="flex items-center justify-center h-full p-2 focus:outline-none focus:text-green-700"
+          >
+            <span className="sr-only">Search</span>
+            <Icons.search width="17.05" height="18" />
+          </motion.button>
 
         {children}
 
@@ -79,6 +89,7 @@ export default function MobileNavigation({
             <span className="sr-only">user</span>
             <Link href={"/login"}>
               <Icons.user className="w-5" />
+              <span className="sr-only">login</span>
             </Link>
           </motion.button>
         )}

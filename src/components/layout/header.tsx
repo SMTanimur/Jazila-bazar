@@ -18,7 +18,6 @@ import {
 } from "../ui/dropdown-menu";
 import { Icons } from "../ui/icons";
 import dynamic from "next/dynamic";
-import { useHeaderSearch } from "@/hooks/useSearchHook";
 import { HeartIcon } from "lucide-react";
 
 
@@ -27,17 +26,9 @@ const Search = dynamic(() => import('@/components/ui/search/search'));
 
 const Header = ({ layout }: { layout?: string }) => {
  
-  const headerSearch = useHeaderSearch((state)=>state)
   const { me } = useMe();
 
   const isHomePage = useIsHomePage();
- 
-
-  useEffect(() => {
-    if (!isHomePage) {
-      headerSearch.closeShowHeaderSearch()
-    }
-  }, [isHomePage, headerSearch.closeShowHeaderSearch, headerSearch]);
  
   return (
     <header className=" lg:justify-between lg:w-full hidden lg:flex ">

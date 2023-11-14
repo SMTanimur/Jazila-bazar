@@ -161,7 +161,7 @@ export const Footer = () => {
           <Image
           height={56}
           width={350}
-            className=" p-2"
+            className=" p-2 bg-gray-200"
             src="https://www.leafrootfruit.com.au/wp-content/uploads/2018/08/secure-stripe-payment-logo-amex-master-visa.png"
             alt="Stripe Secure Payment"
           />

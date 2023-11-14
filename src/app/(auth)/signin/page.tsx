@@ -1,6 +1,5 @@
 import { type Metadata } from 'next';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
 
 import {
   Card,
@@ -12,7 +11,6 @@ import {
 } from '@/components/ui/card';
 
 import { Shell } from '@/components/shells/shell';
-import { BaseClientUrl } from '@/configs/settings';
 import { SignInForm } from '@/components/forms/signin-form';
 import AnimatedCharacters from '@/components/ui/animated-characters';
 import { OAuthSignIn } from '@/components/common/shared/oauth-signin';

@@ -1,8 +1,6 @@
 
 import GradientLogo from '@/components/common/shared/gradient-logo';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
-import { GOOGLE_CLIENT_ID } from '@/configs/settings';
-import { GoogleOAuthProvider } from '@react-oauth/google';
 import Image from 'next/image';
 import Link from 'next/link';
 
