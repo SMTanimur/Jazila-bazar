@@ -2,7 +2,6 @@
 import { useMe } from "@/hooks/api/user/useMe";
 import { useIsHomePage } from "@/hooks/use-is-homepage";
 import Link from "next/link";
-import { useEffect } from "react";
 import GradientLogo from "../common/shared/gradient-logo";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import {  buttonVariants } from "../ui/button";
