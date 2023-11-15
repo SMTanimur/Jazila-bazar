@@ -29,7 +29,7 @@ const BottomFixedSection = () => {
     });
   };
   return (
-    <div className="fixed bottom-14 right-6 sm:bottom-10 sm:right-14 ">
+    <div className="fixed bottom-10 right-12 sm:bottom-7 sm:right-14 z-[40] ">
       <div className="relative flex gap-6 ">
         <Button
           className={cn("uppercase rounded-lg", !showTopBtn && "mr-[52px]")}
@@ -55,9 +55,7 @@ const BottomFixedSection = () => {
                 : " absolute bottom-0 right-0 "
             )}
           >
-            <Popover className="relative"
-            
-            >
+            <Popover className="relative">
               {({ open }) => (
                 <>
                   <Popover.Button

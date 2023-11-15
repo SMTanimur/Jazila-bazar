@@ -1,0 +1,120 @@
+/* React Swiper Carousel Custom css */
+.heightFull,
+.heightFull .carouselWrapper,
+.heightFull .carouselWrapper > .swiper,
+.heightFull .carouselWrapper > .swiper > .swiper-wrapper,
+.heightFull .carouselWrapper > .swiper > .swiper-wrapper .swiper-slide > div,
+.heightFull .carouselWrapper > .swiper > .swiper-wrapper .swiper-slide > a,
+.heightFull
+  .carouselWrapper
+  > .swiper
+  > .swiper-wrapper
+  .swiper-slide
+  > a
+  > .group,
+.heightFull a > div {
+  height: 100%;
+}
+.heightFull .carouselWrapper > .swiper > .swiper-wrapper .swiper-slide > a {
+  display: flex;
+}
+
+.swiper-wrapper .swiper-slide {
+  height: auto;
+}
+.swiper .swiper-button-prev,
+.swiper .swiper-button-next {
+  display: none;
+}
+.carouselWrapper .swiper-button-disabled,
+#productGallery + div > .swiper-button-disabled {
+  cursor: not-allowed;
+  opacity: 0;
+  visibility: hidden;
+}
+.carouselWrapper .swiper-button-disabled:hover,
+#productGallery + div > .swiper-button-disabled:hover {
+  color: inherit;
+  background-color: #666;
+}
+
+.carouselWrapper .swiper .swiper-pagination-bullets .swiper-pagination-bullet {
+  width: 14px;
+  height: 8px;
+  border: 0;
+  background-color: #fff;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  opacity: 0.4;
+}
+.carouselWrapper .swiper .swiper-pagination-bullets {
+  bottom: 20px;
+}
+.carouselWrapper
+  .swiper
+  .swiper-pagination-bullets
+  .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  width: 18px;
+  opacity: 1;
+}
+.carouselWrapper.dotsCircleBlack
+  .swiper
+  .swiper-pagination-bullets
+  .swiper-pagination-bullet {
+  background-color: #000;
+}
+#productGalleryThumbs .swiper-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -5px;
+}
+#productGalleryThumbs .swiper-wrapper .swiper-slide {
+  margin: 5px 5px 6px;
+}
+#productGalleryThumbs .swiper-wrapper .swiper-slide.swiper-slide-thumb-active {
+  border-color: #80d8c7;
+}
+
+@media screen and (min-width: 1024px) {
+  .carouselWrapper .swiper .swiper-pagination-bullets {
+    bottom: 28px;
+  }
+  .carouselWrapper.dotsCircleBlack .swiper .swiper-pagination-bullets {
+    bottom: 0;
+  }
+  .carouselWrapper
+    .swiper
+    .swiper-pagination-bullets
+    .swiper-pagination-bullet {
+    width: 16px;
+    height: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  .carouselWrapper
+    .swiper
+    .swiper-pagination-bullets
+    .swiper-pagination-bullet.swiper-pagination-bullet-active {
+    width: 24px;
+  }
+}
+
+.swiper-multirow-column > .swiper-wrapper {
+  flex-direction: row;
+}
+
+@media screen and (min-width: 1280px) {
+  #productGalleryThumbs .swiper-wrapper {
+    flex-flow: column;
+    margin: 0;
+  }
+  #productGalleryThumbs .swiper-wrapper .swiper-slide {
+    width: 100% !important;
+    margin: 0 0 12px;
+  }
+}
+
+.antique-carousel-slider .swiper {
+  padding-top: 10px;
+  padding-bottom: 40px;
+}

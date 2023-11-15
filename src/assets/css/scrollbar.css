@@ -1,0 +1,120 @@
+/* Custom scrollbar design starts from here */
+.os-theme-thin > .os-scrollbar-vertical {
+  bottom: 14px;
+  width: 14px;
+  padding: 6px 0;
+}
+
+.os-theme-thin > .os-scrollbar > .os-scrollbar-track {
+  background: transparent;
+}
+
+.os-theme-thin > .os-scrollbar-horizontal > .os-scrollbar-track:before,
+.os-theme-thin > .os-scrollbar-vertical > .os-scrollbar-track:before {
+  content: '';
+  display: block;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.os-theme-thin > .os-scrollbar-vertical > .os-scrollbar-track:before,
+.os-theme-thin
+  > .os-scrollbar-vertical
+  > .os-scrollbar-track
+  > .os-scrollbar-handle:before {
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  left: 50%;
+  margin-left: -1px;
+}
+
+.os-theme-thin
+  > .os-scrollbar-vertical
+  > .os-scrollbar-track
+  > .os-scrollbar-handle {
+  width: 100%;
+  min-height: 15px;
+}
+
+.os-theme-thin > .os-scrollbar-vertical > .os-scrollbar-track:before,
+.os-theme-thin
+  > .os-scrollbar-vertical
+  > .os-scrollbar-track
+  > .os-scrollbar-handle:before {
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  left: 50%;
+  margin-left: -1px;
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.1);
+}
+.os-theme-thin
+  > .os-scrollbar
+  > .os-scrollbar-track
+  > .os-scrollbar-handle:before {
+  content: '';
+  display: block;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.os-theme-thin
+  > .os-scrollbar-vertical
+  > .os-scrollbar-track
+  > .os-scrollbar-handle:hover:before,
+.os-theme-thin
+  > .os-scrollbar-vertical
+  > .os-scrollbar-track
+  > .os-scrollbar-handle.active:before {
+  width: 2px;
+  margin-left: -1px;
+  background: #666;
+}
+
+.os-theme-thin.os-host-transition
+  > .os-scrollbar-vertical
+  > .os-scrollbar-track
+  > .os-scrollbar-handle:before {
+  -webkit-transition: width 0.3s, margin-left 0.3s, background 0.2s;
+  transition: width 0.3s, margin-left 0.3s, background 0.2s;
+}
+
+/* ScrollBar Height Calc */
+.cart-scrollbar {
+  -webkit-overflow-scrolling: touch;
+  max-height: calc(100vh - 160px);
+}
+@media (min-width: 768px) {
+  .cart-scrollbar {
+    max-height: calc(100vh - 188px);
+  }
+}
+
+.checkout-scrollbar {
+  max-height: calc(100vh - 182px);
+  -webkit-overflow-scrolling: touch;
+}
+
+.menu-scrollbar {
+  max-height: calc(100vh - 78px);
+  -webkit-overflow-scrolling: touch;
+}
+.category-scrollbar {
+  max-height: calc(75vh - 88px);
+  -webkit-overflow-scrolling: touch;
+}
+@media (min-width: 1024px) {
+  .category-scrollbar {
+    max-height: calc(100vh - 67px);
+  }
+}
+.category-mobile-sidebar {
+  height: calc(100% - 80px);
+}
+
+.category-filter-scrollbar {
+  height: 583px;
+}

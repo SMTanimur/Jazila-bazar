@@ -9,9 +9,9 @@ import { fontMono, fontSans } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 
+import "../assets/css/swiper-carousel.css";
 import { defaultMetadata } from "../lib/seo";
 import "./globals.css";
-
 
 export const metadata: Metadata = defaultMetadata;
 
