@@ -5,7 +5,8 @@ import MobileHeader from "./MobileHeader";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 w-full  overflow-hidden bg-white dark:bg-black">
+    <header className="sticky top-0 z-50 w-full  overflow-hidden bg-white dark:bg-black shadow-sm">
+      
       <div className="container flex h-16 items-center">
         <nav className="flex items-center space-x-2"></nav>
 
@@ -22,6 +23,7 @@ export function SiteHeader() {
           
         </div>
       </div>
+      <div className="border-b-1"/>
     </header>
   );
 }
