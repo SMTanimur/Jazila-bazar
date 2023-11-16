@@ -15,11 +15,15 @@ const PromotionalBannerCarousel = () => {
   const [sliderRef] = useKeenSlider<HTMLDivElement>(
     {
       breakpoints: {
-        "(min-width: 640px)": {
-          slides: { perView: 3, spacing: 24 },
+        "(min-width: 240px)": {
+          slides: { perView: 1, spacing: 24 },
         },
+        "(min-width: 640px)": {
+          slides: { perView: 2, spacing: 24 },
+        },
+
         "(min-width: 768px)": {
-          slides: { perView: 4, spacing: 32 },
+          slides: { perView: 3, spacing: 32 },
         },
         "(min-width: 1024px)": {
           slides: { perView: 4, spacing: 32 },
