@@ -30,10 +30,7 @@ export default function LobbyLayout({ children }: LobbyLayoutProps) {
           </motion.button> */}
         </MobileNavigation>
       </ClientOnly>
-      <div className="relative">
       <BottomFixedSection/>
-      </div>
-      
     </div>
   );
 }

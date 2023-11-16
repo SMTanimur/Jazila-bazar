@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
 import { useGetCategoriesQuery } from "../../hooks/api/category/useGetCategoriesQuery";
 import { Button } from "../ui/button";
 import {
@@ -12,10 +11,9 @@ import { Icons } from "../ui/icons";
 import StaticMenu from "./manu/static-menu";
 
 const HeaderBottom = () => {
-  const [open, setOpen] = useState(false);
   const { data: categories, isLoading } = useGetCategoriesQuery({ limit: 15 });
   return (
-    <div className="container flex justify-between items-center mt-6">
+    <div className="hidden container md:flex justify-between items-center mt-6">
       <HoverCard>
         <HoverCardTrigger asChild
         
@@ -45,7 +43,7 @@ const HeaderBottom = () => {
         </HoverCardContent>
       </HoverCard>
 
-      <div className="flex items-center gap-8">
+      <div className="hidden lg:flex items-center gap-8">
         <StaticMenu />
       </div>
 

@@ -23,7 +23,7 @@ import { HeartIcon } from "lucide-react";
 const Search = dynamic(() => import('@/components/ui/search/search'));
 
 
-const Header = ({ layout }: { layout?: string }) => {
+const Header = () => {
  
   const { me } = useMe();
 
@@ -98,7 +98,7 @@ const Header = ({ layout }: { layout?: string }) => {
                   </div>
                 </div>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56" align="end" forceMount>
+              <DropdownMenuContent className="w-56" align="end">
                 <DropdownMenuLabel className="font-normal">
                   <div className="flex flex-col space-y-1">
                     <p className="text-sm font-medium leading-none">
