@@ -1,8 +1,6 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 
 @layer base {
   :root {
@@ -27,7 +25,7 @@
     --ring: 346.8 77.2% 49.8%;
     --radius: 0.3rem;
   }
- 
+
   .dark {
     --background: 20 14.3% 4.1%;
     --foreground: 0 0% 95%;
@@ -58,4 +56,12 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.dropdown-active {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+.menu-item {
+  @apply m-2 block cursor-pointer rounded-lg px-4 py-1.5 text-sm text-gray-700 dark:text-gray-200;
 }

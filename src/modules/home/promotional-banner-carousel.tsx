@@ -1,89 +1,115 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import Carousel from "@/components/common/shared/carousel";
-import { SwiperSlide } from "@/components/ui/slider";
+import { Button } from "@/components/ui/button";
 import {
   PromotionalSlider,
   PromotionalSliderType,
 } from "@/data/promotional-slider";
+import "keen-slider/keen-slider.min.css";
+import { useKeenSlider } from "keen-slider/react";
+import { ChevronRightIcon } from "lucide-react";
 import Image from "next/image";
-
+import Link from "next/link";
 
 const PromotionalBannerCarousel = () => {
-  const breakpoints = {
-    320: {
-      slidesPerView: 1,
-      spaceBetween: 20,
+  const [sliderRef] = useKeenSlider<HTMLDivElement>(
+    {
+      breakpoints: {
+        "(min-width: 640px)": {
+          slides: { perView: 3, spacing: 24 },
+        },
+        "(min-width: 768px)": {
+          slides: { perView: 4, spacing: 32 },
+        },
+        "(min-width: 1024px)": {
+          slides: { perView: 4, spacing: 32 },
+        },
+      },
+      slides: { perView: 1.4 },
+      loop: true,
     },
-
-    480: {
-      slidesPerView: 2,
-      spaceBetween: 20,
-    },
-
-    700: {
-      slidesPerView: 3,
-    },
-
-    900: {
-      slidesPerView: 4,
-    },
-
-    1100: {
-      slidesPerView: 1,
-    },
-
-    1280: {
-      slidesPerView: 1,
-      spaceBetween: 24,
-    },
-    1400: {
-      slidesPerView: 1,
-      spaceBetween: 30,
-    },
-    1700: {
-      slidesPerView: 2,
-      spaceBetween: 30,
-    },
-    2600: {
-      slidesPerView: 2,
-      spaceBetween: 40,
-    },
-  };
+    [
+      (slider) => {
+        let timeout: ReturnType<typeof setTimeout>;
+        let mouseOver = false;
+        function clearNextTimeout() {
+          clearTimeout(timeout);
+        }
+        function nextTimeout() {
+          clearTimeout(timeout);
+          if (mouseOver) return;
+          timeout = setTimeout(() => {
+            slider.next();
+          }, 4000);
+        }
+        slider.on("created", () => {
+          slider.container.addEventListener("mouseover", () => {
+            mouseOver = true;
+            clearNextTimeout();
+          });
+          slider.container.addEventListener("mouseout", () => {
+            mouseOver = false;
+            nextTimeout();
+          });
+          nextTimeout();
+        });
+        slider.on("dragStarted", clearNextTimeout);
+        slider.on("animationEnded", nextTimeout);
+        slider.on("updated", nextTimeout);
+      },
+    ]
+  );
   return (
     <div>
-      <Carousel
-        breakpoints={breakpoints}
-        className="-mx-1.5 md:-mx-2 xl:-mx-2.5 -mt-4"
-        autoplay={true}
-        prevButtonClassName="-left-4 3xl:top-auto hidden"
-        nextButtonClassName="-right-4 hidden"
-      >
+      <div ref={sliderRef} className="keen-slider">
         {
           <>
             {PromotionalSlider?.map((item: PromotionalSliderType, idx) => (
-              <SwiperSlide
-                key={item.id}
-                className="px-1.5 md:px-2 xl:px-2.5 py-4"
-              >
+            
                 <div
                   key={item.id}
-                  className="relative  cursor-pointer items-center rounded border border-gray-200 bg-white hover:bg-slate-200 p-5 shadow-md space-y-4 h-[200px] overflow-hidden flex "
+                  className="keen-slider__slide relative w-[300px] cursor-pointer items-center rounded border border-gray-200 bg-slate-200 hover:bg-slate-400 p-5 shadow-md space-x-4  h-[180px]  overflow-hidden flex flex-col justify-center "
                 >
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                   
-                    className=" object-fill"
-                  />
-                </div>
-              </SwiperSlide>
-            ))}
+                  <div className="w-[40%]"></div>
+                  <div className="absolute left-3 top-[1/2] flex flex-col flex-1  w-[80]  z-20">
+                    <h3 className="text-slate-400">{item.title}</h3>
+                    <h6 className="text-xl text-gray-800 font-semibold">{item.description}</h6>
 
-            {/* {width! > 1024 && width! < 1921 && <SwiperSlide />} */}
+                   <Button
+                   size={"sm"}
+                    variant={"link"}
+                    className="self-start -ml-3"
+                   >
+                    <Link
+                     href={item.link}
+                     className="flex gap-1 items-center"
+                    >
+                   Shop Now
+                    <ChevronRightIcon className="w-4 h-4 "/> 
+                   
+                    </Link>
+                    </Button>
+
+                  </div>
+                 
+                 <div className="w-[60%] self-end flex items-end">
+
+                 
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      width={200}
+                      height={200}
+                      className="object-fill object-right-bottom w-full"
+                    />
+                    </div>
+            
+                </div>
+            
+            ))}
           </>
         }
-      </Carousel>
+      </div>
     </div>
   );
 };

@@ -11,28 +11,40 @@ export const PromotionalSlider: PromotionalSliderType[] = [
     id: 1,
     title: "Promotional Slider 1",
     description: "Promotional Slider 1 Description",
-    image: "banner/Kiwi_4.png",
+    image:
+      "https://res.cloudinary.com/smtanimur/image/upload/v1700109998/samples/Watermelon_4_jbgrdz.png",
     link: "/category/1",
   },
   {
     id: 2,
     title: "Promotional Slider 2",
     description: "Promotional Slider 2 Description",
-    image: "banner/Pumpkin_3.png",
+    image:
+      "https://res.cloudinary.com/smtanimur/image/upload/v1700109998/samples/Kiwi_4_ehlq5l.png",
     link: "/category/2",
   },
   {
     id: 3,
     title: "Promotional Slider 3",
     description: "Promotional Slider 3 Description",
-    image: "banner/Watermelon_4.png",
+    image:
+      "https://res.cloudinary.com/smtanimur/image/upload/v1700109998/samples/Pumpkin_3_lfdflh.png",
     link: "/category/3",
   },
   {
     id: 4,
     title: "Promotional Slider 4",
     description: "Promotional Slider 4 Description",
-    image: " banner/Pea_1.png",
+    image:
+      " https://res.cloudinary.com/smtanimur/image/upload/v1700109997/samples/Pea_1_bcwnxy.png",
     link: "/category/4",
+  },
+  {
+    id: 5,
+    title: "Promotional Slider 5",
+    description: "Promotional Slider 5 Description",
+    image:
+      "https://res.cloudinary.com/smtanimur/image/upload/v1700111234/samples/Capsicum_1_izuiyc.png",
+    link: "/category/5",
   },
 ];

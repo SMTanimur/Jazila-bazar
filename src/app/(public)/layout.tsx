@@ -14,7 +14,10 @@ export default function LobbyLayout({ children }: LobbyLayoutProps) {
   return (
     <div className="relative flex min-h-screen flex-col">
       <TopBar/>
+     
       <SiteHeader />
+     
+      
       <HeaderBottom/>
       <main className="flex-1">{children}</main>
       <Footer />
