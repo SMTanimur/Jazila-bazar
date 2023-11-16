@@ -65,3 +65,5 @@
 .menu-item {
   @apply m-2 block cursor-pointer rounded-lg px-4 py-1.5 text-sm text-gray-700 dark:text-gray-200;
 }
+
+@import './custom-plugins.css';

@@ -134,13 +134,6 @@ export interface IProduct {
   categories: ICategory[];
 }
 
-export interface ICategory {
-  name: string;
-  description: string;
-  slug: string;
-  is_active: boolean;
-}
-
 export interface IImage {
   id: string;
   url: string;
@@ -260,9 +253,6 @@ export interface IShop {
   settings?: IShopSettings;
 }
 
-
-
-
 export interface PaginatorInfo<T> {
   docs: T[];
 
@@ -286,7 +276,6 @@ export interface PaginatorInfo<T> {
 
   pagingCounter: number;
 }
-
 
 export interface IBalance {
   _id?: string;
@@ -362,6 +351,7 @@ export interface ICategory {
   slug: string;
   icon?: string;
   _id: string;
+  products_count: number;
   image: ImageInfo;
   type: IType;
   parent?: ICategory;

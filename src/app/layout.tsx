@@ -8,10 +8,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { fontMono, fontSans } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-
-import "../assets/css/swiper-carousel.css";
 import { defaultMetadata } from "../lib/seo";
-import "./globals.css";
+import "../styles/globals.css";
 
 export const metadata: Metadata = defaultMetadata;
 
