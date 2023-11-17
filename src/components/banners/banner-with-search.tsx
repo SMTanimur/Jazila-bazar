@@ -1,15 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-"use client"
-import { Swiper, SwiperSlide, Navigation } from '@/components/ui/slider';
-import { productPlaceholder } from '@/lib/placeholders';
-import Search from '@/components/ui/search/search';
-import { useIntersection } from 'react-use';
-import { useEffect, useRef } from 'react';
-import { IBanner } from '@/types';
-import { cn } from '@/lib/utils';
-import Image from 'next/image';
-import { useHeaderSearch } from '@/hooks/useSearchHook';
-
+"use client";
+import {
+  Navigation,
+  Swiper,
+  SwiperSlide,
+} from "@/components/common/shared/slider";
+import Search from "@/components/ui/search/search";
+import { useHeaderSearch } from "@/hooks/useSearchHook";
+import { productPlaceholder } from "@/lib/placeholders";
+import { cn } from "@/lib/utils";
+import { IBanner } from "@/types";
+import Image from "next/image";
+import { useEffect, useRef } from "react";
+import { useIntersection } from "react-use";
 
 interface BannerProps {
   banners: IBanner[] | undefined;
@@ -21,26 +24,26 @@ const BannerWithSearch: React.FC<BannerProps> = ({ banners, layout }) => {
   const intersectionRef = useRef(null);
   const intersection = useIntersection(intersectionRef, {
     root: null,
-    rootMargin: '0px',
+    rootMargin: "0px",
     threshold: 1,
   });
 
-  console.log('banners', banners)
+  console.log("banners", banners);
 
   useEffect(() => {
     if (intersection && intersection.isIntersecting) {
-     headerSearch.closeShowHeaderSearch()
+      headerSearch.closeShowHeaderSearch();
       return;
     }
     if (intersection && !intersection.isIntersecting) {
-      headerSearch.onShowHeaderSearch()
+      headerSearch.onShowHeaderSearch();
     }
   }, [intersection]);
 
   return (
     <div
-      className={cn('textClass relative hidden lg:block', {
-        '!block': layout === 'minimal',
+      className={cn("textClass relative hidden lg:block", {
+        "!block": layout === "minimal",
       })}
     >
       <div className="-z-1 overflow-hidden">
@@ -56,31 +59,31 @@ const BannerWithSearch: React.FC<BannerProps> = ({ banners, layout }) => {
             {banners?.map((banner, idx) => (
               <SwiperSlide key={idx}>
                 <div
-                  className={cn('relative h-screen w-full', {
-                    'max-h-140': layout === 'standard',
-                    'max-h-[320px] md:max-h-[680px]': layout === 'minimal',
+                  className={cn("relative h-screen w-full", {
+                    "max-h-140": layout === "standard",
+                    "max-h-[320px] md:max-h-[680px]": layout === "minimal",
                   })}
                 >
-                 <Image
+                  <Image
                     className="w-full h-full min-h-140"
-                    src={ productPlaceholder}
-                    alt={banner.title ?? ''}
+                    src={productPlaceholder}
+                    alt={banner.title ?? ""}
                     layout="fill"
                     objectFit="cover"
                   />
                   <div
                     className={cn(
-                      'absolute inset-0 mt-8 flex w-full flex-col items-center justify-center p-5 text-center md:px-20 lg:space-y-10',
+                      "absolute inset-0 mt-8 flex w-full flex-col items-center justify-center p-5 text-center md:px-20 lg:space-y-10",
                       {
-                        'space-y-5 md:!space-y-8': layout === 'minimal',
+                        "space-y-5 md:!space-y-8": layout === "minimal",
                       }
                     )}
                   >
                     <h1
                       className={cn(
-                        'text-2xl font-bold tracking-tight text-heading lg:text-4xl xl:text-5xl',
+                        "text-2xl font-bold tracking-tight text-heading lg:text-4xl xl:text-5xl",
                         {
-                          '!text-accent': layout === 'minimal',
+                          "!text-accent": layout === "minimal",
                         }
                       )}
                     >
