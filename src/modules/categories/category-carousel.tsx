@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import {
   Navigation,
@@ -6,8 +7,7 @@ import {
 } from "@/components/common/shared/slider";
 import { useGetCategoriesQuery } from "@/hooks/api/category/useGetCategoriesQuery";
 import { ICategory } from "@/types";
-import { ChevronRightIcon, ChevronsLeftIcon } from "lucide-react";
-import Image from "next/image";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
 const offerSliderBreakpoints = {
   320: {
@@ -15,15 +15,15 @@ const offerSliderBreakpoints = {
     spaceBetween: 0,
   },
   580: {
-    slidesPerView: 2,
-    spaceBetween: 16,
-  },
-  1024: {
     slidesPerView: 3,
     spaceBetween: 16,
   },
+  1024: {
+    slidesPerView: 6,
+    spaceBetween: 16,
+  },
   1920: {
-    slidesPerView: 4,
+    slidesPerView: 8,
     spaceBetween: 24,
   },
 };
@@ -31,7 +31,7 @@ const CategoriesCarousel = () => {
   const { data, isLoading } = useGetCategoriesQuery({ limit: 15 });
 
   return (
-    <div className="border-t border-border-200  px-6 py-5 md:p-8">
+    <div className="border-t border-border-200 p-4 ">
       <div className="relative">
         <Swiper
           id="offer"
@@ -46,15 +46,19 @@ const CategoriesCarousel = () => {
         >
           {data?.docs.map((d: ICategory) => (
             <SwiperSlide key={d.slug}>
-              <div className="w-[250px] h-[300px] bg-gray-100 flex items-center relative">
-                <div className="absolute bottom-9 left-1/2 -translate-x-1/2">
-                  <Image
-                    className="bg-transparent object-fill object-right-bottom w-full"
-                    src={d.image?.img_url}
-                    alt={d.name}
-                    width={100}
-                    height={100}
-                  />
+              <div className=" w-[260px] sm:w-[220px] h-[250px] bg-gray-100 px-10 justify-center py-4 hover:bg-primary/10 hover:transition duration-300 cursor-pointer">
+                <div className="flex flex-col gap-3 mt-4">
+                  <h5>{d.name}</h5>
+                  <p>{d.products_count} Items</p>
+                </div>
+                <div className=" flex items-center relative w-full">
+                  <div className="absolute top-10 left-6 sm:left-0  ">
+                    <img
+                      className=" w-[130px] h-[100px] object-center"
+                      src={d.image?.img_url}
+                      alt={d.name}
+                    />
+                  </div>
                 </div>
               </div>
             </SwiperSlide>
@@ -72,7 +76,7 @@ const CategoriesCarousel = () => {
           role="button"
         >
           <span className="sr-only">next</span>
-          <ChevronsLeftIcon className="w-4" />
+          <ChevronLeftIcon className="w-4" />
         </div>
       </div>
     </div>
