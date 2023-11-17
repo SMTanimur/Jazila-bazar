@@ -19,15 +19,15 @@ export default async function AccountPage() {
           Manage your account settings
         </PageHeaderDescription>
       </PageHeader>
-      <ClientOnly>
+    
       <section
 
         className='w-full overflow-hidden'
       >
-
+         <ClientOnly>
         <AccountInformation/>
+        </ClientOnly>
       </section>
-      </ClientOnly>
     </Shell>
   );
 }

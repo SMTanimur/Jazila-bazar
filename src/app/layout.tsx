@@ -27,6 +27,7 @@ export default function RootLayout({
           fontSans.variable,
           fontMono.variable
         )}
+        suppressHydrationWarning={true}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <GoogleProvider>

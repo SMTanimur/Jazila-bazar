@@ -1,11 +1,10 @@
 "use client";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Icons } from "@/components/ui/icons";
 import { useMe } from "@/hooks/api/user/useMe";
 import { IAddress } from "@/types";
-import { AvatarImage } from "@radix-ui/react-avatar";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -28,10 +27,11 @@ const AccountInformation = () => {
       <Card className=" w-full min-h-[360px]">
         <CardContent className="flex flex-col gap-2">
           <div className="flex flex-col justify-center items-center gap-3">
-            <Avatar className="w-[100px] h-[100px]">
+            {/* <Avatar className="w-[100px] h-[100px] ">
               <AvatarImage src={me?.avatar} alt={me?.lastName} />
               <AvatarFallback>{me?.lastName}</AvatarFallback>
-            </Avatar>
+            </Avatar> */}
+            <Image src={me?.avatar as string} alt={me?.lastName as string} width={100} height={100} className="rounded-full w-[100px] h-[100px] mt-5" />
             <div className="flex flex-col items-center gap-1">
               <p className="text-2xl font-semibold leading-none tracking-tight">
                 {me?.firstName} {me?.lastName}

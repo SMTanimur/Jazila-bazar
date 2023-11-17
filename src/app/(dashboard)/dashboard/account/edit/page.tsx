@@ -1,28 +1,34 @@
-
-import { Shell } from '@/components/shells/shell';
-import { Metadata } from 'next';
-import React from 'react';
-import { PageHeader, PageHeaderDescription, PageHeaderHeading } from '@/components/common/shared/page-header';
-import ProfileEditComponent from './components/ProfileEditComponent';
+import ClientOnly from "@/components/common/shared/ClientOnly";
+import {
+  PageHeader,
+  PageHeaderDescription,
+  PageHeaderHeading,
+} from "@/components/common/shared/page-header";
+import { Shell } from "@/components/shells/shell";
+import { Metadata } from "next";
+import ProfileEditComponent from "./components/ProfileEditComponent";
 
 export const metadata: Metadata = {
-  title: 'Profile Edit',
-  description: 'Manage your account Information',
+  title: "Profile Edit",
+  description: "Manage your account Information",
 };
 
-const ProfileEdit = async() => {
+const ProfileEdit = async () => {
   return (
-    <Shell variant={'sidebar'} >
-      <PageHeader id='profileEdit-header' aria-labelledby='profileEdit-header-heading'>
-        <PageHeaderHeading size='sm'>Profile Edit</PageHeaderHeading>
-        <PageHeaderDescription size='sm'>
+    <Shell variant={"sidebar"}>
+      <PageHeader
+        id="profileEdit-header"
+        aria-labelledby="profileEdit-header-heading"
+      >
+        <PageHeaderHeading size="sm">Profile Edit</PageHeaderHeading>
+        <PageHeaderDescription size="sm">
           Manage your profile Edit settings
         </PageHeaderDescription>
       </PageHeader>
       <section>
-      
-          <ProfileEditComponent/>
-    
+        <ClientOnly>
+          <ProfileEditComponent />
+        </ClientOnly>
       </section>
     </Shell>
   );
