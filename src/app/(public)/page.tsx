@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import CategoriesCarousel from "@/modules/categories/category-carousel";
 import PromotionalBannerCarousel from "@/modules/home/promotional-banner-carousel";
+import Link from "next/link";
 export default function IndexPage() {
   return (
     <div className="py-3">
@@ -15,9 +16,15 @@ export default function IndexPage() {
         </div>
       </div>
 
-      <div className="py-5 md:py-10 flex flex-col  space-y-6 container">
+      <div className="py-5 md:py-10  container">
+        <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold font-sans ">Shop By Categories</h1>
-        <div className="">
+        <Link href={'/collection'}>
+          All Categories
+        </Link>
+        </div>
+        
+        <div className="py-4">
           <CategoriesCarousel />
         </div>
       </div>
