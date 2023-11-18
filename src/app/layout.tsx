@@ -10,6 +10,11 @@ import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { defaultMetadata } from "../lib/seo";
 import "../styles/globals.css";
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/thumbs';
 
 export const metadata: Metadata = defaultMetadata;
 
