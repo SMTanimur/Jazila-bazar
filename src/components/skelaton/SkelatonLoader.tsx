@@ -1,3 +1,4 @@
+"use client"
 /* eslint-disable react/display-name */
 import { FC, memo } from "react";
 import { Skeleton } from "../ui/skeleton";
