@@ -7,16 +7,23 @@ interface SkelatonLoaderProps {
   isCategorySliderLoader?: boolean;
 }
 
-export const SkelatonLoader: FC<SkelatonLoaderProps> = memo(
+ const SkelatonLoader: FC<SkelatonLoaderProps> = memo(
   ({ className, isCategorySliderLoader = true }) => {
     const classNames = isCategorySliderLoader
       ? `flex flex-row items-center gap-[15px] overflow-hidden `
       : `flex flex-row flex-wrap items-center xs:gap-4 gap-[14px] justify-center ${className}`;
 
+     
+      let arrSize= 10;
 
-    const arrSize = isCategorySliderLoader
-      ? Math.floor(window.innerWidth / 170) + 1
-      : 10;
+      if (typeof window !== "undefined") {
+         if(isCategorySliderLoader){
+          arrSize = Math.floor( window.innerWidth / 170) + 1
+         }else{
+          arrSize = 10
+         }
+      }
+   
 
     return (
       <div className={classNames}>
@@ -37,3 +44,5 @@ export const SkelatonLoader: FC<SkelatonLoaderProps> = memo(
     );
   }
 );
+
+export default SkelatonLoader;

@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
+
 import CategoriesCarousel from "@/modules/categories/category-carousel";
 import PromotionalBannerCarousel from "@/modules/home/promotional-banner-carousel";
 import Link from "next/link";
-export default function IndexPage() {
+export default async function IndexPage() {
   return (
     <div className="py-3">
       <img
