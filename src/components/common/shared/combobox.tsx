@@ -28,7 +28,7 @@ export function Combobox() {
   const [data, setData] = React.useState<
     | {
         category: IProduct['categories'];
-        products: Pick<IProduct, 'id' | 'name' | 'categories'>[];
+        products: Pick<IProduct, '_id' | 'name' | 'categories'>[];
       }[]
     | null
   >(null);
