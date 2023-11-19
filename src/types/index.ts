@@ -400,7 +400,7 @@ export interface IProduct {
   description?: string;
   in_stock?: boolean;
   is_taxable?: boolean;
-  sale_price?: number;
+  sale_price: number;
   sku?: string;
   gallery?: ImageInfo[];
   image?: ImageInfo;
