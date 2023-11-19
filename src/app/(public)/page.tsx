@@ -4,6 +4,7 @@ import CategoriesCarousel from "@/modules/categories/category-carousel";
 import PromotionalBannerCarousel from "@/modules/home/promotional-banner-carousel";
 import Image from "next/image";
 import Link from "next/link";
+import OurProductsSection from "./screens/ourProductsSection";
 export default async function IndexPage() {
   return (
     <div className="py-3">
@@ -30,6 +31,7 @@ export default async function IndexPage() {
           <CategoriesCarousel />
         </div>
       </div>
+      <OurProductsSection />
     </div>
   );
 }

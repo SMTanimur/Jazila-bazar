@@ -121,19 +121,6 @@ export interface IAddressInfo {
   state: string;
 }
 
-export interface IProduct {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  quantity: number;
-  slug: string;
-  is_active: boolean;
-  shop: IShop;
-  images: ImageInfo[];
-  categories: ICategory[];
-}
-
 export interface IImage {
   id: string;
   url: string;
@@ -332,18 +319,101 @@ export interface IAddressInfo {
   zip: string;
   state: string;
 }
+export enum ProductType {
+  Simple = "simple",
+  Variable = "variable",
+}
+export interface IAttributeValue {
+  _id: string;
+  meta: string;
+  value: string;
+  attribute: string;
+}
+export enum ProductStatus {
+  Publish = "publish",
+  Draft = "draft",
+}
+export interface IOrder {
+  _id: string;
+  tracking_number: string;
+  customer_contact: string;
+  customer_name: string;
+  customer_id: number;
+  customer?: IUser;
+  amount: number;
+  sales_tax: number;
+  total: number;
+  paid_total: number;
+  payment_id?: string;
+  payment_gateway?: string;
+  // coupon?: ICoupon;
+  discount?: number;
+  delivery_fee?: number;
+  delivery_time: string;
+  products: IProduct[];
+  created_at: string;
+  updated_at: string;
+  address?: IAddress;
+  translated_languages: string[];
+  language: string;
+  order_status: string;
+  payment_status: string;
+  shop_id?: string;
+}
+export interface OrderProductPivot {
+  order_quantity?: number;
+  unit_price?: number;
+  subtotal?: number;
+  variation_option_id?: string;
+}
 
+export interface VariationOption {
+  name?: string;
+  value?: string;
+}
+
+export interface Variation {
+  _id?: string;
+  title?: string;
+  image?: ImageInfo;
+  price?: number;
+  sku?: string;
+  is_disable?: boolean;
+  sale_price?: number;
+  quantity?: number;
+  options?: VariationOption[];
+}
 export interface IProduct {
-  id: string;
+  _id: string;
   name: string;
-  description: string;
-  price: number;
-  quantity: number;
-  slug: string;
-  is_active: boolean;
   shop: IShop;
-  images: ImageInfo[];
+  slug: string;
+  type: IType;
+  product_type: ProductType;
+  max_price?: number;
+  min_price?: number;
   categories: ICategory[];
+  variations?: IAttributeValue[];
+  variation_options?: Variation[];
+  pivot?: OrderProductPivot;
+  orders: IOrder[];
+  description?: string;
+  in_stock?: boolean;
+  is_taxable?: boolean;
+  sale_price?: number;
+  sku?: string;
+  gallery?: ImageInfo[];
+  image?: ImageInfo;
+  status?: ProductStatus;
+  height?: string;
+  length?: string;
+  width?: string;
+  price: number;
+  quantity?: number;
+  unit?: string;
+  created_at: string;
+  updated_at: string;
+  ratings: number;
 }
 
 export interface ICategory {
