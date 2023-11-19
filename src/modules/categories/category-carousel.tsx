@@ -32,7 +32,7 @@ const CategoriesCarousel = () => {
         ) : (
           <Swiper
       slidesPerView="auto"
-      spaceBetween={20}
+      spaceBetween={24}
       // modules={[Autoplay]}
       // autoplay={{ delay: 5000, disableOnInteraction: false }}
 

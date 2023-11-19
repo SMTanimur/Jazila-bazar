@@ -26,9 +26,7 @@ const ProfileEdit = async () => {
         </PageHeaderDescription>
       </PageHeader>
       <section>
-        <ClientOnly>
           <ProfileEditComponent />
-        </ClientOnly>
       </section>
     </Shell>
   );

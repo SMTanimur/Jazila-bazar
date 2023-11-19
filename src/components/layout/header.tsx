@@ -121,7 +121,7 @@ const Header = () => {
                     }
                   >
                     <Link
-                      href="/dashboard/account"
+                      href="/account/dashboard"
                       className="flex items-center gap-1"
                     >
                       <Icons.user className="mr-1 h-4 w-4" aria-hidden="true" />
@@ -137,7 +137,7 @@ const Header = () => {
                     }
                   >
                     <Link
-                      href="/dashboard/account"
+                      href="/account/dashboard"
                       className="flex items-center gap-1"
                     >
                       <Icons.user className="mr-1 h-4 w-4" aria-hidden="true" />

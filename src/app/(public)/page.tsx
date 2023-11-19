@@ -26,7 +26,7 @@ export default async function IndexPage() {
           <Link href={"/collection"}>All Categories</Link>
         </div>
 
-        <div className="py-4">
+        <div className="py-4  border-t-2 mt-3">
           <CategoriesCarousel />
         </div>
       </div>

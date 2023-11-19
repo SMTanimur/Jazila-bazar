@@ -40,7 +40,7 @@ const AccountInformation = () => {
             </div>
 
             <Button variant={"secondary"}>
-              <Link href={"/dashboard/account/edit"}>Edit Profile</Link>
+              <Link href={"/account/edit"}>Edit Profile</Link>
             </Button>
           </div>
         </CardContent>

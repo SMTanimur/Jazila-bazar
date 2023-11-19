@@ -1,4 +1,4 @@
-import { type SidebarNavItem } from '@/types';
+import { type SidebarNavItem } from "@/types";
 
 export interface DashboardConfig {
   sidebarNav: SidebarNavItem[];
@@ -7,45 +7,45 @@ export interface DashboardConfig {
 export const dashboardConfig: DashboardConfig = {
   sidebarNav: [
     {
-      title: 'Account',
-      href: '/dashboard/account',
-      icon: 'user',
+      title: "Account",
+      href: "/account/dashboard",
+      icon: "user",
       items: [],
     },
     {
-      title: 'Change Password',
-      href: '/dashboard/change-password',
-      icon: 'lock',
+      title: "Change Password",
+      href: "/account/change-password",
+      icon: "lock",
       items: [],
     },
     {
-      title: 'My Order',
-      href: '/dashboard/orders',
-      icon: 'order',
+      title: "My Order",
+      href: "/account/orders",
+      icon: "order",
       items: [],
     },
     {
-      title: 'Wishlist',
-      href: '/dashboard/wishlists',
-      icon: 'wishlist',
+      title: "Wishlist",
+      href: "/account/wishlists",
+      icon: "wishlist",
       items: [],
     },
     {
-      title: 'Chats',
-      href: '/dashboard/chats',
-      icon: 'message',
+      title: "Chats",
+      href: "/account/chats",
+      icon: "message",
       items: [],
     },
     {
-      title: 'Addresses',
-      href: '/dashboard/addresses',
-      icon: 'address',
+      title: "Addresses",
+      href: "/account/addresses",
+      icon: "address",
       items: [],
     },
     {
-      title: 'My Cards',
-      href: '/dashboard/cards',
-      icon: 'card',
+      title: "My Cards",
+      href: "/account/cards",
+      icon: "card",
       items: [],
     },
   ],
