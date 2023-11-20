@@ -24,7 +24,7 @@ export default async function IndexPage() {
       <div className="py-5 md:py-10  container">
         <div className="flex items-center justify-between">
           <h1 className="text-3xl font-bold font-sans ">Shop By Categories</h1>
-          <Link href={"/collection"}>All Categories</Link>
+          <Link href={"/products"}>All Categories</Link>
         </div>
 
         <div className="py-4  border-t-2 mt-3">

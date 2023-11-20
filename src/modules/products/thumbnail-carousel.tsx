@@ -75,7 +75,7 @@ const ThumbnailCarousel: React.FC<Props> = ({
             </SwiperSlide>
           ))}
         </Swiper>
-        <div className="flex items-center justify-between w-full absolute top-2/4 z-10 px-2.5">
+        <div className="flex items-center justify-between w-full absolute top-2/4 z-10 px-2.5 ">
           <div
             ref={prevRef}
             className="flex items-center justify-center text-base transition duration-300 transform -translate-y-1/2 rounded-full cursor-pointer w-7 h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 xl:w-10 xl:h-10 lg:text-lg xl:text-xl bg-white dark:bg-black hover:bg-primary hover:text-white focus:outline-none shadow-navigation"

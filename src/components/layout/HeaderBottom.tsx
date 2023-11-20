@@ -30,7 +30,7 @@ const HeaderBottom = () => {
             {categories?.docs.map((category) => (
               <Link
                 className="flex justify-between items-center py-2 px-4 hover:bg-gray-100"
-                href={`/collections?category=${category.slug}`}
+                href={`/products?category=${category.slug}`}
                 key={category.slug}
               >
                 <div className="flex gap-2 items-center">
