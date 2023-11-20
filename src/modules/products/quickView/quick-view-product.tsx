@@ -60,7 +60,7 @@ export const QuickViewProduct = () => {
         <div className="w-full sm:w-1/2 ">
           <div className="flex flex-col space-y-3 justify-center">
             <div className="flex flex-col gap-2 justify-center">
-              <h2 className="text-xl font-medium text-gray-800">
+              <h2 className="text-xl font-medium text-gray-800 dark:text-white">
                 {product?.name}
               </h2>
               {product?.unit && isEmpty(variations) ? (
@@ -95,9 +95,10 @@ export const QuickViewProduct = () => {
             <span className="border-t border-dashed w-full" />
 
             <div className="">
-             <h3 className="text-xl text-gray-800 font-medium">Product Details:</h3>
-             <p className="text-sm text-gray-600">{product?.description}</p>
+             <h3 className="text-xl text-gray-800 dark:text-white font-medium">Product Details:</h3>
+             <p className="text-sm text-gray-600 dark:text-gray-200">{product?.description}</p>
             </div>
+            <span className="border-t border-dashed w-full" />
 
             <QuickViewShortDetails {...{ product, selectedVariation }} />
           </div>

@@ -28,17 +28,18 @@ const swiperParams: SwiperOptions = {
 const ThumbnailCarousel: React.FC<Props> = ({
   gallery,
   thumbnailClassName = "max-w-[400px] w-full",
-  galleryClassName = "max-w-[200px] w-full ",
+  galleryClassName = " w-full ",
 }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
   const prevRef = useRef<HTMLDivElement>(null);
   const nextRef = useRef<HTMLDivElement>(null);
 
+  
   return (
-    <div className=" w-full">
+    <div className="w-full flex flex-col">
       <div
         className={cn(
-          "w-full  mb-2.5 md:mb-3 border border-border rounded-md relative mx-auto",
+          "w-full mb-2.5 md:mb-3 border border-border rounded-md relative mx-auto",
           thumbnailClassName
         )}
       >
@@ -48,7 +49,10 @@ const ThumbnailCarousel: React.FC<Props> = ({
             swiper:
               thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
           }}
-          modules={[Navigation, Thumbs]}
+   
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          modules={[Navigation, Thumbs,Autoplay]}
+          loop={true}
           navigation={{
             prevEl: prevRef.current!, // Assert non-null
             nextEl: nextRef.current!, // Assert non-null
@@ -58,7 +62,7 @@ const ThumbnailCarousel: React.FC<Props> = ({
           {gallery?.map((item: ImageInfo) => (
             <SwiperSlide
               key={`product-gallery-${item.img_id}`}
-              className="flex items-center justify-center max-w-[400px] w-full overflow-hidden"
+              className="flex items-center justify-center max-w-[400px] w-full "
             >
               <Image
                 src={item?.img_url as string}
@@ -74,13 +78,13 @@ const ThumbnailCarousel: React.FC<Props> = ({
         <div className="flex items-center justify-between w-full absolute top-2/4 z-10 px-2.5">
           <div
             ref={prevRef}
-            className="flex items-center justify-center text-base transition duration-300 transform -translate-y-1/2 rounded-full cursor-pointer w-7 h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 xl:w-10 xl:h-10 lg:text-lg xl:text-xl bg-white hover:bg-primary hover:text-white focus:outline-none shadow-navigation"
+            className="flex items-center justify-center text-base transition duration-300 transform -translate-y-1/2 rounded-full cursor-pointer w-7 h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 xl:w-10 xl:h-10 lg:text-lg xl:text-xl bg-white dark:bg-black hover:bg-primary hover:text-white focus:outline-none shadow-navigation"
           >
             <ChevronLeftIcon className="w-4" />
           </div>
           <div
             ref={nextRef}
-            className="flex items-center justify-center text-base transition duration-300 transform -translate-y-1/2 rounded-full cursor-pointer w-7 h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 xl:w-10 xl:h-10 lg:text-lg xl:text-xl bg-white hover:bg-primary hover:text-white focus:outline-none shadow-navigation"
+            className="flex items-center justify-center text-base transition duration-300 transform -translate-y-1/2 rounded-full cursor-pointer w-7 h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 xl:w-10 xl:h-10 lg:text-lg xl:text-xl  hover:bg-primary dark:bg-black hover:text-white focus:outline-none shadow-navigation"
           >
             <ChevronRightIcon className="w-4 h-4" />
           </div>
@@ -88,15 +92,12 @@ const ThumbnailCarousel: React.FC<Props> = ({
       </div>
       {/* End of product main slider */}
 
-      <div className={`shrink-0 ${galleryClassName}`}>
+      <div className={`shrink-0 ${galleryClassName} w-full mt-5`}>
         <Swiper
           id="productGalleryThumbs"
           onSwiper={setThumbsSwiper}
-          spaceBetween={20}
-          modules={[Autoplay]}
-          autoplay={{ delay: 5000, disableOnInteraction: false }}
+          spaceBetween={5}
           watchSlidesProgress={true}
-          loop={true}
           freeMode={true}
           observer={true}
           observeParents={true}
@@ -105,10 +106,11 @@ const ThumbnailCarousel: React.FC<Props> = ({
           {gallery?.map((item: ImageInfo) => (
             <SwiperSlide
               key={`product-thumb-gallery-${item.img_id}`}
-              className="flex items-center justify-center  overflow-hidden transition border rounded cursor-pointer border-border-base hover:opacity-75 max-w-[200px] w-full"
+              className="flex items-center justify-center  transition border rounded cursor-pointer border-border hover:opacity-75 min-w-[50px] max-w-[200px] w-full px-2 "
             >
               <Image
                 src={item?.img_url as string}
+                className="w-12 h-12 bg-black"
                 alt={`Product thumb gallery ${item.img_id}`}
                 width={150}
                 height={150}

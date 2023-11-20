@@ -27,7 +27,7 @@ const ProductCard = ({ product }: Props) => {
   const globalModal = useGlobalModalStateStore((state) => state);
   return (
     <div className=" flex flex-col group overflow-hidden rounded-md cursor-pointer transition-all duration-300 shadow-card hover:shadow-cardHover relative h-full">
-      <Card className="bg-gray-200 shadow-sm rounded-md w-full h-full group flex flex-col px-4 py-5 cursor-pointer relative">
+      <Card className="bg-gray-200 dark:bg-black shadow-sm rounded-md w-full h-full group flex flex-col px-4 py-5 cursor-pointer relative">
         <div className="w-full min-h-[150px] flex items-center relative justify-center overflow-hidden px-4">
           <Image
             className="object-center group-hover:scale-110 transition-all duration-700 "
@@ -36,7 +36,7 @@ const ProductCard = ({ product }: Props) => {
             width={150}
             height={100}
           />
-          <div className="absolute -bottom-12 bg-white rounded-md group-hover:bottom-5 transition-all duration-500 py-3 px-4 flex items-center space-x-2">
+          <div className="absolute -bottom-12 bg-white dark:bg-black/80 dark:shadow-sm dark:shadow-gray-200 rounded-md group-hover:bottom-5 transition-all duration-500 py-3 px-4 flex items-center space-x-2">
             <button
               onClick={() => globalModal.setQuickViewState(true, product)}
             >

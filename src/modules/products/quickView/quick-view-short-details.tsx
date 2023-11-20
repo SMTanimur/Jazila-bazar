@@ -13,7 +13,7 @@ const QuickViewShortDetails = ({ product, selectedVariation }: Props) => {
     ? "In Stock"
     : "Out of Stock";
   return (
-    <div className="bg-gray-100 p-3 rounded-lg flex flex-col gap-1 text-gray-600 w-[70%]">
+    <div className="bg-gray-100 dark:bg-gray-900 p-3 rounded-lg flex flex-col gap-1 text-gray-600 dark:text-white w-full md:w-[70%]">
       <li> SKU : {selectedVariation ? selectedVariation.sku : product?.sku}</li>
       <li> Stock Status: {stock}</li>
       <li> Quantity : {selectedVariation ? selectedVariation.quantity : product?.quantity} Items left</li>

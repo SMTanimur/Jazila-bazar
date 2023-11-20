@@ -1,20 +1,23 @@
 #carousel.swiper {
-  @apply w-full sm:rounded-2xl;
+  @apply w-full sm:rounded-2xl dark:bg-black;
 }
 
 #carousel .swiper-slide {
   @apply max-w-[90%] sm:max-w-none;
 }
 
-:is(#carousel, .collections-slide):hover :is(.swiper-button-prev, .swiper-button-next) {
+:is(#carousel, .collections-slide):hover
+  :is(.swiper-button-prev, .swiper-button-next) {
   @apply opacity-100;
 }
 
-:is(#carousel, .collections-slide) :is(.swiper-button-prev, .swiper-button-next) {
-  @apply hidden h-12 w-12 overflow-hidden rounded-full bg-white/80 p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 sm:flex;
+:is(#carousel, .collections-slide)
+  :is(.swiper-button-prev, .swiper-button-next) {
+  @apply hidden h-12 w-12 overflow-hidden rounded-full bg-white/80  p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 sm:flex;
 }
 
-:is(#carousel, .collections-slide) :is(.swiper-button-prev, .swiper-button-next)::after {
+:is(#carousel, .collections-slide)
+  :is(.swiper-button-prev, .swiper-button-next)::after {
   @apply text-xl font-black text-slate-800;
 }
 
