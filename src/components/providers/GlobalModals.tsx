@@ -1,8 +1,10 @@
 "use client";
 
+import {QuickViewProduct} from "@/modules/products/quickView";
 import { useGlobalModalStateStore } from "@/store/modal";
 import MobileAuthorizedMenu from "../layout/mobile-menu/mobile-authorized-menu";
 import MobileMainMenu from "../layout/mobile-menu/mobile-main-menu";
+import { Modal } from "../ui/Modal";
 import Drawer from "../ui/drawer";
 
 const GlobalModals = () => {
@@ -26,6 +28,14 @@ const GlobalModals = () => {
         {globalModal.menubar && <MobileMainMenu />}
         {/* <MobileMainMenu /> */}
       </Drawer>
+
+      <Modal
+        size="lg"
+        show={globalModal.quickView}
+        onClose={() => globalModal.setQuickViewState(false, null)}
+      >
+        <QuickViewProduct />
+      </Modal>
     </>
   );
 };

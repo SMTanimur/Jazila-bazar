@@ -1,7 +1,12 @@
 "use client";
 
+import { IProduct } from "@/types";
 import { create } from "zustand";
 
+type IQuickViewState = {
+  quickView: boolean;
+  quickViewState: IProduct | null;
+};
 interface GlobalModalState {
   userMenu: boolean;
   onUserMenu: () => void;
@@ -18,7 +23,10 @@ interface GlobalModalState {
   showHeaderSearch: boolean;
   onShowHeaderSearch: () => void;
   closeShowHeaderSearch: () => void;
-  
+
+  quickView: boolean;
+  quickViewState: IProduct | null;
+  setQuickViewState: ( quickView:boolean, quickViewState :any) => void;
 }
 export const useGlobalModalStateStore = create<GlobalModalState>((set) => ({
   userMenu: false,
@@ -36,4 +44,9 @@ export const useGlobalModalStateStore = create<GlobalModalState>((set) => ({
   showHeaderSearch: false,
   onShowHeaderSearch: () => set(() => ({ showHeaderSearch: true })),
   closeShowHeaderSearch: () => set(() => ({ showHeaderSearch: false })),
+
+  quickView: false,
+  quickViewState: null,
+  setQuickViewState: (quickView, quickViewState) =>
+    set(() => ({ quickView, quickViewState })),
 }));
