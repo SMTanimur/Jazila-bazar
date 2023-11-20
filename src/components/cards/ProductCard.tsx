@@ -1,3 +1,4 @@
+import usePrice from "@/hooks/use-price";
 import { useGlobalModalStateStore } from "@/store/modal";
 import { IProduct } from "@/types";
 import { calculateDiscountPercentage } from "@/utils/util";
@@ -5,29 +6,27 @@ import { EyeIcon, HeartIcon, RefreshCwIcon } from "lucide-react";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { Card } from "../ui/card";
-import usePrice from "@/hooks/use-price";
 
 interface Props {
   product: IProduct;
 }
 const ProductCard = ({ product }: Props) => {
-
   const { price, basePrice, discount } = usePrice({
     amount: product?.sale_price ? product?.sale_price : product?.price,
     baseAmount: product?.price,
-    currencyCode: 'USD',
+    currencyCode: "USD",
   });
   const { price: minPrice } = usePrice({
     amount: product?.min_price ?? 0,
-    currencyCode: 'USD',
+    currencyCode: "USD",
   });
   const { price: maxPrice } = usePrice({
     amount: product?.max_price ?? 0,
-    currencyCode: 'USD',
+    currencyCode: "USD",
   });
   const globalModal = useGlobalModalStateStore((state) => state);
   return (
-    <div className="w-[210px] h-auto">
+    <div className=" flex flex-col group overflow-hidden rounded-md cursor-pointer transition-all duration-300 shadow-card hover:shadow-cardHover relative h-full">
       <Card className="bg-gray-200 shadow-sm rounded-md w-full h-full group flex flex-col px-4 py-5 cursor-pointer relative">
         <div className="w-full min-h-[150px] flex items-center relative justify-center overflow-hidden px-4">
           <Image
@@ -58,9 +57,9 @@ const ProductCard = ({ product }: Props) => {
           </div>
         </div>
         <div className="flex flex-col">
-          <h5 className="text-base font-semibold text-gray-800 dark:text-white">
-            {product.name.length > 18
-              ? `${product.name.substring(0, 18)}...`
+          <h5 className="text-sm sm:text-base font-semibold text-gray-800 dark:text-white">
+            {product.name.length > 15
+              ? `${product.name.substring(0, 15)}...`
               : product.name}
           </h5>
           {product.unit ? (
@@ -69,13 +68,16 @@ const ProductCard = ({ product }: Props) => {
             <p className="text-sm text-gray-600">1(items)</p>
           )}
           <div className="flex gap-3 items-center">
-            <p className="text-primary font-medium">{product.product_type === 'variable' ? `${minPrice} - ${maxPrice}` : price}</p>
+            <p className="text-primary font-medium">
+              {product.product_type === "variable"
+                ? `${minPrice} - ${maxPrice}`
+                : price}
+            </p>
             {basePrice && (
-            <del className="mx-1 text-sm text-gray-600 text-opacity-70">
-              {basePrice}
-            </del>
-          )}
-
+              <del className="mx-1 text-sm text-gray-600 text-opacity-70">
+                {basePrice}
+              </del>
+            )}
           </div>
         </div>
 
@@ -93,6 +95,7 @@ const ProductCard = ({ product }: Props) => {
             </p>
           </div>
         ) : null}
+  
       </Card>
     </div>
   );

@@ -38,11 +38,11 @@ export const Modal: FC<ModalProps> = ({
     <Transition.Root show={show} as={Fragment}>
       <Dialog
         as="div"
-        className="fixed inset-0 z-[50] "
+        className="fixed inset-0 z-[50] overflow-y-auto "
         onClose={handleClose}
         data-testid={dataTestId}
       >
-        <div className="flex min-h-screen items-center justify-center p-4 text-center sm:block sm:p-0">
+        <div className="flex min-h-screen items-center justify-center p-4 text-center sm:block sm:p-2 ">
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-200"
@@ -73,14 +73,14 @@ export const Modal: FC<ModalProps> = ({
                 { "sm:max-w-3xl": size === "md" },
                 { "sm:max-w-lg": size === "sm" },
                 { "sm:max-w-sm": size === "xs" },
-                "inline-block w-full scale-100 rounded-xl  bg-white text-left align-bottom shadow-xl transition-all dark:bg-gray-800 sm:my-8 sm:align-middle relative "
+                "inline-block w-full scale-100 rounded-xl  bg-white text-left align-bottom shadow-xl transition-all dark:bg-gray-800 sm:my-8 sm:align-middle relative  "
               )}
             >
               {onClose ? (
                 <div>
                   <button
                     type="button"
-                    className="rounded-lg p-2 text-white   fixed top-3 right-3 bg-primary "
+                    className="rounded-lg p-2 text-white   fixed top-3 right-3 bg-primary z-50"
                     onClick={onClose}
                   >
                     <Icons.close className="h-5 w-5" />

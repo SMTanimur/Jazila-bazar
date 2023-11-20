@@ -5,10 +5,12 @@ import { IProduct } from "@/types";
 import { getVariations } from "@/utils/get-variations";
 import { isEmpty, isEqual } from "lodash";
 import { useState } from "react";
-import VariationPrice from "../variation-price";
-import { ProductImageSlider } from "./product-image-slider";
-import QuickViewShortDetails from "./quick-view-short-details";
 import ProductAttributes from "../product-attributes";
+import VariationPrice from "../variation-price";
+import QuickViewShortDetails from "./quick-view-short-details";
+import { Button } from "@/components/ui/button";
+import ThumbnailCarousel from "../thumbnail-carousel";
+import Image from "next/image";
 export const QuickViewProduct = () => {
   const [attributes, setAttributes] = useState<{ [key: string]: string }>({});
   const globalModal = useGlobalModalStateStore((state) => state);
@@ -38,9 +40,21 @@ export const QuickViewProduct = () => {
   }
   return (
     <div className="px-6 py-4">
-      <div className="mt-4 flex gap-5">
-        <div className="w-full sm:w-1/2 ">
-          <ProductImageSlider />
+      <div className="mt-4 flex flex-col sm:flex-row gap-5">
+        <div className="w-full sm:w-1/2  ">
+        {!!product?.gallery?.length ? (
+                <ThumbnailCarousel gallery={product?.gallery}  />
+              ) : (
+                <div className="flex items-center justify-center w-auto">
+                  <Image
+                    src={product?.image?.img_url as string}
+                    alt={name!}
+                    width={450}
+                    height={390}
+                    style={{ width: 'auto' }}
+                  />
+                </div>
+              )}
         </div>
 
         <div className="w-full sm:w-1/2 ">
@@ -80,20 +94,44 @@ export const QuickViewProduct = () => {
             </div>
             <span className="border-t border-dashed w-full" />
 
+            <div className="">
+             <h3 className="text-xl text-gray-800 font-medium">Product Details:</h3>
+             <p className="text-sm text-gray-600">{product?.description}</p>
+            </div>
+
             <QuickViewShortDetails {...{ product, selectedVariation }} />
           </div>
-          <div className="pb-2">
-          {Object.keys(variations).map((variation) => {
-                return (
-                  <ProductAttributes
-                    key={`popup-attribute-key${variation}`}
-                    variations={variations}
-                    attributes={attributes}
-                    setAttributes={setAttributes}
-                  />
-                );
-              })}
+          <div className="py-4">
+            {Object.keys(variations).map((variation) => {
+              return (
+                <ProductAttributes
+                  key={`popup-attribute-key${variation}`}
+                  variations={variations}
+                  attributes={attributes}
+                  setAttributes={setAttributes}
+                />
+              );
+            })}
           </div>
+          <div className="flex items-center space-x-4">
+      <Button
+       variant={"outline"}
+       size={"lg"}
+      className="flex items-center space-x-2"
+      >
+      <span className="bg-gray-100 px-3 py-[2px] text-gray-600">
+       -
+      </span>
+      <p>1</p>
+      <span className="bg-gray-100 px-3 py-[2px] text-gray-600">+</span>
+      </Button>
+      <Button
+      size={"lg"}
+      >
+
+      Add to Cart
+      </Button>
+      </div>
         </div>
       </div>
     </div>

@@ -12,7 +12,7 @@ const GlobalModals = () => {
 
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
-    <>
+    <div className="p-3">
       <Drawer
         open={globalModal.userMenu}
         onClose={() => globalModal.closeUserMenu()}
@@ -30,13 +30,13 @@ const GlobalModals = () => {
       </Drawer>
 
       <Modal
-        size="lg"
+        size="md"
         show={globalModal.quickView}
         onClose={() => globalModal.setQuickViewState(false, null)}
       >
         <QuickViewProduct />
       </Modal>
-    </>
+    </div>
   );
 };
 
