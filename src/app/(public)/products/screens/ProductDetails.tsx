@@ -43,7 +43,7 @@ const ProductDetails = ({product}:Props) => {
     <div className="mt-4 flex flex-col sm:flex-row gap-5">
         <div className="w-full sm:w-1/2  ">
         {!!product?.gallery?.length ? (
-                <ThumbnailCarousel gallery={product?.gallery}  />
+                <ThumbnailCarousel gallery={product?.gallery} isSingleProductPage  />
               ) : (
                 <div className="flex items-center justify-center w-auto">
                   <Image

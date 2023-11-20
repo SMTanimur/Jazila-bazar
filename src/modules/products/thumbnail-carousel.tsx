@@ -9,6 +9,7 @@ import { SwiperOptions } from "swiper/types";
 
 interface Props {
   gallery: ImageInfo[];
+  isSingleProductPage: boolean;
   thumbnailClassName?: string;
   galleryClassName?: string;
 }
@@ -27,8 +28,9 @@ const swiperParams: SwiperOptions = {
 
 const ThumbnailCarousel: React.FC<Props> = ({
   gallery,
+  isSingleProductPage =false,
   thumbnailClassName = "max-w-[400px] w-full",
-  galleryClassName = " w-full ",
+  galleryClassName = " max-w-[120px] w-full ",
 }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
   const prevRef = useRef<HTMLDivElement>(null);
@@ -38,9 +40,9 @@ const ThumbnailCarousel: React.FC<Props> = ({
   return (
     <div className="w-full flex flex-col">
       <div
-        className={cn(
+        className={cn( thumbnailClassName, isSingleProductPage ? "max-w-[500px] w-full" : "max-w-[400px] w-full",
           "w-full mb-2.5 md:mb-3 border border-border rounded-md relative mx-auto",
-          thumbnailClassName
+          
         )}
       >
         <Swiper
@@ -62,7 +64,7 @@ const ThumbnailCarousel: React.FC<Props> = ({
           {gallery?.map((item: ImageInfo) => (
             <SwiperSlide
               key={`product-gallery-${item.img_id}`}
-              className="flex items-center justify-center max-w-[400px] w-full "
+              className={cn("flex items-center justify-center",   isSingleProductPage ? "max-w-[500px] w-full" :"max-w-[400px] w-full")}
             >
               <Image
                 src={item?.img_url as string}
@@ -92,7 +94,7 @@ const ThumbnailCarousel: React.FC<Props> = ({
       </div>
       {/* End of product main slider */}
 
-      <div className={`shrink-0 ${galleryClassName} w-full mt-5`}>
+      <div className={cn(galleryClassName,isSingleProductPage ? "max-w-[400px] w-full": "max-w-[320px] w-full", "shrink-0  w-full mt-5")}>
         <Swiper
           id="productGalleryThumbs"
           onSwiper={setThumbsSwiper}
@@ -106,16 +108,16 @@ const ThumbnailCarousel: React.FC<Props> = ({
           {gallery?.map((item: ImageInfo) => (
             <SwiperSlide
               key={`product-thumb-gallery-${item.img_id}`}
-              className="flex items-center justify-center  transition border rounded cursor-pointer border-border hover:opacity-75 min-w-[50px] max-w-[200px] w-full px-2 "
+              className={cn(isSingleProductPage ? "max-w-[180px] w-full" :"max-w-[100px] w-full","flex items-center justify-center  transition border rounded cursor-pointer border-border hover:opacity-75  px-2")}
             >
               <Image
                 src={item?.img_url as string}
-                className="w-12 h-12 bg-black"
+                className={cn(isSingleProductPage ? "max-w-[180px] w-full" :"max-w-[100px] w-full")}
                 alt={`Product thumb gallery ${item.img_id}`}
-                width={150}
-                height={150}
+                width={100}
+                height={100}
              
-                // style={{ width: "auto" }}
+                
               />
             </SwiperSlide>
           ))}
