@@ -403,7 +403,7 @@ export interface IProduct {
   sale_price: number;
   sku?: string;
   gallery?: ImageInfo[];
-  image?: ImageInfo;
+  image: ImageInfo;
   status?: ProductStatus;
   height?: string;
   length?: string;
@@ -414,6 +414,7 @@ export interface IProduct {
   created_at: string;
   updated_at: string;
   ratings: number;
+  [key: string]: unknown;
 }
 
 export interface ICategory {

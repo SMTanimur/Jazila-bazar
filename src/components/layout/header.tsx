@@ -12,12 +12,18 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { buttonVariants } from "../ui/button";
 import { DropdownMenuShortcut } from "../ui/dropdown-menu";
 import { Icons } from "../ui/icons";
+import { useCartStore } from "@/store/cart/cart.store";
+import CartCounterButton from "../cart/cart-count-button";
+import ClientOnly from "../common/shared/ClientOnly";
 
 const Search = dynamic(() => import("@/components/ui/search/search"));
+const CartSidebar = dynamic(() => import('../cart/cart-count-button'), {
+  ssr: false,
+});
 
 const Header = () => {
   const { me } = useMe();
-
+   const {totalItems} =useCartStore((state)=> state)
   const isHomePage = useIsHomePage();
 
   return (
@@ -57,12 +63,9 @@ const Header = () => {
           <div className="border-r h-6 border-border" />
           <HeartIcon className="w-5" />
           <div className="border-r h-6 border-border" />
-          <div className="relative">
-            <Icons.cart className="w-5" />
-            <div className="absolute -top-3 -right-3 bg-red-600 text-white w-5 h-5 flex justify-center items-center">
-              <span>3</span>
-            </div>
-          </div>
+          <ClientOnly>
+          <CartCounterButton/>
+          </ClientOnly>
 
           <div className="border-r h-6 border-border" />
           {me ? (

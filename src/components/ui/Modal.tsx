@@ -70,7 +70,7 @@ export const Modal: FC<ModalProps> = ({
             <div
               className={cn(
                 { "sm:max-w-5xl": size === "lg" },
-                { "sm:max-w-3xl": size === "md" },
+                { "sm:max-w-4xl": size === "md" },
                 { "sm:max-w-lg": size === "sm" },
                 { "sm:max-w-sm": size === "xs" },
                 "inline-block w-full scale-100 rounded-xl  bg-white text-left align-bottom shadow-xl transition-all dark:bg-gray-800 sm:my-8 sm:align-middle relative  "

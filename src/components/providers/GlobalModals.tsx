@@ -6,7 +6,10 @@ import MobileAuthorizedMenu from "../layout/mobile-menu/mobile-authorized-menu";
 import MobileMainMenu from "../layout/mobile-menu/mobile-main-menu";
 import { Modal } from "../ui/Modal";
 import Drawer from "../ui/drawer";
-
+import dynamic from "next/dynamic";
+const CartSidebar = dynamic(() => import('@/components/cart/cart-sidebar-view'), {
+  ssr: false,
+});
 const GlobalModals = () => {
   const globalModal = useGlobalModalStateStore((state) => state);
 
@@ -26,6 +29,15 @@ const GlobalModals = () => {
         variant={"left"}
       >
         {globalModal.menubar && <MobileMainMenu />}
+        {/* <MobileMainMenu /> */}
+      </Drawer>
+
+      <Drawer
+        open={globalModal.cartState}
+        onClose={() => globalModal.closeCartState()}
+        variant={"right"}
+      >
+        {globalModal.cartState && <CartSidebar />}
         {/* <MobileMainMenu /> */}
       </Drawer>
 

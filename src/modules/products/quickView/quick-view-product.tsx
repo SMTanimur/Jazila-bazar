@@ -1,19 +1,29 @@
 "use client";
+import { Button } from "@/components/ui/button";
 import usePrice from "@/hooks/use-price";
+import { useCartStore } from "@/store/cart/cart.store";
 import { useGlobalModalStateStore } from "@/store/modal";
 import { IProduct } from "@/types";
 import { getVariations } from "@/utils/get-variations";
 import { isEmpty, isEqual } from "lodash";
+import Image from "next/image";
 import { useState } from "react";
 import ProductAttributes from "../product-attributes";
+import ThumbnailCarousel from "../thumbnail-carousel";
 import VariationPrice from "../variation-price";
 import QuickViewShortDetails from "./quick-view-short-details";
-import { Button } from "@/components/ui/button";
-import ThumbnailCarousel from "../thumbnail-carousel";
-import Image from "next/image";
+import Counter from "@/components/ui/counter";
+import { Icons } from "@/components/ui/icons";
+import { generateCartItem } from "@/utils/generate-cart-item";
+import { toast } from "sonner";
 export const QuickViewProduct = () => {
   const [attributes, setAttributes] = useState<{ [key: string]: string }>({});
   const globalModal = useGlobalModalStateStore((state) => state);
+  const { addItemToCart, isInCart, getItemFromCart, isInStock } = useCartStore(
+    (state) => state
+  );
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
+  const [addToCartLoader, setAddToCartLoader] = useState<boolean>(false);
   const product = globalModal.quickViewState as IProduct;
   const variations = getVariations(product?.variations);
   const { price, basePrice, discount } = usePrice({
@@ -38,23 +48,42 @@ export const QuickViewProduct = () => {
       )
     );
   }
+
+  const item = generateCartItem(product, selectedVariation);
+  const outOfStock = isInCart(item._id) && !isInStock(item._id);
+  function addToCart() {
+    if (!isSelected) return;
+    // to show btn feedback while product carting
+    setAddToCartLoader(true);
+    setTimeout(() => {
+      setAddToCartLoader(false);
+    }, 1500);
+    addItemToCart(item, selectedQuantity);
+    // @ts-ignore
+    toast.success("Product added to cart")
+    globalModal.setQuickViewState(false,null)
+   
+  }
   return (
     <div className="px-6 py-4">
       <div className="mt-4 flex flex-col sm:flex-row gap-5">
         <div className="w-full sm:w-1/2  ">
-        {!!product?.gallery?.length ? (
-                <ThumbnailCarousel gallery={product?.gallery}  />
-              ) : (
-                <div className="flex items-center justify-center w-auto">
-                  <Image
-                    src={product?.image?.img_url as string}
-                    alt={name!}
-                    width={450}
-                    height={390}
-                    style={{ width: 'auto' }}
-                  />
-                </div>
-              )}
+          {!!product?.gallery?.length ? (
+            <ThumbnailCarousel
+              gallery={product?.gallery}
+              isSingleProductPage={false}
+            />
+          ) : (
+            <div className="flex items-center justify-center w-auto">
+              <Image
+                src={product?.image?.img_url as string}
+                alt={name!}
+                width={450}
+                height={390}
+                style={{ width: "auto" }}
+              />
+            </div>
+          )}
         </div>
 
         <div className="w-full sm:w-1/2 ">
@@ -95,8 +124,12 @@ export const QuickViewProduct = () => {
             <span className="border-t border-dashed w-full" />
 
             <div className="">
-             <h3 className="text-xl text-gray-800 dark:text-white font-medium">Product Details:</h3>
-             <p className="text-sm text-gray-600 dark:text-gray-200">{product?.description}</p>
+              <h3 className="text-xl text-gray-800 dark:text-white font-medium">
+                Product Details:
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-200">
+                {product?.description}
+              </p>
             </div>
             <span className="border-t border-dashed w-full" />
 
@@ -115,24 +148,33 @@ export const QuickViewProduct = () => {
             })}
           </div>
           <div className="flex items-center space-x-4">
-      <Button
-       variant={"outline"}
-       size={"lg"}
-      className="flex items-center space-x-2"
-      >
-      <span className="bg-gray-100 px-3 py-[2px] text-gray-600">
-       -
-      </span>
-      <p>1</p>
-      <span className="bg-gray-100 px-3 py-[2px] text-gray-600">+</span>
-      </Button>
-      <Button
-      size={"lg"}
-      >
-
-      Add to Cart
-      </Button>
-      </div>
+            <Counter
+              variant="single"
+              value={selectedQuantity}
+              onIncrement={() => setSelectedQuantity((prev) => prev + 1)}
+              onDecrement={() =>
+                setSelectedQuantity((prev) => (prev !== 1 ? prev - 1 : 1))
+              }
+              disabled={
+                isInCart(item._id)
+                  ? getItemFromCart(item._id).quantity + selectedQuantity >=
+                    Number(item.stock)
+                  : selectedQuantity >= Number(item.stock)
+              }
+              
+            />
+            <Button
+              onClick={addToCart}
+            
+              className="  flex items-center gap-3"
+              disabled={!isSelected}
+              
+              // loading={addToCartLoader}
+            >
+              <Icons.cart  className="ml-3 w-4 " />
+              <p>Add_TO_CART</p>
+            </Button>
+          </div>
         </div>
       </div>
     </div>

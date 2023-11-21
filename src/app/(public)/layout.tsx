@@ -23,14 +23,7 @@ export default function LobbyLayout({ children }: LobbyLayoutProps) {
       <Footer />
       <ClientOnly>
         <MobileNavigation>
-          {/* <motion.button
-            whileTap={{ scale: 0.88 }}
-            onClick={()=>push('/search')}
-            className="flex items-center justify-center h-full p-2 focus:outline-none focus:text-primary"
-          >
-            <span className="sr-only">Search</span>
-            <Icons.search width="17.05" height="18" />
-          </motion.button> */}
+        
         </MobileNavigation>
       </ClientOnly>
       <BottomFixedSection/>
