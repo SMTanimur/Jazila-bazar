@@ -26,7 +26,7 @@ export interface CartState {
   meta?: Metadata | null;
   //actions
   addItemToCart: (item: Item, quantity: number) => void;
-  removeItemFromCart: (id: Item["_id"], quantity?: number) => void;
+  removeItemFromCart: (id: Item["_id"], quantity: number) => void;
     clearItemFromCart: (id: Item["_id"]) => void;
     getItemFromCart: (id: Item["_id"]) => any | undefined;
     isInCart: (id: Item["_id"]) => boolean;
@@ -59,13 +59,18 @@ export const useCartStore = create(
         const items = addItemWithQuantity(get().items, item, quantity);
         return set(generateFinalState(get(), items));
       },
-      removeItemFromCart: async (id, quantity = 1) => {
-        const items = removeItemOrQuantity(get().items, id, quantity);
-        return generateFinalState(get(), items);
+      removeItemFromCart: async (id, quantity=1) => {
+        const items = removeItemOrQuantity(
+          get().items,
+         id,
+          quantity
+        );
+       
+        return set(generateFinalState(get(), items));
       },
         clearItemFromCart: async (id) => {
             const items = removeItem(get().items, id);
-            return generateFinalState(get(), items);
+            return set(generateFinalState(get(), items));
         },
 
         getItemFromCart(id) {

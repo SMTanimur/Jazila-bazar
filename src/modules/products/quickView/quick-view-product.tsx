@@ -1,21 +1,21 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import Counter from "@/components/ui/counter";
+import { Icons } from "@/components/ui/icons";
 import usePrice from "@/hooks/use-price";
 import { useCartStore } from "@/store/cart/cart.store";
 import { useGlobalModalStateStore } from "@/store/modal";
 import { IProduct } from "@/types";
+import { generateCartItem } from "@/utils/generate-cart-item";
 import { getVariations } from "@/utils/get-variations";
 import { isEmpty, isEqual } from "lodash";
 import Image from "next/image";
 import { useState } from "react";
+import { toast } from "sonner";
 import ProductAttributes from "../product-attributes";
 import ThumbnailCarousel from "../thumbnail-carousel";
 import VariationPrice from "../variation-price";
 import QuickViewShortDetails from "./quick-view-short-details";
-import Counter from "@/components/ui/counter";
-import { Icons } from "@/components/ui/icons";
-import { generateCartItem } from "@/utils/generate-cart-item";
-import { toast } from "sonner";
 export const QuickViewProduct = () => {
   const [attributes, setAttributes] = useState<{ [key: string]: string }>({});
   const globalModal = useGlobalModalStateStore((state) => state);
@@ -60,9 +60,8 @@ export const QuickViewProduct = () => {
     }, 1500);
     addItemToCart(item, selectedQuantity);
     // @ts-ignore
-    toast.success("Product added to cart")
-    globalModal.setQuickViewState(false,null)
-   
+    toast.success("Product added to cart");
+    globalModal.setQuickViewState(false, null);
   }
   return (
     <div className="px-6 py-4">
@@ -161,17 +160,15 @@ export const QuickViewProduct = () => {
                     Number(item.stock)
                   : selectedQuantity >= Number(item.stock)
               }
-              
             />
             <Button
               onClick={addToCart}
-            
               className="  flex items-center gap-3"
               disabled={!isSelected}
-              
+
               // loading={addToCartLoader}
             >
-              <Icons.cart  className="ml-3 w-4 " />
+              <Icons.cart className="ml-3 w-4 " />
               <p>Add_TO_CART</p>
             </Button>
           </div>

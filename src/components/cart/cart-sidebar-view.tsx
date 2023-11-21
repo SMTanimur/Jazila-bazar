@@ -7,15 +7,13 @@ import usePrice from '@/hooks/use-price';
 import { Icons } from '../ui/icons';
 import { useRouter } from 'next/navigation';
 import CartItem from './cart-item';
-import { isEmpty } from 'lodash';
-import Scrollbar from '../ui/scrollbar';
 import EmptyCart from './empty-cart';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
 
 const CartSidebarView = () => {
-  const { items,  total,resetCart } = useCartStore((state)=>state);
+  const { items,  total,resetCart,isEmpty } = useCartStore((state)=>state);
   const globalModal = useGlobalModalStateStore((state)=>state)
   const router = useRouter();
   function handleCheckout() {
@@ -39,28 +37,23 @@ const CartSidebarView = () => {
     <div className="flex flex-col justify-between w-full h-full">
     <div className="relative flex items-center justify-between w-full px-5 py-5 border-b border-gray-base md:px-7">
       <h3 >Shoping Cart</h3>
-      <div className="flex items-center">
-        {!isEmpty && (
-          <button
-            className="flex items-center flex-shrink transition duration-150 ease-in opacity-50 text-15px focus:outline-none text-brand-dark hover:opacity-100 "
-            aria-label={"clear all"}
-            onClick={resetCart}
-          >
-            <Icons.edit className='w-4' />
-            <span className="px-1 lg:pr-1">Clear all</span>
-          </button>
-        )}
-      </div>
+      <button
+        className="text-sm font-semibold text-heading text-primary"
+        onClick={()=>globalModal.closeCartState()}
+        >
+
+        <Icons.close className='w-4 h-4'/>
+        </button>
     </div>
 
     {!isEmpty ? (
-      <Scrollbar className="flex-grow w-full cart-scrollbar ">
+      <div className="flex-grow w-full cart-scrollbar ">
         <div className="w-full px-5 md:px-7  h-[calc(100vh_-_420px)]">
           {items?.map((item) => (
-            <CartItem item={item} key={item.id}  />
+            <CartItem item={item} key={item._id}  />
           ))}
         </div>
-      </Scrollbar>
+      </div>
     ) : (
       <EmptyCart  />
     )}
