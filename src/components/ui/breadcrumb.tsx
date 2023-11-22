@@ -1,101 +1,53 @@
 'use client';
 
-import React from 'react';
+import { cn } from '@/lib/utils';
+import { capitalize, startCase } from 'lodash';
 import { ChevronRightIcon, HomeIcon } from 'lucide-react';
-import useBreadcrumb, { convertBreadcrumbTitle } from '@/utils/use-breadcrumb';
-import ActiveLink from './active-link';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import React from 'react';
 
+const Breadcrumb: React.FC = () => {
+  const pathname = usePathname();
 
-interface Props {
-  children: any;
-}
-
-const BreadcrumbItem: React.FC<Props> = ({ children, ...props }) => {
+  const breadcrumbs = pathname.slice(1).split('/');
+  const lastBreadcrumb = breadcrumbs[breadcrumbs.length - 1];
   return (
-    <li
-      className="text-sm text-primary/90 px-2.5 transition duration-200 ease-in  first:pr-0  last:pl-0 hover:text-primary/80 flex items-center"
-      {...props}
-    >
-      {children}
-    </li>
-  );
-};
+    <div className="container  flex flex-col justify-between gap-y-1 sm:flex-row sm:gap-y-0">
+            <h3 className="text-xl font-medium">
+              {breadcrumbs[0] === ''
+                ? 'Dashboard'
+                : capitalize(startCase(lastBreadcrumb))}
+            </h3>
 
-const BreadcrumbSeparator: React.FC<Props> = ({ children, ...props }) => {
-  return (
-    <li className="text-base text-primary/70 mt-[1px]" {...props}>
-      {children}
-    </li>
-  );
-};
-
-export const BreadcrumbItems = (props: any) => {
-  let children: any = React.Children.toArray(props.children);
-
-  children = children.map((child: string, index: number) => (
-    <BreadcrumbItem key={`breadcrumb_item${index}`}>{child}</BreadcrumbItem>
-  ));
-
-  const lastIndex = children.length - 1;
-
-  children = children.reduce((acc: any, child: string, index: number) => {
-    const notLast = index < lastIndex;
-    if (notLast) {
-      acc.push(
-        child,
-        <BreadcrumbSeparator key={`breadcrumb_sep${index}`}>
-          {props.separator}
-        </BreadcrumbSeparator>
-      );
-    } else {
-      acc.push(child);
-    }
-    return acc;
-  }, []);
-
-  return (
-    <div className="flex items-center borobazarBreadcrumb">
-      <ol className="flex items-center w-full overflow-hidden ">{children}</ol>
-    </div>
-  );
-};
-
-const Breadcrumb: React.FC<{ separator?: string;  }> = ({
-  separator = (
-    <ChevronRightIcon className="text-primary text-opacity-40 w-5 h-5" />
-  ),
-
-}) => {
-  const breadcrumbs = useBreadcrumb();
-
-  return (
-    <BreadcrumbItems separator={separator}>
-      <ActiveLink
-        legacyBehavior
-        href={`/`}
-        activeClassName="font-semibold text-heading"
-      
-      >
-        <a className="inline-flex items-center">
-          <HomeIcon className=" ml-1.5 text-primary w-4" />
-          Home
-        </a>
-      </ActiveLink>
-
-      {breadcrumbs?.map((breadcrumb: any) => (
-        <ActiveLink
-          href={breadcrumb.href}
-          activeClassName="font-semibold text-heading"
-          key={breadcrumb.href}
-          legacyBehavior
-       
-        >
-          <a className="capitalize">
-            {convertBreadcrumbTitle(breadcrumb.breadcrumb)}
-          </a>
-        </ActiveLink>
-      ))}
-    </BreadcrumbItems>
+            <div className="flex items-center gap-x-2">
+              <HomeIcon className="w-5 h-5 text-primary"/>
+              <Link href="/" className="text-sm font-medium text-primary">
+                Home
+              </Link>
+              <ChevronRightIcon className="w-5 h-5 text-primary" />
+              {breadcrumbs.map((breadcrumb, index) => (
+                <React.Fragment key={index}>
+                  <Link
+                    href={{
+                      pathname: `/${breadcrumbs.slice(0, index + 1).join('/')}`,
+                    }}
+                    className={cn(
+                      'text-sm font-medium',
+                      lastBreadcrumb === breadcrumb
+                        ? 'text-gray-500'
+                        : 'text-primary'
+                    )}
+                  >
+                    {capitalize(startCase(breadcrumb)) || 'Dashboard'}
+                  </Link>
+                  {breadcrumb !== lastBreadcrumb && (
+                    <ChevronRightIcon className="w-5 h-5 text-primary" />
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
   );
 };
 

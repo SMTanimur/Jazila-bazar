@@ -75,6 +75,12 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      Nbrand: {
+        50: '#f2f0ff',
+        100: '#eeebff',
+        
+        DEFAULT: '#1d1d22',
+      },
     },
   },
   plugins: [require('tailwindcss-animate')],

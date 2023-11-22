@@ -1,12 +1,16 @@
 import usePrice from "@/hooks/use-price";
+import { useCartStore } from "@/store/cart/cart.store";
 import { useGlobalModalStateStore } from "@/store/modal";
 import { IProduct } from "@/types";
+import { generateCartItem } from "@/utils/generate-cart-item";
+import { getVariations } from "@/utils/get-variations";
 import { calculateDiscountPercentage } from "@/utils/util";
 import { EyeIcon, HeartIcon, RefreshCwIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { Card } from "../ui/card";
+import { toast } from "sonner";
 
 interface Props {
   product: IProduct;
@@ -25,12 +29,25 @@ const ProductCard = ({ product }: Props) => {
     amount: product?.max_price ?? 0,
     currencyCode: "USD",
   });
+  let selectedVariation: any = {};
   const globalModal = useGlobalModalStateStore((state) => state);
+  const { addItemToCart } = useCartStore((state) => state);
+  const variations = getVariations(product?.variations);
+  const item = generateCartItem(product, selectedVariation);
+  const isVariation = (product.variation_options?.length as number) > 0;
+  function addToCart() {
+    if (isVariation) {
+      return globalModal.setQuickViewState(true, product);
+    }
+    if (!isVariation) {
+      addItemToCart(item, 1);
+      // @ts-ignore
+      toast.success("Product added to cart");
+      globalModal.setQuickViewState(false, null);
+    }
+  }
   return (
-    <div
-      className=" flex flex-col group overflow-hidden rounded-md transition-all duration-300 shadow-card hover:shadow-cardHover relative h-full"
-      
-    >
+    <div className=" flex flex-col group overflow-hidden rounded-md transition-all duration-300 shadow-card hover:shadow-cardHover relative h-full">
       <Card className="bg-gray-200 dark:bg-black shadow-sm rounded-md w-full h-full group flex flex-col px-4 py-5  relative">
         <div className="w-full min-h-[150px] flex items-center relative justify-center overflow-hidden px-4">
           <Image
@@ -60,9 +77,7 @@ const ProductCard = ({ product }: Props) => {
             </button>
           </div>
         </div>
-        <Link className="flex flex-col"
-        href={`/products/${product.slug}`}
-        >
+        <Link className="flex flex-col" href={`/products/${product.slug}`}>
           <h5 className="text-sm sm:text-base font-semibold text-gray-800 dark:text-white">
             {product.name.length > 15
               ? `${product.name.substring(0, 15)}...`
@@ -87,7 +102,11 @@ const ProductCard = ({ product }: Props) => {
           </div>
         </Link>
 
-        <Button variant={"outline"} className="mt-4 rounded-full">
+        <Button
+          variant={"outline"}
+          className="mt-4 rounded-full"
+          onClick={addToCart}
+        >
           Add to Cart
         </Button>
         {product.price ? (

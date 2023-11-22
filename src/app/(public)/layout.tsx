@@ -16,6 +16,7 @@ export default function LobbyLayout({ children }: LobbyLayoutProps) {
       <TopBar/>
       <SiteHeader />
       <HeaderBottom/>
+      
       <main className=" flex min-h-screen flex-col">{children}</main>
       <Footer />
       <ClientOnly>

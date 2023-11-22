@@ -14,19 +14,16 @@ const Product = ({ params: { productSlug } }: Props) => {
   const { data, isLoading } = useProductQuery(productSlug);
   return (
     <div className="py-5  ">
-      <section className="py-5 bg-gray-100 dark:bg-gray-900 ">
-        <div className="flex justify-between items-center container">
-          <h1>djf</h1>
+      <section className=" h-12 py2  bg-gray-100 dark:bg-gray-900 flex justify-center items-center ">
           <Breadcrumb />
-        </div>
       </section>
 
       <div className="flex flex-col space-y-5 md:flex-row  md:space-x-6 container py-8">
         <div className="w-full md:w-[75%] overflow-hidden ">
           <ProductDetails {...{ product: data as IProduct }} />
         </div>
-        <div className="flex w-full md:w-[25%] h-auto space-y-5 bg-gray-100 flex-col py-4 px-4 overflow-hidden">
-          <div className="bg-white py-4 px-4 w-full flex gap-4 items-center ">
+        <div className="flex w-full md:w-[25%] h-auto space-y-5 bg-gray-100 dark:bg-background flex-col py-4 px-4 overflow-hidden">
+          <div className="bg-white dark:bg-gray-800 py-4 px-4 w-full flex gap-4 items-center ">
             <div>
               <Image
                 src={data?.shop.logo.img_url as string}
@@ -61,7 +58,9 @@ const Product = ({ params: { productSlug } }: Props) => {
                   Website:
                 </p>
               </span>
-              <p className="text-xs sm:text-base">{data?.shop.settings?.website}</p>
+              <p className="text-xs sm:text-base">
+                {data?.shop.settings?.website}
+              </p>
             </div>
           </div>
         </div>
