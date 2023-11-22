@@ -58,6 +58,7 @@ export const QuickViewProduct = () => {
     setTimeout(() => {
       setAddToCartLoader(false);
     }, 1500);
+    const item = generateCartItem(product, selectedVariation)
     addItemToCart(item, selectedQuantity);
     // @ts-ignore
     toast.success("Product added to cart");
@@ -140,6 +141,7 @@ export const QuickViewProduct = () => {
                 <ProductAttributes
                   key={`popup-attribute-key${variation}`}
                   variations={variations}
+                  
                   attributes={attributes}
                   setAttributes={setAttributes}
                 />

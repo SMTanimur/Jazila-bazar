@@ -19,14 +19,14 @@ interface Variation {
   [key: string]: unknown;
 }
 export function generateCartItem(item: Item, variation: Variation) {
- 
+  
   if (!isEmpty(variation)) {
     return {
       _id: `${item?._id}.${variation._id}`,
       productId: item?._id,
-      name: `${name} - ${variation.title}`,
+      name: `${item?.name} - ${variation.title}`,
       slug:item?.slug,
-      unit:item?.slug,
+      unit:item?.unit,
       stock: variation.quantity,
       price: variation.sale_price ? variation.sale_price : variation.price,
       image: item?.image,
