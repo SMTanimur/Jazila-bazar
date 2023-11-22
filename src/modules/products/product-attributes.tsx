@@ -58,7 +58,7 @@ const ProductAttributes: React.FC<Props> = ({
                   <li
                     key={index}
                     className={cn(
-                      "cursor-pointer rounded border h-9 md:h-10 p-1 mb-2 md:mb-3  ml-2 flex justify-center items-center font-medium text-sm md:text-15px text-primary transition duration-200 ease-in-out hover:text-primary hover:border-primary px-3",
+                      "cursor-pointer rounded border dark:border-primary h-9 md:h-10 p-1 mb-2 md:mb-3  ml-2 flex justify-center items-center font-medium text-sm md:text-15px text-primary transition duration-200 ease-in-out hover:text-primary hover:border-primary px-3",
                       {
                         "border-primary text-primary bg-primary text-white hover:text-white":
                           attributes[variationName] === attribute.value,

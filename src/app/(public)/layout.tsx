@@ -12,14 +12,11 @@ interface LobbyLayoutProps {
 export default function LobbyLayout({ children }: LobbyLayoutProps) {
 
   return (
-    <div className="relative flex min-h-screen flex-col">
+    <div className="relative">
       <TopBar/>
-     
       <SiteHeader />
-     
-      
       <HeaderBottom/>
-      <main className="flex-1">{children}</main>
+      <main className=" flex min-h-screen flex-col">{children}</main>
       <Footer />
       <ClientOnly>
         <MobileNavigation>

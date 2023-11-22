@@ -3,7 +3,7 @@ import React from 'react'
 
 const TopBar = () => {
   return (
-    <section className='bg-primary p-1'>
+    <section className='bg-primary py-3'>
      <div className='container flex justify-between items-center'>
         <div className='flex items-center text-xs text-white gap-2'>
           <PhoneIcon className='w-4'/>

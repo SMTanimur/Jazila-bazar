@@ -11,7 +11,7 @@ const CartCounterButton = () => {
   }
   return (
     <button
-      className="hidden  lg:flex relative"
+      className="flex relative"
       onClick={handleCartSidebar}
     >
       <Icons.cart className="w-5" />

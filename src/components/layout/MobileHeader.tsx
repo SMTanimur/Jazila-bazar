@@ -16,8 +16,12 @@ import {
 } from "../ui/dropdown-menu";
 import { Icons } from "../ui/icons";
 import { HeartIcon } from "lucide-react";
+import dynamic from "next/dynamic";
 import GradientLogo from "../common/shared/gradient-logo";
 import { useGlobalModalStateStore } from "@/store/modal";
+const CartCounterButton = dynamic(() => import("../cart/cart-count-button"), {
+  ssr: false,
+});
 const MobileHeader = () => {
  
   const { me } = useMe();
@@ -56,15 +60,7 @@ const MobileHeader = () => {
           <div className="border-r h-6 border-border"/>
           <HeartIcon className="w-5"/>
           <div className="border-r h-6 border-border"/>
-          <div className="relative">
-          <Icons.cart className="w-5"/>
-          <div className="absolute -top-3 -right-3 bg-red-600 text-white w-5 h-5 flex justify-center items-center">
-            
-           <span>
-            3
-           </span>
-            </div>
-          </div>
+          <CartCounterButton/>
           </div>
           
           <div className="border-r h-6 border-border hidden sm:block"/>

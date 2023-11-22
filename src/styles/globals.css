@@ -67,19 +67,6 @@
 }
 
 
-.borobazarBreadcrumb li:last-child {
-  @apply font-medium truncate text-primary/80;
-}
-.style-variant-white .borobazarBreadcrumb ol > li > a > svg,
-.style-variant-white .borobazarBreadcrumb ol > li > a {
-  @apply text-white text-opacity-70;
-}
-.style-variant-white .borobazarBreadcrumb ol > li > svg {
-  @apply text-opacity-50 text-white;
-}
-.style-variant-white .borobazarBreadcrumb ol > li:last-of-type > a {
-  @apply text-white;
-}
 
 
 @import './custom-plugins.css';

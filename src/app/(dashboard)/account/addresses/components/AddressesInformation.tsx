@@ -19,7 +19,7 @@ const AddressesInformation = () => {
       <Card className=" min-h-[350px]">
         <CardContent>
           <div className=" flex flex-col   ">
-            <Link href={"/dashboard/addresses/new"}>
+            <Link href={"/account/addresses/new"}>
               <div className="flex flex-col h-[330px] justify-center items-center gap-3">
                 <Icons.plus className="w-12 h-12 text-primary" />
                 <Button variant={"secondary"}>Add Address</Button>

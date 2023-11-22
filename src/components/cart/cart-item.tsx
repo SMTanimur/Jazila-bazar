@@ -39,15 +39,15 @@ const CartItem = ({ item }: CartItemProps) => {
           />
         </div>
         <div className="flex flex-col justify-center w-full">
-          <h4 className="text-base font-semibold text-gray-800">
+          <h4 className="text-base font-semibold text-gray-800 dark:text-white">
             { item?.name}
           </h4>
-          <p className="text-base text-gray-700">{itemPrice}</p>
+          <p className="text-base text-gray-700 dark:text-white">{itemPrice}</p>
         </div>
       </div>
 
       <div className="flex flex-col space-y-6 justify-between items-center">
-        <button className="px-2 py-1 bg-gray-100 self-end grid place-items-center shadow-sm"
+        <button className="px-2 py-1 bg-gray-100 dark:bg-gray-700 self-end grid place-items-center shadow-sm"
         onClick={()=>clearItemFromCart(item._id)}
         >
           <Trash2Icon className="w-4"/>
