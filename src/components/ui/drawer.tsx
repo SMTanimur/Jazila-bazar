@@ -98,7 +98,7 @@ const Drawer: React.FC<DrawerProps> = ({
                   )}
                 >
                   <div className="h-full w-screen max-w-md">
-                    <div className="drawer flex h-full flex-col bg-slate-50 text-base shadow-xl">
+                    <div className="drawer flex h-full flex-col bg-slate-50 dark:bg-background text-base shadow-xl">
                       <Scrollbar className="h-full w-full">
                         {children}
                       </Scrollbar>
