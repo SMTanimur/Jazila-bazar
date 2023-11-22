@@ -4,6 +4,7 @@ import Counter from "@/components/ui/counter";
 import { Icons } from "@/components/ui/icons";
 import usePrice from "@/hooks/use-price";
 import ProductAttributes from "@/modules/products/product-attributes";
+import ProductDetailsTab from "@/modules/products/productDetails/product-tab";
 import QuickViewShortDetails from "@/modules/products/quickView/quick-view-short-details";
 import ThumbnailCarousel from "@/modules/products/thumbnail-carousel";
 import VariationPrice from "@/modules/products/variation-price";
@@ -191,7 +192,10 @@ const ProductDetails = ({ product }: Props) => {
         <div className="py-4 border-t border-dashed w-full">
           <QuickViewShortDetails {...{ product, selectedVariation }} />
         </div>
+
+        
       </div>
+    
     </div>
   );
 };

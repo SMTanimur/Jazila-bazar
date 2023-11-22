@@ -5,6 +5,7 @@ import { IProduct } from "@/types";
 import { GlobeIcon, SmartphoneIcon } from "lucide-react";
 import Image from "next/image";
 import ProductDetails from "../screens/ProductDetails";
+import ProductDetailsTab from "@/modules/products/productDetails/product-tab";
 type Props = {
   params: {
     productSlug: string;
@@ -21,6 +22,7 @@ const Product = ({ params: { productSlug } }: Props) => {
       <div className="flex flex-col space-y-5 md:flex-row  md:space-x-6 container py-8">
         <div className="w-full md:w-[75%] overflow-hidden ">
           <ProductDetails {...{ product: data as IProduct }} />
+          <ProductDetailsTab/>
         </div>
         <div className="flex w-full md:w-[25%] h-auto space-y-5 bg-gray-100 dark:bg-background flex-col py-4 px-4 overflow-hidden">
           <div className="bg-white dark:bg-gray-800 py-4 px-4 w-full flex gap-4 items-center ">
