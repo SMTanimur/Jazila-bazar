@@ -1,8 +1,9 @@
-
+import ProgressBar from "@/components/common/shared/ProgressBar";
 import { Button } from "@/components/ui/button";
 import Counter from "@/components/ui/counter";
 import { Icons } from "@/components/ui/icons";
 import usePrice from "@/hooks/use-price";
+import { cn } from "@/lib/utils";
 import ProductAttributes from "@/modules/products/product-attributes";
 import QuickViewShortDetails from "@/modules/products/quickView/quick-view-short-details";
 import ThumbnailCarousel from "@/modules/products/thumbnail-carousel";
@@ -185,12 +186,29 @@ const ProductDetails = ({ product }: Props) => {
             </Button>
           </div>
         </div>
+        <div
+          className={cn(
+            !isEmpty(selectedVariation)
+              ? selectedVariation?.quantity <= 15
+                ? "block"
+                : "hidden"
+              : (product?.quantity as number) <= 15
+              ? "block"
+              : "hidden"
+          )}
+        >
+          <ProgressBar
+            quantity={
+              !isEmpty(selectedVariation)
+                ? selectedVariation.quantity
+                : product?.quantity
+            }
+          />
+        </div>
 
         <div className="py-4 border-t border-dashed w-full">
           <QuickViewShortDetails {...{ product, selectedVariation }} />
         </div>
-
-    
       </div>
     </div>
   );

@@ -66,6 +66,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.4",
     "react-share": "^5.0.2",
+    "react-spring": "^9.7.3",
     "react-use": "^17.4.0",
     "react-wrap-balancer": "^1.1.0",
     "sonner": "^0.7.0",
