@@ -1,11 +1,17 @@
 
+import { Metadata } from "next";
 import SingleProductPage from "../screens/SingleProductPage";
 type Props = {
   params: {
     productSlug: string;
   };
 };
-const Product = ({ params: { productSlug } }: Props) => {
+export const metadata: Metadata = {
+  title: 'Product'
+
+};
+
+const Product =async ({ params: { productSlug } }: Props) => {
  
    return  <SingleProductPage {...{productSlug}}/>
 };

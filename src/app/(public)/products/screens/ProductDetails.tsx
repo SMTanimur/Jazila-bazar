@@ -1,9 +1,7 @@
-"use client";
-import SocialShareBox from "@/components/common/shared/social-share-box";
+
 import { Button } from "@/components/ui/button";
 import Counter from "@/components/ui/counter";
 import { Icons } from "@/components/ui/icons";
-import { ROUTES } from "@/configs/routes";
 import usePrice from "@/hooks/use-price";
 import ProductAttributes from "@/modules/products/product-attributes";
 import QuickViewShortDetails from "@/modules/products/quickView/quick-view-short-details";
@@ -16,7 +14,6 @@ import { getVariations } from "@/utils/get-variations";
 import { isEmpty, isEqual } from "lodash";
 import { HeartIcon, RefreshCwIcon } from "lucide-react";
 import Image from "next/image";
-import { useParams } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -24,12 +21,10 @@ type Props = {
   product: IProduct;
 };
 const ProductDetails = ({ product }: Props) => {
-  const pathname = useParams();
   const [attributes, setAttributes] = useState<{ [key: string]: string }>({});
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [addToCartLoader, setAddToCartLoader] = useState<boolean>(false);
-  const productUrl = `${process.env.NEXT_PUBLIC_APP_URL}${ROUTES.PRODUCT}/${pathname.productSlug}`;
-  const { addItemToCart, isInCart, getItemFromCart, isInStock } = useCartStore(
+  const { addItemToCart, isInCart, getItemFromCart } = useCartStore(
     (state) => state
   );
   const variations = getVariations(product?.variations);
@@ -57,7 +52,6 @@ const ProductDetails = ({ product }: Props) => {
   }
 
   const item = generateCartItem(product, selectedVariation);
-  const outOfStock = isInCart(item._id) && !isInStock(item._id);
   function addToCart() {
     if (!isSelected) return;
     // to show btn feedback while product carting
@@ -79,10 +73,9 @@ const ProductDetails = ({ product }: Props) => {
           <div className="flex items-center justify-center w-auto">
             <Image
               src={product?.image?.img_url as string}
-              alt={name!}
+              alt={product?.name}
               width={450}
               height={390}
-              style={{ width: "auto" }}
             />
           </div>
         )}

@@ -1,33 +1,33 @@
-import Breadcrumb from '@/components/ui/breadcrumb';
-import { ROUTES } from '@/configs/routes';
-import { useProductQuery } from '@/hooks/api/product/useGetProduct';
-import React from 'react'
-import ProductDetails from './ProductDetails';
-import { IProduct } from '@/types';
-import ProductDetailsTab from '@/modules/products/productDetails/product-tab';
-import Image from 'next/image';
-import { GlobeIcon, SmartphoneIcon } from 'lucide-react';
-import SocialShareBox from '@/components/common/shared/social-share-box';
+"use client";
+import SocialShareBox from "@/components/common/shared/social-share-box";
+import Breadcrumb from "@/components/ui/breadcrumb";
+import { ROUTES } from "@/configs/routes";
+import { useProductQuery } from "@/hooks/api/product/useGetProduct";
+import ProductDetailsTab from "@/modules/products/productDetails/product-tab";
+import { IProduct } from "@/types";
+import { GlobeIcon, SmartphoneIcon } from "lucide-react";
+import Image from "next/image";
+import ProductDetails from "./ProductDetails";
 
 type Props = {
-    productSlug: string;
-}
-const SingleProductPage = ({productSlug}:Props) => {
-    const { data, isLoading } = useProductQuery(productSlug);
-    const productUrl = `${process.env.NEXT_PUBLIC_APP_URL}${ROUTES.PRODUCT}/${productSlug}`;
-    return (
-      <div className="py-5  ">
-        <section className=" h-12 py2  bg-gray-100 dark:bg-gray-900 flex justify-center items-center ">
-            <Breadcrumb />
-        </section>
-  
-        <div className="flex flex-col space-y-5 md:flex-row  md:space-x-6 container py-8">
-          <div className="w-full md:w-[75%] overflow-hidden ">
-            <ProductDetails {...{ product: data as IProduct }} />
-          
-            <ProductDetailsTab/>
-          </div>
-          <div className="w-full md:w-[25%] ">
+  productSlug: string;
+};
+const SingleProductPage = ({ productSlug }: Props) => {
+  const { data, isLoading } = useProductQuery(productSlug);
+  const productUrl = `${process.env.NEXT_PUBLIC_APP_URL}${ROUTES.PRODUCT}/${productSlug}`;
+  return (
+    <div className="py-5  ">
+      <section className=" h-12 py2  bg-gray-100 dark:bg-gray-900 flex justify-center items-center ">
+        <Breadcrumb />
+      </section>
+
+      <div className="flex flex-col space-y-5 md:flex-row  md:space-x-6 container py-8">
+        <div className="w-full md:w-[75%] overflow-hidden ">
+          <ProductDetails {...{ product: data as IProduct }} />
+
+          <ProductDetailsTab />
+        </div>
+        <div className="w-full md:w-[25%] ">
           <div className="flex  space-y-5 bg-gray-100 dark:bg-background flex-col py-4 px-4 overflow-hidden">
             <div className="bg-white dark:bg-gray-800 py-4 px-4 w-full flex gap-4 items-center ">
               <div>
@@ -69,16 +69,16 @@ const SingleProductPage = ({productSlug}:Props) => {
                 </p>
               </div>
             </div>
-  
+
             <SocialShareBox
-            className={`  transition-all duration-300 `}
-            shareUrl={productUrl}
-          />
-          </div>
+              className={`  transition-all duration-300 `}
+              shareUrl={productUrl}
+            />
           </div>
         </div>
       </div>
-    )
-}
+    </div>
+  );
+};
 
-export default SingleProductPage
+export default SingleProductPage;
