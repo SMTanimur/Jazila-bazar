@@ -62,8 +62,10 @@
     "query-string": "^8.1.0",
     "react": "^18.2.0",
     "react-content-loader": "^6.2.1",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.4",
+    "react-share": "^5.0.2",
     "react-use": "^17.4.0",
     "react-wrap-balancer": "^1.1.0",
     "sonner": "^0.7.0",
@@ -79,6 +81,7 @@
     "@types/body-scroll-lock": "^3.1.0",
     "@types/js-cookie": "^3.0.3",
     "@types/lodash": "^4.14.197",
-    "@types/overlayscrollbars": "^1.12.2"
+    "@types/overlayscrollbars": "^1.12.2",
+    "@types/react-copy-to-clipboard": "^5.0.7"
   }
 }

@@ -1,10 +1,11 @@
 "use client";
+import SocialShareBox from "@/components/common/shared/social-share-box";
 import { Button } from "@/components/ui/button";
 import Counter from "@/components/ui/counter";
 import { Icons } from "@/components/ui/icons";
+import { ROUTES } from "@/configs/routes";
 import usePrice from "@/hooks/use-price";
 import ProductAttributes from "@/modules/products/product-attributes";
-import ProductDetailsTab from "@/modules/products/productDetails/product-tab";
 import QuickViewShortDetails from "@/modules/products/quickView/quick-view-short-details";
 import ThumbnailCarousel from "@/modules/products/thumbnail-carousel";
 import VariationPrice from "@/modules/products/variation-price";
@@ -15,6 +16,7 @@ import { getVariations } from "@/utils/get-variations";
 import { isEmpty, isEqual } from "lodash";
 import { HeartIcon, RefreshCwIcon } from "lucide-react";
 import Image from "next/image";
+import { useParams } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -22,9 +24,11 @@ type Props = {
   product: IProduct;
 };
 const ProductDetails = ({ product }: Props) => {
+  const pathname = useParams();
   const [attributes, setAttributes] = useState<{ [key: string]: string }>({});
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [addToCartLoader, setAddToCartLoader] = useState<boolean>(false);
+  const productUrl = `${process.env.NEXT_PUBLIC_APP_URL}${ROUTES.PRODUCT}/${pathname.productSlug}`;
   const { addItemToCart, isInCart, getItemFromCart, isInStock } = useCartStore(
     (state) => state
   );
@@ -84,7 +88,7 @@ const ProductDetails = ({ product }: Props) => {
         )}
       </div>
 
-      <div className="w-full sm:w-1/2 flex flex-col space-y-4 ">
+      <div className="w-full sm:w-1/2 flex flex-col space-y-4 relative ">
         <div className="flex flex-col space-y-3 justify-center">
           <div className="flex flex-col gap-2 justify-center">
             <h2 className="text-xl font-medium text-gray-800 dark:text-white">
@@ -193,9 +197,8 @@ const ProductDetails = ({ product }: Props) => {
           <QuickViewShortDetails {...{ product, selectedVariation }} />
         </div>
 
-        
-      </div>
     
+      </div>
     </div>
   );
 };

@@ -40,7 +40,7 @@ const ThumbnailCarousel: React.FC<Props> = ({
   return (
     <div className="w-full flex flex-col">
       <div
-        className={cn( thumbnailClassName, isSingleProductPage ? "max-w-[500px] w-full" : "max-w-[400px] w-full",
+        className={cn( thumbnailClassName, isSingleProductPage ? "max-w-[550px] w-full" : "max-w-[400px] w-full",
           "w-full mb-2.5 md:mb-3 border border-border rounded-md relative mx-auto",
           
         )}
@@ -64,12 +64,12 @@ const ThumbnailCarousel: React.FC<Props> = ({
           {gallery?.map((item: ImageInfo) => (
             <SwiperSlide
               key={`product-gallery-${item.img_id}`}
-              className={cn("flex items-center justify-center",   isSingleProductPage ? "max-w-[500px] w-full" :"max-w-[400px] w-full")}
+              className={cn("flex items-center justify-center",   isSingleProductPage ? "max-w-[550px] w-full" :"max-w-[400px] w-full")}
             >
               <Image
                 src={item?.img_url as string}
                 alt={`Product gallery ${item.img_id}`}
-                width={450}
+                width={500}
                 height={400}
                 className=" rounded-lg"
                 priority
@@ -94,7 +94,7 @@ const ThumbnailCarousel: React.FC<Props> = ({
       </div>
       {/* End of product main slider */}
 
-      <div className={cn(galleryClassName,isSingleProductPage ? "max-w-[400px] w-full": "max-w-[320px] w-full", "shrink-0  w-full mt-5")}>
+      <div className={cn(galleryClassName,isSingleProductPage ? "max-w-[500px] w-full": "max-w-[320px] w-full", "shrink-0  w-full mt-5")}>
         <Swiper
           id="productGalleryThumbs"
           onSwiper={setThumbsSwiper}
@@ -108,11 +108,11 @@ const ThumbnailCarousel: React.FC<Props> = ({
           {gallery?.map((item: ImageInfo) => (
             <SwiperSlide
               key={`product-thumb-gallery-${item.img_id}`}
-              className={cn(isSingleProductPage ? "max-w-[180px] w-full" :"max-w-[100px] w-full","flex items-center justify-center  transition border rounded cursor-pointer border-border hover:opacity-75  px-2")}
+              className={cn(isSingleProductPage ? "max-w-[200px] w-full" :"max-w-[100px] w-full","flex items-center justify-center  transition border rounded cursor-pointer border-border hover:opacity-75  px-2")}
             >
               <Image
                 src={item?.img_url as string}
-                className={cn(isSingleProductPage ? "max-w-[180px] w-full" :"max-w-[100px] w-full")}
+                className={cn(isSingleProductPage ? "max-w-[200px] w-full" :"max-w-[100px] w-full")}
                 alt={`Product thumb gallery ${item.img_id}`}
                 width={100}
                 height={100}
