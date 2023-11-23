@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const headerLinks = [
   { href: ROUTES.SHOPS, icon: null, label: "Shops" },
-  { href: ROUTES.OFFERS, icon: null, label: "Offer" },
+  { href: ROUTES.SHOPS, icon: null, label: "Offer" },
   { href: ROUTES.HELP, label: "Faq" },
   { href: ROUTES.CONTACT, label: "Contact" },
 ];
