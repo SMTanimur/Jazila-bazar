@@ -3,14 +3,13 @@ import { useCartStore } from "@/store/cart/cart.store";
 import { useGlobalModalStateStore } from "@/store/modal";
 import { IProduct } from "@/types";
 import { generateCartItem } from "@/utils/generate-cart-item";
-import { getVariations } from "@/utils/get-variations";
 import { calculateDiscountPercentage } from "@/utils/util";
 import { EyeIcon, HeartIcon, RefreshCwIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { toast } from "sonner";
 import { Button } from "../ui/button";
 import { Card } from "../ui/card";
-import { toast } from "sonner";
 
 interface Props {
   product: IProduct;
@@ -32,7 +31,6 @@ const ProductCard = ({ product }: Props) => {
   let selectedVariation: any = {};
   const globalModal = useGlobalModalStateStore((state) => state);
   const { addItemToCart } = useCartStore((state) => state);
-  const variations = getVariations(product?.variations);
   const item = generateCartItem(product, selectedVariation);
   const isVariation = (product.variation_options?.length as number) > 0;
   function addToCart() {

@@ -12,7 +12,7 @@ import CartItem from "./cart-item";
 import EmptyCart from "./empty-cart";
 
 const CartSidebarView = () => {
-  const { items, total, resetCart, isEmpty } = useCartStore((state) => state);
+  const { items, total, isEmpty } = useCartStore((state) => state);
   const globalModal = useGlobalModalStateStore((state) => state);
   const router = useRouter();
   function handleCheckout() {

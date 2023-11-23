@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { devtools, persist } from "zustand/middleware";
 import {
   Item,
   addItemWithQuantity,
@@ -27,11 +27,11 @@ export interface CartState {
   //actions
   addItemToCart: (item: Item, quantity: number) => void;
   removeItemFromCart: (id: Item["_id"], quantity: number) => void;
-    clearItemFromCart: (id: Item["_id"]) => void;
-    getItemFromCart: (id: Item["_id"]) => any | undefined;
-    isInCart: (id: Item["_id"]) => boolean;
-    isInStock: (id: Item["_id"]) => boolean;
-    resetCart: () => void;
+  clearItemFromCart: (id: Item["_id"]) => void;
+  getItemFromCart: (id: Item["_id"]) => any | undefined;
+  isInCart: (id: Item["_id"]) => boolean;
+  isInStock: (id: Item["_id"]) => boolean;
+  resetCart: () => void;
 }
 
 const generateFinalState = (state: CartState, items: Item[]) => {
@@ -47,37 +47,34 @@ const generateFinalState = (state: CartState, items: Item[]) => {
 };
 
 export const useCartStore = create(
-  persist<CartState>(
-    (set, get) => ({
-      items: [],
-      isEmpty: true,
-      totalItems: 0,
-      totalUniqueItems: 0,
-      total: 0,
-      meta: null,
-      addItemToCart: async (item, quantity) => {
-        const items = addItemWithQuantity(get().items, item, quantity);
-        return set(generateFinalState(get(), items));
-      },
-      removeItemFromCart: async (id, quantity=1) => {
-        const items = removeItemOrQuantity(
-          get().items,
-         id,
-          quantity
-        );
-       
-        return set(generateFinalState(get(), items));
-      },
+  devtools(
+    persist<CartState>(
+      (set, get) => ({
+        items: [],
+        isEmpty: true,
+        totalItems: 0,
+        totalUniqueItems: 0,
+        total: 0,
+        meta: null,
+        addItemToCart: async (item, quantity) => {
+          const items = addItemWithQuantity(get().items, item, quantity);
+          return set(generateFinalState(get(), items));
+        },
+        removeItemFromCart: async (id, quantity = 1) => {
+          const items = removeItemOrQuantity(get().items, id, quantity);
+
+          return set(generateFinalState(get(), items));
+        },
         clearItemFromCart: async (id) => {
-            const items = removeItem(get().items, id);
-            return set(generateFinalState(get(), items));
+          const items = removeItem(get().items, id);
+          return set(generateFinalState(get(), items));
         },
 
         getItemFromCart(id) {
-          return  getItem(get().items, id)
+          return getItem(get().items, id);
         },
         isInCart(id) {
-          return inStock(get().items, id)
+          return inStock(get().items, id);
         },
         isInStock(id) {
           const item = getItem(get().items, id);
@@ -85,16 +82,17 @@ export const useCartStore = create(
           return false;
         },
         resetCart() {
-            return set({
-                items: [],
-                isEmpty: true,
-                totalItems: 0,
-                totalUniqueItems: 0,
-                total: 0,
-                meta: null,
-            });
+          return set({
+            items: [],
+            isEmpty: true,
+            totalItems: 0,
+            totalUniqueItems: 0,
+            total: 0,
+            meta: null,
+          });
         },
-    }),
-    { name: "cart" }
+      }),
+      { name: "cart" }
+    )
   )
 );

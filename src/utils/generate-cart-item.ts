@@ -6,7 +6,7 @@ interface Item {
   slug: string;
   image?: ImageInfo
   price: number;
-  sale_price?: number;
+  sale_price: number;
   quantity?: number;
   [key: string]: unknown;
 }
@@ -14,7 +14,7 @@ interface Variation {
   _id: string | number;
   title: string;
   price: number;
-  sale_price?: number;
+  sale_price: number;
   quantity: number;
   [key: string]: unknown;
 }
@@ -28,7 +28,8 @@ export function generateCartItem(item: Item, variation: Variation) {
       slug:item?.slug,
       unit:item?.unit,
       stock: variation.quantity,
-      price: variation.sale_price ? variation.sale_price : variation.price,
+      price:  variation.price,
+      sale_price: variation.sale_price,
       image: item?.image,
       variationId: variation._id,
     };
@@ -40,6 +41,7 @@ export function generateCartItem(item: Item, variation: Variation) {
     unit:item?.unit,
     image: item?.image,
     stock: item?.quantity,
-    price: item?.sale_price ? item?.sale_price : item?.price,
+    price: item?.price,
+    sale_price: item?.sale_price,
   };
 }
