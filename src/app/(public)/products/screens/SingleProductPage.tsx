@@ -17,7 +17,7 @@ const SingleProductPage = ({ productSlug }: Props) => {
   const productUrl = `${process.env.NEXT_PUBLIC_APP_URL}${ROUTES.PRODUCT}/${productSlug}`;
   return (
     <div className="py-5  ">
-      <section className=" h-12 py2  bg-gray-100 dark:bg-gray-900 flex justify-center items-center ">
+      <section className="  h-12 py-2  bg-gray-100 dark:bg-gray-900 flex justify-center items-center ">
         <Breadcrumb />
       </section>
 

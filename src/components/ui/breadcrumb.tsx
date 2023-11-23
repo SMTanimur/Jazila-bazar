@@ -13,15 +13,15 @@ const Breadcrumb: React.FC = () => {
   const breadcrumbs = pathname.slice(1).split('/');
   const lastBreadcrumb = breadcrumbs[breadcrumbs.length - 1];
   return (
-    <div className="container  flex flex-col justify-between gap-y-1 sm:flex-row sm:gap-y-0">
-            <h3 className="text-xl font-medium">
+    <div className="container  flex flex-col items-center sm:justify-between gap-y-1 sm:flex-row sm:gap-y-0">
+            <h3 className=" md:text-xl font-medium">
               {breadcrumbs[0] === ''
                 ? 'Dashboard'
                 : capitalize(startCase(lastBreadcrumb))}
             </h3>
 
-            <div className="flex items-center gap-x-2">
-              <HomeIcon className="w-5 h-5 text-primary"/>
+            <div className="flex items-center gap-x-1 md:gap-x-2">
+              <HomeIcon className="w-4 h-4 text-primary"/>
               <Link href="/" className="text-sm font-medium text-primary">
                 Home
               </Link>
@@ -33,7 +33,7 @@ const Breadcrumb: React.FC = () => {
                       pathname: `/${breadcrumbs.slice(0, index + 1).join('/')}`,
                     }}
                     className={cn(
-                      'text-sm font-medium',
+                      'text-xs sm:text-sm font-medium',
                       lastBreadcrumb === breadcrumb
                         ? 'text-gray-500'
                         : 'text-primary'
