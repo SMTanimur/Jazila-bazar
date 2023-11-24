@@ -534,3 +534,9 @@ export interface OrderQueryOptions extends QueryOptions {
   name: string;
   orderBy: string;
 }
+
+export interface CreateQuestionInput {
+  question: string;
+  product: string;
+  shop: string;
+}

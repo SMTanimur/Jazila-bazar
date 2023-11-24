@@ -1,7 +1,9 @@
 import { cn } from "@/lib/utils";
 import { useGlobalModalStateStore } from "@/store/modal";
 import { IProduct } from "@/types";
+import { authorizationAtom } from "@/utils/authorization-atom";
 import { Tab } from "@headlessui/react";
+import { useAtom } from "jotai";
 import { useState } from "react";
 
 interface Props {
@@ -13,6 +15,7 @@ export default function ProductDetailsTab({ product }: Props) {
     Review_Rating: "",
     Questions_And_Answers: "",
   });
+  const [isAuthorized] = useAtom(authorizationAtom);
   const globalModal = useGlobalModalStateStore((state) => state);
   return (
     <div className="w-full xl:px-2 py-11 lg:py-14 xl:py-16 sm:px-0">
@@ -78,6 +81,7 @@ export default function ProductDetailsTab({ product }: Props) {
                 </h1>
                 <button
                   className="py-2 px-4 bg-gray-100 rounded-lg text-gray-800 dark:text-white"
+                  disabled={!isAuthorized}
                   onClick={() =>
                     globalModal.setPostQuestionState(true, product)
                   }

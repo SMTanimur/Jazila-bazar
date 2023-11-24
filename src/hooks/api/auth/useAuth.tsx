@@ -23,7 +23,7 @@ import { toast } from 'sonner';
 export function useAuth() {
   const router = useRouter();
   const { setToken, removeToken } = useToken();
-  const [_, setAuthorized] = useAtom(authorizationAtom);
+  const [isAuthenticate, setAuthorized] = useAtom(authorizationAtom);
 
   const queryClient = useQueryClient();
   const {
