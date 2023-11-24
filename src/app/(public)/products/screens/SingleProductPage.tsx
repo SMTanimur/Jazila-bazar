@@ -74,11 +74,9 @@ const SingleProductPage = ({ productSlug }: Props) => {
             />
           </div>
         </div>
-
-        
       </div>
       <div className="container">
-      <ProductDetailsTab />
+        <ProductDetailsTab {...{ product: data  as IProduct}} />
       </div>
     </div>
   );

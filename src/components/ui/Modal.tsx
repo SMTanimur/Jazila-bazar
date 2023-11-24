@@ -32,7 +32,7 @@ export const Modal: FC<ModalProps> = ({
       if (onClose) {
         onClose();
       }
-    }, 300);
+    }, 200);
   }, [onClose]);
   return (
     <Transition.Root show={show} as={Fragment}>

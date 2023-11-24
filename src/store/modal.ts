@@ -26,7 +26,14 @@ interface GlobalModalState {
 
   quickView: boolean;
   quickViewState: IProduct | null;
-  setQuickViewState: ( quickView:boolean, quickViewState :any) => void;
+  setQuickViewState: (quickView: boolean, quickViewState: any) => void;
+
+  showPostQuestion: boolean;
+  postQuestionState: IProduct | null;
+  setPostQuestionState: (
+    showPostQuestion: boolean,
+    postQuestionState: any
+  ) => void;
 }
 export const useGlobalModalStateStore = create<GlobalModalState>((set) => ({
   userMenu: false,
@@ -49,4 +56,9 @@ export const useGlobalModalStateStore = create<GlobalModalState>((set) => ({
   quickViewState: null,
   setQuickViewState: (quickView, quickViewState) =>
     set(() => ({ quickView, quickViewState })),
+
+  showPostQuestion: false,
+  postQuestionState: null,
+  setPostQuestionState: (showPostQuestion, postQuestionState) =>
+    set(() => ({ showPostQuestion, postQuestionState })),
 }));

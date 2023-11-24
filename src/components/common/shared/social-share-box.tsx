@@ -47,7 +47,7 @@ const SocialShareBox: React.FC<Props> = ({ className = "", shareUrl = "" }) => {
   return (
     <div
       className={cn(
-        "shadow-card bg-white rounded-md p-4 md:p-6 lg:p-7",
+        "shadow-card bg-white dark:bg-gray-900 rounded-md p-4 md:p-6 lg:p-7",
         className
       )}
     >

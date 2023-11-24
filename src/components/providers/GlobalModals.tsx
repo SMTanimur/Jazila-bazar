@@ -7,6 +7,7 @@ import MobileMainMenu from "../layout/mobile-menu/mobile-main-menu";
 import { Modal } from "../ui/Modal";
 import Drawer from "../ui/drawer";
 import dynamic from "next/dynamic";
+import PostQuestionModal from "@/modules/products/productQuestion/postQuestionModal";
 const CartSidebar = dynamic(() => import('@/components/cart/cart-sidebar-view'), {
   ssr: false,
 });
@@ -47,6 +48,15 @@ const GlobalModals = () => {
         onClose={() => globalModal.setQuickViewState(false, null)}
       >
         <QuickViewProduct />
+      </Modal>
+
+      <Modal
+        size="sm"
+        title="Ask a question"
+        show={globalModal.showPostQuestion}
+        onClose={() => globalModal.setPostQuestionState(false, null)}
+      >
+        <PostQuestionModal />
       </Modal>
     </div>
   );

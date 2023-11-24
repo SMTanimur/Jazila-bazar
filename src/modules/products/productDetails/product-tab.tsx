@@ -1,16 +1,19 @@
-import { useState } from 'react';
-import { Tab } from '@headlessui/react';
-import { cn } from '@/lib/utils';
+import { cn } from "@/lib/utils";
+import { useGlobalModalStateStore } from "@/store/modal";
+import { IProduct } from "@/types";
+import { Tab } from "@headlessui/react";
+import { useState } from "react";
 
-
-
-
-export default function ProductDetailsTab() {
+interface Props {
+  product: IProduct;
+}
+export default function ProductDetailsTab({ product }: Props) {
   let [tabHeading] = useState({
-    Product_Details: '',
-    Review_Rating: '',
+    Product_Details: "",
+    Review_Rating: "",
+    Questions_And_Answers: "",
   });
-
+  const globalModal = useGlobalModalStateStore((state) => state);
   return (
     <div className="w-full xl:px-2 py-11 lg:py-14 xl:py-16 sm:px-0">
       <Tab.Group>
@@ -20,14 +23,14 @@ export default function ProductDetailsTab() {
               key={item}
               className={({ selected }) =>
                 cn(
-                  'relative inline-block transition-all text-15px lg:text-17px leading-5 text-gray-700 focus:outline-none pb-3 lg:pb-5 hover:text-brand  ml-8',
+                  "relative inline-block transition-all text-15px lg:text-17px leading-5 text-gray-700 focus:outline-none pb-3 lg:pb-5 hover:text-brand  ml-8",
                   selected
-                    ? 'font-semibold after:absolute after:w-full after:h-0.5 after:bottom-0 after:translate-y-[1px] after:right-0 after:bg-primary'
-                    : ''
+                    ? "font-semibold after:absolute after:w-full after:h-0.5 after:bottom-0 after:translate-y-[1px] after:right-0 after:bg-primary"
+                    : ""
                 )
               }
             >
-              {item.split('_').join(' ')}
+              {item.split("_").join(" ")}
             </Tab>
           ))}
         </Tab.List>
@@ -62,11 +65,26 @@ export default function ProductDetailsTab() {
                 UK 8-10, model shown is a UK 8 and 5’5. !!
               </p>
             </div>
-           
           </Tab.Panel>
           <Tab.Panel>
-            <div>
-              kjdkfd
+            <div>kjdkfd</div>
+          </Tab.Panel>
+
+          <Tab.Panel>
+            <div className="flex flex-col ">
+              <div className="flex items-center justify-between">
+                <h1 className="text-lg text-gray-800 dark:text-white font-medium">
+                  Have Doubts Regarding This Product ?
+                </h1>
+                <button
+                  className="py-2 px-4 bg-gray-100 rounded-lg text-gray-800 dark:text-white"
+                  onClick={() =>
+                    globalModal.setPostQuestionState(true, product)
+                  }
+                >
+                  Post Your Question
+                </button>
+              </div>
             </div>
           </Tab.Panel>
         </Tab.Panels>
