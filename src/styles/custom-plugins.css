@@ -6,6 +6,13 @@
   @apply max-w-[90%] sm:max-w-none;
 }
 
+/* Product Single Page thumb slider style */
+.product-gallery .swiper-thumbs .swiper-slide-thumb-active {
+  @apply border border-primary;
+}
+.product-gallery .swiper-button-disabled {
+  @apply opacity-0 transition-opacity duration-200;
+}
 :is(#carousel, .collections-slide):hover
   :is(.swiper-button-prev, .swiper-button-next) {
   @apply opacity-100;

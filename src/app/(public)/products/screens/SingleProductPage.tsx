@@ -24,8 +24,6 @@ const SingleProductPage = ({ productSlug }: Props) => {
       <div className="flex flex-col space-y-5 md:flex-row  md:space-x-6 container py-8">
         <div className="w-full md:w-[75%] overflow-hidden ">
           <ProductDetails {...{ product: data as IProduct }} />
-
-          <ProductDetailsTab />
         </div>
         <div className="w-full md:w-[25%] ">
           <div className="flex  space-y-5 bg-gray-100 dark:bg-background flex-col py-4 px-4 overflow-hidden">
@@ -76,6 +74,11 @@ const SingleProductPage = ({ productSlug }: Props) => {
             />
           </div>
         </div>
+
+        
+      </div>
+      <div className="container">
+      <ProductDetailsTab />
       </div>
     </div>
   );

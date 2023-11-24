@@ -3,7 +3,7 @@ import { ImageInfo } from "@/types";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import Image from "next/image";
 import { useRef, useState } from "react";
-import { Autoplay, Navigation, Thumbs } from "swiper/modules";
+import { Autoplay, FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { SwiperOptions } from "swiper/types";
 
@@ -53,7 +53,7 @@ const ThumbnailCarousel: React.FC<Props> = ({
           }}
    
           autoplay={{ delay: 3000, disableOnInteraction: false }}
-          modules={[Navigation, Thumbs,Autoplay]}
+          modules={[Navigation, Thumbs,Autoplay,FreeMode]}
           loop={true}
           navigation={{
             prevEl: prevRef.current!, // Assert non-null
@@ -98,9 +98,10 @@ const ThumbnailCarousel: React.FC<Props> = ({
         <Swiper
           id="productGalleryThumbs"
           onSwiper={setThumbsSwiper}
-          spaceBetween={5}
+          spaceBetween={20}
           watchSlidesProgress={true}
           freeMode={true}
+          modules={[Navigation, Thumbs, FreeMode]}
           observer={true}
           observeParents={true}
           breakpoints={galleryCarouselBreakpoints}
