@@ -1,7 +1,8 @@
-import { CreateQuestionInput, IProduct } from "@/types";
+import { CreateQuestionInput, IProduct, IQuestion } from "@/types";
 import {
   ProductsQueryOptionsType,
   QueryParamsType,
+  QuestionsQueryOptionsType,
 } from "@/types/custom.types";
 import { PaginatorInfo } from "@/types/utils";
 import { API_ENDPOINTS } from "@/utils/api/api-endpoints";
@@ -35,9 +36,28 @@ export const productClient = {
   },
 
   createQuestion: async (data: CreateQuestionInput) => {
-    console.log(data,"data")
     return HttpClient.post<{ message: string }>("/questions", data);
   },
 
+  getQuestions: async ({ queryKey }: QueryParamsType) => {
+    const [_key, params] = queryKey;
+
+    const {
+      page,
+      limit = 15,
+      shop_id,
+      orderBy = 'updatedAt',
+      sortedBy = 'desc',
+      user,
+      product,
+    } = params as QuestionsQueryOptionsType;
+  
+    const url = `/questions?${
+      shop_id ? `shop=${shop_id}` : ''
+    }&limit=${limit}&page=${page}&orderBy=${orderBy}&sortedBy=${sortedBy}${
+      user ? `&user=${user}` : ''
+    }${product ? `&product=${product}` : ''}`;
+    return HttpClient.get<PaginatorInfo<IQuestion>>(url);
+  },
   
 };

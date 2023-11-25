@@ -59,3 +59,65 @@
 .collections-slide .swiper-slide {
   @apply w-3/4;
 }
+
+.rc-pagination {
+  @apply flex flex-wrap items-center space-x-3 space-y-3 rtl:space-x-reverse;
+}
+
+.rc-pagination .rc-pagination-item {
+  @apply flex h-7 w-7 items-center justify-center rounded border border-border bg-gray-50 font-semibold hover:border-primary hover:text-primary focus:border-primary focus:text-primary;
+}
+.rc-pagination .rc-pagination-prev,
+.rc-pagination .rc-pagination-next,
+.rc-pagination.rc-pagination-simple .rc-pagination-prev,
+.rc-pagination.rc-pagination-simple .rc-pagination-next {
+  @apply mt-3 flex items-center text-sm capitalize text-primary;
+}
+/* .rc-pagination .rc-pagination-prev {
+  @apply ltr:mr-8 rtl:ml-8;
+}
+.rc-pagination .rc-pagination-next {
+  @apply ltr:ml-6 rtl:mr-6;
+} */
+
+.rc-pagination .rc-pagination-prev.rc-pagination-disabled,
+.rc-pagination .rc-pagination-next.rc-pagination-disabled {
+  @apply text-gray-300 hover:border-border hover:text-gray-300 focus:border-border;
+}
+
+.rc-pagination .rc-pagination-prev svg,
+.rc-pagination .rc-pagination-next svg {
+  @apply h-4 w-4 rtl:rotate-180 rtl:transform;
+}
+
+.rc-pagination .rc-pagination-item a {
+  @apply  text-sm ;
+}
+
+.rc-pagination .rc-pagination-item:focus a,
+.rc-pagination .rc-pagination-item:hover a {
+  @apply text-primary;
+}
+
+.rc-pagination .rc-pagination-jump-prev button,
+.rc-pagination .rc-pagination-jump-next button {
+  @apply h-8 text-gray-600 focus:outline-0 focus:ring-1 focus:ring-primary/30;
+}
+
+.rc-pagination .rc-pagination-item.rc-pagination-item-active {
+  @apply border-primary bg-primary text-white;
+}
+
+.rc-pagination .rc-pagination-item.rc-pagination-item-active a {
+  @apply text-white hover:text-white focus:text-white;
+}
+
+.rc-pagination .rc-pagination-options .rc-pagination-options-quick-jumper,
+.rc-pagination.rc-pagination-simple .rc-pagination-simple-pager {
+  @apply flex items-center  text-sm ;
+}
+
+.rc-pagination .rc-pagination-options .rc-pagination-options-quick-jumper input,
+.rc-pagination.rc-pagination-simple .rc-pagination-simple-pager input {
+  @apply h-8 rounded border border-border bg-gray-50 px-2  text-sm  hover:border-primary focus:border-primary focus:outline-0;
+}

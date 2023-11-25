@@ -540,3 +540,30 @@ export interface CreateQuestionInput {
   product: string;
   shop: string;
 }
+
+export interface IQuestion {
+  _id?: string;
+  user?: IUser;
+  shop?: IShop;
+  product?: IProduct;
+  question?: string;
+  answer?: string;
+  positive_feedbacks_count?: number;
+  negative_feedbacks_count?: number;
+  abusive_reports_count?: number;
+  createdAt?: string;
+  updatedAt?: string;
+  __v?: number;
+}
+
+export interface IPaginatorInfo {
+  totalDocs: number;
+  limit: number;
+  totalPages: number;
+  page: number;
+  pagingCounter: number;
+  hasPrevPage: boolean;
+  hasNextPage: boolean;
+  prevPage?: any;
+  nextPage?: any;
+}

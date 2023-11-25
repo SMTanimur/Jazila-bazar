@@ -60,6 +60,7 @@
     "overlayscrollbars-react": "^0.5.3",
     "postcss": "8.4.28",
     "query-string": "^8.1.0",
+    "rc-pagination": "^3.7.0",
     "react": "^18.2.0",
     "react-content-loader": "^6.2.1",
     "react-copy-to-clipboard": "^5.1.0",

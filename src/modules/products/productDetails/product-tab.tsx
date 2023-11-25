@@ -1,6 +1,9 @@
+import Pagination from "@/components/ui/pagination";
+import { useQuestionsQuery } from "@/hooks/api/question/question";
 import { cn } from "@/lib/utils";
+import QuestionCard from "@/modules/questions/questionCard";
 import { useGlobalModalStateStore } from "@/store/modal";
-import { IProduct } from "@/types";
+import { IPaginatorInfo, IProduct } from "@/types";
 import { authorizationAtom } from "@/utils/authorization-atom";
 import { Tab } from "@headlessui/react";
 import { useAtom } from "jotai";
@@ -15,8 +18,37 @@ export default function ProductDetailsTab({ product }: Props) {
     Review_Rating: "",
     Questions_And_Answers: "",
   });
+  const [page, setPage] = useState(1);
+  const { data, isLoading } = useQuestionsQuery({
+    page,
+    product: product?._id,
+    limit: 10,
+  });
+
+  const questions = data?.docs;
+  console.log(questions);
+
+  const paginateInfo: IPaginatorInfo = {
+    hasNextPage: data?.hasNextPage!,
+    hasPrevPage: data?.hasPrevPage!,
+    limit: data?.limit!,
+    nextPage: data?.nextPage!,
+    page: data?.page!,
+    pagingCounter: data?.pagingCounter!,
+    prevPage: data?.prevPage!,
+    totalDocs: data?.totalDocs!,
+    totalPages: data?.totalPages!,
+  };
+
+  function onPagination(current: number) {
+    setPage(current);
+  }
   const [isAuthorized] = useAtom(authorizationAtom);
   const globalModal = useGlobalModalStateStore((state) => state);
+
+  // if (isLoading && isEmpty(data?.docs)) {
+  //   return <Spinner />;
+  // }
   return (
     <div className="w-full xl:px-2 py-11 lg:py-14 xl:py-16 sm:px-0">
       <Tab.Group>
@@ -88,6 +120,53 @@ export default function ProductDetailsTab({ product }: Props) {
                 >
                   Post Your Question
                 </button>
+              </div>
+
+              <div>
+                {data?.docs?.length !== 0 ? (
+                  <div
+                    className={cn("border-b border-border border-opacity-70")}
+                  >
+                    <div className={cn("")}>
+                      {questions?.map((question: any) => (
+                        <QuestionCard
+                          key={`question-no-${question._id}`}
+                          question={question}
+                        />
+                      ))}
+                      {/* Pagination */}
+                      {paginateInfo && (
+                        <div className="flex items-center justify-between border-t border-border border-opacity-70 py-4">
+                          {!!paginateInfo?.totalDocs && (
+                            <div className="text-xs text-body text-opacity-70">
+                              Page {paginateInfo?.page} of{" "}
+                              {Math.ceil(
+                                paginateInfo?.totalPages / paginateInfo?.page
+                              )}
+                            </div>
+                          )}
+
+                          {!!paginateInfo?.totalDocs && (
+                            <div className="mb-2 flex items-center">
+                              <Pagination
+                                total={paginateInfo?.totalDocs}
+                                current={paginateInfo?.pagingCounter}
+                                pageSize={paginateInfo?.limit as number}
+                                onChange={onPagination}
+                              />
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex flex-col items-center justify-center border-b border-border border-opacity-70 px-5 py-16">
+                    <h3 className="text-lg font-semibold text-gray-400 dark:text-white">
+                      No Question Found
+                    </h3>
+                  </div>
+                )}
               </div>
             </div>
           </Tab.Panel>

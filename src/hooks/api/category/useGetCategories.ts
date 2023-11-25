@@ -1,5 +1,5 @@
 import { categoryClient } from "@/services/category.service";
-import { CategoryQueryOptions, ICategory, IPaymentInfo, PaginatorInfo } from "@/types";
+import { CategoryQueryOptions, ICategory,  PaginatorInfo } from "@/types";
 import { API_ENDPOINTS } from "@/utils/api/api-endpoints";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
