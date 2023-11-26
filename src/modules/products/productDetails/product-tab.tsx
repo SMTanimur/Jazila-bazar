@@ -1,4 +1,6 @@
 import Pagination from "@/components/ui/pagination";
+import RatingsBadge from "@/components/ui/rating-badge";
+import RatingProgressBar from "@/components/ui/rating-progress-bar";
 import { useQuestionsQuery } from "@/hooks/api/question/question";
 import { cn } from "@/lib/utils";
 import QuestionCard from "@/modules/questions/questionCard";
@@ -26,7 +28,6 @@ export default function ProductDetailsTab({ product }: Props) {
   });
 
   const questions = data?.docs;
-  console.log(questions);
 
   const paginateInfo: IPaginatorInfo = {
     hasNextPage: data?.hasNextPage!,
@@ -102,7 +103,80 @@ export default function ProductDetailsTab({ product }: Props) {
             </div>
           </Tab.Panel>
           <Tab.Panel>
-            <div>kjdkfd</div>
+            <div className="flex flex-col md:flex-row items-center px-5 ">
+              <div className="md:max-w-md w-full px-3">
+                <RatingsBadge
+                  rating={product?.ratings}
+                  className="mb-4"
+                  totalRating={product?.rating_count?.length}
+                  variant="large"
+                />
+                <div className="w-full space-y-3 py-0.5 pt-4 sm:w-auto sm:pt-0  sm:pr-8">
+                  <RatingProgressBar
+                    ratingProgressItem={product?.rating_count?.find(
+                      (rating: any) => Number(rating.rating) === 5
+                    )}
+                    ratingId={5}
+                    totalReviews={product?.totalReviews!}
+                  />
+                  <RatingProgressBar
+                    ratingProgressItem={product?.rating_count?.find(
+                      (rating: any) => Number(rating?.rating) === 4
+                    )}
+                    ratingId={4}
+                    totalReviews={product?.totalReviews!}
+                    colorClassName="bg-teal-500"
+                  />
+                  <RatingProgressBar
+                    ratingProgressItem={product?.rating_count?.find(
+                      (rating: any) => Number(rating.rating) === 3
+                    )}
+                    ratingId={3}
+                    totalReviews={product?.totalReviews!}
+                    colorClassName="bg-teal-400"
+                  />
+                  <RatingProgressBar
+                    ratingProgressItem={product?.rating_count?.find(
+                      (rating: any) => Number(rating.rating) === 2
+                    )}
+                    ratingId={2}
+                    totalReviews={product?.totalReviews!}
+                    colorClassName="bg-amber-500"
+                  />
+                  <RatingProgressBar
+                    ratingProgressItem={product?.rating_count?.find(
+                      (rating: any) => Number(rating.rating) === 1
+                    )}
+                    ratingId={1}
+                    totalReviews={product?.totalReviews!}
+                    colorClassName="bg-rose-500"
+                  />
+                </div>
+
+                <div className="py-4 flex flex-col justify-center space-y-6">
+                  <div className="gap-2">
+                    <h1 className="text-xl text-gray-900 dark:text-white font-medium">
+                      Review this product
+                    </h1>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      Let other customers know what you think
+                    </p>
+                  </div>
+
+                  <button
+                    className="py-2 px-4 bg-gray-100 dark:bg-gray-800 rounded-lg text-gray-800 dark:text-white"
+                    disabled={!isAuthorized}
+                    onClick={() =>
+                      globalModal.setReviewModalState(true, product)
+                    }
+                  >
+                    Write a Review
+                  </button>
+                </div>
+              </div>
+
+              <div className="w-full">dfdsfd</div>
+            </div>
           </Tab.Panel>
 
           <Tab.Panel>
@@ -112,7 +186,7 @@ export default function ProductDetailsTab({ product }: Props) {
                   Have Doubts Regarding This Product ?
                 </h1>
                 <button
-                  className="py-2 px-4 bg-gray-100 rounded-lg text-gray-800 dark:text-white"
+                  className="py-2 px-4 bg-gray-100 dark:bg-gray-800 rounded-lg text-gray-800 dark:text-white"
                   disabled={!isAuthorized}
                   onClick={() =>
                     globalModal.setPostQuestionState(true, product)

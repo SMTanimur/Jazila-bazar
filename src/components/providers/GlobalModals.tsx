@@ -8,6 +8,7 @@ import { Modal } from "../ui/Modal";
 import Drawer from "../ui/drawer";
 import dynamic from "next/dynamic";
 import PostQuestionModal from "@/modules/products/productQuestion/postQuestionModal";
+import ReviewFormView from "@/modules/review/review-form-view";
 const CartSidebar = dynamic(() => import('@/components/cart/cart-sidebar-view'), {
   ssr: false,
 });
@@ -57,6 +58,15 @@ const GlobalModals = () => {
         onClose={() => globalModal.setPostQuestionState(false, null)}
       >
         <PostQuestionModal />
+      </Modal>
+
+      <Modal
+        size="sm"
+        title="Write a review"
+        show={globalModal.showReviewModal}
+        onClose={() => globalModal.setReviewModalState(false, null)}
+      >
+        <ReviewFormView />
       </Modal>
     </div>
   );

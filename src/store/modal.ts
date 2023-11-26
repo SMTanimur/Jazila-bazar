@@ -34,6 +34,13 @@ interface GlobalModalState {
     showPostQuestion: boolean,
     postQuestionState: any
   ) => void;
+
+  showReviewModal: boolean;
+  reviewModalState: IProduct | null;
+  setReviewModalState: (
+    showReviewModal: boolean,
+    reviewModalState: any
+  ) => void;
 }
 export const useGlobalModalStateStore = create<GlobalModalState>((set) => ({
   userMenu: false,
@@ -61,4 +68,9 @@ export const useGlobalModalStateStore = create<GlobalModalState>((set) => ({
   postQuestionState: null,
   setPostQuestionState: (showPostQuestion, postQuestionState) =>
     set(() => ({ showPostQuestion, postQuestionState })),
+
+  showReviewModal: false,
+  reviewModalState: null,
+  setReviewModalState: (showReviewModal, reviewModalState) =>
+    set(() => ({ showReviewModal, reviewModalState })),
 }));

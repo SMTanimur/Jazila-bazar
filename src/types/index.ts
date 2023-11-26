@@ -354,8 +354,6 @@ export interface IOrder {
   created_at: string;
   updated_at: string;
   address?: IAddress;
-  translated_languages: string[];
-  language: string;
   order_status: string;
   payment_status: string;
   shop_id?: string;
@@ -409,8 +407,10 @@ export interface IProduct {
   length?: string;
   width?: string;
   price: number;
+  rating_count:[];
   quantity?: number;
   unit?: string;
+  totalReviews?: number;
   created_at: string;
   updated_at: string;
   ratings: number;
