@@ -28,11 +28,9 @@ export const Modal: FC<ModalProps> = ({
   onClose,
 }) => {
   const handleClose = useCallback(() => {
-    setTimeout(() => {
-      if (onClose) {
-        onClose();
-      }
-    }, 200);
+    if (onClose) {
+      onClose();
+    }
   }, [onClose]);
   return (
     <Transition.Root show={show} as={Fragment}>
@@ -60,9 +58,9 @@ export const Modal: FC<ModalProps> = ({
           />
           <Transition.Child
             as={Fragment}
-            enter="ease-out duration-100"
-            enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            enterTo="opacity-100 translate-y-0 sm:scale-100"
+            enter="ease-out duration-200"
+            enterFrom="opacity-0 translate-y-4  sm:translate-y-0 sm:scale-95"
+            enterTo="opacity-100 translate-y-0  sm:scale-100"
             leave="ease-in duration-100"
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
