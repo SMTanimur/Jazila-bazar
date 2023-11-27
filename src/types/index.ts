@@ -590,8 +590,8 @@ export interface IReview {
   positive_feedbacks_count: number;
   negative_feedbacks_count: number;
   my_feedback: IFeedback;
-  created_at: string;
-  updated_at: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface IFeedback {
