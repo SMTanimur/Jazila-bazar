@@ -8,7 +8,7 @@ import { toast } from "sonner";
 export function useReviews(options?: Partial<ReviewsQueryOptionsType>) 
 {
   return useQuery<PaginatorInfo<IReview>, Error>(
-    ["questions", options],
+    ["reveiws", options],
     reviewClient.getReviews,
     {
       keepPreviousData: true,

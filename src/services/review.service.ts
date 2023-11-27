@@ -23,7 +23,7 @@ export const reviewClient = {
       sortedBy = "desc",
     } = params as ReviewsQueryOptionsType;
 
-    const url = `/categories?${product ? `product=${product}&` : ""}${
+    const url = `/reviews?${product ? `product=${product}&` : ""}${
       shop ? `&shop=${shop}` : ""
     }${
       user ? `&user=${user}` : ""
