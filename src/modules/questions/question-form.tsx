@@ -21,7 +21,7 @@ const QuestionForm = () => {
   const { postQuestionState, setPostQuestionState } = useGlobalModalStateStore(
     (state) => state
   );
-  const loginForm = useForm<CreateQuestionInput>({
+  const questionForm = useForm<CreateQuestionInput>({
     resolver: zodResolver(QuestionSchema),
     defaultValues: {
       question: "",
@@ -38,13 +38,13 @@ const QuestionForm = () => {
     });
   };
   return (
-    <Form {...loginForm}>
+    <Form {...questionForm}>
       <form
         className="grid gap-4 py-6"
-        onSubmit={(...args) => void loginForm.handleSubmit(onSubmit)(...args)}
+        onSubmit={(...args) => void questionForm.handleSubmit(onSubmit)(...args)}
       >
         <FormField
-          control={loginForm.control}
+          control={questionForm.control}
           name="question"
           render={({ field }) => (
             <FormItem>

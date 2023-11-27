@@ -46,7 +46,7 @@ export type QuestionsQueryOptionsType = {
   sortedBy?: SortOrder;
 };
 export type ReviewsQueryOptionsType = {
-  shop_id?: string;
+  shop?: string;
   user?: string;
   product?: string;
   page?: number;

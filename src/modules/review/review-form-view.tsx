@@ -4,6 +4,7 @@ import { useGlobalModalStateStore } from "@/store/modal";
 import Image from "next/image";
 import React from "react";
 import StarIcon from "../../components/ui/star-icon";
+import ReviewForm from "./review-form";
 
 const ReviewFormView = () => {
   const { reviewModalState } = useGlobalModalStateStore((state) => state);
@@ -44,6 +45,7 @@ const ReviewFormView = () => {
             </div>
           </div>
         </div>
+        <ReviewForm/>
       </div>
     </React.Fragment>
   );

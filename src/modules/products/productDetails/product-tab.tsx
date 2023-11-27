@@ -105,13 +105,14 @@ export default function ProductDetailsTab({ product }: Props) {
           <Tab.Panel>
             <div className="flex flex-col md:flex-row items-center px-5 ">
               <div className="md:max-w-md w-full px-3">
+                
                 <RatingsBadge
                   rating={product?.ratings}
                   className="mb-4"
                   totalRating={product?.rating_count?.length}
                   variant="large"
                 />
-                <div className="w-full space-y-3 py-0.5 pt-4 sm:w-auto sm:pt-0  sm:pr-8">
+                <div className="w-full space-y-3 py-0.5 pt-4 sm:w-auto sm:pt-0  sm:pr-8  md:border-r">
                   <RatingProgressBar
                     ratingProgressItem={product?.rating_count?.find(
                       (rating: any) => Number(rating.rating) === 5
@@ -151,9 +152,8 @@ export default function ProductDetailsTab({ product }: Props) {
                     totalReviews={product?.totalReviews!}
                     colorClassName="bg-rose-500"
                   />
-                </div>
 
-                <div className="py-4 flex flex-col justify-center space-y-6">
+                <div className=" flex mt-4 flex-col justify-center space-y-6">
                   <div className="gap-2">
                     <h1 className="text-xl text-gray-900 dark:text-white font-medium">
                       Review this product
@@ -173,6 +173,9 @@ export default function ProductDetailsTab({ product }: Props) {
                     Write a Review
                   </button>
                 </div>
+                </div>
+
+                
               </div>
 
               <div className="w-full">dfdsfd</div>

@@ -567,3 +567,40 @@ export interface IPaginatorInfo {
   prevPage?: any;
   nextPage?: any;
 }
+
+export interface CreateReviewInput {
+  product: string;
+  shop: string;
+  order?: string;
+  comment?: string;
+  rating: number;
+  photos?: [];
+}
+
+export interface IReview {
+  id: string;
+  name: string;
+  rating: number;
+  comment: string;
+  photos?: [];
+  user: IUser;
+  product: IProduct;
+  shop: IShop;
+  feedbacks: IFeedback[];
+  positive_feedbacks_count: number;
+  negative_feedbacks_count: number;
+  my_feedback: IFeedback;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface IFeedback {
+  id: string;
+  user_id: string;
+  model_type: string;
+  model_id: string;
+  positive: boolean;
+  negative: boolean;
+  created_at: string;
+  updated_at: string;
+}
