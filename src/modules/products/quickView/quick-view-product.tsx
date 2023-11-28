@@ -67,7 +67,7 @@ export const QuickViewProduct = () => {
   return (
     <div className="px-6 py-4">
       <div className="mt-4 flex flex-col sm:flex-row gap-5">
-        <div className="w-full sm:w-1/2  ">
+        <div className="w-full sm:w-1/2 product-gallery  ">
           {!!product?.gallery?.length ? (
             <ThumbnailCarousel
               gallery={product?.gallery}

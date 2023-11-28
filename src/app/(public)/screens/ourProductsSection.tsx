@@ -5,7 +5,7 @@ import { useGetProductsQuery } from "@/hooks/api/product/useGetProducts";
 
 const OurProductsSection = () => {
   const { data, isLoading } = useGetProductsQuery({
-    limit: 15,
+    limit: 12,
   });
   const prodcuts = data?.docs;
   return (

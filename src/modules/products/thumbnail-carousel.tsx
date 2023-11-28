@@ -109,7 +109,7 @@ const ThumbnailCarousel: React.FC<Props> = ({
           {gallery?.map((item: ImageInfo) => (
             <SwiperSlide
               key={`product-thumb-gallery-${item.img_id}`}
-              className={cn(isSingleProductPage ? "max-w-[200px] w-full" :"max-w-[100px] w-full","flex items-center justify-center  transition border rounded cursor-pointer border-border hover:opacity-75  px-2")}
+              className={cn(isSingleProductPage ? "max-w-[200px] w-full" :"max-w-[100px] w-full","flex items-center justify-center  transition border rounded cursor-pointer border-border dark:border-gray-500 hover:opacity-75  px-2")}
             >
               <Image
                 src={item?.img_url as string}

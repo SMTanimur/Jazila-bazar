@@ -56,7 +56,7 @@ const ProductCard = ({ product }: Props) => {
             width={150}
             height={100}
           />
-          <div className="absolute -bottom-12 bg-white dark:bg-black/80 dark:shadow-sm dark:shadow-gray-200 rounded-md group-hover:bottom-5 transition-all duration-500 py-3 px-4 z-[100] flex items-center space-x-2">
+          <div className="absolute -bottom-12 bg-white dark:bg-black/80 dark:shadow-sm dark:shadow-gray-200 rounded-lg group-hover:bottom-5 transition-all duration-500 py-2 px-4 z-[100] flex items-center space-x-2">
             <button
               onClick={() => globalModal.setQuickViewState(true, product)}
             >
