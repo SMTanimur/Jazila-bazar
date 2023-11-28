@@ -106,7 +106,7 @@ const ProductCard = ({ product }: Props) => {
             {[...Array(5)].map((_, idx) => (
               <StarIcon
                 key={idx}
-                color={idx < product.ratings ? "#F3B81F" : "#f2f"}
+                color={idx < product.ratings ? "#F3B81F" : "#fff"}
                 className="w-3.5 lg:w-4 h-3.5 lg:h-4 mx-0.5"
               />
             ))}
