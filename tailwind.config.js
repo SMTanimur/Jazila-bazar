@@ -8,12 +8,31 @@ module.exports = {
     './src/**/*.{ts,tsx}',
   ],
   theme: {
+    screens: {
+      'xs': '420px',
+      
+      'sm': '640px',
+    // => @media (min-width: 640px) { ... }
+
+    'md': '768px',
+    // => @media (min-width: 768px) { ... }
+
+    'lg': '1024px',
+    // => @media (min-width: 1024px) { ... }
+
+    'xl': '1280px',
+    // => @media (min-width: 1280px) { ... }
+
+    '2xl': '1500px',
+    // => @media (min-width: 1500px) { ... }
+    },
     container: {
       center: true,
       padding: '2rem',
       screens: {
-        '3xl': '1500px',
+        '2xl': '1500px',
       },
+    
     },
     extend: {
       colors: {

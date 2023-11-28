@@ -20,7 +20,7 @@ export default function ProductDetailsTab({ product }: Props) {
   let [tabHeading] = useState({
     Product_Details: "",
     Review_Rating: "",
-    Questions_And_Answers: "",
+    QA: ""
   });
   const [page, setPage] = useState(1);
   const [reviewPage, setReviewPage] = useState(1);
@@ -77,15 +77,15 @@ export default function ProductDetailsTab({ product }: Props) {
   //   return <Spinner />;
   // }
   return (
-    <div className="w-full xl:px-2 py-11 lg:py-14 xl:py-16 sm:px-0">
+    <div className="w-full  py-11 lg:py-14 xl:py-16 ">
       <Tab.Group>
-        <Tab.List className="block border-b border-border-base">
+        <Tab.List className="block border-b border-border-base text-xs sm:text-sm md:text-base">
           {Object.keys(tabHeading).map((item) => (
             <Tab
               key={item}
               className={({ selected }) =>
                 cn(
-                  "relative inline-block transition-all text-15px lg:text-17px leading-5 text-gray-700 focus:outline-none pb-3 lg:pb-5 hover:text-brand  ml-8",
+                  "relative inline-block transition-all text-15px lg:text-17px leading-5 text-gray-700 focus:outline-none pb-3 lg:pb-5 hover:text-primary  ml-8",
                   selected
                     ? "font-semibold after:absolute after:w-full after:h-0.5 after:bottom-0 after:translate-y-[1px] after:right-0 after:bg-primary"
                     : ""
@@ -128,7 +128,7 @@ export default function ProductDetailsTab({ product }: Props) {
               </p>
             </div>
           </Tab.Panel>
-          <Tab.Panel>
+          <Tab.Panel className="min-w-[270px] mx-auto">
             <div className="flex flex-col justify-center space-y-6 md:space-y-0 md:flex-row md:items-center px-5 ">
               <div className="md:max-w-md w-full px-3">
                 <RatingsBadge
@@ -201,13 +201,13 @@ export default function ProductDetailsTab({ product }: Props) {
                 </div>
               </div>
 
-              <div className="w-full px-3">
+              <div className="w-full sm:px-3">
                 <div>
                   {review?.docs?.length !== 0 ? (
                     <div
                       className={cn("border-b border-border border-opacity-70")}
                     >
-                      <div className="space-y-6">
+                      <div className="space-y-6 w-full mx-auto">
                         {review?.docs?.map((review: any) => (
                           <ReviewCard
                             key={`review-no-${review._id}`}
@@ -254,12 +254,12 @@ export default function ProductDetailsTab({ product }: Props) {
 
           <Tab.Panel>
             <div className="flex flex-col ">
-              <div className="flex items-center justify-between">
-                <h1 className="text-lg text-gray-800 dark:text-white font-medium">
+              <div className="flex flex-col justify-center sm:flex-row sm:items-center sm:justify-between">
+                <h1 className="text-sm sm:text-lg text-gray-800 dark:text-white font-medium">
                   Have Doubts Regarding This Product ?
                 </h1>
                 <button
-                  className="py-2 px-4 bg-gray-100 dark:bg-gray-800 rounded-lg text-gray-800 dark:text-white"
+                  className="py-2 px-4 mt-3 sm:mt-0 bg-gray-100 dark:bg-gray-800 rounded-lg text-gray-800 dark:text-white text-sm sm:text-base"
                   disabled={!isAuthorized}
                   onClick={() =>
                     globalModal.setPostQuestionState(true, product)

@@ -28,13 +28,13 @@ const SingleProductPage = ({ productSlug }: Props) => {
         <div className="w-full md:w-[25%] ">
           <div className="flex  space-y-5 bg-gray-100 dark:bg-background flex-col py-4 px-4 overflow-hidden">
             <div className="bg-white dark:bg-gray-800 py-4 px-4 w-full flex gap-4 items-center ">
-              <div>
+              <div className="max-w-[80px] w-full">
                 <Image
                   src={data?.shop.logo.img_url as string}
                   alt={data?.shop.name as string}
-                  width={90}
-                  height={90}
-                  className="rounded-full w-14 h-14 sm:w-20 sm:h-20"
+                  width={80}
+                  height={80}
+                  className="rounded-full "
                 />
               </div>
               <div>

@@ -72,7 +72,7 @@ const CartItemsDetails = () => {
           </button>
 
           <button className="px-4 w-full py-2 bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-white rounded-lg grid place-items-center">
-            <Link href="/prodcuts">Return to Shopping</Link>
+            <Link href="/products">Return to Shopping</Link>
           </button>
         </div>
       </div>

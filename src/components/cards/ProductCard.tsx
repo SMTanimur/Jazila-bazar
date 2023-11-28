@@ -10,6 +10,7 @@ import Link from "next/link";
 import { toast } from "sonner";
 import { Button } from "../ui/button";
 import { Card } from "../ui/card";
+import StarIcon from "../ui/star-icon";
 
 interface Props {
   product: IProduct;
@@ -87,25 +88,39 @@ const ProductCard = ({ product }: Props) => {
             <p className="text-sm text-gray-600">1(items)</p>
           )}
           <div className="flex gap-3 items-center">
-            <p className="text-primary font-medium">
+            <p className="text-primary font-medium text-xs xs:text-sm md:text-base">
               {product.product_type === "variable"
                 ? `${minPrice} - ${maxPrice}`
                 : price}
             </p>
             {basePrice && (
-              <del className="mx-1 text-sm text-gray-600 text-opacity-70">
+              <del className="mx-1 text-xs md:text-sm text-gray-600 text-opacity-70">
                 {basePrice}
               </del>
             )}
           </div>
         </Link>
 
+        <div className="flex items-center">
+        <div className="flex -mx-0.5 ">
+            {[...Array(5)].map((_, idx) => (
+              <StarIcon
+                key={idx}
+                color={idx < product.ratings ? "#F3B81F" : "#f2f"}
+                className="w-3.5 lg:w-4 h-3.5 lg:h-4 mx-0.5"
+              />
+            ))}
+          </div>
+          <p className="text-sm ml-3">{product.in_stock ? "In-Stock" : "Out of Stock"}</p>
+        </div>
+
         <Button
           variant={"outline"}
           className="mt-4 rounded-full"
           onClick={addToCart}
         >
-          Add to Cart
+          <p className="sm:hidden">Add</p>
+          <p className="hidden sm:block">Add to Cart</p>
         </Button>
         {product.price ? (
           <div className="bg-primary p-1 absolute top-3 right-3 rounded-lg">

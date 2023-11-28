@@ -14,7 +14,6 @@ export default function RatingProgressBar({
   totalReviews,
   colorClassName = 'bg-primary',
 }: RatingProgressProps) {
-  console.log(ratingProgressItem)
   return (
     <div className="flex items-center text-sm w-full ">
       <div className="flex w-11 shrink-0 items-center space-x-1 font-semibold space-x-reverse">
