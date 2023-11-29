@@ -16,17 +16,17 @@ const SingleProductPage = ({ productSlug }: Props) => {
   const { data, isLoading } = useProductQuery(productSlug);
   const productUrl = `${process.env.NEXT_PUBLIC_APP_URL}${ROUTES.PRODUCT}/${productSlug}`;
   return (
-    <div className="py-5  ">
+    <div className="py-5 ">
       <section className="  h-12 py-2  bg-gray-100 dark:bg-gray-900 flex justify-center items-center ">
         <Breadcrumb />
       </section>
 
-      <div className="flex flex-col space-y-5 md:flex-row  md:space-x-6 container py-8">
-        <div className="w-full md:w-[75%] overflow-hidden ">
+      <div className="flex flex-col space-y-5 xl:flex-row  xl:space-x-6 container py-8">
+        <div className="w-full xl:w-[75%] overflow-hidden ">
           <ProductDetails {...{ product: data as IProduct }} />
         </div>
-        <div className="w-full md:w-[25%] ">
-          <div className="flex  space-y-5 bg-gray-100 dark:bg-background flex-col py-4 px-4 overflow-hidden">
+        <div className="w-full xl:w-[25%] ">
+          <div className="flex  space-y-5 bg-gray-100 dark:bg-background flex-col py-4 sm:px-4 overflow-hidden">
             <div className="bg-white dark:bg-gray-800 py-4 px-4 w-full flex gap-4 items-center ">
               <div className="max-w-[80px] w-full">
                 <Image

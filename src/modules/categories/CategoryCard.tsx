@@ -12,8 +12,8 @@ interface Props {
 const CategoryCard = ({ category }: Props) => {
   return (
     <React.Fragment>
-      <div className=" dark:bg-[#1f1f1f] bg-[#f5f5f5] rounded-lg relative group w-[170px] select-none xs:h-[250px] h-[216px] overflow-hidden px-5 cursor-pointer hover:bg-primary/10 dark:hover:bg-primary/10  space-y-4 group">
-        <div className="flex flex-col  mt-3">
+      <div className=" dark:bg-gray-900 bg-[#f5f5f5] rounded-xl relative group w-[170px] select-none xs:h-[250px] h-[216px] overflow-hidden px-5 cursor-pointer hover:bg-primary/10 dark:hover:bg-primary/10  space-y-4 group flex flex-col justify-center ">
+        <div className="flex flex-col  -mt-8">
           <h5 className="text-xl text-gray-800 dark:text-white font-semibold group-hover:scale-105 group-hover:text-primary transition-all duration-300 ">
             {category.name.length > 9
               ? `${category.name.substring(0, 9)}...`
@@ -24,9 +24,9 @@ const CategoryCard = ({ category }: Props) => {
           </p>
         </div>
 
-        <div className=" max-w-[110px] max-h-[120px]  w-full flex justify-center items-center">
+        <div className=" max-w-[120px] max-h-[120px]  w-full flex justify-center items-center">
           <Image
-            className="object-fill xs:mt-10 h-[120px] group-hover:scale-110 hover:transition-all duration-500"
+            className="object-center xs:mt-8  h-[120px] group-hover:scale-110 hover:transition-all duration-500"
             height={120}
             width={110}
             src={category.image?.img_url}

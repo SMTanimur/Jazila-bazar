@@ -128,7 +128,7 @@ export default function ProductDetailsTab({ product }: Props) {
               </p>
             </div>
           </Tab.Panel>
-          <Tab.Panel className="min-w-[270px] mx-auto">
+          <Tab.Panel className="min-w-[270px] w-full mx-auto">
             <div className="flex flex-col justify-center space-y-6 md:space-y-0 md:flex-row md:items-center px-5 ">
               <div className="md:max-w-md w-full px-3">
                 <RatingsBadge

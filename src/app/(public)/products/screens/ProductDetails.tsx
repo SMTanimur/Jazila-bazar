@@ -2,6 +2,7 @@ import ProgressBar from "@/components/common/shared/ProgressBar";
 import { Button } from "@/components/ui/button";
 import Counter from "@/components/ui/counter";
 import { Icons } from "@/components/ui/icons";
+import StarIcon from "@/components/ui/star-icon";
 import usePrice from "@/hooks/use-price";
 import { cn } from "@/lib/utils";
 import ProductAttributes from "@/modules/products/product-attributes";
@@ -66,8 +67,8 @@ const ProductDetails = ({ product }: Props) => {
     toast.success("Product added to cart");
   }
   return (
-    <div className="mt-4 flex flex-col sm:flex-row gap-5">
-      <div className="w-full sm:w-1/2 product-gallery ">
+    <div className="mt-4 flex flex-col md:flex-row gap-5">
+      <div className="w-full md:w-1/2 product-gallery ">
         {!!product?.gallery?.length ? (
           <ThumbnailCarousel gallery={product?.gallery} isSingleProductPage />
         ) : (
@@ -82,14 +83,14 @@ const ProductDetails = ({ product }: Props) => {
         )}
       </div>
 
-      <div className="w-full sm:w-1/2 flex flex-col space-y-4 relative ">
+      <div className="w-full md:w-1/2 flex flex-col  space-y-4 relative ">
         <div className="flex flex-col space-y-3 justify-center">
-          <div className="flex flex-col gap-2 justify-center">
+          <div className="flex flex-col gap-2 md:justify-center ">
             <h2 className="text-xl font-medium text-gray-800 dark:text-white">
               {product?.name}
             </h2>
             {product?.unit && isEmpty(variations) ? (
-              <div className="text-sm font-medium md:text-15px">
+              <div className="text-sm font-medium md:text-15px hidden md:block">
                 {product?.unit}
               </div>
             ) : (
@@ -100,20 +101,37 @@ const ProductDetails = ({ product }: Props) => {
               />
             )}
             {isEmpty(variations) && (
-              <div className="flex items-center mt-5 ">
-                <div className="text-primary font-bold text-base md:text-xl xl:text-[22px]">
-                  {price}
+              <div className="flex flex-col items-start md:flex-row  md:justify-between ">
+                <div className="flex items-center ">
+                  <div className="text-primary font-bold text-base md:text-xl xl:text-[22px]">
+                    {price}
+                  </div>
+                  {discount && (
+                    <>
+                      <del className="text-sm text-opacity-50 md:text-15px pl-3  text-gray-500 ">
+                        {basePrice}
+                      </del>
+                      <span className="inline-block rounded font-bold text-xs md:text-sm bg-primary/10  text-primary uppercase px-2 py-1 ml-2.5 ">
+                        {discount} off
+                      </span>
+                    </>
+                  )}
                 </div>
-                {discount && (
-                  <>
-                    <del className="text-sm text-opacity-50 md:text-15px pl-3  text-gray-500 ">
-                      {basePrice}
-                    </del>
-                    <span className="inline-block rounded font-bold text-xs md:text-sm bg-primary/10  text-primary uppercase px-2 py-1 ml-2.5 ">
-                      {discount} off
-                    </span>
-                  </>
-                )}
+
+                <div className="flex items-center mt-2 md:px-3">
+                  <div className="flex md:-mx-0.5 ">
+                    {[...Array(5)].map((_, idx) => (
+                      <StarIcon
+                        key={idx}
+                        color={idx < product?.ratings ? "#F3B81F" : "#DFE6ED"}
+                        className="w-3.5 lg:w-4 h-3.5 lg:h-4 mx-0.5"
+                      />
+                    ))}
+                    <p className="text-[#F3B81F] ml-3 text-sm">
+                      {product?.totalReviews} Reveiws
+                    </p>
+                  </div>
+                </div>
               </div>
             )}
           </div>
@@ -169,7 +187,7 @@ const ProductDetails = ({ product }: Props) => {
             </button>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
             <Button
               onClick={addToCart}
               className="  flex items-center gap-3 w-full"
