@@ -19,14 +19,16 @@ const CategoryCard = ({ category }: Props) => {
               ? `${category.name.substring(0, 9)}...`
               : category.name}
           </h5>
-          <p className="text-stone-600 dark:group-hover:text-white">{category.products_count} Items</p>
+          <p className="text-stone-600 dark:group-hover:text-white">
+            {category.products_count} Items
+          </p>
         </div>
 
-        <div className="w-[160px h-[120px] flex justify-center items-center">
+        <div className=" max-w-[110px] max-h-[120px]  w-full flex justify-center items-center">
           <Image
-            className="w-[120px h-[100px]   object-center group-hover:scale-110 hover:transition-all duration-500"
-            height={130}
-            width={100}
+            className="object-fill xs:mt-10 h-[120px] group-hover:scale-110 hover:transition-all duration-500"
+            height={120}
+            width={110}
             src={category.image?.img_url}
             alt={category.name}
           />

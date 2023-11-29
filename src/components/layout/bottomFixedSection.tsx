@@ -49,6 +49,7 @@ const BottomFixedSection = () => {
             onClick={goToTop}
           >
             <ChevronUp className="w-5 text-center" />
+            <span className="sr-only">Scroll to top</span>
           </Button>
 
           <div
@@ -72,6 +73,8 @@ const BottomFixedSection = () => {
                     ) : (
                       <Icons.settings className="w-5" />
                     )}
+
+                    <span className="sr-only"> setting</span>
                   </Popover.Button>
                   <Transition
                     as={Fragment}
