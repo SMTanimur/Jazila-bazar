@@ -20,7 +20,7 @@ export default function ProductDetailsTab({ product }: Props) {
   let [tabHeading] = useState({
     Product_Details: "",
     Review_Rating: "",
-    QA: ""
+    QA: "",
   });
   const [page, setPage] = useState(1);
   const [reviewPage, setReviewPage] = useState(1);

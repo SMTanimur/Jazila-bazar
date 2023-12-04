@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { Button } from "@/components/ui/button";
+import { ROUTES } from "@/configs/routes";
 import { ICategory } from "@/types";
 import { ChevronRightIcon } from "lucide-react";
 import Image from "next/image";
@@ -34,7 +35,7 @@ const CategoryCard = ({ category }: Props) => {
           />
         </div>
         <Button className="absolute -bottom-10 left-1/2 -translate-x-1/2 transform transition-all w-[140px] duration-500 group-hover:bottom-6 rounded-lg">
-          <Link href={"/collection"} className="flex gap-3 items-center">
+          <Link href={`${ROUTES.PRODUCT}?category=${category.slug}`} className="flex gap-3 items-center">
             <p>Shop Now</p>
             <ChevronRightIcon className="w-5" />
           </Link>
