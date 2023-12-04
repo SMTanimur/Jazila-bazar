@@ -47,7 +47,7 @@ const ProductCard = ({ product }: Props) => {
   }
   return (
     <div className=" flex flex-col group overflow-hidden rounded-md transition-all duration-300 shadow-card hover:shadow-cardHover relative h-full">
-      <Card className="bg-gray-200 min-w-[250px] dark:bg-background shadow-sm rounded-md w-full h-full group flex flex-col px-4 py-5  relative">
+      <Card className="bg-gray-200  dark:bg-background shadow-sm rounded-md w-full h-full group flex flex-col px-4 py-5  relative">
         <div className="w-full min-h-[150px] flex items-center relative justify-center overflow-hidden px-4">
           <Image
             className="object-center group-hover:scale-110 transition-all duration-700 "
