@@ -9,8 +9,8 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 type Props = {
   searchParams: {
-    category: string;
-    price: string;
+    category?: string;
+    price?: string;
   };
 };
 const ProductPageScreen = ({ searchParams: { category, price } }: Props) => {
