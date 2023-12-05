@@ -28,14 +28,9 @@ const ProductPageScreen = ({ searchParams: { category, price } }: Props) => {
         <div className=" flex-shrink-0 pr-20  hidden lg:block w-96 pt-1 px-3   h-full border-r">
           <ShopFilters />
         </div>
-        <div className="w-full pl-3">
+        <div className="w-full pl-6">
           <SearchTopBar />
           <section className="w-full">
-            <div className="flex items-center ">
-              <h1 className="text-3xl font-bold font-sans ">Our Products</h1>
-            </div>
-
-            <div className="py-4  border-t-2 mt-3" />
             <div className="grid grid-cols-1 xs:grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-4 md:gap-4 2xl:gap-5">
               {isLoading && !prodcuts?.length ? (
                 Array.from({ length: prodcuts?.length as number }).map(

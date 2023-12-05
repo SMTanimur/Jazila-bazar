@@ -20,9 +20,7 @@ export default function SearchTopBar() {
         <span className="pl-2.5 ">Filters</span>
       </button>
       <div className="flex items-center justify-end">
-        <div className="flex-shrink-0 text-body text-xs md:text-sm leading-4 pr-4  md:mr-6  pl-2  hidden lg:block">
-          9,608 items
-        </div>
+      
         {/* <ListBox
           options={[
             { name: 'text-sorting-options', value: 'options' },
