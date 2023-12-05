@@ -4,9 +4,7 @@ import { ShopFilters } from "@/components/shop/shop-filter";
 import SearchTopBar from "@/components/shop/top-bar";
 import ProductCardLoader from "@/components/skelaton/product-card-loader";
 import { useGetProductsQuery } from "@/hooks/api/product/useGetProducts";
-import useQueryParam from "@/hooks/use-query-params";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React from "react";
 type Props = {
   searchParams: {
     category?: string;

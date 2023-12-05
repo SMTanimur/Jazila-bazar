@@ -5,9 +5,7 @@ export const metadata: Metadata = {
   title: "Products Page",
 };
 type Props ={
-  searchParams:{
-      category:string
-  }
+  searchParams:{}
 }
 const ProductsPage = async ({searchParams}:Props) => {
   return (
