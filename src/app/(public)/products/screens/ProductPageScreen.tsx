@@ -2,6 +2,8 @@
 import ProductCard from "@/components/cards/ProductCard";
 import { CategoryFilter } from "@/components/shop/category-filter";
 import { FilteredItem } from "@/components/shop/filtered-item";
+import { ShopFilters } from "@/components/shop/shop-filter";
+import SearchTopBar from "@/components/shop/top-bar";
 import ProductCardLoader from "@/components/skelaton/product-card-loader";
 import { useGetProductsQuery } from "@/hooks/api/product/useGetProducts";
 import useQueryParam from "@/hooks/use-query-params";
@@ -48,52 +50,12 @@ const ProductPageScreen = ({ searchParams: { category } }: Props) => {
   const prodcuts = data?.docs;
   return (
     <React.Fragment>
-      <div className="grid grid-cols-5">
-        <div className="pt-1 px-3">
-          <div className="block border-b border-gray-300 pb-7 mb-7">
-            <div className="flex items-center justify-between mb-2.5">
-              <h2 className="font-semibold text-heading text-xl md:text-2xl">
-                Filters
-              </h2>
-              <button
-                className="flex-shrink text-xs mt-0.5 transition duration-150 ease-in focus:outline-none hover:text-heading"
-                aria-label="Clear All"
-                onClick={() => {
-                  push(pathname);
-                }}
-              >
-                Clear alll
-              </button>
-            </div>
-            <div className="flex flex-wrap -m-1">
-              {Object.entries(state).map(([key, value]) => {
-                if (Array.isArray(value)) {
-                  return value.map((item) => (
-                    <FilteredItem
-                      itemKey={key ? key : " "}
-                      key={item}
-                      itemValue={item as any}
-                      onClick={() => handleArrayUpdate(key, item)}
-                    />
-                  ));
-                } else {
-                  return (
-                    <FilteredItem
-                      itemKey={key ? key : " "}
-                      key={key}
-                      itemValue={value as any}
-                      onClick={() => {
-                        clearQueryParam([key]);
-                      }}
-                    />
-                  );
-                }
-              })}
-            </div>
-          </div>
-          <CategoryFilter />
+      <div className="flex pt-8 pb-16 lg:pb-20">
+        <div className=" flex-shrink-0 pr-20  hidden lg:block w-96 pt-1 px-3   h-full border-r">
+        <ShopFilters/>
         </div>
-        <div className="col-span-5 md:col-span-4">
+        <div className="w-full pl-3">
+        <SearchTopBar />
           <section className="w-full">
             <div className="flex items-center ">
               <h1 className="text-3xl font-bold font-sans ">Our Products</h1>

@@ -10,11 +10,11 @@ interface Props {
 export const FilteredItem = ({ itemKey, itemValue, onClick }: Props) => {
   return (
     <div
-      className="group flex shrink-0 m-1 items-center border border-border-base rounded-lg text-13px px-2.5 py-1.5 capitalize text-black cursor-pointer transition duration-200 ease-in-out hover:border-brand"
+      className="group flex shrink-0 m-1 items-center border border-border rounded-lg text-[13px] px-2.5 py-1.5 capitalize text-gray-600 dark:text-gray-100 cursor-pointer transition duration-200 ease-in-out hover:border-primary"
       onClick={onClick}
     >
       {itemKey && itemValue}
-      <Icons.close className="text-sm text-body  mr-2 shrink-0  -ml-0.5 mt-0.5 transition duration-200 ease-in-out group-hover:text-heading" />
+      <Icons.close className="text-sm text-gray-400 w-4  ml-2 shrink-0  mt-0.5 transition duration-200 ease-in-out group-hover:text-gray-900" />
     </div>
   );
 };

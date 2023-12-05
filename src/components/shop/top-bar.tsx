@@ -1,0 +1,46 @@
+import { FilterIcon } from "lucide-react";
+import Drawer from "../ui/drawer";
+import { useGlobalModalStateStore } from "@/store/modal";
+import FilterSidebar from "./filter-sidebar";
+
+
+export default function SearchTopBar() {
+ const {sideFilter,onSideFilter,closeSideFilter}= useGlobalModalStateStore((state)=>state)
+
+  return (
+    <div className="flex justify-between items-center mb-7">
+      {/* <Text variant="pageHeading" className="hidden lg:inline-flex pb-1">
+        {t('text-casual-wear')}
+      </Text> */}
+      <button
+        className="lg:hidden text-gray-900 dark:text-white text-sm px-4 py-2 font-semibold border border-gray-300 rounded-md flex items-center transition duration-200 ease-in-out focus:outline-none hover:bg-gray-200"
+        onClick={onSideFilter}
+      >
+        <FilterIcon className="w-4" />
+        <span className="pl-2.5 ">Filters</span>
+      </button>
+      <div className="flex items-center justify-end">
+        <div className="flex-shrink-0 text-body text-xs md:text-sm leading-4 pr-4  md:mr-6  pl-2  hidden lg:block">
+          9,608 items
+        </div>
+        {/* <ListBox
+          options={[
+            { name: 'text-sorting-options', value: 'options' },
+            { name: 'text-newest', value: 'newest' },
+            { name: 'text-popularity', value: 'popularity' },
+            { name: 'text-price-low-high', value: 'low-high' },
+            { name: 'text-price-high-low', value: 'high-low' },
+          ]}
+        /> */}
+      </div>
+      {/* TODO: need to use just one drawer component */}
+      <Drawer
+        variant={ 'left' }
+        open={sideFilter}
+        onClose={closeSideFilter}
+      >
+        <FilterSidebar />
+      </Drawer>
+    </div>
+  );
+}

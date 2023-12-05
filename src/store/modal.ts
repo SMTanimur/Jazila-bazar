@@ -20,6 +20,10 @@ interface GlobalModalState {
   onMenubar: () => void;
   closeMenubar: () => void;
 
+  sideFilter: boolean;
+  onSideFilter: () => void;
+  closeSideFilter: () => void;
+
   showHeaderSearch: boolean;
   onShowHeaderSearch: () => void;
   closeShowHeaderSearch: () => void;
@@ -73,4 +77,8 @@ export const useGlobalModalStateStore = create<GlobalModalState>((set) => ({
   reviewModalState: null,
   setReviewModalState: (showReviewModal, reviewModalState) =>
     set(() => ({ showReviewModal, reviewModalState })),
+
+  sideFilter: false,
+  onSideFilter: () => set(() => ({ sideFilter: true })),
+  closeSideFilter: () => set(() => ({ sideFilter: false })),
 }));

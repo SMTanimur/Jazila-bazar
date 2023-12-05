@@ -52,9 +52,11 @@ export const CategoryFilter = () => {
 
   return (
     <div className="block border-b border-gray-300 pb-7 mb-7">
-      <h3 className="text-heading text-sm md:text-base font-semibold mb-7">
-        Categories
-      </h3>
+      <div className="text-gray-900 dark:text-white text-sm md:text-base font-semibold mb-7 ">
+        <h6>Categories</h6>
+        <div className="border-b border-primary w-[85px] mt-1"/>
+        
+      </div>
       <div className="mt-2 flex flex-col space-y-4">
         {items?.map((item: any) => (
         
