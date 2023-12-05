@@ -60,6 +60,7 @@ export type ProductsQueryOptionsType = {
   text?: string;
   type?: string;
   category?: string;
+  price?: string
   status?: string;
   limit?: number;
   orderBy?: string;

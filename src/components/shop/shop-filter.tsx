@@ -3,6 +3,7 @@ import { CategoryFilter } from "./category-filter";
 import { FilteredItem } from "./filtered-item";
 import useQueryParam from "@/hooks/use-query-params";
 import { useEffect, useState } from "react";
+import { PriceFilter } from "./price-filter";
 export const ShopFilters: React.FC = () => {
     const { push } = useRouter();
     const pathname = usePathname();
@@ -77,6 +78,7 @@ export const ShopFilters: React.FC = () => {
 			</div>
 
 			<CategoryFilter />
+      <PriceFilter/>
 			
 		</div>
 	);

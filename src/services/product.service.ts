@@ -17,16 +17,18 @@ export const productClient = {
       type,
       category,
       shop_id,
+      price,
       status,
       limit = 15,
       orderBy = "updatedAt",
       sortedBy = "desc",
     } = params as ProductsQueryOptionsType;
+    
     const url = `${API_ENDPOINTS.PRODUCTS}?${text ? `search=${text}` : ""}${
       type ? `&type=${type}` : ""
-    }${category ? `&category=${category}` : ""}${
-      shop_id ? `shop=${shop_id}` : ""
-    }${
+    }${price ? `&price=${price}` : ""}${
+      category ? `&category=${category}` : ""
+    }${shop_id ? `shop=${shop_id}` : ""}${
       status ? `&status=${status}` : ""
     }&searchJoin=and&limit=${limit}&page=${page}&orderBy=${orderBy}&sortedBy=${sortedBy}`;
     return HttpClient.get<PaginatorInfo<IProduct>>(url);
@@ -46,18 +48,17 @@ export const productClient = {
       page,
       limit = 15,
       shop_id,
-      orderBy = 'updatedAt',
-      sortedBy = 'desc',
+      orderBy = "updatedAt",
+      sortedBy = "desc",
       user,
       product,
     } = params as QuestionsQueryOptionsType;
-  
+
     const url = `/questions?${
-      shop_id ? `shop=${shop_id}` : ''
+      shop_id ? `shop=${shop_id}` : ""
     }&limit=${limit}&page=${page}&orderBy=${orderBy}&sortedBy=${sortedBy}${
-      user ? `&user=${user}` : ''
-    }${product ? `&product=${product}` : ''}`;
+      user ? `&user=${user}` : ""
+    }${product ? `&product=${product}` : ""}`;
     return HttpClient.get<PaginatorInfo<IQuestion>>(url);
   },
-  
 };
