@@ -475,7 +475,6 @@ export interface ProductQueryOptions extends QueryOptions {
   sortedBy: string;
   orderBy: string;
   name: string;
-  categories: string;
   category: string;
   tags: string;
   type: string;

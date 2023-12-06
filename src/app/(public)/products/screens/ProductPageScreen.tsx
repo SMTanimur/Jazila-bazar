@@ -3,8 +3,10 @@ import ProductCard from "@/components/cards/ProductCard";
 import { ShopFilters } from "@/components/shop/shop-filter";
 import SearchTopBar from "@/components/shop/top-bar";
 import ProductCardLoader from "@/components/skelaton/product-card-loader";
+import Pagination from "@/components/ui/pagination";
 import { useGetProductsQuery } from "@/hooks/api/product/useGetProducts";
-import React from "react";
+import { IPaginatorInfo } from "@/types";
+import React, { useState } from "react";
 type Props = {
   searchParams: {
     category?: string;
@@ -13,12 +15,27 @@ type Props = {
 };
 const ProductPageScreen = ({ searchParams: { category, price } }: Props) => {
 
-
+  const [page, setPage] = useState(1);
   const { data, isLoading } = useGetProductsQuery({
     limit: 12,
+    page,
     category,
     price,
   });
+  function onPagination(current: number) {
+    setPage(current);
+  }
+  const paginateInfo: IPaginatorInfo = {
+    hasNextPage: data?.hasNextPage!,
+    hasPrevPage: data?.hasPrevPage!,
+    limit: data?.limit!,
+    nextPage: data?.nextPage!,
+    page: data?.page!,
+    pagingCounter: data?.pagingCounter!,
+    prevPage: data?.prevPage!,
+    totalDocs: data?.totalDocs!,
+    totalPages: data?.totalPages!,
+  }
   const prodcuts = data?.docs;
   return (
     <React.Fragment>
@@ -47,6 +64,30 @@ const ProductPageScreen = ({ searchParams: { category, price } }: Props) => {
                 </>
               )}
             </div>
+                    
+                      {paginateInfo && (
+                        <div className="flex items-center justify-between border-t border-border border-opacity-70 py-4">
+                          {!!paginateInfo?.totalDocs && (
+                            <div className="text-xs text-body text-opacity-70">
+                              Page {paginateInfo?.page} of{" "}
+                              {Math.ceil(
+                                paginateInfo?.totalPages / paginateInfo?.page
+                              )}
+                            </div>
+                          )}
+
+                          {!!paginateInfo?.totalDocs && (
+                            <div className="mb-2 flex items-center">
+                              <Pagination
+                                total={paginateInfo?.totalDocs}
+                                current={paginateInfo?.pagingCounter}
+                                pageSize={paginateInfo?.limit as number}
+                                onChange={onPagination}
+                              />
+                            </div>
+                          )}
+                        </div>
+                      )}
           </section>
         </div>
       </div>
