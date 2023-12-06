@@ -49,7 +49,7 @@ const MobileHeader = () => {
 
           <div className="sm:flex items-center space-x-4 space-x-reverse hidden">
           <Link
-            href={`${process.env.NEXT_PUBLIC_ADMIN_URL}/register`}
+            href={`${process.env.NEXT_PUBLIC_ADMIN_URL}/signup`}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center justify-center shrink-0 px-3 py-0 text-sm font-semibold leading-none transition duration-300 ease-in-out border border-transparent rounded outline-none h-9 bg-primary text-white hover:bg-primary focus:outline-none focus:shadow focus:ring-1 focus:ring-primary-700  "
