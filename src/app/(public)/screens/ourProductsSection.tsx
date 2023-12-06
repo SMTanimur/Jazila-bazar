@@ -1,6 +1,6 @@
 "use client";
 import ProductCard from "@/components/cards/ProductCard";
-import ProductCardLoader from "@/components/skelaton/product-card-loader";
+import ProductFeedLoader from "@/components/skelaton/product-feed-loader";
 import { useGetProductsQuery } from "@/hooks/api/product/useGetProducts";
 
 const OurProductsSection = () => {
@@ -16,14 +16,9 @@ const OurProductsSection = () => {
 
       <div className="py-4  border-t-2 mt-3" />
       <div className="grid grid-cols-1 xs:grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-6 3xl:grid-cols-7 md:gap-4 2xl:gap-5">
-        {isLoading && !prodcuts?.length ? (
-          Array.from({ length: prodcuts?.length as number }).map((_, idx) => (
-            <ProductCardLoader
-              key={`product--key-${idx}`}
-              uniqueKey={`product--key-${idx}`}
-            />
-          ))
-        ) : (
+      {isLoading && !prodcuts ? (
+                <ProductFeedLoader limit={12} uniqueKey="search-product" />
+              ) : (
           <>
             {data?.docs.map((product) => (
               <ProductCard key={product.slug} {...{ product }} />

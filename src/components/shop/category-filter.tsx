@@ -62,7 +62,7 @@ export const CategoryFilter = () => {
         
 
           <CheckBox
-          	key={item.id}
+          	key={item.slug}
           	label={item.name}
           	name={item.name.toLowerCase()}
           	checked={formState.includes(item.slug)}

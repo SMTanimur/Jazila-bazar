@@ -1,22 +1,21 @@
-import ContentLoader from 'react-content-loader';
+import ContentLoader from "react-content-loader";
 
 const ProductCardLoader = (props: any) => (
-  <ContentLoader
-    speed={2}
-    width={226}
-    height={320}
-    viewBox="0 0 226 320"
-    backgroundColor="#F3F6FA"
-    foregroundColor="#E7ECF3"
-    className="w-full h-auto shadow-card rounded-md overflow-hidden"
-    {...props}
-  >
-    <rect x="0" y="0" rx="0" ry="0" width="226" height="185" />
-    <rect x="18" y="203" rx="3" ry="3" width="79" height="8" />
-    <rect x="18" y="236" rx="3" ry="3" width="195" height="5" />
-    <rect x="18" y="258" rx="3" ry="3" width="100" height="5" />
-    <rect x="18" y="287" rx="3" ry="3" width="79" height="5" />
-  </ContentLoader>
+	<ContentLoader
+		speed={2}
+		width={334}
+		height={545}
+		viewBox="0 0 334 545"
+		backgroundColor="#f3f3f3"
+		foregroundColor="#ecebeb"
+		className="w-full h-auto"
+		{...props}
+	>
+		<rect x="15" y="453" rx="3" ry="3" width="180" height="8" />
+		<rect x="15" y="482" rx="3" ry="3" width="280" height="6" />
+		<rect x="15" y="515" rx="3" ry="3" width="80" height="8" />
+		<rect x="0" y="0" rx="6" ry="6" width="334" height="430" />
+	</ContentLoader>
 );
 
 export default ProductCardLoader;

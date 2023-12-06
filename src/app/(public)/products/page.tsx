@@ -2,7 +2,7 @@ import Breadcrumb from "@/components/ui/breadcrumb";
 import { Metadata } from "next";
 import ProductPageScreen from "./screens/ProductPageScreen";
 export const metadata: Metadata = {
-  title: "Products Page",
+  title: "Products",
 };
 type Props ={
   searchParams:{}
