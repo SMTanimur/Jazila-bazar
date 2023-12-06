@@ -7,7 +7,7 @@ type ReviewCardProps = {
 };
 const ReviewCard = ({ review }: ReviewCardProps) => {
   return (
-    <div className="flex flex-col justify-center items-center sm:flex-row sm:items-center gap-4 py-3 px-3 sm:px-6  w-full bg-gray-100 rounded-lg dark:bg-gray-800 ">
+    <div className="flex flex-col  items-center sm:flex-row sm:items-center gap-4 py-3 px-3 sm:px-6  w-full bg-gray-100 rounded-lg dark:bg-gray-800 ">
       <div className="max-w-[80px] w-full rounded-full">
         <Image
           src={review.user.avatar}
@@ -18,13 +18,13 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
         />
       </div>
 
-      <div className="flex flex-col space-y-3">
-        <div className="flex justify-between items-center">
-          <div className="flex items-center">
+      <div className="flex flex-col space-y-3 w-full">
+        <div className="flex w-full justify-between items-center ">
+          <div className="flex items-center ">
             <h6 className="text-primary text-xs sm:text-sm md:text-base">
               {review.user.firstName} {review?.user.lastName}
             </h6>
-            <p className="text-xs hidden xs:block ml-3 text-gray-600">
+            <p className="text-xs mt-1 hidden xs:block ml-3 text-gray-600">
               {dayjs(review.createdAt).format("D MMMM, YYYY h:mm A")}
             </p>
           </div>
