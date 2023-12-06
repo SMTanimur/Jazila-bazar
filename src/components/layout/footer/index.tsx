@@ -5,16 +5,12 @@ import Link from "next/link";
 
 const informationNav = [
   { label: "About Us", path: "/about-us" },
-  { label: "Delivery Information", path: "/delivery-information" },
   { label: "Privacy Policy", path: "/privacy-policy" },
-  { label: "Brands", path: "/brands" },
   { label: "Contact Us", path: "/contact-us" },
-  { label: "Returns", path: "/returns" },
   { label: "Site Map", path: "/site-map" },
 ];
 
 const accountNav = [
-  { label: "Ofice", path: "/store-location" },
   { label: "Order History", path: "/order-history" },
   { label: "Wish List", path: "/wishlist" },
   { label: "Newsletter", path: "/newsletter" },
