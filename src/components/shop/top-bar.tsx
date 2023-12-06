@@ -19,18 +19,6 @@ export default function SearchTopBar() {
         <FilterIcon className="w-4" />
         <span className="pl-2.5 ">Filters</span>
       </button>
-      <div className="flex items-center justify-end">
-      
-        {/* <ListBox
-          options={[
-            { name: 'text-sorting-options', value: 'options' },
-            { name: 'text-newest', value: 'newest' },
-            { name: 'text-popularity', value: 'popularity' },
-            { name: 'text-price-low-high', value: 'low-high' },
-            { name: 'text-price-high-low', value: 'high-low' },
-          ]}
-        /> */}
-      </div>
       {/* TODO: need to use just one drawer component */}
       <Drawer
         variant={ 'left' }

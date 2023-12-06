@@ -7,7 +7,6 @@ import { CheckBox } from "../common/shared/checkbox";
 
 export const CategoryFilter = () => {
   const pathname = usePathname();
-  const { push } = useRouter();
   const searchParams = useSearchParams();
   const { updateQueryparams } = useQueryParam(pathname ?? "/");
   const [formState, setFormState] = useState<string[]>([]);
@@ -24,7 +23,7 @@ export const CategoryFilter = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasQueryKey]);
 
-  const { data, isLoading } = useGetCategoriesQuery({
+  const { data } = useGetCategoriesQuery({
     limit: 10,
   });
   const items = data?.docs;
@@ -39,7 +38,6 @@ export const CategoryFilter = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasQueryKey]);
 
-  if (isLoading) return <p>Loading...</p>;
 
   function handleItemClick(e: React.FormEvent<HTMLInputElement>): void {
     const { value } = e.currentTarget;

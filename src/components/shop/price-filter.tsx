@@ -48,7 +48,6 @@ const priceFilterItems = [
 ];
 export const PriceFilter = () => {
 	const pathname = usePathname();
-	const { push } = useRouter();
 	const searchParams = useSearchParams();
 	const { updateQueryparams } = useQueryParam(pathname ?? "/");
 	const [formState, setFormState] = useState<string[]>([]);
