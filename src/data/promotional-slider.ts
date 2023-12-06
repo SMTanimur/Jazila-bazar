@@ -13,7 +13,7 @@ export const PromotionalSlider: PromotionalSliderType[] = [
     description: "Promotional Slider 1 Description",
     image:
       "https://res.cloudinary.com/smtanimur/image/upload/v1700109998/samples/Watermelon_4_jbgrdz.png",
-    link: "/category/1",
+    link: "/products",
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ export const PromotionalSlider: PromotionalSliderType[] = [
     description: "Promotional Slider 2 Description",
     image:
       "https://res.cloudinary.com/smtanimur/image/upload/v1700109998/samples/Kiwi_4_ehlq5l.png",
-    link: "/category/2",
+    link: "/products",
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ export const PromotionalSlider: PromotionalSliderType[] = [
     description: "Promotional Slider 3 Description",
     image:
       "https://res.cloudinary.com/smtanimur/image/upload/v1700109998/samples/Pumpkin_3_lfdflh.png",
-    link: "/category/3",
+    link: "/products",
   },
   {
     id: 4,
@@ -37,7 +37,7 @@ export const PromotionalSlider: PromotionalSliderType[] = [
     description: "Promotional Slider 4 Description",
     image:
       " https://res.cloudinary.com/smtanimur/image/upload/v1700109997/samples/Pea_1_bcwnxy.png",
-    link: "/category/4",
+    link: "/products",
   },
   {
     id: 5,
@@ -45,6 +45,6 @@ export const PromotionalSlider: PromotionalSliderType[] = [
     description: "Promotional Slider 5 Description",
     image:
       "https://res.cloudinary.com/smtanimur/image/upload/v1700111234/samples/Capsicum_1_izuiyc.png",
-    link: "/category/5",
+    link: "/products",
   },
 ];
