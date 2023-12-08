@@ -33,6 +33,31 @@ export const productClient = {
     }&searchJoin=and&limit=${limit}&page=${page}&orderBy=${orderBy}&sortedBy=${sortedBy}`;
     return HttpClient.get<PaginatorInfo<IProduct>>(url);
   },
+
+  getTopRatedProducts: async ({ queryKey }: QueryParamsType) => {
+    const [_key, params] = queryKey;
+    const {
+      page,
+      text,
+      type,
+      category,
+      shop_id,
+      price,
+      status,
+      limit = 15,
+      orderBy = "updatedAt",
+      sortedBy = "desc",
+    } = params as ProductsQueryOptionsType;
+    
+    const url = `${API_ENDPOINTS.PRODUCTS}/top/rated?${text ? `search=${text}` : ""}${
+      type ? `&type=${type}` : ""
+    }${price ? `&price=${price}` : ""}${
+      category ? `&category=${category}` : ""
+    }${shop_id ? `shop=${shop_id}` : ""}${
+      status ? `&status=${status}` : ""
+    }&searchJoin=and&limit=${limit}&page=${page}&orderBy=${orderBy}&sortedBy=${sortedBy}`;
+    return HttpClient.get<PaginatorInfo<IProduct>>(url);
+  },
   getProduct: async (slug: string) => {
     return HttpClient.get<IProduct>(`/products/${slug}`);
   },

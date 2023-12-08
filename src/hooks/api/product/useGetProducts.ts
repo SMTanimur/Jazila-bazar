@@ -16,3 +16,15 @@ import { useQuery } from "@tanstack/react-query";
     }
   );
 };
+
+
+export const useGetTopRateProductsQuery = (params: ProductsQueryOptionsType ,options: any = {}) => {
+  return useQuery<PaginatorInfo<IProduct>, Error>(
+    ["products", params],
+    productClient.getTopRatedProducts,
+    {
+      ...options,
+      keepPreviousData: true,
+    }
+  );
+};
