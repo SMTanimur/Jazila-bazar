@@ -2,6 +2,7 @@
 import ProductCard from '@/components/cards/ProductCard';
 import ClientOnly from '@/components/common/shared/ClientOnly';
 import SkelatonLoader from '@/components/skelaton/SkelatonLoader';
+import ProductFeedLoader from '@/components/skelaton/product-feed-loader';
 import { Error } from '@/components/ui/error-message';
 import { useGetTopRateProductsQuery } from '@/hooks/api/product/useGetProducts';
 import { IProduct } from '@/types';
@@ -50,7 +51,7 @@ const TopRateProducts = () => {
 
       {isLoading ? (
       <ClientOnly>
-          <SkelatonLoader />
+          <ProductFeedLoader limit={6} uniqueKey="search-product" />
           </ClientOnly>
         ) : isError ? (
           <Error
@@ -72,7 +73,7 @@ const TopRateProducts = () => {
         return (
           <SwiperSlide
             key={product.slug}
-            className="flex  flex-col xs:gap-[14px] gap-2 min-w-[220px] max-w-[400px]  rounded-lg"
+            className="flex  flex-col xs:gap-[14px] gap-2 min-w-[190px] max-w-[400px]  rounded-lg"
           >
             <ProductCard  {...{ product }} />
           </SwiperSlide>
