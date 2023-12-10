@@ -50,9 +50,9 @@ const TopRateProducts = () => {
       <div className="py-4  border-t-2 mt-3" />
 
       {isLoading ? (
-      <ClientOnly>
+        <div className=' flex  flex-col md:flex-row gap-6 items-center'>
           <ProductFeedLoader limit={6} uniqueKey="search-product" />
-          </ClientOnly>
+          </div>
         ) : isError ? (
           <Error
             message={String(errorMessage)}
