@@ -20,7 +20,7 @@ const OurProductsSection = () => {
                 <ProductFeedLoader limit={12} uniqueKey="search-product" />
               ) : (
           <>
-            {data?.docs.map((product) => (
+            {prodcuts?.map((product) => (
               <ProductCard key={product.slug} {...{ product }} />
             ))}
           </>

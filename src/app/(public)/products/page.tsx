@@ -41,7 +41,7 @@ const ProductsPage =  ({searchParams:{category,price}}:Props) => {
   const products = data?.docs;
   return (
     <div>
-      <section className="  h-12 py-2  bg-gray-100 dark:bg-gray-900 flex justify-center items-center ">
+      <section className="  h-12 py-10  bg-gray-100 dark:bg-gray-900 flex justify-center items-center ">
         <Breadcrumb />
       </section>
       <div className="container py-5">

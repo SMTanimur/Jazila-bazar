@@ -69,7 +69,7 @@ const TopRateProducts = () => {
       loop={true}
       className="mySwiper"
     >
-      {data?.docs?.map((product: IProduct) => {
+      {products?.map((product: IProduct) => {
         return (
           <SwiperSlide
             key={product.slug}
