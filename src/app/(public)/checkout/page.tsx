@@ -10,6 +10,11 @@ const CheckoutPage = async () => {
       <section className="  h-12 py-10  bg-gray-100 dark:bg-gray-900 flex justify-center items-center ">
         <Breadcrumb />
       </section>
+
+      <div className="grid grid-cols-3"> 
+
+      </div>
+      
     </div>
   );
 };

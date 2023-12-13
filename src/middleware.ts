@@ -22,7 +22,7 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL(`${host}/`));
   }
   // Add a closing bracket here
-  if (!userToken && req.nextUrl.pathname.includes('/dashboard')) {
+  if (!userToken && req.nextUrl.pathname.includes('/account')) {
     return NextResponse.redirect(new URL(`${host}/signin`));
   }
 
@@ -30,5 +30,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/signin/:path*', '/signup/:path*'], // Add "/profile" path here
+  matcher: ['/account/:path*', '/signin/:path*', '/signup/:path*'], // Add "/profile" path here
 };
