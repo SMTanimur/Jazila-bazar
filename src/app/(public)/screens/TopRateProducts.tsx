@@ -1,7 +1,5 @@
 "use client"
 import ProductCard from '@/components/cards/ProductCard';
-import ClientOnly from '@/components/common/shared/ClientOnly';
-import SkelatonLoader from '@/components/skelaton/SkelatonLoader';
 import ProductFeedLoader from '@/components/skelaton/product-feed-loader';
 import { Error } from '@/components/ui/error-message';
 import { useGetTopRateProductsQuery } from '@/hooks/api/product/useGetProducts';
