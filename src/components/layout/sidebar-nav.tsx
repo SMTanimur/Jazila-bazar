@@ -2,7 +2,7 @@
 
 import type { SidebarNavItem } from "@/types";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname} from "next/navigation";
 
 import { useMe } from "@/hooks/api/user/useMe";
 import { cn } from "@/lib/utils";
@@ -19,7 +19,6 @@ export interface SidebarNavProps extends React.HTMLAttributes<HTMLDivElement> {
 export function SidebarNav({ items, className, ...props }: SidebarNavProps) {
   const pathname = usePathname();
   const { me } = useMe();
-  const router = useRouter();
   if (!items?.length) return null;
 
   return (

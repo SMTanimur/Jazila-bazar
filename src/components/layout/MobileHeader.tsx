@@ -27,12 +27,12 @@ const MobileHeader = () => {
   const { me } = useMe();
   const globalModal = useGlobalModalStateStore();
   return (
-    <header className="flex justify-between w-full ">
-      <div className="flex items-center gap-4 sm:gap-2 w-full ">
+    <header className="flex justify-between w-full items-center">
+      <div className="flex items-center gap-2 w-full -ml-6">
         <motion.button
           whileTap={{ scale: 0.88 }}
           onClick={() => globalModal.onMenubar()}
-          className="flex items-center justify-center h-full p-2 focus:outline-none focus:text-green-500 "
+          className="flex items-center justify-center h-full p-2 focus:outline-none focus:text-green-500  "
         >
           <span className="sr-only">burger menu</span>
           <Icons.menu className={`${"transform rotate-180"} text-gray-400`} />
@@ -92,14 +92,14 @@ const MobileHeader = () => {
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                   <DropdownMenuItem asChild>
-                    <Link href="/dashboard/account">
+                    <Link href="/account/dashboard">
                       <Icons.user className="mr-2 h-4 w-4" aria-hidden="true" />
                       Account
                       <DropdownMenuShortcut>⇧⌘A</DropdownMenuShortcut>
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <Link href="/dashboard/account">
+                    <Link href="/account/dashboard">
                       <Icons.terminal
                         className="mr-2 h-4 w-4"
                         aria-hidden="true"
@@ -109,7 +109,7 @@ const MobileHeader = () => {
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild disabled>
-                    <Link href="/dashboard/settings">
+                    <Link href="/account/settings">
                       <Icons.settings
                         className="mr-2 h-4 w-4"
                         aria-hidden="true"
