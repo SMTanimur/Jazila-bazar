@@ -5,6 +5,7 @@ import MobileNavigation from "@/components/layout/mobile-navigation";
 import { SidebarMobile } from "@/components/layout/sidebar-mobile";
 import { SidebarNav } from "@/components/layout/sidebar-nav";
 import { SiteHeader } from "@/components/layout/site-header";
+import Breadcrumb from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -28,7 +29,11 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
     <div className="relative flex min-h-screen flex-col">
       <SiteHeader />
-      <div className="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
+      <section className="  h-12 py-10  bg-gray-100 dark:bg-gray-900 flex justify-center items-center my-6 ">
+        <Breadcrumb />
+      </section>
+      <div className="container flex-1 items-start md:grid md:grid-cols-[260px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[340px_minmax(0,1fr)] lg:gap-10 mb-8">
+      
         <DropdownMenu>
           <DropdownMenuTrigger asChild className="md:hidden my-5">
             <Button size={"sm"} className="bg-purple-600 border-none">
@@ -55,9 +60,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-        <aside className="fixed top-14 z-30 -ml-2 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 overflow-y-auto border-r md:sticky md:block">
-          <ScrollArea className="py-6 pr-6 lg:py-8 ">
-            <SidebarNav items={dashboardConfig.sidebarNav} className="p-1" />
+        <aside className="fixed max-w-[350px] bg-gray-100 dark:bg-gray-900  top-14 z-30 -ml-2 hidden h-[calc(83vh-3.5rem)] w-full shrink-0 overflow-y-auto border-r md:sticky md:block rounded-xl shadow-md ">
+          <ScrollArea className="">
+            <SidebarNav items={dashboardConfig.sidebarNav} className="" />
           </ScrollArea>
         </aside>
         <main className="flex w-full flex-col overflow-hidden">{children}</main>

@@ -13,9 +13,9 @@ import AccountWallets from './components/AccountWallets';
 export default async function AccountPage() {
   
   return (
-    <Shell variant='sidebar' className='bg-gray-100 dark:bg-gray-900 p-3 md:p-8 mt-4 rounded-xl '>
+    <div  className='bg-gray-100 dark:bg-gray-900 p-3 md:p-8 rounded-xl min-h-[calc(83vh-3.5rem)]'>
       <PageHeader id='account-header' aria-labelledby='account-header-heading'
-       className='relative'
+       className='relative '
       >
         <PageHeaderHeading size='sm'>
         My Dashboard
@@ -24,14 +24,14 @@ export default async function AccountPage() {
       </PageHeader>
     
       <section
-
-        className='w-full overflow-hidden'
+       
+        className='w-full overflow-hidden mt-6'
       >
         <AccountWallets/>
          <ClientOnly>
         <AccountInformation/>
         </ClientOnly>
       </section>
-    </Shell>
+    </div>
   );
 }
