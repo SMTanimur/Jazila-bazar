@@ -22,19 +22,18 @@ export default function MobileAuthorizedMenu() {
   const { me } = useMe();
   return (
     <DrawerWrapper closeSidebar={globalModal.closeUserMenu}>
-     
        <div
-      className={cn("flex w-full flex-col gap-2 relative")}
+      className={cn("flex w-full flex-col gap-2 relative bg-gray-100 dark:bg-gray-900")}
      
     >
       <div className="relative pb-6">
-        <div className="max-w-[350px] h-[160px] w-full overflow-hidden  ">
+        <div className="min-w-[350px] h-[160px] w-full overflow-hidden  ">
           <Image
             src={
               "https://res.cloudinary.com/smtanimur/image/upload/v1702784959/tanimur/profile/cover-img_n5rdeg.webp"
             }
             alt="cover image"
-            className=""
+            className="w-full"
             width={350}
             height={100}
           />
