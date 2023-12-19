@@ -1,10 +1,11 @@
 "use client";
 
+import { productClient } from "@/services/product.service";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useState } from "react";
 
-export const QueryProvider = ({ children }: { children: React.ReactNode }) => {
+export const QueryProvider = async({ children }: { children: React.ReactNode }) => {
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -15,6 +16,12 @@ export const QueryProvider = ({ children }: { children: React.ReactNode }) => {
         },
       })
   );
+  
+
+  // await queryClient.prefetchQuery({
+  //   queryKey: ['products'],
+  //   queryFn: async () =>  productClient.getProducts
+  // });
 
   return (
     <QueryClientProvider client={queryClient}>

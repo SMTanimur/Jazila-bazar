@@ -603,3 +603,60 @@ export interface IFeedback {
   created_at: string;
   updated_at: string;
 }
+
+
+export enum PaymentGateway {
+  STRIPE = 'STRIPE',
+  COD = 'CASH_ON_DELIVERY',
+  CASH = 'CASH',
+  FULL_WALLET_PAYMENT = 'FULL_WALLET_PAYMENT',
+  PAYPAL = 'PAYPAL',
+  MOLLIE = 'MOLLIE',
+  RAZORPAY = 'RAZORPAY',
+  SSLCOMMERZ = 'SSLCOMMERZ',
+  PAYSTACK = 'PAYSTACK',
+  XENDIT = 'XENDIT',
+  IYZICO = 'IYZICO',
+}
+
+export enum OrderStatus {
+  PENDING = 'order-pending',
+  PROCESSING = 'order-processing',
+  COMPLETED = 'order-completed',
+  CANCELLED = 'order-cancelled',
+  REFUNDED = 'order-refunded',
+  FAILED = 'order-failed',
+  AT_LOCAL_FACILITY = 'order-at-local-facility',
+  OUT_FOR_DELIVERY = 'order-out-for-delivery',
+}
+
+export enum PaymentStatus {
+  PENDING = 'payment-pending',
+  PROCESSING = 'payment-processing',
+  SUCCESS = 'payment-success',
+  FAILED = 'payment-failed',
+  REVERSAL = 'payment-reversal',
+  COD = 'cash-on-delivery',
+  AWAITING_FOR_APPROVAL = 'payment-awaiting-for-approval',
+}
+
+enum RefundStatus {
+  APPROVED = 'Approved',
+  PENDING = 'Pending',
+  REJECTED = 'Rejected',
+  PROCESSING = 'Processing',
+}
+export enum CouponType {
+  FIXED = 'fixed',
+  PERCENTAGE = 'percentage',
+  FREE_SHIPPING = 'free_shipping',
+}
+
+export interface ICoupon {
+  id: string;
+  name: string;
+  type: CouponType;
+  slug: string;
+  amount?: string;
+  code?: string;
+}

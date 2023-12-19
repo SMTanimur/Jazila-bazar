@@ -1,4 +1,5 @@
 import Breadcrumb from "@/components/ui/breadcrumb";
+import CheckoutLeftSite from "@/modules/checkout/CheckoutLeftSite";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -11,8 +12,15 @@ const CheckoutPage = async () => {
         <Breadcrumb />
       </section>
 
-      <div className="grid grid-cols-3"> 
-
+      <div className="grid grid-cols-3 mt-6 gap-8 container"> 
+         <div className=" col-span-3 md:col-span-2 ">
+            <CheckoutLeftSite/>
+         </div>
+         <div className="col-span-3 md:col-span-1">
+            <div className="bg-gray-100 px-4 py-3 rounded-lg">
+              Order Summary
+            </div>  
+         </div>
       </div>
       
     </div>

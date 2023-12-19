@@ -59,7 +59,7 @@ const TopRateProducts = () => {
           <Swiper
           breakpoints={ breakpoints}
       slidesPerView="auto"
-      spaceBetween={11}
+      spaceBetween={20}
       
       // modules={[Autoplay]}
       // autoplay={{ delay: 5000, disableOnInteraction: false }}
