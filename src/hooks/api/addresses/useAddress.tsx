@@ -42,7 +42,7 @@ export function useAddress() {
       success: data => {
         queryClient.invalidateQueries([API_ENDPOINTS.ADDRESSES]);
         queryClient.invalidateQueries([API_ENDPOINTS.ME]);
-        push('/dashboard/addresses')
+        push('/account/addresses')
         return <b>{data.message}</b>;
       },
       error: error => {

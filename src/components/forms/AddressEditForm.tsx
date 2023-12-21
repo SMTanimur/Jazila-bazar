@@ -1,5 +1,15 @@
-'use client';
-import React from 'react';
+"use client";
+import { addressClient } from "@/services/address.service";
+import { IAddress } from "@/types";
+import { API_ENDPOINTS } from "@/utils/api/api-endpoints";
+import { TUserAddress, UserAddressSchema } from "@/validations/user";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { Button } from "../ui/button";
+import { Checkbox } from "../ui/checkbox";
 import {
   Form,
   FormControl,
@@ -8,27 +18,16 @@ import {
   FormLabel,
   FormMessage,
   UncontrolledFormMessage,
-} from '../ui/form';
-import { Input } from '../ui/input';
-import { Textarea } from '../ui/textarea';
-import { Button } from '../ui/button';
-import { Icons } from '../ui/icons';
-import { Checkbox } from '../ui/checkbox';
-import { IAddress } from '@/types';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { addressClient } from '@/services/address.service';
-import { useForm } from 'react-hook-form';
-import { TUserAddress, UserAddressSchema } from '@/validations/user';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { toast } from 'sonner';
-import { API_ENDPOINTS } from '@/utils/api/api-endpoints';
-import { useRouter } from 'next/navigation';
+} from "../ui/form";
+import { Icons } from "../ui/icons";
+import { Input } from "../ui/input";
+import { Textarea } from "../ui/textarea";
 
 type addressFormProps = {
   initialValues?: IAddress;
 };
 const AddressEditForm = ({ initialValues }: addressFormProps) => {
-  const {push}=useRouter()
+  const { push } = useRouter();
   const queryClient = useQueryClient();
   const {
     mutateAsync: addressUpdateMutation,
@@ -57,14 +56,14 @@ const AddressEditForm = ({ initialValues }: addressFormProps) => {
         variables: { id: initialValues?._id as string, input: data },
       }),
       {
-        loading: 'updating...',
-        success: data => {
+        loading: "updating...",
+        success: (data) => {
           queryClient.invalidateQueries([API_ENDPOINTS.ADDRESSES]);
           queryClient.invalidateQueries([API_ENDPOINTS.ME]);
-           push('/dashboard/addresses')
+          push("/account/addresses");
           return <b>{data.message}</b>;
         },
-        error: error => {
+        error: (error) => {
           const {
             response: { data },
           }: any = error ?? {};
@@ -78,19 +77,19 @@ const AddressEditForm = ({ initialValues }: addressFormProps) => {
   return (
     <Form {...addressForm}>
       <form
-        className='grid gap-6'
+        className="grid gap-6"
         onSubmit={(...args) =>
           void addressForm.handleSubmit(attemptToUpdateAddress)(...args)
         }
       >
         <FormField
           control={addressForm.control}
-          name='name'
+          name="name"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder='Jone' {...field} />
+                <Input placeholder="Jone" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -99,12 +98,12 @@ const AddressEditForm = ({ initialValues }: addressFormProps) => {
 
         <FormField
           control={addressForm.control}
-          name='country'
+          name="country"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Country</FormLabel>
               <FormControl>
-                <Input placeholder='Bangladesh' {...field} />
+                <Input placeholder="Bangladesh" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -112,13 +111,13 @@ const AddressEditForm = ({ initialValues }: addressFormProps) => {
         />
         <FormField
           control={addressForm.control}
-          name='street'
+          name="street"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Street Address</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder='House number and street name'
+                  placeholder="House number and street name"
                   {...field}
                 />
               </FormControl>
@@ -129,12 +128,12 @@ const AddressEditForm = ({ initialValues }: addressFormProps) => {
 
         <FormField
           control={addressForm.control}
-          name='city'
+          name="city"
           render={({ field }) => (
             <FormItem>
               <FormLabel>City</FormLabel>
               <FormControl>
-                <Input placeholder='City' {...field} />
+                <Input placeholder="City" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -142,12 +141,12 @@ const AddressEditForm = ({ initialValues }: addressFormProps) => {
         />
         <FormField
           control={addressForm.control}
-          name='state'
+          name="state"
           render={({ field }) => (
             <FormItem>
               <FormLabel>State</FormLabel>
               <FormControl>
-                <Input placeholder='State' {...field} />
+                <Input placeholder="State" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -155,39 +154,39 @@ const AddressEditForm = ({ initialValues }: addressFormProps) => {
         />
         <FormField
           control={addressForm.control}
-          name='postcode'
+          name="postcode"
           render={({ field }) => (
             <FormItem>
               <FormLabel>PostCode</FormLabel>
               <FormControl>
-                <Input placeholder='PostCode' {...field} />
+                <Input placeholder="PostCode" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <div className='flex flex-col items-start gap-6 sm:flex-row'>
-          <FormItem className='w-full'>
+        <div className="flex flex-col items-start gap-6 sm:flex-row">
+          <FormItem className="w-full">
             <FormLabel>Email</FormLabel>
             <FormControl>
               <Input
                 aria-invalid={!!addressForm.formState.errors.state}
-                placeholder='example@gmail.com'
-                {...addressForm.register('email')}
+                placeholder="example@gmail.com"
+                {...addressForm.register("email")}
               />
             </FormControl>
             <UncontrolledFormMessage
               message={addressForm.formState.errors?.state?.message}
             />
           </FormItem>
-          <FormItem className='w-full'>
+          <FormItem className="w-full">
             <FormLabel>Phone Number</FormLabel>
             <FormControl>
               <Input
                 aria-invalid={!!addressForm.formState.errors.state}
-                placeholder='+88016******'
-                {...addressForm.register('phone')}
+                placeholder="+88016******"
+                {...addressForm.register("phone")}
               />
             </FormControl>
             <UncontrolledFormMessage
@@ -198,27 +197,27 @@ const AddressEditForm = ({ initialValues }: addressFormProps) => {
 
         <FormField
           control={addressForm.control}
-          name='default'
+          name="default"
           render={({ field }) => (
-            <FormItem className='flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4'>
+            <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
               <FormControl>
                 <Checkbox
                   checked={field.value}
                   onCheckedChange={field.onChange}
                 />
               </FormControl>
-              <div className='space-y-1 leading-none'>
+              <div className="space-y-1 leading-none">
                 <FormLabel>Set as my default address</FormLabel>
               </div>
             </FormItem>
           )}
         />
 
-        <Button disabled={addressUpdateLoading} className=' ' size={'sm'}>
+        <Button disabled={addressUpdateLoading} className=" " size={"sm"}>
           {addressUpdateLoading && (
             <Icons.spinner
-              className='mr-2 h-4 w-4 animate-spin'
-              aria-hidden='true'
+              className="mr-2 h-4 w-4 animate-spin"
+              aria-hidden="true"
             />
           )}
           Save

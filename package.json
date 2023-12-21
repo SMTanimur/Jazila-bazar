@@ -67,6 +67,7 @@
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.4",
+    "react-phone-input-2": "^2.15.1",
     "react-share": "^5.0.2",
     "react-spring": "^9.7.3",
     "react-use": "^17.4.0",

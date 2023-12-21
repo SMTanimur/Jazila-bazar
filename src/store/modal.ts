@@ -1,11 +1,16 @@
 "use client";
 
-import { IProduct } from "@/types";
+import { IAddress, IProduct } from "@/types";
 import { create } from "zustand";
 
-type IQuickViewState = {
-  quickView: boolean;
-  quickViewState: IProduct | null;
+type IAddressEditState = {
+  customerId: string;
+  address: IAddress;
+};
+
+type IAddressDeleteState = {
+  customerId: string;
+  addressId: string;
 };
 interface GlobalModalState {
   userMenu: boolean;
@@ -45,6 +50,21 @@ interface GlobalModalState {
     showReviewModal: boolean,
     reviewModalState: any
   ) => void;
+
+  showAddress: boolean;
+  addressData: string | null;
+  setAddressData: (showAddresss: boolean, addressData: any) => void;
+
+  showEditAddress: boolean;
+  editAddressData: IAddressEditState | null;
+  setEditAddressData: (showEditAddresss: boolean, editAddressData: any) => void;
+
+  showDeleteAddress: boolean;
+  deleteAddressData: IAddressDeleteState | null;
+  setDeleteAddressData: (
+    showDeleteAddresss: boolean,
+    deleteAddressData: any
+  ) => void;
 }
 export const useGlobalModalStateStore = create<GlobalModalState>((set) => ({
   userMenu: false,
@@ -81,4 +101,19 @@ export const useGlobalModalStateStore = create<GlobalModalState>((set) => ({
   sideFilter: false,
   onSideFilter: () => set(() => ({ sideFilter: true })),
   closeSideFilter: () => set(() => ({ sideFilter: false })),
+
+  showAddress: false,
+  addressData: null,
+  setAddressData: (showAddress, addressData) =>
+    set(() => ({ showAddress, addressData })),
+
+  showEditAddress: false,
+  editAddressData: null,
+  setEditAddressData: (showEditAddress, editAddressData) =>
+    set(() => ({ showEditAddress, editAddressData })),
+
+  showDeleteAddress: false,
+  deleteAddressData: null,
+  setDeleteAddressData: (showDeleteAddress, deleteAddressData) =>
+    set(() => ({ showDeleteAddress, deleteAddressData })),
 }));
