@@ -2,13 +2,13 @@
 import React from 'react'
 import AddressGrid from './address-grid'
 import { useMe } from '@/hooks/api/user/useMe'
-
+import DeliverySchedule from './schedule';
 const CheckoutLeftSite = () => {
   const {me}=useMe()
   
   return (
-    <div className='bg-gray-100 px-4 py-3 rounded-lg'>
-        <div className="w-full space-y-6 ">
+    <div className=''>
+        <div className="w-full space-y-6 bg-gray-100 px-4 py-3 rounded-lg">
             <AddressGrid
               userId={me?._id as string}
               className="bg-white p-5 shadow-700 md:p-8"
@@ -20,12 +20,12 @@ const CheckoutLeftSite = () => {
               type={"address"}
             />
             
-            {/* <ScheduleGrid
-              className="bg-light p-5 shadow-700 md:p-8"
-              label={t('text-delivery-schedule')}
-              count={4}
-            /> */}
+            
           </div>
+          <div  className='w-full  bg-gray-100 px-4 py-3 rounded-lg mt-6'>
+          <DeliverySchedule/>
+          </div>
+          
         
     </div>
   )

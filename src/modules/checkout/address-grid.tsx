@@ -6,6 +6,7 @@ import { useAtom, WritableAtom } from 'jotai';
 import { useEffect } from 'react';
 import { AddressHeader } from './address-header';
 import { useCheckoutStore } from '@/store/checkout';
+import AddressCard from './address-card';
 
 
 interface AddressesProps {
@@ -67,14 +68,14 @@ export const AddressGrid: React.FC<AddressesProps> = ({
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
             {addresses?.map((address) => (
               <RadioGroup.Option value={address} key={address?._id}>
-                {/* {({ checked }: { checked: boolean }) => (
+                {({ checked }: { checked: boolean }) => (
                   <AddressCard
                     checked={checked}
                     onDelete={() => onDelete(address)}
                     onEdit={() => onEdit(address)}
                     address={address}
                   />
-                )} */}
+                )}
               </RadioGroup.Option>
             ))}
           </div>
