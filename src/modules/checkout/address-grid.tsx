@@ -21,7 +21,6 @@ interface AddressesProps {
 export const AddressGrid: React.FC<AddressesProps> = ({
   addresses,
   label,
-
   className,
   userId,
   count,
