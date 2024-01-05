@@ -16,11 +16,11 @@ export const AddressHeader: React.FC<AddressHeaderProps> = ({
     <div className="mb-5 flex items-center justify-between md:mb-8">
       <div className="flex items-center space-x-3  md:space-x-4">
         {count && (
-          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-base text-white lg:text-xl">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-base text-white dark:text-white lg:text-xl">
             {count}
           </span>
         )}
-        <p className="text-lg capitalize text-heading lg:text-xl">{label}</p>
+        <p className="text-lg capitalize text-heading dark:text-primary lg:text-xl">{label}</p>
       </div>
       {onAdd && (
         <button

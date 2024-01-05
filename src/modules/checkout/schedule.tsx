@@ -26,7 +26,7 @@ export default function Schedule() {
   }
 
   return (
-    <div className="w-full bg-white px-4 py-6 rounded-lg">
+    <div className="w-full bg-white dark:bg-gray-900 px-4 py-6 rounded-lg">
       <div className="w-full mx-auto">
         <RadioGroup value={dateSchedule} onChange={setDateSchedule}>
           <RadioGroup.Label className="sr-only">
@@ -99,7 +99,7 @@ export default function Schedule() {
                     />
                     <RadioGroup.Label
                       as="p"
-                      className="text-sm text-black ml-2 "
+                      className="text-sm text-black dark:text-white ml-2 "
                     >
                       {time}
                     </RadioGroup.Label>

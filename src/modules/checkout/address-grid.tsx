@@ -57,7 +57,7 @@ export const AddressGrid: React.FC<AddressesProps> = ({
       <AddressHeader onAdd={onAdd} count={count} label={label} />
       {!addresses?.length ? (
         <div className="grid grid-cols-1 gap-4">
-          <span className="relative rounded border border-border-200 bg-gray-100 px-5 py-6 text-center text-base">
+          <span className="relative rounded border border-border-200 bg-gray-100 px-5 py-6 text-center text-base dark:bg-gray-950">
            No Address
           </span>
         </div>
