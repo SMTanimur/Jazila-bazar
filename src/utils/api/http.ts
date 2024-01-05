@@ -34,7 +34,7 @@ http.interceptors.response.use(
       (error.response && error.response.status === 401) ||
       (error.response && error.response.status === 403) ||
       (error.response &&
-        error.response.data.message === 'PICKBAZAR_ERROR.NOT_AUTHORIZED')
+        error.response.data.message)
     ) {
       // Cookies.remove(AUTH_TOKEN_KEY);
       // Router.reload();
