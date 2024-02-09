@@ -68,10 +68,10 @@ const CartSidebarView = () => {
             {cartTotal}
           </div>
         </div>
-        <div
+        <button
           className="flex flex-col gap-4"
           onClick={() => globalModal.closeCartState()}
-          tabIndex={0}
+        
         >
           <Link
             href={`/cart`}
@@ -97,7 +97,7 @@ const CartSidebarView = () => {
           >
             <span className="py-0.5">Checkout</span>
           </Link>
-        </div>
+        </button>
       </div>
     </div>
   );

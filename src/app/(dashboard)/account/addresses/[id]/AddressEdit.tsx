@@ -8,7 +8,7 @@ type addressEditProps = {
   addressId: string;
 };
 const AddressEdit = ({ addressId }: addressEditProps) => {
-  const { data, error, isLoading } = useGetAddress(addressId);
+  const { data,  isLoading } = useGetAddress(addressId);
 
    if(isLoading) {
    return AddressLoading()

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 interface AuthLayoutProps {
-  children: React.ReactNode;
+ readonly children: React.ReactNode;
 }
 
 export default function AuthLayout({ children }: AuthLayoutProps) {

@@ -14,7 +14,7 @@ import { VerifyEmailForm } from "@/components/forms/verify-email-form"
 
 
 type Params = {
-  params: {
+ readonly params: {
     token: string;
   };
 };
