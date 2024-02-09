@@ -63,6 +63,7 @@ export default function MobileAuthorizedMenu() {
             key={index}
           
             onClick={() => handleClick(item.href as string)}
+          
           >
             <span
               className={cn(

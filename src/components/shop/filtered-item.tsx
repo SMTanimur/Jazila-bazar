@@ -11,6 +11,7 @@ export const FilteredItem = ({ itemKey, itemValue, onClick }: Props) => {
   return (
     <div
       className="group flex shrink-0 m-1 items-center border border-border rounded-lg text-[13px] px-2.5 py-1.5 capitalize text-gray-600 dark:text-gray-100 cursor-pointer transition duration-200 ease-in-out hover:border-primary"
+      role="button"
       onClick={onClick}
     >
       {itemKey && itemValue}
