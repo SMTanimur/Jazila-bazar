@@ -28,13 +28,9 @@ const ProductAttributes: React.FC<Props> = ({
 
           <ul className="flex flex-wrap -mr-2 -ml-2">
             {variations[variationName].map((attribute: any, index: any) => (
-              <React.Fragment 
-              key={index}
-              >
+              <React.Fragment key={index}>
                 {variationName === "color" ? (
-                  <div
-                
-                    role="button"
+                  <button
                     onClick={() =>
                       setAttributes((prev: any) => ({
                         ...prev,
@@ -53,9 +49,9 @@ const ProductAttributes: React.FC<Props> = ({
                       className="w-full h-full rounded-full border border-border-200"
                       style={{ backgroundColor: color }}
                     />
-                  </div>
+                  </button>
                 ) : (
-                  <li
+                  <button
                     key={index}
                     className={cn(
                       "cursor-pointer rounded border dark:border-primary h-9 md:h-10 p-1 mb-2 md:mb-3  ml-2 flex justify-center items-center font-medium text-sm md:text-15px text-primary transition duration-200 ease-in-out hover:text-primary hover:border-primary px-3",
@@ -72,7 +68,7 @@ const ProductAttributes: React.FC<Props> = ({
                     }
                   >
                     {attribute.value}
-                  </li>
+                  </button>
                 )}
               </React.Fragment>
             ))}
