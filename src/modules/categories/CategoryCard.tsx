@@ -15,10 +15,8 @@ const CategoryCard = ({ category }: Props) => {
     <React.Fragment>
       <div className=" dark:bg-gray-900 bg-[#f5f5f5] rounded-xl relative group w-[170px] select-none xs:h-[250px] h-[216px] overflow-hidden px-5 cursor-pointer hover:bg-primary/10 dark:hover:bg-primary/10  space-y-4 group flex flex-col justify-center ">
         <div className="flex flex-col  -mt-8">
-          <h5 className="text-xl text-gray-800 dark:text-white font-semibold group-hover:scale-105 group-hover:text-primary transition-all duration-300 ">
-            {category.name.length > 9
-              ? `${category.name.substring(0, 9)}...`
-              : category.name}
+          <h5 className="text-xl text-gray-800 dark:text-white font-semibold group-hover:scale-105 group-hover:text-primary transition-all duration-300 w-full text-ellipsis line-clamp-1 ">
+            { category.name}
           </h5>
           <p className="text-stone-600 dark:group-hover:text-white">
             {category.products_count} Items

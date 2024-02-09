@@ -77,10 +77,8 @@ const ProductCard = ({ product }: Props) => {
           </div>
         </div>
         <Link className="flex flex-col" href={`/products/${product.slug}`}>
-          <h5 className="text-sm sm:text-base font-semibold text-gray-800 dark:text-white">
-            {product.name.length > 15
-              ? `${product.name.substring(0, 15)}...`
-              : product.name}
+          <h5 className="text-sm sm:text-base font-semibold text-gray-800 dark:text-white w-full line-clamp-1 text-ellipsis">
+            {product.name}
           </h5>
           {product.unit ? (
             <p className="text-sm text-gray-600">{product.unit}</p>

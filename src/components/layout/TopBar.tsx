@@ -10,7 +10,9 @@ const TopBar = () => {
           <span>We are available 24/7, Need help?</span>
           <span className='text-primary'>+8801648138404</span>
         </div>
-        <div className='flex gap-4'></div>
+        <div className='flex gap-4'>
+          
+        </div>
      </div>
     </section>
   )
