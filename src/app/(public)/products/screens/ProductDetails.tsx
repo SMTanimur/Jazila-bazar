@@ -48,7 +48,7 @@ const ProductDetails = ({ product }: Props) => {
     selectedVariation = product?.variation_options?.find((o: any) =>
       isEqual(
         o.options.map((v: any) => v.value).sort(),
-        Object.values(attributes).sort()
+        Object.values(attributes)
       )
     );
   }

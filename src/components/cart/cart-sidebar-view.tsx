@@ -71,6 +71,7 @@ const CartSidebarView = () => {
         <div
           className="flex flex-col gap-4"
           onClick={() => globalModal.closeCartState()}
+          tabIndex={0}
         >
           <Link
             href={`/cart`}
