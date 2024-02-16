@@ -36,6 +36,7 @@ module.exports = {
     },
     extend: {
       colors: {
+        bgCard:"#F8F8F8",
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -100,6 +101,7 @@ module.exports = {
         
         DEFAULT: '#1d1d22',
       },
+      
     },
   },
   plugins: [require('tailwindcss-animate')],

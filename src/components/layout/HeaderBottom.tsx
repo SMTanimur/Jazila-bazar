@@ -32,7 +32,7 @@ const HeaderBottom = () => {
             All Categories
           </Button>
         </HoverCardTrigger>
-        <HoverCardContent className="w-80 duration-200" align="start">
+        <HoverCardContent className="dark:bg-black w-80 duration-200" align="start">
           <div className="">
             {categories?.docs.map((category) => (
               <Link
