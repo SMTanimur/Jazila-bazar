@@ -1,9 +1,9 @@
 import { useGetCategoriesQuery } from "@/hooks/api/category/useGetCategoriesQuery";
 import useQueryParam from "@/hooks/use-query-params";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { CheckBox } from "../common/shared/checkbox";
-
+import { Checkbox } from "../ui/checkbox";
+import { Label } from "../ui/label";
 
 export const CategoryFilter = () => {
   const pathname = usePathname();
@@ -38,13 +38,11 @@ export const CategoryFilter = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasQueryKey]);
 
-
-  function handleItemClick(e: React.FormEvent<HTMLInputElement>): void {
-    const { value } = e.currentTarget;
-    setFormState(
-      formState.includes(value)
-        ? formState.filter((item) => item !== value)
-        : [...formState, value]
+  function handleItemClick(slug: string) {
+    setFormState((prevFormState) =>
+      prevFormState.includes(slug)
+        ? prevFormState.filter((item) => item !== slug)
+        : [...prevFormState, slug]
     );
   }
 
@@ -52,21 +50,20 @@ export const CategoryFilter = () => {
     <div className="block border-b border-gray-300 pb-7 mb-7">
       <div className="text-gray-900 dark:text-white text-sm md:text-base font-semibold mb-7 ">
         <h6>Categories</h6>
-        <div className="border-b border-primary w-[85px] mt-1"/>
-        
+        <div className="border-b border-primary w-[85px] mt-1" />
       </div>
       <div className="mt-2 flex flex-col space-y-4">
         {items?.map((item: any) => (
-        
+          <div key={item.slug} className="flex items-center space-x-3">
+            <Checkbox
+              name={item.name.toLowerCase()}
+              checked={formState.includes(item.slug)}
+              value={item.slug}
+              onCheckedChange={() => handleItemClick(item.slug)}
+            />
 
-          <CheckBox
-          	key={item.slug}
-          	label={item.name}
-          	name={item.name.toLowerCase()}
-          	checked={formState.includes(item.slug)}
-          	value={item.slug}
-          	onChange={handleItemClick}
-          />
+            <Label>{item.name}</Label>
+          </div>
         ))}
       </div>
     </div>
