@@ -64,15 +64,7 @@ export const PriceFilter = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasQueryKey]);
 
-  useEffect(() => {
-    updateQueryparams("price", formState.toString());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [formState]);
 
-  useEffect(() => {
-    setFormState(hasQueryKey?.split(",") ?? []);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hasQueryKey]);
   const items = priceFilterItems;
 
   function handleItemClick(slug: string) {

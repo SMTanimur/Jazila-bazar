@@ -13,26 +13,20 @@ export const CategoryFilter = () => {
 
   const hasQueryKey = searchParams?.get("category");
 
-  useEffect(() => {
-    updateQueryparams("category", formState.toString());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [formState]);
+ 
 
-  useEffect(() => {
-    setFormState(hasQueryKey?.split(",") ?? []);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hasQueryKey]);
 
   const { data } = useGetCategoriesQuery({
     limit: 10,
   });
   const items = data?.docs;
 
+
   useEffect(() => {
     updateQueryparams("category", formState.toString());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formState]);
-
+  
   useEffect(() => {
     setFormState(hasQueryKey?.split(",") ?? []);
     // eslint-disable-next-line react-hooks/exhaustive-deps
