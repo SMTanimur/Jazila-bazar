@@ -49,13 +49,15 @@ const ProductCard = ({ product }: Props) => {
     <div className=" flex flex-col group overflow-hidden rounded-md transition-all duration-300 shadow-card hover:shadow-cardHover  relative h-full">
       <Card className="bg-bgCard dark:bg-background border-none shadow-sm rounded-md w-full h-full group flex flex-col px-4 py-5  relative">
         <div className="w-full min-h-[150px] flex items-center relative justify-center overflow-hidden px-4">
-          <Image
-            className="object-center group-hover:scale-110 transition-all duration-700 "
-            src={product.image?.img_url as string}
-            alt={product.name}
-            width={150}
-            height={100}
-          />
+          <Link href={`/products/${product.slug}`}>
+            <Image
+              className="object-center group-hover:scale-110 transition-all duration-700 "
+              src={product.image?.img_url as string}
+              alt={product.name}
+              width={150}
+              height={100}
+            />
+          </Link>
           <div className="absolute -bottom-12 bg-white dark:bg-black/80 dark:shadow-sm dark:shadow-gray-200 rounded-lg group-hover:bottom-5 transition-all duration-500 py-2 px-4 z-[100] flex items-center space-x-2">
             <button
               onClick={() => globalModal.setQuickViewState(true, product)}
@@ -76,10 +78,13 @@ const ProductCard = ({ product }: Props) => {
             </button>
           </div>
         </div>
-        <Link className="flex flex-col" href={`/products/${product.slug}`}>
-          <h5 className="text-sm sm:text-base font-semibold text-gray-800 dark:text-white w-full line-clamp-1 text-ellipsis">
+        <div className="flex flex-col">
+          <Link
+            className="text-sm sm:text-base font-semibold text-gray-800 dark:text-white w-full line-clamp-1 text-ellipsis"
+            href={`/products/${product.slug}`}
+          >
             {product.name}
-          </h5>
+          </Link>
           {product.unit ? (
             <p className="text-sm text-gray-600">{product.unit}</p>
           ) : (
@@ -97,10 +102,10 @@ const ProductCard = ({ product }: Props) => {
               </del>
             )}
           </div>
-        </Link>
+        </div>
 
         <div className="flex items-center">
-        <div className="flex -mx-0.5 ">
+          <div className="flex -mx-0.5 ">
             {[...Array(5)].map((_, idx) => (
               <StarIcon
                 key={idx}
@@ -109,7 +114,9 @@ const ProductCard = ({ product }: Props) => {
               />
             ))}
           </div>
-          <p className="text-sm ml-3">{product.in_stock ? "In-Stock" : "Out of Stock"}</p>
+          <p className="text-sm ml-3">
+            {product.in_stock ? "In-Stock" : "Out of Stock"}
+          </p>
         </div>
 
         <Button
