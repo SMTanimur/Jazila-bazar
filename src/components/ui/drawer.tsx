@@ -52,18 +52,7 @@ const Drawer: React.FC<DrawerProps> = ({
     };
   }, [open]);
 
-  // useEffect(() => {
-  //   if (ref.current) {
-  //     if (open) {
-  //       disableBodyScroll(ref.current);
-  //     } else {
-  //       enableBodyScroll(ref.current);
-  //     }
-  //   }
-  //   return () => {
-  //     clearAllBodyScrollLocks();
-  //   };
-  // }, [open]);
+
 
   return (
     <Portal>

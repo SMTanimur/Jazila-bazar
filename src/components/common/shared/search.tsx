@@ -52,7 +52,7 @@ const Search: React.FC<SearchProps> = ({
     if (!searchText) {
       onSearch({ searchText: "" });
     }
-  }, [searchText]);
+  }, [onSearch, searchText]);
 
   const rootClassName = cn(
     classes.root,
