@@ -1,7 +1,8 @@
-import ProgressBar from "@/components/common/shared/ProgressBar";
+"use client"
 import { Button } from "@/components/ui/button";
 import Counter from "@/components/ui/counter";
 import { Icons } from "@/components/ui/icons";
+import { ProgressBar } from "@/components/ui/progress";
 import StarIcon from "@/components/ui/star-icon";
 import usePrice from "@/hooks/use-price";
 import { cn } from "@/lib/utils";
@@ -205,24 +206,31 @@ const ProductDetails = ({ product }: Props) => {
           </div>
         </div>
         <div
-          className={cn(
-            !isEmpty(selectedVariation)
-              ? selectedVariation?.quantity <= 15
-                ? "block"
-                : "hidden"
-              : (product?.quantity as number) <= 15
-              ? "block"
-              : "hidden"
-          )}
-        >
-          <ProgressBar
-            quantity={
-              !isEmpty(selectedVariation)
-                ? selectedVariation.quantity
-                : product?.quantity
-            }
-          />
-        </div>
+className={cn(
+  !isEmpty(selectedVariation)
+    ? selectedVariation?.quantity <= 15
+      ? "block"
+      : "hidden"
+    : (product?.quantity as number) <= 15
+    ? "block"
+    : "hidden"
+)}
+>
+<div>
+  <h6 className="font-[calc(13px + 1 * (100vw - 320px) / 1600)] font-normal mb-2">
+    Please hurry! Only{" "}
+    {!isEmpty(selectedVariation)
+      ? selectedVariation?.quantity
+      : product?.quantity}
+    left in stock
+  </h6>
+  <ProgressBar
+    animated
+    value={((product?.quantity ?? 1) * 100) / 10}
+    color="rose"
+  />
+</div>
+</div>
 
         <div className="py-4 border-t border-dashed w-full">
           <QuickViewShortDetails {...{ product, selectedVariation }} />

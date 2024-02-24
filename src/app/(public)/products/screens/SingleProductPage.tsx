@@ -8,6 +8,7 @@ import { IProduct } from "@/types";
 import { GlobeIcon, SmartphoneIcon } from "lucide-react";
 import Image from "next/image";
 import ProductDetails from "./ProductDetails";
+import { useEffect, useState } from "react";
 
 type Props = {
   productSlug: string;
@@ -15,6 +16,13 @@ type Props = {
 const SingleProductPage = ({ productSlug }: Props) => {
   const { data, isLoading } = useProductQuery(productSlug);
   const productUrl = `${process.env.NEXT_PUBLIC_APP_URL}${ROUTES.PRODUCT}/${productSlug}`;
+  const [productState, setProductState] = useState<IProduct>()
+  useEffect(() => {
+    if (data) {
+     
+      setProductState(data);
+    }
+  }, [data, isLoading]);
   return (
     <div className="py-5 ">
       <section className="  h-12 py-10  bg-gray-100 dark:bg-gray-900 flex justify-center items-center ">
@@ -76,7 +84,7 @@ const SingleProductPage = ({ productSlug }: Props) => {
         </div>
       </div>
       <div className="container">
-        <ProductDetailsTab {...{ product: data  as IProduct}} />
+        <ProductDetailsTab {...{ product: productState  as IProduct}} />
       </div>
     </div>
   );

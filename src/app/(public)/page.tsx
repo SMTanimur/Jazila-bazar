@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import OurProductsSection from "./screens/ourProductsSection";
 import TopRateProducts from "./screens/TopRateProducts";
+import { MultiProgressBar, ProgressBar } from "@/components/ui/progress";
 export default async function IndexPage() {
   return (
     <div className="py-3">
@@ -34,7 +35,28 @@ export default async function IndexPage() {
       </div>
       <OurProductsSection />
       <TopRateProducts/>
+      <div className=" ">
       
+          <div className="space-y-3 w-[400px]">
+          <ProgressBar value={10} />
+          <ProgressBar value={25} color="green" animated />
+          <ProgressBar value={50} color="blue" />
+          <ProgressBar value={75} color="yellow" animated />
+          <ProgressBar value={100} color="orange" />
+          </div>
+         
+         <div className="w-[800px]">
+         <MultiProgressBar
+            bars={[
+              { value: 10 },
+              { value: 80, color: "rose", animated: true },
+              { value: 20, color: "indigo" },
+              { value: 20, color: "rose", animated: true },
+            ]}
+          />
+         </div>
+         
+        </div>
     </div>
   );
 }

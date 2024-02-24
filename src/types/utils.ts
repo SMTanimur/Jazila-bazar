@@ -24,3 +24,18 @@ export interface PaginatorInfo<T> {
 
   pagingCounter: number;
 }
+
+export type IColor =
+  | "rose"
+  | "green"
+  | "blue"
+  | "yellow"
+  | "red"
+  | "gray"
+  | "purple"
+  | "indigo"
+  | "pink"
+  | "orange"
+  | "teal"
+  | "cyan"
+  | "violet";

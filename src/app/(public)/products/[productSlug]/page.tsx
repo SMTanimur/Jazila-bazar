@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 };
 
-const Product =async ({ params: { productSlug } }: Props) => {
+const Product = ({ params: { productSlug } }: Props) => {
  
    return  <SingleProductPage {...{productSlug}}/>
 };
