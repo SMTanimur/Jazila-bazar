@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { defaultMetadata } from "../lib/seo";
 import "../styles/globals.css";
+import NextTopLoader from "nextjs-toploader";
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
@@ -35,6 +36,7 @@ export default function RootLayout({
         suppressHydrationWarning={true}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <NextTopLoader color="#ff3366" />
           <GoogleProvider>
             <QueryProvider>
               <GlobalModals />

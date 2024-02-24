@@ -56,6 +56,7 @@
     "lucide-react": "^0.269.0",
     "next": "^14.0.0",
     "next-themes": "^0.2.1",
+    "nextjs-toploader": "^1.6.6",
     "overlayscrollbars": "^2.4.0",
     "overlayscrollbars-react": "^0.5.3",
     "postcss": "8.4.28",
