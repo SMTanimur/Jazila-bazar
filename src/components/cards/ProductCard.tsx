@@ -47,7 +47,7 @@ const ProductCard = ({ product }: Props) => {
   }
   return (
     <div className=" flex flex-col group overflow-hidden rounded-md transition-all duration-300 shadow-card hover:shadow-cardHover  relative h-full">
-      <Card className="bg-bgCard dark:bg-background border-none shadow-sm rounded-md w-full h-full group flex flex-col px-4 py-5  relative">
+      <Card className="bg-bgCard dark:bg-gray-900 border-none shadow-sm rounded-md w-full h-full group flex flex-col px-4 py-5  relative">
         <div className="w-full min-h-[150px] flex items-center relative justify-center overflow-hidden px-4">
           <Link href={`/products/${product.slug}`}>
             <Image
