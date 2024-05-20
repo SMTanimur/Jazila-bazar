@@ -7,13 +7,14 @@ import { toast } from 'sonner';
 
 const baseURL = process.env.NEXT_PUBLIC_API_URL;
 const isServer = typeof window === 'undefined';
+axios.defaults.withCredentials = true;
 const http = axios.create({
   baseURL: `${baseURL}/v1`,
   timeout: 500000,
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: true,
+ 
 });
 
 // Change request data/error here
