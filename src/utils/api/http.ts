@@ -13,6 +13,7 @@ const http = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  withCredentials: true,
 });
 
 // Change request data/error here
