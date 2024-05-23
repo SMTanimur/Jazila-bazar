@@ -7,7 +7,6 @@ export const  QueryKeys ={
   ACTIVATE: 'activate',
   VERIFY_COUPONS: 'coupons/verify',
   CUSTOMERS: 'customers',
-  TAXES: 'taxes',
   
 
 }
