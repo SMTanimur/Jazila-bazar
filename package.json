@@ -84,7 +84,7 @@
   "devDependencies": {
     "@types/body-scroll-lock": "^3.1.0",
     "@types/js-cookie": "^3.0.3",
-    "@types/lodash": "^4.14.197",
+    "@types/lodash": "^4.17.4",
     "@types/overlayscrollbars": "^1.12.2",
     "@types/react-copy-to-clipboard": "^5.0.7"
   }
