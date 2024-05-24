@@ -27,15 +27,7 @@ export type ShopsQueryOptionsType = {
   orderBy?: string;
   sortedBy?: SortOrder;
 };
-export type WithdrawsQueryOptionsType = {
-  text?: string;
-  shop_id?: string;
-  page?: number;
-  parent?: number | null;
-  limit?: number;
-  orderBy?: string;
-  sortedBy?: SortOrder;
-};
+
 export type QuestionsQueryOptionsType = {
   shop_id?: string;
   user?: string;
