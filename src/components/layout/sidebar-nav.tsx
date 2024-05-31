@@ -91,10 +91,10 @@ export function SidebarNav({ items, className, ...props }: SidebarNavProps) {
           </span>
         );
       })}
-      <div className="py-2 px-3 flex-col items-center">
+      <div className=" px-3 flex-col items-center">
         <div className="border-b-2 w-full my-3 self-center" />
 
-        <div className="w-full relative">
+        <div className="w-full relative text-white">
           <Button className="w-full" >
             <Link href={"/signout"}>
             Log out

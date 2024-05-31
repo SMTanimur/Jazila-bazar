@@ -35,7 +35,7 @@ const ChangePassword = () => {
           Change your Password
         </PageHeaderDescription>
       </PageHeader>
-      <section>
+      <section className='px-1'>
         <ChangePasswordForm />
       </section>
     </Shell>
