@@ -24,7 +24,7 @@ DashboardUrl : [dashboard](https://github.com/SMTanimur/jazila-dashboard)
 - Tailwindcss
 - Zustand (State management)
 - Shadcn (components library)
-- Axios (Support fetching data) and Graphql
+- Axios (Support fetching data) 
 - Swiper (Slider), react-modal
 - React-form-hook, yup (Validation)
 - sonner, sweetalert2 (Message UI)
