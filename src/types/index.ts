@@ -617,6 +617,8 @@ export enum PaymentGateway {
   PAYSTACK = 'PAYSTACK',
   XENDIT = 'XENDIT',
   IYZICO = 'IYZICO',
+  BKASH = 'BKASH',
+  ROCKET = 'ROCKET',
 }
 
 export enum OrderStatus {

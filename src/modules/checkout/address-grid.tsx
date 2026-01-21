@@ -49,7 +49,7 @@ export const AddressGrid: React.FC<AddressesProps> = ({
 
   }
   function onDelete(address: any) {
-    setDeleteAddressData(true,{customerId: userId, addressId: address?.id})
+    setDeleteAddressData(true,{customerId: userId, addressId: address?._id || address?.id})
   }
 
   return (

@@ -9,6 +9,11 @@ import Drawer from "../ui/drawer";
 import dynamic from "next/dynamic";
 import PostQuestionModal from "@/modules/products/productQuestion/postQuestionModal";
 import ReviewFormView from "@/modules/review/review-form-view";
+import {
+  AddressCreateModal,
+  AddressEditModal,
+  AddressDeleteModal,
+} from "@/modules/checkout/address-modal";
 const CartSidebar = dynamic(() => import('@/components/cart/cart-sidebar-view'), {
   ssr: false,
 });
@@ -68,6 +73,10 @@ const GlobalModals = () => {
       >
         <ReviewFormView />
       </Modal>
+
+      <AddressCreateModal />
+      <AddressEditModal />
+      <AddressDeleteModal />
     </div>
   );
 };

@@ -45,27 +45,44 @@ interface DeliveryTime {
 
   export const useCheckoutStore = create(devtools<CheckoutState>((set,get)=>({
     address: null,
-    shipping_address: null,
     delivery_time: null,
     payment_gateway: PaymentGateway.COD,
     customer_contact: '',
-    customer_name: '',
+    customer_name: null,
     verified_response: null,
     coupon: null,
     payable_amount: 0,
     use_wallet: false,
 
-    clearCheckout: () => set({ billingAddress: null, shippingAddress: null, /* ... reset other fields */ }),
+    clearCheckout: () => set({ 
+      address: null,
+      delivery_time: null,
+      payment_gateway: PaymentGateway.COD,
+      customer_contact: '',
+      customer_name: null,
+      verified_response: null,
+      coupon: null,
+      payable_amount: 0,
+      use_wallet: false,
+    }),
     setAddress: (data) => set((state) => ({ ...state, address: data })),
-    setDeliveryTime: (data) => set((state) => ({ ...state, deliveryTime: data })),
-    setPaymentGateway: (data) => set((state) => ({ ...state, paymentGateway: data })),
-    setVerifiedToken: (data) => set((state) => ({ ...state, token: data })),
-    setCustomerContact: (data) => set((state) => ({ ...state, customerContact: data })),
-    setVerifiedResponse: (data) => set((state) => ({ ...state, verifiedResponse: data })),
+    setDeliveryTime: (data) => set((state) => ({ ...state, delivery_time: data })),
+    setPaymentGateway: (data) => set((state) => ({ ...state, payment_gateway: data })),
+    setVerifiedToken: (data) => {
+      // Store token if needed, can be used for payment verification
+      // This might be stored separately or in verified_response
+    },
+    setCustomerContact: (data) => set((state) => ({ ...state, customer_contact: data })),
+    setVerifiedResponse: (data) => set((state) => ({ ...state, verified_response: data })),
     setCoupon: (data) => set((state) => ({ ...state, coupon: data })),
-    setDiscount: () => set((state) => ({ ...state, discount: state.coupon?.amount })),
-    setWallet: () => set((state) => ({ ...state, useWallet: !state.useWallet })),
-    setPayableAmount: (data) => set((state) => ({ ...state, payableAmount: data })),
+    setDiscount: () => {
+      const state = get();
+      if (state.coupon) {
+        // Discount calculation can be handled here if needed
+      }
+    },
+    setWallet: () => set((state) => ({ ...state, use_wallet: !state.use_wallet })),
+    setPayableAmount: (data) => set((state) => ({ ...state, payable_amount: data })),
 
   })))
 

@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { RadioGroup } from '@headlessui/react';
 import { cn } from '@/lib/utils';
+import { useCheckoutStore } from '@/store/checkout';
 
 
 const deliveryDateSchedule = [
@@ -13,9 +14,30 @@ const deliveryDateSchedule = [
 const deliveryTimeSchedule = ['9am to 10am', '3pm to 5pm', '6pm to 8pm'];
 
 export default function Schedule() {
-
+  const { delivery_time, setDeliveryTime } = useCheckoutStore();
   const [dateSchedule, setDateSchedule] = useState(deliveryDateSchedule[0]);
   const [timeSchedule, setTimeSchedule] = useState(deliveryTimeSchedule[0]);
+
+  // Initialize from store if available
+  useEffect(() => {
+    if (delivery_time) {
+      const parts = delivery_time.description?.split(' - ') || [];
+      if (parts.length === 2) {
+        setDateSchedule(parts[0]);
+        setTimeSchedule(parts[1]);
+      }
+    }
+  }, [delivery_time]);
+
+  // Update store when selection changes
+  useEffect(() => {
+    const deliveryTimeString = `${dateSchedule} - ${timeSchedule}`;
+    setDeliveryTime({
+      id: `${dateSchedule}-${timeSchedule}`,
+      title: 'Delivery Schedule',
+      description: deliveryTimeString,
+    });
+  }, [dateSchedule, timeSchedule, setDeliveryTime]);
   function getDay(date: string) {
     const day = date.split(',');
     return day[0];
@@ -26,7 +48,7 @@ export default function Schedule() {
   }
 
   return (
-    <div className="w-full bg-white dark:bg-gray-900 px-4 py-6 rounded-lg">
+    <div className="w-full bg-white dark:bg-gray-900 px-4 py-6 rounded-lg shadow-sm">
       <div className="w-full mx-auto">
         <RadioGroup value={dateSchedule} onChange={setDateSchedule}>
           <RadioGroup.Label className="sr-only">
