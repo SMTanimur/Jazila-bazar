@@ -23,4 +23,5 @@ export const API_ENDPOINTS = {
   FORGET_PASSWORD: "forget-password",
 
   RESET_PASSWORD: "reset-password",
+  ORDERS: "orders",
 };

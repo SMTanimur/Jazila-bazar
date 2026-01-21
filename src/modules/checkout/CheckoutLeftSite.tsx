@@ -3,11 +3,14 @@ import React from 'react'
 import AddressGrid from './address-grid'
 import { useMe } from '@/hooks/api/user/useMe'
 import DeliverySchedule from './schedule';
+import PaymentGatewayComponent from './payment-gateway';
+import CouponInput from './coupon-input';
+
 const CheckoutLeftSite = () => {
   const {me}=useMe()
   
   return (
-    <div className=''>
+    <div className='space-y-6'>
         <div className="w-full space-y-6 bg-gray-100 dark:bg-gray-900 px-4 py-3 rounded-lg">
             <AddressGrid
               userId={me?._id as string}
@@ -19,14 +22,19 @@ const CheckoutLeftSite = () => {
              
               type={"address"}
             />
-            
-            
-          </div>
-          <div  className='w-full  bg-gray-100 dark:bg-gray-950 px-4 py-3 rounded-lg mt-6'>
-          <DeliverySchedule/>
           </div>
           
-        
+          <div className='w-full bg-gray-100 dark:bg-gray-950 px-4 py-3 rounded-lg'>
+            <DeliverySchedule/>
+          </div>
+
+          <div className='w-full bg-gray-100 dark:bg-gray-950 px-4 py-3 rounded-lg'>
+            <PaymentGatewayComponent/>
+          </div>
+
+          <div className='w-full bg-gray-100 dark:bg-gray-950 px-4 py-3 rounded-lg'>
+            <CouponInput/>
+          </div>
     </div>
   )
 }
