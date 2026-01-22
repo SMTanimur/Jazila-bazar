@@ -7,8 +7,8 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { fontMono, fontSans } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
-import type { Metadata } from "next";
-import { defaultMetadata } from "../lib/seo";
+import type { Metadata, Viewport } from "next";
+import { defaultMetadata, viewport as defaultViewport } from "../lib/seo";
 import "../styles/globals.css";
 import NextTopLoader from "nextjs-toploader";
 import 'swiper/css';
@@ -18,6 +18,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/thumbs';
 
 export const metadata: Metadata = defaultMetadata;
+export const viewport: Viewport = defaultViewport;
 
 export default function RootLayout({
   children,

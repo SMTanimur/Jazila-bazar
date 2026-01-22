@@ -1,5 +1,5 @@
 import { metaKeywords } from './keywords';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { siteConfig } from './site';
 
 export const defaultMetadata = {
@@ -15,8 +15,6 @@ export const defaultMetadata = {
   creator: 'SM Tanimur Rahman',
   publisher: 'SM Tanimur Rahman',
   applicationName: 'Jazila-bazar ',
-  viewport: 'width=device-width, initial-scale=1.0',
-  colorScheme: 'light',
   category: 'Jazila-bazar: Your Ultimate Multi-Vendor Marketplace',
   robots: {
     index: false,
@@ -37,7 +35,6 @@ export const defaultMetadata = {
       url: 'https://smtanimur.vercel.app/',
     },
   ],
-  themeColor: '#ffffff',
   appLinks: {
     web: {
       url: siteConfig.url,
@@ -86,3 +83,10 @@ export const defaultMetadata = {
     ],
   },
 } as Metadata;
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1.0,
+  colorScheme: 'light',
+  themeColor: '#ffffff',
+};
