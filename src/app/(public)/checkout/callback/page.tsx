@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { orderClient } from "@/services/order.service";
 import { IOrder } from "@/types";
@@ -12,7 +12,7 @@ import Link from "next/link";
 
 type PaymentStatus = "processing" | "success" | "failed" | "pending";
 
-const PaymentCallbackPage = () => {
+const PaymentCallbackContent = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [order, setOrder] = useState<IOrder | null>(null);
@@ -155,7 +155,7 @@ const PaymentCallbackPage = () => {
               Payment Pending
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-6">
-              Your payment is being processed. We will notify you once it's confirmed.
+              Your payment is being processed. We will notify you once it&apos;s confirmed.
             </p>
             <Button
               onClick={() => router.push(ROUTES.ORDERS)}
@@ -169,6 +169,25 @@ const PaymentCallbackPage = () => {
         )}
       </div>
     </div>
+  );
+};
+
+const PaymentCallbackPage = () => {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-4">
+          <div className="max-w-md w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 text-center">
+            <Loader2 className="h-16 w-16 text-primary animate-spin mx-auto mb-4" />
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+              Loading...
+            </h2>
+          </div>
+        </div>
+      }
+    >
+      <PaymentCallbackContent />
+    </Suspense>
   );
 };
 

@@ -2,11 +2,11 @@
 
 import { useCartStore } from "@/store/cart/cart.store";
 import { useCheckoutStore } from "@/store/checkout";
-import usePrice from "@/hooks/use-price";
+import usePrice, { formatPrice } from "@/hooks/use-price";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
-import { useState } from "react";
+
 
 interface OrderSummaryProps {
   onPlaceOrder?: () => void;
@@ -94,7 +94,10 @@ const OrderSummary = ({ onPlaceOrder, isLoading = false }: OrderSummaryProps) =>
                   Qty: {item.quantity}
                 </p>
                 <p className="text-sm font-medium text-gray-900 dark:text-white mt-1">
-                  {usePrice({ amount: item.itemTotal || item.sale_price * (item.quantity || 1), currencyCode: "USD" }).price}
+                  {formatPrice({ 
+                    amount: item.itemTotal || item.sale_price * (item.quantity || 1), 
+                    currencyCode: "USD" 
+                  })}
                 </p>
               </div>
             </div>
