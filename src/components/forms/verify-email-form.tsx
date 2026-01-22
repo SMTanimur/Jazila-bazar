@@ -21,7 +21,7 @@ export function VerifyEmailForm({ token }: Props) {
     if (token) {
       attemptToVerifyEmail({ token: token });
     }
-  }, [token]);
+  }, [token, attemptToVerifyEmail]);
   return (
     !IsVerifyError ? (
     <Button disabled={VerifyLoading}>
