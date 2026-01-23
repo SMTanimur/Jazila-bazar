@@ -2,12 +2,13 @@
 
 import { useGetOrder } from "@/hooks/api/orders/useGetOrder";
 import { useParams } from "next/navigation";
-import { Loader2, Package, MapPin, Phone, Mail, Calendar, DollarSign } from "lucide-react";
+import { Package, MapPin, Phone, Mail, Calendar, DollarSign } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { formatPrice } from "@/hooks/use-price";
 import { formatDate } from "@/lib/utils";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
+import { OrderDetailsSkeleton } from "./OrderDetailsSkeleton";
 
 const OrderDetails = () => {
   const params = useParams();
@@ -15,14 +16,7 @@ const OrderDetails = () => {
   const { data: order, isLoading, error } = useGetOrder(orderId);
 
   if (isLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        <div className="flex flex-col items-center gap-3">
-          <Loader2 className="w-8 h-8 animate-spin text-primary" />
-          <p className="text-gray-500">Loading order details...</p>
-        </div>
-      </div>
-    );
+    return <OrderDetailsSkeleton />;
   }
 
   if (error || !order) {
