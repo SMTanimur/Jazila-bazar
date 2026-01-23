@@ -51,13 +51,13 @@ export const orderClient = {
     page?: number;
     limit?: number;
     status?: string;
-  }): Promise<{ data: IOrder[]; meta: any }> => {
+  }): Promise<IOrder[] | { data: IOrder[]; meta: any }> => {
     const queryParams = new URLSearchParams();
     if (params?.page) queryParams.append("page", params.page.toString());
     if (params?.limit) queryParams.append("limit", params.limit.toString());
     if (params?.status) queryParams.append("status", params.status);
 
     const url = `${API_ENDPOINTS.ORDERS}${queryParams.toString() ? `?${queryParams.toString()}` : ""}`;
-    return HttpClient.get<{ data: IOrder[]; meta: any }>(url);
+    return HttpClient.get<IOrder[] | { data: IOrder[]; meta: any }>(url);
   },
 };
