@@ -13,15 +13,17 @@ type Props = {
   searchParams: {
     category?: string;
     price?: string;
+    text?: string;
   };
 };
-const ProductsPage = ({ searchParams: { category, price } }: Props) => {
+const ProductsPage = ({ searchParams: { category, price, text } }: Props) => {
   const [page, setPage] = useState(1);
   const { data, isLoading } = useGetProductsQuery({
     limit: 12,
     page,
     category,
     price,
+    text,
   });
   function onPagination(current: number) {
     setPage(current);

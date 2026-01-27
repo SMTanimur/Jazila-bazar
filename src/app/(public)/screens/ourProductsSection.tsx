@@ -2,10 +2,15 @@
 import ProductCard from "@/components/cards/ProductCard";
 import ProductFeedLoader from "@/components/skelaton/product-feed-loader";
 import { useGetProductsQuery } from "@/hooks/api/product/useGetProducts";
+import { useSearchParams } from "next/navigation";
 
 const OurProductsSection = () => {
+  const searchParams = useSearchParams();
+  const text = searchParams?.get("text") || undefined;
+  
   const { data, isLoading } = useGetProductsQuery({
     limit: 12,
+    text,
   });
   const prodcuts = data?.docs;
   return (
