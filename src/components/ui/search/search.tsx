@@ -3,7 +3,7 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import qs from 'query-string';
 import SearchBox from './search-box';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 interface Props {
   label: string;
   variant?: 'minimal' | 'normal' | 'with-shadow' | 'flat';
@@ -12,8 +12,16 @@ interface Props {
 
 const Search: React.FC<Props> = ({ label, variant, ...props }) => {
   const router = useRouter();
-  const [searchTerm, updateSearchTerm] = useState('');
   const params = useSearchParams();
+  const textFromUrl = params?.get('text') || '';
+  const [searchTerm, updateSearchTerm] = useState(textFromUrl);
+  
+  // Sync searchTerm with URL params when they change externally
+  useEffect(() => {
+    const currentText = params?.get('text') || '';
+    updateSearchTerm(currentText);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params]);
   const handleOnChange = (e: any) => {
     const { value } = e.target;
     updateSearchTerm(value);
@@ -60,6 +68,9 @@ const Search: React.FC<Props> = ({ label, variant, ...props }) => {
     const updatedQuery: any = {
       ...currentQuery
     };
+    
+    // Remove text from query when clearing
+    delete updatedQuery.text;
 
     const url = qs.stringifyUrl(
       {

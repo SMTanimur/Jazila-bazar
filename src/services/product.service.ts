@@ -24,13 +24,34 @@ export const productClient = {
       sortedBy = "desc",
     } = params as ProductsQueryOptionsType;
     
-    const url = `${API_ENDPOINTS.PRODUCTS}?${text ? `search=${text}` : ""}${
-      type ? `&type=${type}` : ""
-    }${price ? `&price=${price}` : ""}${
-      category ? `&category=${category}` : ""
-    }${shop_id ? `shop=${shop_id}` : ""}${
-      status ? `&status=${status}` : ""
-    }&searchJoin=and&limit=${limit}&page=${page}&orderBy=${orderBy}&sortedBy=${sortedBy}`;
+    const queryParams: string[] = [];
+    
+    if (text) {
+      queryParams.push(`search=${encodeURIComponent(text)}`);
+    }
+    if (type) {
+      queryParams.push(`type=${type}`);
+    }
+    if (price) {
+      queryParams.push(`price=${price}`);
+    }
+    if (category) {
+      queryParams.push(`category=${category}`);
+    }
+    if (shop_id) {
+      queryParams.push(`shop=${shop_id}`);
+    }
+    if (status) {
+      queryParams.push(`status=${status}`);
+    }
+    
+    queryParams.push(`searchJoin=and`);
+    queryParams.push(`limit=${limit}`);
+    queryParams.push(`page=${page}`);
+    queryParams.push(`orderBy=${orderBy}`);
+    queryParams.push(`sortedBy=${sortedBy}`);
+    
+    const url = `${API_ENDPOINTS.PRODUCTS}?${queryParams.join('&')}`;
     return HttpClient.get<PaginatorInfo<IProduct>>(url);
   },
 
@@ -49,13 +70,34 @@ export const productClient = {
       sortedBy = "desc",
     } = params as ProductsQueryOptionsType;
     
-    const url = `${API_ENDPOINTS.PRODUCTS}/top/rated?${text ? `search=${text}` : ""}${
-      type ? `&type=${type}` : ""
-    }${price ? `&price=${price}` : ""}${
-      category ? `&category=${category}` : ""
-    }${shop_id ? `shop=${shop_id}` : ""}${
-      status ? `&status=${status}` : ""
-    }&searchJoin=and&limit=${limit}&page=${page}&orderBy=${orderBy}&sortedBy=${sortedBy}`;
+    const queryParams: string[] = [];
+    
+    if (text) {
+      queryParams.push(`search=${encodeURIComponent(text)}`);
+    }
+    if (type) {
+      queryParams.push(`type=${type}`);
+    }
+    if (price) {
+      queryParams.push(`price=${price}`);
+    }
+    if (category) {
+      queryParams.push(`category=${category}`);
+    }
+    if (shop_id) {
+      queryParams.push(`shop=${shop_id}`);
+    }
+    if (status) {
+      queryParams.push(`status=${status}`);
+    }
+    
+    queryParams.push(`searchJoin=and`);
+    queryParams.push(`limit=${limit}`);
+    queryParams.push(`page=${page}`);
+    queryParams.push(`orderBy=${orderBy}`);
+    queryParams.push(`sortedBy=${sortedBy}`);
+    
+    const url = `${API_ENDPOINTS.PRODUCTS}/top/rated?${queryParams.join('&')}`;
     return HttpClient.get<PaginatorInfo<IProduct>>(url);
   },
   getProduct: async (slug: string) => {
