@@ -23,8 +23,7 @@ export const productClient = {
       orderBy = "updatedAt",
       sortedBy = "desc",
     } = params as ProductsQueryOptionsType;
-    
-    const queryParams: string[] = [];
+      const queryParams: string[] = [];
     
     if (text) {
       queryParams.push(`search=${encodeURIComponent(text)}`);
