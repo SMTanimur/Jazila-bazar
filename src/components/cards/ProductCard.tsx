@@ -9,14 +9,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { toast } from "sonner";
 import { Button } from "../ui/button";
-import { Card } from "../ui/card";
 import StarIcon from "../ui/star-icon";
+import { cn } from "@/lib/utils";
 
 interface Props {
   product: IProduct;
 }
+
 const ProductCard = ({ product }: Props) => {
-  const { price, basePrice, discount } = usePrice({
+  const { price, basePrice } = usePrice({
     amount: product?.sale_price ? product?.sale_price : product?.price,
     baseAmount: product?.price,
     currencyCode: "USD",
@@ -34,6 +35,7 @@ const ProductCard = ({ product }: Props) => {
   const { addItemToCart } = useCartStore((state) => state);
   const item = generateCartItem(product, selectedVariation);
   const isVariation = (product.variation_options?.length as number) > 0;
+
   function addToCart() {
     if (isVariation) {
       return globalModal.setQuickViewState(true, product);
@@ -45,100 +47,127 @@ const ProductCard = ({ product }: Props) => {
       globalModal.setQuickViewState(false, null);
     }
   }
-  return (
-    <div className=" flex flex-col group overflow-hidden rounded-md transition-all duration-300 shadow-card hover:shadow-cardHover  relative h-full">
-      <Card className="bg-bgCard dark:bg-gray-900 border-none shadow-sm rounded-md w-full h-full group flex flex-col px-4 py-5  relative">
-        <div className="w-full min-h-[150px] flex items-center relative justify-center overflow-hidden px-4">
-          <Link href={`/products/${product.slug}`}>
-            <Image
-              className="object-center group-hover:scale-110 transition-all duration-700 "
-              src={product.image?.img_url as string}
-              alt={product.name}
-              width={150}
-              height={100}
-            />
-          </Link>
-          <div className="absolute -bottom-12 bg-white dark:bg-black/80 dark:shadow-sm dark:shadow-gray-200 rounded-lg group-hover:bottom-5 transition-all duration-500 py-2 px-4 z-[100] flex items-center space-x-2">
-            <button
-              onClick={() => globalModal.setQuickViewState(true, product)}
-            >
-              <EyeIcon className="w-5 h-5" />
-              <span className="sr-only">Quick View</span>
-            </button>
-            <span className="border-l-2 h-full" />
-            <button>
-              <RefreshCwIcon className="w-5 h-5" />
-              <span className="sr-only">Compare</span>
-            </button>
-            <div className="border border-l-2 h-full"></div>
 
-            <button>
-              <HeartIcon className="w-5 h-5" />
-              <span className="sr-only">Wishlish</span>
-            </button>
-          </div>
+  const originalPriceNum = Number(product.price);
+  const salePriceNum = Number(product.sale_price);
+
+  const discountPercent = originalPriceNum && salePriceNum && salePriceNum < originalPriceNum
+    ? Number(
+        calculateDiscountPercentage({
+          originalPrice: originalPriceNum,
+          salePrice: salePriceNum,
+        })
+      )
+    : 0;
+
+  return (
+    <div className="flex flex-col group overflow-hidden rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 relative h-full p-4 justify-between">
+      {/* Image & Quick Action Overlay */}
+      <div className="w-full min-h-[160px] flex items-center relative justify-center overflow-hidden rounded-xl bg-slate-50 dark:bg-slate-950 p-4">
+        <Link href={`/products/${product.slug}`} className="z-10 transition-transform duration-500 ease-out group-hover:scale-108">
+          {product.image?.img_url ? (
+            <Image
+              className="object-contain"
+              src={product.image.img_url}
+              alt={product.name}
+              width={130}
+              height={130}
+            />
+          ) : (
+            <div className="w-20 h-20 bg-slate-200 dark:bg-slate-800 rounded-full flex items-center justify-center">
+              <span className="text-xs text-slate-400">No Image</span>
+            </div>
+          )}
+        </Link>
+
+        {/* Floating Quick Action Drawer */}
+        <div className="absolute -bottom-12 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border border-slate-100 dark:border-slate-800 shadow-md rounded-xl group-hover:bottom-4 transition-all duration-300 py-1 px-2.5 z-20 flex items-center gap-1">
+          <button
+            onClick={() => globalModal.setQuickViewState(true, product)}
+            className="p-1.5 text-slate-500 dark:text-slate-400 hover:text-rose-500 dark:hover:text-rose-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+          >
+            <EyeIcon className="w-4 h-4" />
+            <span className="sr-only">Quick View</span>
+          </button>
+          <span className="w-px h-3.5 bg-slate-200 dark:bg-slate-700" />
+          <button className="p-1.5 text-slate-500 dark:text-slate-400 hover:text-rose-500 dark:hover:text-rose-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+            <RefreshCwIcon className="w-4 h-4" />
+            <span className="sr-only">Compare</span>
+          </button>
+          <span className="w-px h-3.5 bg-slate-200 dark:bg-slate-700" />
+          <button className="p-1.5 text-slate-500 dark:text-slate-400 hover:text-rose-500 dark:hover:text-rose-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+            <HeartIcon className="w-4 h-4" />
+            <span className="sr-only">Wishlist</span>
+          </button>
         </div>
-        <div className="flex flex-col">
+
+        {/* Discount Badge */}
+        {discountPercent > 0 && (
+          <div className="absolute top-3 left-3 bg-rose-500 dark:bg-rose-600 text-white font-extrabold text-[10px] md:text-xs px-2 py-0.5 rounded-full shadow-sm z-10">
+            -{Math.round(discountPercent)}%
+          </div>
+        )}
+      </div>
+
+      {/* Info & Price Section */}
+      <div className="flex flex-col flex-1 justify-between mt-4">
+        <div>
           <Link
-            className="text-sm sm:text-base font-semibold text-gray-800 dark:text-white w-full line-clamp-1 text-ellipsis"
+            className="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 hover:text-primary transition-colors duration-200 w-full line-clamp-1"
             href={`/products/${product.slug}`}
           >
             {product.name}
           </Link>
-          {product.unit ? (
-            <p className="text-sm text-gray-600">{product.unit}</p>
-          ) : (
-            <p className="text-sm text-gray-600">1(items)</p>
-          )}
-          <div className="flex gap-3 items-center">
-            <p className="text-primary font-medium text-xs xs:text-sm md:text-base">
-              {product.product_type === "variable"
-                ? `${minPrice} - ${maxPrice}`
-                : price}
-            </p>
-            {basePrice && (
-              <del className="mx-1 text-xs md:text-sm text-gray-600 text-opacity-70">
-                {basePrice}
-              </del>
-            )}
-          </div>
-        </div>
-
-        <div className="flex items-center">
-          <div className="flex -mx-0.5 ">
-            {[...Array(5)].map((_, idx) => (
-              <StarIcon
-                key={idx}
-                color={idx < product.ratings ? "#F3B81F" : "#fff"}
-                className="w-3.5 lg:w-4 h-3.5 lg:h-4 mx-0.5"
-              />
-            ))}
-          </div>
-          <p className="text-sm ml-3">
-            {product.in_stock ? "In-Stock" : "Out of Stock"}
+          <p className="text-xs text-slate-400 dark:text-slate-500 font-semibold mt-0.5">
+            {product.unit || "1 (items)"}
           </p>
         </div>
 
-        <Button
-          variant={"outline"}
-          className="mt-4 rounded-full"
-          onClick={addToCart}
-        >
-          <p className="sm:hidden">Add</p>
-          <p className="hidden sm:block">Add to Cart</p>
-        </Button>
-        {product.price ? (
-          <div className="bg-primary p-1 absolute top-3 right-3 rounded-lg">
-            <p className="text-xs text-white">
-              {calculateDiscountPercentage({
-                originalPrice: product.price,
-                salePrice: product.sale_price,
-              })}{" "}
-              %
-            </p>
-          </div>
-        ) : null}
-      </Card>
+        <div className="flex gap-2.5 items-baseline mt-2">
+          <span className="text-primary font-bold text-sm xs:text-base md:text-lg">
+            {product.product_type === "variable"
+              ? `${minPrice} - ${maxPrice}`
+              : price}
+          </span>
+          {basePrice && (
+            <del className="text-xs text-slate-400 dark:text-slate-500 line-through">
+              {basePrice}
+            </del>
+          )}
+        </div>
+      </div>
+
+      {/* Rating & Stock Indicator */}
+      <div className="flex items-center justify-between mt-3 pt-3 border-t border-slate-100 dark:border-slate-800/80">
+        <div className="flex -mx-0.5">
+          {[...Array(5)].map((_, idx) => (
+            <StarIcon
+              key={idx}
+              color={idx < product.ratings ? "#F59E0B" : "#E2E8F0"}
+              className="w-3.5 h-3.5 mx-0.5"
+            />
+          ))}
+        </div>
+        <div className="flex items-center gap-1.5 text-xs font-semibold">
+          <span className={cn(
+            "w-2 h-2 rounded-full",
+            product.in_stock ? "bg-emerald-500 animate-pulse" : "bg-rose-500"
+          )} />
+          <span className={product.in_stock ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"}>
+            {product.in_stock ? "In Stock" : "Out of Stock"}
+          </span>
+        </div>
+      </div>
+
+      {/* Action Button */}
+      <Button
+        variant="outline"
+        className="mt-4 w-full rounded-xl border-slate-200 dark:border-slate-700 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 font-bold text-xs py-2 h-9"
+        onClick={addToCart}
+      >
+        <span className="sm:hidden">Add</span>
+        <span className="hidden sm:block">Add to Cart</span>
+      </Button>
     </div>
   );
 };
