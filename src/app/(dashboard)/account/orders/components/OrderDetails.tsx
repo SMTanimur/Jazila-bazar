@@ -15,13 +15,32 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { OrderDetailsSkeleton } from "./OrderDetailsSkeleton";
 import InvoiceModal from "./InvoiceModal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const OrderDetails = () => {
   const params = useParams();
   const orderId = params?.id as string;
   const { data: order, isLoading, error } = useGetOrder(orderId);
   const [invoiceOpen, setInvoiceOpen] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    if (order) {
+      const getActiveStepIndex = (status: string) => {
+        const norm = status?.toLowerCase() || "";
+        if (norm.includes("completed")) return 4;
+        if (norm.includes("out-for-delivery")) return 3;
+        if (norm.includes("at-local-facility")) return 2;
+        if (norm.includes("processing")) return 1;
+        return 0; // pending
+      };
+      const activeIdx = getActiveStepIndex(order.order_status);
+      const timer = setTimeout(() => {
+        setProgress((activeIdx / 4) * 100);
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [order]);
 
   if (isLoading) {
     return <OrderDetailsSkeleton />;
@@ -220,61 +239,187 @@ const OrderDetails = () => {
 
       {/* Delivery Tracking Timeline */}
       {!isCancelled && !isFailed && !isRefunded ? (
-        <Card className="border-slate-100 dark:border-slate-800">
+        <Card className="border-slate-100 dark:border-slate-800 overflow-hidden">
+          <style dangerouslySetInnerHTML={{ __html: `
+            @keyframes truck-drive {
+              0% { transform: translateY(0); }
+              50% { transform: translateY(-3px); }
+              100% { transform: translateY(0); }
+            }
+            .animate-truck {
+              animation: truck-drive 0.5s ease-in-out infinite;
+            }
+          `}} />
           <CardHeader className="pb-3">
             <CardTitle className="text-base font-bold flex items-center gap-1.5">
-              <Truck className="w-4 h-4 text-primary" /> Delivery Tracker
+              <Truck className="w-4 h-4 text-primary animate-truck" /> Delivery Tracker
             </CardTitle>
             <CardDescription>
               Follow the journey of your package in real-time.
             </CardDescription>
           </CardHeader>
-          <CardContent className="p-6 pt-2">
-            {/* Timeline Wrapper */}
-            <div className="relative flex flex-col md:flex-row justify-between gap-6 md:gap-4 mt-4">
-              {/* Progress Line Background (Desktop) */}
-              <div className="absolute top-1/2 left-0 w-full h-1 bg-slate-100 dark:bg-slate-800 -translate-y-1/2 hidden md:block z-0" />
+          <CardContent className="p-8 pt-4">
+            {/* Desktop Horizontal Tracker */}
+            <div className="relative hidden md:block py-6">
               
-              {/* Progress Line Fill (Desktop) */}
-              <div 
-                className="absolute top-1/2 left-0 h-1 bg-primary -translate-y-1/2 hidden md:block z-0 transition-all duration-500"
-                style={{ width: `${(activeIndex / 4) * 100}%` }}
-              />
+              {/* Checkpoint Circles Row */}
+              <div className="relative flex justify-between z-20 mb-6 px-14">
+                {timelineSteps.map((step, idx) => {
+                  const isCompleted = idx <= activeIndex;
+                  const isActive = idx === activeIndex;
 
-              {timelineSteps.map((step, idx) => {
-                const isCompleted = idx <= activeIndex;
-                const isActive = idx === activeIndex;
-
-                return (
-                  <div key={step.key} className="flex md:flex-col items-center gap-4 md:gap-2 text-left md:text-center flex-1 z-10 relative">
-                    {/* Circle Icon Indicator */}
-                    <div className={cn(
-                      "w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm border-4 transition-all duration-300 shadow-sm",
-                      isCompleted 
-                        ? "bg-primary border-primary-focus text-white scale-110" 
-                        : "bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-400"
-                    )}>
-                      {isCompleted ? (
-                        <CheckCircle2 className="w-5 h-5 stroke-[2.5px]" />
-                      ) : (
-                        <span>{idx + 1}</span>
+                  return (
+                    <div key={step.key} className="relative flex flex-col items-center w-10">
+                      {/* Pulse effect for active station */}
+                      {isActive && (
+                        <div className="absolute -inset-1 rounded-full bg-primary/20 animate-ping" />
                       )}
-                    </div>
-                    {/* Text Label */}
-                    <div className="flex flex-col gap-0.5">
-                      <span className={cn(
-                        "text-sm font-bold tracking-tight transition-colors",
-                        isActive ? "text-primary font-extrabold" : isCompleted ? "text-slate-800 dark:text-slate-200" : "text-slate-400"
+                      
+                      {/* Station Sign / Pin Circle */}
+                      <div className={cn(
+                        "w-9 h-9 rounded-full flex items-center justify-center font-bold text-xs border-4 transition-all duration-300 shadow-md z-30",
+                        isActive 
+                          ? "bg-primary border-primary-focus text-white scale-110 shadow-primary/30" 
+                          : isCompleted 
+                            ? "bg-primary border-primary-focus text-white shadow-primary/10" 
+                            : "bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-400"
                       )}>
-                        {step.label}
-                      </span>
-                      <span className="text-[11px] text-slate-400 dark:text-slate-500 font-medium">
-                        {step.desc}
-                      </span>
+                        {isCompleted ? (
+                          <CheckCircle2 className="w-4.5 h-4.5 stroke-[2.5px]" />
+                        ) : (
+                          <span>{idx + 1}</span>
+                        )}
+                      </div>
                     </div>
+                  );
+                })}
+              </div>
+
+              {/* Highway Asphalt Road Container */}
+              <div className="relative h-7 bg-slate-800 dark:bg-slate-900 rounded-lg shadow-inner border border-slate-700/60 overflow-visible mb-6 mx-[76px]">
+                {/* Yellow Dashed Center Lane */}
+                <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 border-t-2 border-dashed border-yellow-400 opacity-80" />
+                
+                {/* Side Solid White Lanes */}
+                <div className="absolute left-0 right-0 top-1 w-full h-[1px] bg-slate-600/40" />
+                <div className="absolute left-0 right-0 bottom-1 w-full h-[1px] bg-slate-600/40" />
+                
+                {/* Highlighted Lane Progress */}
+                <div 
+                  className="absolute left-0 top-0 bottom-0 bg-primary/15 transition-all duration-1000 ease-out rounded-l-lg"
+                  style={{ width: `${progress}%` }}
+                />
+
+                {/* Animated Driving Truck */}
+                <div 
+                  className="absolute top-1/2 -translate-y-1/2 transition-all duration-1000 ease-out z-10"
+                  style={{ left: `calc(${progress}% - 22px)` }}
+                >
+                  <div className="w-11 h-7 bg-primary text-white rounded-lg shadow-[0_2px_8px_rgba(244,63,94,0.4)] dark:shadow-[0_2px_8px_rgba(244,63,94,0.2)] border border-primary-focus flex items-center justify-center animate-truck">
+                    <Truck className="w-4 h-4 fill-white/10" />
                   </div>
-                );
-              })}
+                </div>
+              </div>
+
+              {/* Labels & Descriptions Row */}
+              <div className="relative flex justify-between px-14">
+                {timelineSteps.map((step, idx) => {
+                  const isCompleted = idx <= activeIndex;
+                  const isActive = idx === activeIndex;
+
+                  return (
+                    <div key={step.key} className="flex flex-col items-center text-center w-10 overflow-visible">
+                      <div className="w-28 flex flex-col items-center">
+                        <span className={cn(
+                          "text-xs font-extrabold tracking-tight transition-colors",
+                          isActive ? "text-primary text-sm" : isCompleted ? "text-slate-800 dark:text-slate-200" : "text-slate-400"
+                        )}>
+                          {step.label}
+                        </span>
+                        <span className="text-[10px] text-slate-400 dark:text-slate-500 font-semibold mt-0.5 leading-tight">
+                          {step.desc}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+            </div>
+
+            {/* Mobile Vertical Tracker */}
+            <div className="flex gap-4 relative min-h-[400px] md:hidden p-2">
+              {/* Vertical Highway Road */}
+              <div className="relative w-7 bg-slate-800 dark:bg-slate-900 rounded-lg shadow-inner border border-slate-700/60 overflow-visible my-[18px] flex-shrink-0">
+                {/* Yellow dashed center lane */}
+                <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 border-l-2 border-dashed border-yellow-400 opacity-80" />
+                
+                {/* Solid white lanes */}
+                <div className="absolute top-0 bottom-0 left-1 w-[1px] bg-slate-600/40" />
+                <div className="absolute top-0 bottom-0 right-1 w-[1px] bg-slate-600/40" />
+
+                {/* Travelled road path overlay */}
+                <div 
+                  className="absolute top-0 left-0 right-0 bg-primary/15 transition-all duration-1000 ease-out rounded-t-lg"
+                  style={{ height: `${progress}%` }}
+                />
+
+                {/* Animated Truck */}
+                <div 
+                  className="absolute left-1/2 -translate-x-1/2 transition-all duration-1000 ease-out z-10"
+                  style={{ top: `calc(${progress}% - 22px)` }}
+                >
+                  <div className="w-7 h-11 bg-primary text-white rounded-lg shadow-md border border-primary-focus flex flex-col items-center justify-center animate-truck">
+                    <Truck className="w-4 h-4 rotate-90 fill-white/10" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Vertical Checklist Items */}
+              <div className="flex flex-col justify-between flex-1 py-4">
+                {timelineSteps.map((step, idx) => {
+                  const isCompleted = idx <= activeIndex;
+                  const isActive = idx === activeIndex;
+
+                  return (
+                    <div key={step.key} className="flex items-center gap-4 py-1">
+                      {/* Station Badge */}
+                      <div className="relative flex-shrink-0">
+                        {isActive && (
+                          <div className="absolute -inset-1 rounded-full bg-primary/20 animate-ping" />
+                        )}
+                        <div className={cn(
+                          "w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs border-4 transition-all duration-300 shadow-md z-35",
+                          isActive 
+                            ? "bg-primary border-primary-focus text-white scale-110 shadow-primary/20" 
+                            : isCompleted 
+                              ? "bg-primary border-primary-focus text-white" 
+                              : "bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-400"
+                        )}>
+                          {isCompleted ? (
+                            <CheckCircle2 className="w-4 h-4 stroke-[2.5px]" />
+                          ) : (
+                            <span>{idx + 1}</span>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Text Details */}
+                      <div className="flex flex-col">
+                        <span className={cn(
+                          "text-xs font-extrabold tracking-tight transition-colors",
+                          isActive ? "text-primary font-bold text-sm" : isCompleted ? "text-slate-800 dark:text-slate-200" : "text-slate-400"
+                        )}>
+                          {step.label}
+                        </span>
+                        <span className="text-[10px] text-slate-400 dark:text-slate-500 font-semibold leading-tight mt-0.5">
+                          {step.desc}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </CardContent>
         </Card>
