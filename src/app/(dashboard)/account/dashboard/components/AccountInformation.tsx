@@ -49,11 +49,11 @@ const AccountInformation = () => {
         <CardContent className="flex flex-col gap-2 h-full">
           {!address && (
             <div className=" flex flex-col   ">
-              <Link href={"/dashboard/addresses/new"}>
+              <Link href={"/account/addresses/new"}>
                 <div className="flex flex-col h-[330px] justify-center items-center gap-3">
                   <Icons.plus className="w-12 h-12 text-primary" />
                   <Button variant={"secondary"}>
-                    <Link href={"/dashboard/addresses/new"}>Add Address</Link>
+                    <Link href={"/account/addresses/new"}>Add Address</Link>
                   </Button>
                 </div>
               </Link>
@@ -91,7 +91,7 @@ const AccountInformation = () => {
                   </p>
                 </div>
                 <Button variant={"link"} className="self-start p-0 text-xl">
-                  <Link href={`/dashboard/addresses/${address._id}`}>
+                  <Link href={`/account/addresses/${address._id}`}>
                     <span>Edit Address</span>
                   </Link>
                 </Button>

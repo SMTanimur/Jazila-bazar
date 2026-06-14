@@ -29,7 +29,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
     <div className="relative flex min-h-screen flex-col">
       <SiteHeader />
-      <section className="  h-12 py-10  bg-gray-100 dark:bg-gray-900 flex justify-center items-center my-6 ">
+      <section className="relative overflow-hidden bg-gradient-to-r from-rose-50/40 via-slate-50 to-emerald-50/20 dark:from-slate-900/40 dark:via-slate-950 dark:to-slate-900/20 border-b border-slate-100 dark:border-slate-800/60 py-5 md:py-6 flex justify-center items-center my-6">
+        <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/3 w-72 h-72 rounded-full bg-rose-200/20 dark:bg-rose-900/10 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/4 w-72 h-72 rounded-full bg-emerald-200/20 dark:bg-emerald-900/10 blur-3xl pointer-events-none" />
         <Breadcrumb />
       </section>
       <div className="container flex-1 items-start md:grid md:grid-cols-[260px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[340px_minmax(0,1fr)] lg:gap-10 mb-8">
