@@ -42,7 +42,7 @@ const ProductsPage = ({ searchParams: { category, price, text } }: Props) => {
   const products = data?.docs;
   return (
     <div>
-      <section className="relative overflow-hidden bg-gradient-to-r from-rose-50/40 via-slate-50 to-emerald-50/20 dark:from-slate-900/40 dark:via-slate-950 dark:to-slate-900/20 border-b border-slate-100 dark:border-slate-800/60 py-8 md:py-10 flex justify-center items-center">
+      <section className="relative overflow-hidden bg-gradient-to-r from-rose-50/40 via-slate-50 to-emerald-50/20 dark:from-slate-900/40 dark:via-slate-950 dark:to-slate-900/20 border-b border-slate-100 dark:border-slate-800/60 py-5 md:py-6 flex justify-center items-center">
         <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/3 w-72 h-72 rounded-full bg-rose-200/20 dark:bg-rose-900/10 blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/4 w-72 h-72 rounded-full bg-emerald-200/20 dark:bg-emerald-900/10 blur-3xl pointer-events-none" />
         <Breadcrumb />
@@ -53,7 +53,7 @@ const ProductsPage = ({ searchParams: { category, price, text } }: Props) => {
             <ProductsFilters/>
           </div>
           <div className="w-full pl-6">
-            <SearchTopBar />
+            <SearchTopBar totalDocs={data?.totalDocs} showingDocs={products?.length} />
             <section className="w-full">
               <div className="grid grid-cols-1 xs:grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-4 md:gap-4 2xl:gap-5">
                 {isLoading && !products?.length ? (
