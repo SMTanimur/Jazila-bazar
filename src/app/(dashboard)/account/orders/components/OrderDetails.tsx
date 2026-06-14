@@ -5,7 +5,8 @@ import { useParams } from "next/navigation";
 import { 
   Package, MapPin, Phone, Mail, Calendar, 
   DollarSign, Receipt, CreditCard, Clock, Truck, 
-  CheckCircle2, ChevronRight, ShoppingBag, ShieldCheck
+  CheckCircle2, ChevronRight, ShoppingBag, ShieldCheck,
+  ClipboardList, PackageOpen, Warehouse, CheckCircle
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { formatPrice } from "@/hooks/use-price";
@@ -121,6 +122,28 @@ const OrderDetails = () => {
     if (normalized === "STRIPE") return "Stripe";
     if (normalized === "PAYPAL") return "PayPal";
     return gateway.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  };
+
+  const getStepIcon = (key: string, isCompleted: boolean, isActive: boolean) => {
+    const iconClass = cn(
+      "w-5 h-5 transition-colors duration-300",
+      isActive ? "text-white" : isCompleted ? "text-emerald-600 dark:text-emerald-400" : "text-slate-400 dark:text-slate-500"
+    );
+
+    switch (key) {
+      case "pending":
+        return <ClipboardList className={iconClass} />;
+      case "processing":
+        return <PackageOpen className={iconClass} />;
+      case "at-local-facility":
+        return <Warehouse className={iconClass} />;
+      case "out-for-delivery":
+        return <Truck className={iconClass} />;
+      case "completed":
+        return <CheckCircle className={iconClass} />;
+      default:
+        return <Package className={iconClass} />;
+    }
   };
 
   // Timeline Steps matching OrderStatus
@@ -239,20 +262,20 @@ const OrderDetails = () => {
 
       {/* Delivery Tracking Timeline */}
       {!isCancelled && !isFailed && !isRefunded ? (
-        <Card className="border-slate-100 dark:border-slate-800 overflow-hidden">
+        <Card className="border-slate-100 dark:border-slate-800">
           <style dangerouslySetInnerHTML={{ __html: `
-            @keyframes truck-drive {
-              0% { transform: translateY(0); }
-              50% { transform: translateY(-3px); }
-              100% { transform: translateY(0); }
+            @keyframes bobble {
+              0% { transform: translateY(-50%) scale(1); }
+              50% { transform: translateY(-50%) translateY(-2px) scale(1.05); }
+              100% { transform: translateY(-50%) scale(1); }
             }
-            .animate-truck {
-              animation: truck-drive 0.5s ease-in-out infinite;
+            .animate-bobble {
+              animation: bobble 1.5s ease-in-out infinite;
             }
           `}} />
           <CardHeader className="pb-3">
             <CardTitle className="text-base font-bold flex items-center gap-1.5">
-              <Truck className="w-4 h-4 text-primary animate-truck" /> Delivery Tracker
+              <Truck className="w-4 h-4 text-primary" /> Delivery Tracker
             </CardTitle>
             <CardDescription>
               Follow the journey of your package in real-time.
@@ -262,74 +285,63 @@ const OrderDetails = () => {
             {/* Desktop Horizontal Tracker */}
             <div className="relative hidden md:block py-6">
               
+              {/* Sleek Line Background & Progress Fill */}
+              <div className="absolute top-[28px] left-[84px] right-[84px] h-1 bg-slate-100 dark:bg-slate-800/80 rounded-full z-0">
+                {/* Progress Road Fill */}
+                <div 
+                  className="absolute left-0 top-0 bottom-0 bg-primary rounded-full transition-all duration-1000 ease-out shadow-[0_0_8px_rgba(244,63,94,0.3)]"
+                  style={{ width: `${progress}%` }}
+                />
+
+                {/* Seeker Animated Truck Badge */}
+                <div 
+                  className="absolute top-1/2 -translate-y-1/2 transition-all duration-1000 ease-out z-25"
+                  style={{ left: `calc(${progress}% - 20px)` }}
+                >
+                  <div className="w-10 h-10 rounded-full bg-primary text-white shadow-lg shadow-primary/30 border-2 border-white dark:border-slate-900 flex items-center justify-center animate-bobble">
+                    <Truck className="w-5 h-5 fill-white/10" />
+                  </div>
+                </div>
+              </div>
+
               {/* Checkpoint Circles Row */}
-              <div className="relative flex justify-between z-20 mb-6 px-14">
+              <div className="relative flex justify-between z-10 px-14">
                 {timelineSteps.map((step, idx) => {
                   const isCompleted = idx <= activeIndex;
                   const isActive = idx === activeIndex;
 
                   return (
-                    <div key={step.key} className="relative flex flex-col items-center w-10">
+                    <div key={step.key} className="relative flex flex-col items-center">
                       {/* Pulse effect for active station */}
                       {isActive && (
-                        <div className="absolute -inset-1 rounded-full bg-primary/20 animate-ping" />
+                        <div className="absolute -inset-1.5 rounded-full bg-primary/20 animate-ping" />
                       )}
                       
-                      {/* Station Sign / Pin Circle */}
+                      {/* Station Badge Circle */}
                       <div className={cn(
-                        "w-9 h-9 rounded-full flex items-center justify-center font-bold text-xs border-4 transition-all duration-300 shadow-md z-30",
+                        "w-14 h-14 rounded-full flex items-center justify-center border-4 transition-all duration-300 shadow-sm z-30",
                         isActive 
-                          ? "bg-primary border-primary-focus text-white scale-110 shadow-primary/30" 
+                          ? "bg-primary border-primary-focus text-white scale-110 shadow-primary/25" 
                           : isCompleted 
-                            ? "bg-primary border-primary-focus text-white shadow-primary/10" 
+                            ? "bg-emerald-50 border-emerald-500/80 text-emerald-600 dark:bg-emerald-950/20 dark:border-emerald-800 dark:text-emerald-400" 
                             : "bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-400"
                       )}>
-                        {isCompleted ? (
-                          <CheckCircle2 className="w-4.5 h-4.5 stroke-[2.5px]" />
-                        ) : (
-                          <span>{idx + 1}</span>
-                        )}
+                        {getStepIcon(step.key, isCompleted, isActive)}
                       </div>
                     </div>
                   );
                 })}
               </div>
 
-              {/* Highway Asphalt Road Container */}
-              <div className="relative h-7 bg-slate-800 dark:bg-slate-900 rounded-lg shadow-inner border border-slate-700/60 overflow-visible mb-6 mx-[76px]">
-                {/* Yellow Dashed Center Lane */}
-                <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 border-t-2 border-dashed border-yellow-400 opacity-80" />
-                
-                {/* Side Solid White Lanes */}
-                <div className="absolute left-0 right-0 top-1 w-full h-[1px] bg-slate-600/40" />
-                <div className="absolute left-0 right-0 bottom-1 w-full h-[1px] bg-slate-600/40" />
-                
-                {/* Highlighted Lane Progress */}
-                <div 
-                  className="absolute left-0 top-0 bottom-0 bg-primary/15 transition-all duration-1000 ease-out rounded-l-lg"
-                  style={{ width: `${progress}%` }}
-                />
-
-                {/* Animated Driving Truck */}
-                <div 
-                  className="absolute top-1/2 -translate-y-1/2 transition-all duration-1000 ease-out z-10"
-                  style={{ left: `calc(${progress}% - 22px)` }}
-                >
-                  <div className="w-11 h-7 bg-primary text-white rounded-lg shadow-[0_2px_8px_rgba(244,63,94,0.4)] dark:shadow-[0_2px_8px_rgba(244,63,94,0.2)] border border-primary-focus flex items-center justify-center animate-truck">
-                    <Truck className="w-4 h-4 fill-white/10" />
-                  </div>
-                </div>
-              </div>
-
               {/* Labels & Descriptions Row */}
-              <div className="relative flex justify-between px-14">
+              <div className="relative flex justify-between px-14 mt-4">
                 {timelineSteps.map((step, idx) => {
                   const isCompleted = idx <= activeIndex;
                   const isActive = idx === activeIndex;
 
                   return (
-                    <div key={step.key} className="flex flex-col items-center text-center w-10 overflow-visible">
-                      <div className="w-28 flex flex-col items-center">
+                    <div key={step.key} className="flex flex-col items-center text-center w-14 overflow-visible">
+                      <div className="w-32 flex flex-col items-center">
                         <span className={cn(
                           "text-xs font-extrabold tracking-tight transition-colors",
                           isActive ? "text-primary text-sm" : isCompleted ? "text-slate-800 dark:text-slate-200" : "text-slate-400"
@@ -349,58 +361,47 @@ const OrderDetails = () => {
 
             {/* Mobile Vertical Tracker */}
             <div className="flex gap-4 relative min-h-[400px] md:hidden p-2">
-              {/* Vertical Highway Road */}
-              <div className="relative w-7 bg-slate-800 dark:bg-slate-900 rounded-lg shadow-inner border border-slate-700/60 overflow-visible my-[18px] flex-shrink-0">
-                {/* Yellow dashed center lane */}
-                <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 border-l-2 border-dashed border-yellow-400 opacity-80" />
-                
-                {/* Solid white lanes */}
-                <div className="absolute top-0 bottom-0 left-1 w-[1px] bg-slate-600/40" />
-                <div className="absolute top-0 bottom-0 right-1 w-[1px] bg-slate-600/40" />
-
-                {/* Travelled road path overlay */}
+              {/* Vertical Tracker Progress Line */}
+              <div className="absolute left-[28px] top-[28px] bottom-[28px] w-1 bg-slate-100 dark:bg-slate-800 rounded-full z-0">
+                {/* Progress Fill */}
                 <div 
-                  className="absolute top-0 left-0 right-0 bg-primary/15 transition-all duration-1000 ease-out rounded-t-lg"
+                  className="absolute top-0 left-0 right-0 bg-primary rounded-full transition-all duration-1000 ease-out"
                   style={{ height: `${progress}%` }}
                 />
 
-                {/* Animated Truck */}
+                {/* Seeker Animated Truck Badge */}
                 <div 
-                  className="absolute left-1/2 -translate-x-1/2 transition-all duration-1000 ease-out z-10"
-                  style={{ top: `calc(${progress}% - 22px)` }}
+                  className="absolute left-1/2 -translate-x-1/2 transition-all duration-1000 ease-out z-20"
+                  style={{ top: `calc(${progress}% - 20px)` }}
                 >
-                  <div className="w-7 h-11 bg-primary text-white rounded-lg shadow-md border border-primary-focus flex flex-col items-center justify-center animate-truck">
-                    <Truck className="w-4 h-4 rotate-90 fill-white/10" />
+                  <div className="w-10 h-10 rounded-full bg-primary text-white shadow-lg shadow-primary/30 border-2 border-white dark:border-slate-900 flex items-center justify-center animate-bobble">
+                    <Truck className="w-5 h-5 rotate-90 fill-white/10" />
                   </div>
                 </div>
               </div>
 
               {/* Vertical Checklist Items */}
-              <div className="flex flex-col justify-between flex-1 py-4">
+              <div className="flex flex-col justify-between flex-1 pl-14 py-4 min-h-[380px] relative z-10">
                 {timelineSteps.map((step, idx) => {
                   const isCompleted = idx <= activeIndex;
                   const isActive = idx === activeIndex;
 
                   return (
-                    <div key={step.key} className="flex items-center gap-4 py-1">
-                      {/* Station Badge */}
-                      <div className="relative flex-shrink-0">
+                    <div key={step.key} className="flex items-center gap-4 py-1 relative">
+                      {/* Station Circle (Absolute offset to align over vertical line) */}
+                      <div className="absolute -left-[70px] flex items-center justify-center w-14 h-14 z-30">
                         {isActive && (
                           <div className="absolute -inset-1 rounded-full bg-primary/20 animate-ping" />
                         )}
                         <div className={cn(
-                          "w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs border-4 transition-all duration-300 shadow-md z-35",
+                          "w-12 h-12 rounded-full flex items-center justify-center border-4 transition-all duration-300 shadow-sm",
                           isActive 
                             ? "bg-primary border-primary-focus text-white scale-110 shadow-primary/20" 
                             : isCompleted 
-                              ? "bg-primary border-primary-focus text-white" 
+                              ? "bg-emerald-50 border-emerald-500/80 text-emerald-600 dark:bg-emerald-950/20 dark:border-emerald-800 dark:text-emerald-400" 
                               : "bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-400"
                         )}>
-                          {isCompleted ? (
-                            <CheckCircle2 className="w-4 h-4 stroke-[2.5px]" />
-                          ) : (
-                            <span>{idx + 1}</span>
-                          )}
+                          {getStepIcon(step.key, isCompleted, isActive)}
                         </div>
                       </div>
 
