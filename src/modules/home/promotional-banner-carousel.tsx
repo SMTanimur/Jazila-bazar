@@ -1,6 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
-import { Button } from "@/components/ui/button";
 import {
   PromotionalSlider,
   PromotionalSliderType,
@@ -64,49 +62,49 @@ const PromotionalBannerCarousel = () => {
     ]
   );
   return (
-    <div className="w-full">
+    <div className="w-full py-2">
       <div ref={sliderRef} className="keen-slider">
         {PromotionalSlider?.map((item: PromotionalSliderType) => (
-          <div
+          <Link
             key={item.id}
-            className="keen-slider__slide relative min-w-0 cursor-pointer rounded-lg border border-gray-200 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 hover:from-slate-200 hover:to-slate-300 dark:hover:from-slate-700 dark:hover:to-slate-800 p-4 md:p-5 shadow-md h-[160px] md:h-[180px] overflow-hidden flex items-center transition-all duration-300"
+            href={item.link}
+            className={`keen-slider__slide group relative min-w-0 rounded-2xl border ${item.borderColor} bg-gradient-to-br ${item.bgGradient} p-4 md:p-5 shadow-sm hover:shadow-md h-[160px] md:h-[180px] overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1`}
           >
             {/* Content Section */}
-            <div className="flex-1 z-20 pr-2 md:pr-4 min-w-0">
-              <h3 className="text-sm md:text-base font-semibold text-slate-800 dark:text-slate-100 mb-1 line-clamp-1">
-                {item.title}
-              </h3>
-              <h6 className="text-xs md:text-sm text-slate-600 dark:text-slate-300 mb-2 md:mb-3 line-clamp-2">
-                {item.description}
-              </h6>
-              <Button
-                size="sm"
-                variant="link"
-                className="p-0 h-auto self-start -ml-1 md:-ml-2"
-              >
-                <Link
-                  href={item.link}
-                  className="flex gap-1 items-center text-xs md:text-sm font-medium text-primary hover:text-primary/80"
-                >
-                  Shop Now
-                  <ChevronRightIcon className="w-3 h-3 md:w-4 md:h-4" />
-                </Link>
-              </Button>
+            <div className="z-20 flex flex-col justify-between h-full max-w-[65%] pr-2">
+              <div>
+                {item.badge && (
+                  <span className={`inline-block px-2.5 py-0.5 text-[9px] md:text-[10px] font-bold tracking-wider uppercase rounded-full ${item.badgeBg} w-fit mb-2`}>
+                    {item.badge}
+                  </span>
+                )}
+                <h3 className={`text-sm md:text-base font-bold ${item.textColor} mb-1 line-clamp-1`}>
+                  {item.title}
+                </h3>
+                <p className={`text-xs ${item.descColor} line-clamp-2 leading-relaxed`}>
+                  {item.description}
+                </p>
+              </div>
+
+              <div className={`flex gap-1.5 items-center text-xs md:text-sm font-bold ${item.accentColor} mt-2`}>
+                <span>Shop Now</span>
+                <ChevronRightIcon className="w-3.5 h-3.5 transform transition-transform duration-300 group-hover:translate-x-1" />
+              </div>
             </div>
 
             {/* Image Section */}
-            <div className="flex-shrink-0 w-24 md:w-32 lg:w-40 h-full flex items-end justify-end">
-              <div className="relative w-full h-full max-h-[140px] md:max-h-[160px]">
+            <div className="absolute right-2 bottom-2 w-28 md:w-32 h-28 md:h-32 z-10 flex items-end justify-end pointer-events-none">
+              <div className="relative w-full h-full transition-transform duration-500 ease-out group-hover:scale-110 group-hover:rotate-3">
                 <Image
                   src={item.image}
                   alt={item.title}
                   fill
-                  className="object-contain object-right-bottom"
-                  sizes="(max-width: 640px) 96px, (max-width: 1024px) 128px, 160px"
+                  className="object-contain object-right-bottom drop-shadow-md"
+                  sizes="(max-width: 640px) 112px, 128px"
                 />
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
