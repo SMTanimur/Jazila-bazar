@@ -87,13 +87,13 @@ export const QuickViewProduct = () => {
         </div>
 
         <div className="w-full sm:w-1/2 ">
-          <div className="flex flex-col space-y-3 justify-center">
-            <div className="flex flex-col gap-2 justify-center">
-              <h2 className="text-xl font-medium text-gray-800 dark:text-white">
+          <div className="flex flex-col space-y-4 justify-center">
+            <div className="flex flex-col gap-1.5 justify-center">
+              <h2 className="text-2xl font-extrabold tracking-tight text-slate-800 dark:text-slate-100">
                 {product?.name}
               </h2>
               {product?.unit && isEmpty(variations) ? (
-                <div className="text-sm font-medium md:text-15px">
+                <div className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
                   {product?.unit}
                 </div>
               ) : (
@@ -104,16 +104,16 @@ export const QuickViewProduct = () => {
                 />
               )}
               {isEmpty(variations) && (
-                <div className="flex items-center mt-5 ">
-                  <div className="text-primary font-bold text-base md:text-xl xl:text-[22px]">
+                <div className="flex items-baseline gap-2.5 mt-3">
+                  <div className="text-primary font-black text-xl md:text-2xl xl:text-3xl">
                     {price}
                   </div>
                   {discount && (
                     <>
-                      <del className="text-sm text-opacity-50 md:text-15px pl-3  text-gray-500 ">
+                      <del className="text-sm font-semibold text-slate-400 dark:text-slate-500 line-through">
                         {basePrice}
                       </del>
-                      <span className="inline-block rounded font-bold text-xs md:text-sm bg-primary/10  text-primary uppercase px-2 py-1 ml-2.5 ">
+                      <span className="inline-block rounded-full font-extrabold text-[10px] md:text-xs bg-rose-500/10 dark:bg-rose-500/20 text-rose-600 dark:text-rose-400 px-2.5 py-0.5 ml-1.5 shadow-sm uppercase tracking-wide">
                         {discount} off
                       </span>
                     </>
@@ -121,21 +121,21 @@ export const QuickViewProduct = () => {
                 </div>
               )}
             </div>
-            <span className="border-t border-dashed w-full" />
+            <div className="border-t border-slate-100 dark:border-slate-800/80 w-full" />
 
-            <div className="">
-              <h3 className="text-xl text-gray-800 dark:text-white font-medium">
-                Product Details:
+            <div className="space-y-1.5">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+                Product Details
               </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-200">
+              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 {product?.description}
               </p>
             </div>
-            <span className="border-t border-dashed w-full" />
+            <div className="border-t border-slate-100 dark:border-slate-800/80 w-full" />
 
             <QuickViewShortDetails {...{ product, selectedVariation }} />
           </div>
-          <div className="py-4">
+          <div className="py-2">
             {Object.keys(variations).map((variation) => {
               return (
                 <ProductAttributes
@@ -148,7 +148,7 @@ export const QuickViewProduct = () => {
               );
             })}
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 mt-2">
             <Counter
               variant="single"
               value={selectedQuantity}
@@ -165,13 +165,11 @@ export const QuickViewProduct = () => {
             />
             <Button
               onClick={addToCart}
-              className="  flex items-center gap-3"
+              className="flex items-center gap-2 rounded-xl font-bold transition-all duration-300 shadow-sm hover:shadow-md px-6 py-2"
               disabled={!isSelected}
-
-              // loading={addToCartLoader}
             >
-              <Icons.cart className="ml-3 w-4 " />
-              <p>Add_TO_CART</p>
+              <Icons.cart className="w-4 h-4" />
+              <span>Add to Cart</span>
             </Button>
           </div>
         </div>

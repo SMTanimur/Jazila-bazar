@@ -87,11 +87,11 @@ const ProductDetails = ({ product }: Props) => {
       <div className="w-full md:w-1/2 flex flex-col  space-y-4 relative ">
         <div className="flex flex-col space-y-3 justify-center">
           <div className="flex flex-col gap-2 md:justify-center ">
-            <h2 className="text-xl font-medium text-gray-800 dark:text-white">
+            <h2 className="text-2xl font-extrabold tracking-tight text-slate-800 dark:text-slate-100">
               {product?.name}
             </h2>
             {product?.unit && isEmpty(variations) ? (
-              <div className="text-sm font-medium md:text-15px hidden md:block">
+              <div className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
                 {product?.unit}
               </div>
             ) : (
@@ -102,51 +102,51 @@ const ProductDetails = ({ product }: Props) => {
               />
             )}
             {isEmpty(variations) && (
-              <div className="flex flex-col items-start md:flex-row  md:justify-between ">
-                <div className="flex items-center ">
-                  <div className="text-primary font-bold text-base md:text-xl xl:text-[22px]">
+              <div className="flex flex-col items-start md:flex-row  md:justify-between md:items-center">
+                <div className="flex items-baseline gap-2.5">
+                  <div className="text-primary font-black text-xl md:text-2xl xl:text-3xl">
                     {price}
                   </div>
                   {discount && (
                     <>
-                      <del className="text-sm text-opacity-50 md:text-15px pl-3  text-gray-500 ">
+                      <del className="text-sm font-semibold text-slate-400 dark:text-slate-500 line-through">
                         {basePrice}
                       </del>
-                      <span className="inline-block rounded font-bold text-xs md:text-sm bg-primary/10  text-primary uppercase px-2 py-1 ml-2.5 ">
+                      <span className="inline-block rounded-full font-extrabold text-[10px] md:text-xs bg-rose-500/10 dark:bg-rose-500/20 text-rose-600 dark:text-rose-400 px-2.5 py-0.5 ml-1.5 shadow-sm uppercase tracking-wide">
                         {discount} off
                       </span>
                     </>
                   )}
                 </div>
 
-                <div className="flex items-center mt-2 md:px-3">
-                  <div className="flex md:-mx-0.5 ">
+                <div className="flex items-center mt-2 md:mt-0 md:px-3">
+                  <div className="flex items-center -mx-0.5 ">
                     {[...Array(5)].map((_, idx) => (
                       <StarIcon
                         key={idx}
-                        color={idx < product?.ratings ? "#F3B81F" : "#DFE6ED"}
+                        color={idx < product?.ratings ? "#F59E0B" : "#E2E8F0"}
                         className="w-3.5 lg:w-4 h-3.5 lg:h-4 mx-0.5"
                       />
                     ))}
-                    <p className="text-[#F3B81F] ml-3 text-sm">
-                      {product?.totalReviews} Reveiws
+                    <p className="text-amber-500 ml-2.5 text-sm font-semibold">
+                      {product?.totalReviews} Reviews
                     </p>
                   </div>
                 </div>
               </div>
             )}
           </div>
-          <span className="border-t border-dashed w-full" />
+          <div className="border-t border-slate-100 dark:border-slate-800/80 w-full" />
 
-          <div className="">
-            <h3 className="text-xl text-gray-800 dark:text-white font-medium">
-              Product Details:
+          <div className="space-y-1.5">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+              Product Details
             </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-200">
+            <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
               {product?.description}
             </p>
           </div>
-          <span className="border-t border-dashed w-full" />
+          <div className="border-t border-slate-100 dark:border-slate-800/80 w-full" />
         </div>
         <div className="">
           {Object.keys(variations).map((variation) => {
@@ -177,29 +177,29 @@ const ProductDetails = ({ product }: Props) => {
               }
             />
 
-            <button>
-              <RefreshCwIcon className="w-5 h-5" />
+            <button className="p-2 text-slate-500 hover:text-primary transition-colors hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+              <RefreshCwIcon className="w-4 h-4" />
               <span className="sr-only">Compare</span>
             </button>
 
-            <button>
-              <HeartIcon className="w-5 h-5" />
-              <span className="sr-only">Wishlish</span>
+            <button className="p-2 text-slate-500 hover:text-primary transition-colors hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+              <HeartIcon className="w-4 h-4" />
+              <span className="sr-only">Wishlist</span>
             </button>
           </div>
 
           <div className="flex flex-col sm:flex-row sm:items-center gap-4">
             <Button
               onClick={addToCart}
-              className="  flex items-center gap-3 w-full"
+              className="flex items-center gap-2 rounded-xl font-bold transition-all duration-300 shadow-sm hover:shadow-md px-6 w-full"
               disabled={!isSelected || addToCartLoader}
             >
-              <Icons.cart className="ml-3 w-4 animate-pulse duration-600 transition " />
-              <p>Add_TO_CART</p>
+              <Icons.cart className="w-4 h-4 animate-pulse" />
+              <span>Add to Cart</span>
             </Button>
             <Button
               variant={"outline"}
-              className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-white transition duration-300 ease-in-out"
+              className="w-full rounded-xl border border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 font-bold"
             >
               Buy Now
             </Button>
