@@ -4,8 +4,7 @@ import { useGetOrder } from "@/hooks/api/orders/useGetOrder";
 import { useParams } from "next/navigation";
 import { 
   Package, MapPin, Phone, Mail, Calendar, 
-  DollarSign, Receipt, CreditCard, Clock, Truck, 
-  CheckCircle2, ChevronRight, ShoppingBag, ShieldCheck,
+  DollarSign, Receipt, CreditCard, Clock, Truck, ShoppingBag, ShieldCheck,
   ClipboardList, PackageOpen, Warehouse, CheckCircle
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
