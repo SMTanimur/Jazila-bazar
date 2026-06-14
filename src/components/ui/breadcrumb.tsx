@@ -9,6 +9,7 @@ import React from 'react';
 
 const getNiceTitle = (lastBreadcrumb: string) => {
   const normalized = lastBreadcrumb.toLowerCase();
+  if (/^[0-9a-fA-F]{24}$/.test(lastBreadcrumb)) return 'Order Details';
   if (normalized === 'products') return 'Explore Our Fresh Products';
   if (normalized === 'fruits-vegetables') return 'Organic Fruits & Vegetables';
   if (normalized === 'beverages') return 'Refreshing Beverages';
@@ -25,6 +26,7 @@ const getNiceTitle = (lastBreadcrumb: string) => {
 
 const getCategoryTagline = (lastBreadcrumb: string) => {
   const normalized = lastBreadcrumb.toLowerCase();
+  if (/^[0-9a-fA-F]{24}$/.test(lastBreadcrumb)) return 'View detailed information about your order and access your invoice.';
   if (normalized === 'products') return 'Handpicked premium items sourced directly from farms and trusted partners.';
   if (normalized === 'fruits-vegetables') return '100% organic and fresh produce harvested daily for your health.';
   if (normalized === 'beverages') return 'Stay hydrated and energized with our premium drinks and juices.';
@@ -64,18 +66,20 @@ const Breadcrumb: React.FC = () => {
         {breadcrumbs.map((breadcrumb, index) => {
           const isLast = index === breadcrumbs.length - 1;
           const path = `/${breadcrumbs.slice(0, index + 1).join('/')}`;
+          const isId = /^[0-9a-fA-F]{24}$/.test(breadcrumb);
+          const displayLabel = isId ? 'Order Details' : (capitalize(startCase(breadcrumb)) || 'Dashboard');
           return (
             <React.Fragment key={index}>
               {isLast ? (
                 <span className="font-semibold text-slate-800 dark:text-slate-200 truncate max-w-[120px] sm:max-w-none">
-                  {capitalize(startCase(breadcrumb)) || 'Dashboard'}
+                  {displayLabel}
                 </span>
               ) : (
                 <Link
                   href={path}
                   className="text-slate-500 dark:text-slate-400 hover:text-primary transition-colors font-medium"
                 >
-                  {capitalize(startCase(breadcrumb)) || 'Dashboard'}
+                  {displayLabel}
                 </Link>
               )}
               {!isLast && (
