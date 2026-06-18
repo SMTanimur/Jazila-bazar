@@ -56,7 +56,7 @@ const OrderDetails = () => {
             </div>
             <h3 className="text-xl font-bold text-slate-800 dark:text-slate-200">Order Not Found</h3>
             <p className="text-slate-500 dark:text-slate-400 max-w-sm">
-              We couldn't retrieve the details for this order. It might have been archived or does not exist.
+              We couldn&apos;t retrieve the details for this order. It might have been archived or does not exist.
             </p>
           </div>
         </CardContent>
